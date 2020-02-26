@@ -15,7 +15,7 @@ Este proyecto requiere la instalación de las siguientes librerias/aplicaciones
         - brew install sfml
         - brew install gcc (solo si no se puede instalar clang o se desea gcc como compilador)
 
-
+t
 ## Linux
 
 * sudo apt-get install libsfml-dev
