@@ -62,7 +62,7 @@ int main() {
           sprite.setScale(1, 1);
           sprite.move(kVel, 0);
           
-          mod->takeDamage(25);
+          mod->TakeDamage(25, "normal");
           break;
 
         case sf::Keyboard::Left:
@@ -93,11 +93,15 @@ int main() {
           break;
         }
       }
+
+
+      // actualizar juego
       
     }
 
     window.clear();
     window.draw(sprite);
+    window.draw(mod->sprite);
     window.display();
   }
 

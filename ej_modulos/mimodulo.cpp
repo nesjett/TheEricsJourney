@@ -5,14 +5,54 @@
 MiModulo::MiModulo() {
     std::cout << "Enemy spawned..." << std::endl;  
 
+    texture_file = "./resources/sprites.png";
+
+    location[0], location[1] = 0.0f; // INit location to world center
+    direction[0], direction[1] = 0.0f;
+
     health_MAX = 100.0f;
     health_Current = health_MAX; // Init health
 
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
 
-   
 
+    PrepareSprite();
+
+}
+
+void MiModulo::PrepareSprite(){
+    sf::Texture tex;
+    if (!tex.loadFromFile(texture_file)) {
+        std::cerr << "Error cargando la imagen sprites.png";
+        exit(0);
+    }
+
+    //Y creo el spritesheet a partir de la imagen anterior
+    sprite.setTexture(tex);
+
+    //Le pongo el centroide donde corresponde
+    sprite.setOrigin(75 / 2, 75 / 2);
+    //Cojo el sprite que me interesa por defecto del sheet
+    sprite.setTextureRect(sf::IntRect(0 * 75, 0 * 75, 75, 75));
+
+    // Lo dispongo en el centro de la pantalla
+    sprite.setPosition(120, 240);
+
+    //Escala por defecto
+    sprite.setScale(1, 1);
+}
+
+void MiModulo::UpdateMovement(){
+    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+    float d = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+
+    std::cout << "Movement dir: " << r << ":" << d << std::endl; 
+
+    direction[0] = r; 
+    direction[1] = d;
+
+    sprite.move();
 }
 
 
@@ -38,4 +78,8 @@ bool MiModulo::IsAlive(){
 
 void MiModulo::Die(){
     std::cout << "Enemy died!" << std::endl; 
+}
+
+void MiModulo::ApplyHitEffects(string damage_type){
+    std::cout << "Applying effect:" << damage_type << std::endl; 
 }

@@ -1,3 +1,11 @@
+Class hierarchy:  
+Actor  
+- Pawn  
+-- Enemy  
+-- Player
+
+
+
 # Instalación
 Este proyecto requiere la instalación de las siguientes librerias/aplicaciones
 
