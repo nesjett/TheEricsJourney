@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.h
+string
+-
+
+/home/nestor/Desktop/TheEricsJourney/include/config.h
+
+/home/nestor/Desktop/TheEricsJourney/main.cpp
+SFML/Graphics.hpp
+-
+iostream
+-
+include/config.h
+/home/nestor/Desktop/TheEricsJourney/include/config.h
+ej_modulos/mimodulo.h
+/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.h
+

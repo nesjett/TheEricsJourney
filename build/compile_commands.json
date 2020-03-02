@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/ej_modulos   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/MiJuego.dir/main.cpp.o -c /home/nestor/Desktop/TheEricsJourney/main.cpp",
+  "file": "/home/nestor/Desktop/TheEricsJourney/main.cpp"
+},
+{
+  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/ej_modulos   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o -c /home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.cpp",
+  "file": "/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.cpp"
+},
+{
+  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/ej_modulos   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o -c /home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo2.cpp",
+  "file": "/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo2.cpp"
+}
+]

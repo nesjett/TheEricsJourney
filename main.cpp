@@ -31,6 +31,11 @@ int main() {
   // Lo dispongo en el centro de la pantalla
   sprite.setPosition(320, 240);
 
+
+
+  
+
+
   //Bucle del juego
   while (window.isOpen()) {
     //Bucle de obtención de eventos
@@ -56,6 +61,8 @@ int main() {
           //Escala por defecto
           sprite.setScale(1, 1);
           sprite.move(kVel, 0);
+          
+          mod->takeDamage(25);
           break;
 
         case sf::Keyboard::Left:
@@ -86,6 +93,7 @@ int main() {
           break;
         }
       }
+      
     }
 
     window.clear();

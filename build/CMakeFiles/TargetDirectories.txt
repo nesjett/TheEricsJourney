@@ -1,0 +1,6 @@
+/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/rebuild_cache.dir
+/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/edit_cache.dir
+/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/MiJuego.dir
+/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir
+/home/nestor/Desktop/TheEricsJourney/build/ej_modulos/CMakeFiles/edit_cache.dir
+/home/nestor/Desktop/TheEricsJourney/build/ej_modulos/CMakeFiles/rebuild_cache.dir

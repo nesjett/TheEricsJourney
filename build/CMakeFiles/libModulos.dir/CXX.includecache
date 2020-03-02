@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.cpp
+mimodulo.h
+/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.h
+iostream
+-
+
+/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.h
+string
+-
+
+/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo2.cpp
+mimodulo2.h
+/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo2.h
+iostream
+-
+
+/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo2.h
+
