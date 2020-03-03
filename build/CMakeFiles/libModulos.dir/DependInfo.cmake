@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o"
-  "/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo2.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o"
+  "/home/nestor/Desktop/TheEricsJourney/src/Pawn.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/Pawn.cpp.o"
+  "/home/nestor/Desktop/TheEricsJourney/src/mimodulo2.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "../ej_modulos"
+  "../src"
   )
 
 # Targets to which this target links.

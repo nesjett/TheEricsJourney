@@ -136,60 +136,6 @@ libModulos/fast:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/build
 .PHONY : libModulos/fast
 
-ej_modulos/mimodulo.o: ej_modulos/mimodulo.cpp.o
-
-.PHONY : ej_modulos/mimodulo.o
-
-# target to build an object file
-ej_modulos/mimodulo.cpp.o:
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o
-.PHONY : ej_modulos/mimodulo.cpp.o
-
-ej_modulos/mimodulo.i: ej_modulos/mimodulo.cpp.i
-
-.PHONY : ej_modulos/mimodulo.i
-
-# target to preprocess a source file
-ej_modulos/mimodulo.cpp.i:
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.i
-.PHONY : ej_modulos/mimodulo.cpp.i
-
-ej_modulos/mimodulo.s: ej_modulos/mimodulo.cpp.s
-
-.PHONY : ej_modulos/mimodulo.s
-
-# target to generate assembly for a file
-ej_modulos/mimodulo.cpp.s:
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.s
-.PHONY : ej_modulos/mimodulo.cpp.s
-
-ej_modulos/mimodulo2.o: ej_modulos/mimodulo2.cpp.o
-
-.PHONY : ej_modulos/mimodulo2.o
-
-# target to build an object file
-ej_modulos/mimodulo2.cpp.o:
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o
-.PHONY : ej_modulos/mimodulo2.cpp.o
-
-ej_modulos/mimodulo2.i: ej_modulos/mimodulo2.cpp.i
-
-.PHONY : ej_modulos/mimodulo2.i
-
-# target to preprocess a source file
-ej_modulos/mimodulo2.cpp.i:
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.i
-.PHONY : ej_modulos/mimodulo2.cpp.i
-
-ej_modulos/mimodulo2.s: ej_modulos/mimodulo2.cpp.s
-
-.PHONY : ej_modulos/mimodulo2.s
-
-# target to generate assembly for a file
-ej_modulos/mimodulo2.cpp.s:
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.s
-.PHONY : ej_modulos/mimodulo2.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -217,6 +163,60 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/MiJuego.dir/build.make CMakeFiles/MiJuego.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Pawn.o: src/Pawn.cpp.o
+
+.PHONY : src/Pawn.o
+
+# target to build an object file
+src/Pawn.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/Pawn.cpp.o
+.PHONY : src/Pawn.cpp.o
+
+src/Pawn.i: src/Pawn.cpp.i
+
+.PHONY : src/Pawn.i
+
+# target to preprocess a source file
+src/Pawn.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/Pawn.cpp.i
+.PHONY : src/Pawn.cpp.i
+
+src/Pawn.s: src/Pawn.cpp.s
+
+.PHONY : src/Pawn.s
+
+# target to generate assembly for a file
+src/Pawn.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/Pawn.cpp.s
+.PHONY : src/Pawn.cpp.s
+
+src/mimodulo2.o: src/mimodulo2.cpp.o
+
+.PHONY : src/mimodulo2.o
+
+# target to build an object file
+src/mimodulo2.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o
+.PHONY : src/mimodulo2.cpp.o
+
+src/mimodulo2.i: src/mimodulo2.cpp.i
+
+.PHONY : src/mimodulo2.i
+
+# target to preprocess a source file
+src/mimodulo2.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/mimodulo2.cpp.i
+.PHONY : src/mimodulo2.cpp.i
+
+src/mimodulo2.s: src/mimodulo2.cpp.s
+
+.PHONY : src/mimodulo2.s
+
+# target to generate assembly for a file
+src/mimodulo2.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/mimodulo2.cpp.s
+.PHONY : src/mimodulo2.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -227,15 +227,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... MiJuego"
 	@echo "... libModulos"
-	@echo "... ej_modulos/mimodulo.o"
-	@echo "... ej_modulos/mimodulo.i"
-	@echo "... ej_modulos/mimodulo.s"
-	@echo "... ej_modulos/mimodulo2.o"
-	@echo "... ej_modulos/mimodulo2.i"
-	@echo "... ej_modulos/mimodulo2.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/Pawn.o"
+	@echo "... src/Pawn.i"
+	@echo "... src/Pawn.s"
+	@echo "... src/mimodulo2.o"
+	@echo "... src/mimodulo2.i"
+	@echo "... src/mimodulo2.s"
 .PHONY : help
 
 

@@ -134,22 +134,22 @@ clean: CMakeFiles/libModulos.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory ej_modulos
+# Directory level rules for directory src
 
 # Convenience name for "all" pass in the directory.
-ej_modulos/all:
+src/all:
 
-.PHONY : ej_modulos/all
+.PHONY : src/all
 
 # Convenience name for "clean" pass in the directory.
-ej_modulos/clean:
+src/clean:
 
-.PHONY : ej_modulos/clean
+.PHONY : src/clean
 
 # Convenience name for "preinstall" pass in the directory.
-ej_modulos/preinstall:
+src/preinstall:
 
-.PHONY : ej_modulos/preinstall
+.PHONY : src/preinstall
 
 #=============================================================================
 # Special targets to cleanup operation of make.

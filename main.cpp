@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "include/config.h"
-#include "ej_modulos/mimodulo.h"
+#include "src/Pawn.h"
 
 #define kVel 5
 

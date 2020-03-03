@@ -1,8 +1,12 @@
+#pragma once
 #include <string>
-using namespace std;
 #include <stdlib.h>
 #include <SFML/Graphics.hpp>
-#pragma once
+#include <vector>
+
+using namespace std;
+using namespace sf;
+
 
 
 class MiModulo{
@@ -13,10 +17,10 @@ class MiModulo{
         string texture_file;
         sf::Sprite sprite;
 
-        float location[2];
-        float direction[2];
+        Vector2f location;
+        Vector2f direction;
 
-        float movementSpeed = 2;
+        float movementSpeed;
 
 
         /************************************************************
@@ -36,7 +40,13 @@ class MiModulo{
         // Adds movement to the desired direction
         void UpdateMovement(); 
 
+        bool Attack();
+
+        void Update(float delta);
+
     protected:
+        Clock cD, cInterp, cMov;
+
         void PrepareSprite();
 
         // Apply dying effects

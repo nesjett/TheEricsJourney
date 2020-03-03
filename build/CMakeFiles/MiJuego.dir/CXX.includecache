@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.h
-string
--
-SFML/Graphics.hpp
--
-
 /home/nestor/Desktop/TheEricsJourney/include/config.h
 
 /home/nestor/Desktop/TheEricsJourney/main.cpp
@@ -21,6 +15,16 @@ iostream
 -
 include/config.h
 /home/nestor/Desktop/TheEricsJourney/include/config.h
-ej_modulos/mimodulo.h
-/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.h
+src/Pawn.h
+/home/nestor/Desktop/TheEricsJourney/src/Pawn.h
+
+/home/nestor/Desktop/TheEricsJourney/src/Pawn.h
+string
+-
+stdlib.h
+-
+SFML/Graphics.hpp
+-
+vector
+-
 

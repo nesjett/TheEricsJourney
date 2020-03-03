@@ -6,23 +6,27 @@
 
 #IncludeRegexTransform: 
 
-/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.cpp
-mimodulo.h
-/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.h
+/home/nestor/Desktop/TheEricsJourney/src/Pawn.cpp
+Pawn.h
+/home/nestor/Desktop/TheEricsJourney/src/Pawn.h
 iostream
 -
 
-/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.h
+/home/nestor/Desktop/TheEricsJourney/src/Pawn.h
 string
+-
+stdlib.h
 -
 SFML/Graphics.hpp
 -
+vector
+-
 
-/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo2.cpp
+/home/nestor/Desktop/TheEricsJourney/src/mimodulo2.cpp
 mimodulo2.h
-/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo2.h
+/home/nestor/Desktop/TheEricsJourney/src/mimodulo2.h
 iostream
 -
 
-/home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo2.h
+/home/nestor/Desktop/TheEricsJourney/src/mimodulo2.h
 

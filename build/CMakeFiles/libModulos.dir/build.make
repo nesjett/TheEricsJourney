@@ -57,64 +57,64 @@ include CMakeFiles/libModulos.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/libModulos.dir/flags.make
 
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o: CMakeFiles/libModulos.dir/flags.make
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o: ../ej_modulos/mimodulo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o -c /home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.cpp
+CMakeFiles/libModulos.dir/src/Pawn.cpp.o: CMakeFiles/libModulos.dir/flags.make
+CMakeFiles/libModulos.dir/src/Pawn.cpp.o: ../src/Pawn.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/libModulos.dir/src/Pawn.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/libModulos.dir/src/Pawn.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/Pawn.cpp
 
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.cpp > CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.i
+CMakeFiles/libModulos.dir/src/Pawn.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libModulos.dir/src/Pawn.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nestor/Desktop/TheEricsJourney/src/Pawn.cpp > CMakeFiles/libModulos.dir/src/Pawn.cpp.i
 
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo.cpp -o CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.s
+CMakeFiles/libModulos.dir/src/Pawn.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libModulos.dir/src/Pawn.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nestor/Desktop/TheEricsJourney/src/Pawn.cpp -o CMakeFiles/libModulos.dir/src/Pawn.cpp.s
 
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o.requires:
+CMakeFiles/libModulos.dir/src/Pawn.cpp.o.requires:
 
-.PHONY : CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o.requires
+.PHONY : CMakeFiles/libModulos.dir/src/Pawn.cpp.o.requires
 
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o.provides: CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o.requires
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o.provides.build
-.PHONY : CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o.provides
+CMakeFiles/libModulos.dir/src/Pawn.cpp.o.provides: CMakeFiles/libModulos.dir/src/Pawn.cpp.o.requires
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/Pawn.cpp.o.provides.build
+.PHONY : CMakeFiles/libModulos.dir/src/Pawn.cpp.o.provides
 
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o.provides.build: CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o
+CMakeFiles/libModulos.dir/src/Pawn.cpp.o.provides.build: CMakeFiles/libModulos.dir/src/Pawn.cpp.o
 
 
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o: CMakeFiles/libModulos.dir/flags.make
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o: ../ej_modulos/mimodulo2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o -c /home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo2.cpp
+CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o: CMakeFiles/libModulos.dir/flags.make
+CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o: ../src/mimodulo2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/mimodulo2.cpp
 
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo2.cpp > CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.i
+CMakeFiles/libModulos.dir/src/mimodulo2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libModulos.dir/src/mimodulo2.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nestor/Desktop/TheEricsJourney/src/mimodulo2.cpp > CMakeFiles/libModulos.dir/src/mimodulo2.cpp.i
 
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nestor/Desktop/TheEricsJourney/ej_modulos/mimodulo2.cpp -o CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.s
+CMakeFiles/libModulos.dir/src/mimodulo2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libModulos.dir/src/mimodulo2.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nestor/Desktop/TheEricsJourney/src/mimodulo2.cpp -o CMakeFiles/libModulos.dir/src/mimodulo2.cpp.s
 
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o.requires:
+CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o.requires:
 
-.PHONY : CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o.requires
+.PHONY : CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o.requires
 
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o.provides: CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o.requires
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o.provides.build
-.PHONY : CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o.provides
+CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o.provides: CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o.requires
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o.provides.build
+.PHONY : CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o.provides
 
-CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o.provides.build: CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o
+CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o.provides.build: CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o
 
 
 # Object files for target libModulos
 libModulos_OBJECTS = \
-"CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o" \
-"CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o"
+"CMakeFiles/libModulos.dir/src/Pawn.cpp.o" \
+"CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o"
 
 # External object files for target libModulos
 libModulos_EXTERNAL_OBJECTS =
 
-liblibModulos.a: CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o
-liblibModulos.a: CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o
+liblibModulos.a: CMakeFiles/libModulos.dir/src/Pawn.cpp.o
+liblibModulos.a: CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o
 liblibModulos.a: CMakeFiles/libModulos.dir/build.make
 liblibModulos.a: CMakeFiles/libModulos.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library liblibModulos.a"
@@ -126,8 +126,8 @@ CMakeFiles/libModulos.dir/build: liblibModulos.a
 
 .PHONY : CMakeFiles/libModulos.dir/build
 
-CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/ej_modulos/mimodulo.cpp.o.requires
-CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/ej_modulos/mimodulo2.cpp.o.requires
+CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/Pawn.cpp.o.requires
+CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o.requires
 
 .PHONY : CMakeFiles/libModulos.dir/requires
 
