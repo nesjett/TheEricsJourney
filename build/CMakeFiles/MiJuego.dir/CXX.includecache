@@ -8,10 +8,6 @@
 
 /home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/include/game.h
-SFML/Graphics.hpp
--
-
 /home/fv/Escritorio/Workspace/TheEricsJourney/main.cpp
 SFML/Graphics.hpp
 -
@@ -19,6 +15,10 @@ iostream
 -
 include/config.h
 /home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
-include/game.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/include/game.h
+src/public/game.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
+
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
+SFML/Graphics.hpp
+-
 

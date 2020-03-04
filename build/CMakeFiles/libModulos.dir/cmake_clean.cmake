@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/libModulos.dir/src/game.cpp.o"
+  "CMakeFiles/libModulos.dir/src/private/game.cpp.o"
   "liblibModulos.pdb"
   "liblibModulos.a"
 )

@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "include/config.h"
-#include "include/game.h"
+#include "src/public/game.h"
 
 #define kVel 5
 
