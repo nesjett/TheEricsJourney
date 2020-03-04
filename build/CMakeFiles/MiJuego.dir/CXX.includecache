@@ -6,25 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/home/nestor/Desktop/TheEricsJourney/include/config.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
 
-/home/nestor/Desktop/TheEricsJourney/main.cpp
+/home/fv/Escritorio/Workspace/TheEricsJourney/include/game.h
+SFML/Graphics.hpp
+-
+
+/home/fv/Escritorio/Workspace/TheEricsJourney/main.cpp
 SFML/Graphics.hpp
 -
 iostream
 -
 include/config.h
-/home/nestor/Desktop/TheEricsJourney/include/config.h
-src/Pawn.h
-/home/nestor/Desktop/TheEricsJourney/src/Pawn.h
-
-/home/nestor/Desktop/TheEricsJourney/src/Pawn.h
-string
--
-stdlib.h
--
-SFML/Graphics.hpp
--
-vector
--
+/home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
+include/game.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/include/game.h
 

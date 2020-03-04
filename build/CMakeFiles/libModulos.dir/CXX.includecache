@@ -6,27 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/nestor/Desktop/TheEricsJourney/src/Pawn.cpp
-Pawn.h
-/home/nestor/Desktop/TheEricsJourney/src/Pawn.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/game.cpp
+game.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/game.h
 iostream
 -
 
-/home/nestor/Desktop/TheEricsJourney/src/Pawn.h
-string
--
-stdlib.h
--
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/game.h
 SFML/Graphics.hpp
 -
-vector
--
-
-/home/nestor/Desktop/TheEricsJourney/src/mimodulo2.cpp
-mimodulo2.h
-/home/nestor/Desktop/TheEricsJourney/src/mimodulo2.h
-iostream
--
-
-/home/nestor/Desktop/TheEricsJourney/src/mimodulo2.h
 

@@ -4,8 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/nestor/Desktop/TheEricsJourney/src/Pawn.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/Pawn.cpp.o"
-  "/home/nestor/Desktop/TheEricsJourney/src/mimodulo2.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/game.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/game.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

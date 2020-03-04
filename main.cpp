@@ -2,16 +2,19 @@
 #include <iostream>
 
 #include "include/config.h"
-#include "src/Pawn.h"
+#include "include/game.h"
 
 #define kVel 5
 
 int main() {
-
-  MiModulo *mod = new MiModulo();
-
+  
+  game prueba;
+  prueba.init();
+  prueba.run();
+  return EXIT_SUCCESS;
+  
   //Creamos una ventana
-  sf::RenderWindow window(sf::VideoMode(640, 480), "P0. Fundamentos de los Videojuegos. DCCIA");
+  /*sf::RenderWindow window(sf::VideoMode(640, 480), "P0. Fundamentos de los Videojuegos. DCCIA");
 
   //Cargo la imagen donde reside la textura del sprite
   sf::Texture tex;
@@ -30,11 +33,6 @@ int main() {
 
   // Lo dispongo en el centro de la pantalla
   sprite.setPosition(320, 240);
-
-
-
-  
-
 
   //Bucle del juego
   while (window.isOpen()) {
@@ -61,8 +59,6 @@ int main() {
           //Escala por defecto
           sprite.setScale(1, 1);
           sprite.move(kVel, 0);
-          
-          mod->TakeDamage(25, "normal");
           break;
 
         case sf::Keyboard::Left:
@@ -93,17 +89,12 @@ int main() {
           break;
         }
       }
-
-
-      // actualizar juego
-      
     }
 
     window.clear();
     window.draw(sprite);
-    window.draw(mod->sprite);
     window.display();
   }
 
-  return 0;
+  return 0;*/
 }

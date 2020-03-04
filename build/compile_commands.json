@@ -1,17 +1,12 @@
 [
 {
-  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
-  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/src   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/MiJuego.dir/main.cpp.o -c /home/nestor/Desktop/TheEricsJourney/main.cpp",
-  "file": "/home/nestor/Desktop/TheEricsJourney/main.cpp"
+  "directory": "/home/fv/Escritorio/Workspace/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/fv/Escritorio/Workspace/TheEricsJourney/src   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/MiJuego.dir/main.cpp.o -c /home/fv/Escritorio/Workspace/TheEricsJourney/main.cpp",
+  "file": "/home/fv/Escritorio/Workspace/TheEricsJourney/main.cpp"
 },
 {
-  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
-  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/src   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/Pawn.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/Pawn.cpp",
-  "file": "/home/nestor/Desktop/TheEricsJourney/src/Pawn.cpp"
-},
-{
-  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
-  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/src   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/mimodulo2.cpp",
-  "file": "/home/nestor/Desktop/TheEricsJourney/src/mimodulo2.cpp"
+  "directory": "/home/fv/Escritorio/Workspace/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/fv/Escritorio/Workspace/TheEricsJourney/src   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/game.cpp.o -c /home/fv/Escritorio/Workspace/TheEricsJourney/src/game.cpp",
+  "file": "/home/fv/Escritorio/Workspace/TheEricsJourney/src/game.cpp"
 }
 ]

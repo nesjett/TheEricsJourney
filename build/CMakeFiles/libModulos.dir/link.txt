@@ -1,2 +1,2 @@
-/usr/bin/ar qc liblibModulos.a  CMakeFiles/libModulos.dir/src/Pawn.cpp.o CMakeFiles/libModulos.dir/src/mimodulo2.cpp.o
+/usr/bin/ar qc liblibModulos.a  CMakeFiles/libModulos.dir/src/game.cpp.o
 /usr/bin/ranlib liblibModulos.a
