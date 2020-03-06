@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-MiModulo::MiModulo() {
+Pawn::Pawn() {
     std::cout << "Pawn spawned..." << std::endl;  
 
     texture_file = "./resources/sprites.png";
@@ -21,9 +21,10 @@ MiModulo::MiModulo() {
 
     PrepareSprite();
 
+    Update(0.f);
 }
 
-void MiModulo::PrepareSprite(){
+void Pawn::PrepareSprite(){
     sf::Texture tex;
     if (!tex.loadFromFile(texture_file)) {
         std::cerr << "Error cargando la imagen sprites.png";
@@ -46,15 +47,22 @@ void MiModulo::PrepareSprite(){
 }
 
 
-void MiModulo::Update(float delta){
-    if(cInterp.getElapsedTime().asMilliseconds() >= 1000/15){
+void Pawn::Update(float delta){
+    std::cout << "Iniciamos UPDATE()" << std::endl;
+    /*if(cInterp.getElapsedTime().asMilliseconds() >= 1000/15){
         UpdateMovement();
         cInterp.restart();
+    }*/
+
+    game& gi = *game::Instance();
+    std::cout << gi.getWindow().isOpen() << std::endl;
+    while (gi.getWindow().isOpen()) {
+        std::cout << "PINTANDO!!" << std::endl;
     }
 }
 
 // TODO: Use delta time and interpolation
-void MiModulo::UpdateMovement(){
+void Pawn::UpdateMovement(){
     float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
     float d = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 
@@ -67,7 +75,7 @@ void MiModulo::UpdateMovement(){
 }
 
 
-void MiModulo::TakeDamage(float damage, string damage_type){
+void Pawn::TakeDamage(float damage, string damage_type){
     std::cout << "Damage taken!" << std::endl; 
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
         health_Current-=damage;
@@ -79,7 +87,7 @@ void MiModulo::TakeDamage(float damage, string damage_type){
     }
 }
 
-bool MiModulo::IsAlive(){
+bool Pawn::IsAlive(){
     if(health_Current > 0){
         return true;
     } else {
@@ -87,15 +95,15 @@ bool MiModulo::IsAlive(){
     }
 }
 
-void MiModulo::Die(){
+void Pawn::Die(){
     std::cout << "Enemy died!" << std::endl; 
 }
 
-void MiModulo::ApplyHitEffects(string damage_type){
+void Pawn::ApplyHitEffects(string damage_type){
     std::cout << "Applying effect:" << damage_type << std::endl; 
 }
 
 // Base to implement attacks. This should be on the base class and be overriden by the different enemies
-bool MiModulo::Attack(){
+bool Pawn::Attack(){
     return true;
 }

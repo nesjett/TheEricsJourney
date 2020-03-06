@@ -1,6 +1,8 @@
 #include "game.h"
 #include <iostream>
 
+#include "../public/Pawn.h"
+
 game* game::pInstance = NULL;
 game* game::Instance() {
     if(pInstance == NULL) { // If not created earlier, create a new instance and return it
@@ -53,6 +55,9 @@ void game::init(/*char* nombre, int AuxMapa*/){
     NextLevel=false;*/
 
 }
+
+Pawn *enemyTest = new Pawn();
+
 //bucle del juego
 void game::run(){
 
@@ -89,6 +94,7 @@ void game::run(){
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
                     sprite.setTextureRect(sf::IntRect(0 * 75, 0 * 75, 75, 75));
                     sprite.move(0, kVel);
+                    enemyTest->Update(0.f);
                 }
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }

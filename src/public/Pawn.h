@@ -3,16 +3,16 @@
 #include <stdlib.h>
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <game.h>
 
 using namespace std;
 using namespace sf;
 
 
 
-class MiModulo{
-    
+class Pawn{
     public:
-        MiModulo();
+        Pawn();
 
         string texture_file;
         sf::Sprite sprite;

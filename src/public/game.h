@@ -14,6 +14,12 @@ class game
         void aMoverse();
         void auxiliarMov(bool, sf::Keyboard::Key);
         void plantaAbajo();
+        int getTest() {
+            return test;
+        }
+        sf::RenderWindow &getWindow() {
+            return app;
+        }
 
     protected:
         game();
@@ -24,6 +30,7 @@ class game
     private:
         static game* pInstance;
         sf::RenderWindow app;
+        int test = 1;
         int largo = 1080;
         int alto = 720;
         //sprite *Paco;

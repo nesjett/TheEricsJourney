@@ -23,6 +23,8 @@ game.h
 /home/nestor/Desktop/TheEricsJourney/src/private/game.h
 iostream
 -
+../public/Pawn.h
+/home/nestor/Desktop/TheEricsJourney/src/public/Pawn.h
 
 /home/nestor/Desktop/TheEricsJourney/src/private/mimodulo2.cpp
 mimodulo2.h
@@ -38,5 +40,7 @@ stdlib.h
 SFML/Graphics.hpp
 -
 vector
+-
+game.h
 -
 
