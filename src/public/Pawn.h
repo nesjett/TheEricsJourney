@@ -40,11 +40,14 @@ class Pawn{
         // Adds movement to the desired direction
         void UpdateMovement(); 
 
+        sf::CircleShape bala = sf::CircleShape(5);
+
         bool Attack();
 
         void Update(float delta);
 
     protected:
+        virtual ~Pawn();
         Clock cD, cInterp, cMov;
 
         void PrepareSprite();

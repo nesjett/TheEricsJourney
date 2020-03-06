@@ -1,7 +1,7 @@
-#include "mimodulo2.h"
+#include "Actor.h"
 
 #include <iostream>
 
-MiModulo2::MiModulo2() {
+Actor::Actor() {
   std::cout << "Creando mi modulo2...";
 }

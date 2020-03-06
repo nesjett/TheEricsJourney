@@ -17,7 +17,8 @@ Pawn::Pawn() {
     damage_Multiplier = 0.0f; 
 
     movementSpeed = 2.0f;
-
+    
+    bala.setFillColor(sf::Color::Red);
 
     PrepareSprite();
 
@@ -57,7 +58,8 @@ void Pawn::Update(float delta){
     game& gi = *game::Instance();
     std::cout << gi.getWindow().isOpen() << std::endl;
     while (gi.getWindow().isOpen()) {
-        std::cout << "PINTANDO!!" << std::endl;
+        gi.getWindow().draw(bala);
+        //std::cout << "PINTANDO!!" << std::endl;
     }
 }
 
@@ -106,4 +108,8 @@ void Pawn::ApplyHitEffects(string damage_type){
 // Base to implement attacks. This should be on the base class and be overriden by the different enemies
 bool Pawn::Attack(){
     return true;
+}
+
+Pawn::~Pawn(){
+
 }
