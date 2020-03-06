@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/fv/Escritorio/Workspace/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/fv/Escritorio/Workspace/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/MiJuego.dir/main.cpp.o -c /home/fv/Escritorio/Workspace/TheEricsJourney/main.cpp",
+  "file": "/home/fv/Escritorio/Workspace/TheEricsJourney/main.cpp"
+},
+{
+  "directory": "/home/fv/Escritorio/Workspace/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/fv/Escritorio/Workspace/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/game.cpp.o -c /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/game.cpp",
+  "file": "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/game.cpp"
+}
+]

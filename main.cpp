@@ -2,16 +2,19 @@
 #include <iostream>
 
 #include "include/config.h"
-#include "ej_modulos/mimodulo.h"
+#include "src/public/game.h"
 
 #define kVel 5
 
 int main() {
-
-  MiModulo *mod = new MiModulo();
-
+  
+  game prueba;
+  prueba.init();
+  prueba.run();
+  return EXIT_SUCCESS;
+  
   //Creamos una ventana
-  sf::RenderWindow window(sf::VideoMode(640, 480), "P0. Fundamentos de los Videojuegos. DCCIA");
+  /*sf::RenderWindow window(sf::VideoMode(640, 480), "P0. Fundamentos de los Videojuegos. DCCIA");
 
   //Cargo la imagen donde reside la textura del sprite
   sf::Texture tex;
@@ -93,5 +96,5 @@ int main() {
     window.display();
   }
 
-  return 0;
+  return 0;*/
 }
