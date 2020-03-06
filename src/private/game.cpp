@@ -106,6 +106,13 @@ void game::run(){
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
         }
+
+        for (Actor *actor : actors) {
+            //std::cout << "Actor info: " << actor->getActorLocation().x << std::endl;
+            actor->update();
+        }
+
+
         app.clear();
         app.draw(sprite);
         app.display();

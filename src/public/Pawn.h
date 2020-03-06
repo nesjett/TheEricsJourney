@@ -14,7 +14,6 @@ class Pawn: public Actor {
 
         float movementSpeed;
 
-
         /************************************************************
          * ENEMIGO START
          * **************************************************/
@@ -39,7 +38,6 @@ class Pawn: public Actor {
         void Update(float delta);
 
     protected:
-        virtual ~Pawn();
         Clock cD, cInterp, cMov;
 
         void PrepareSprite();

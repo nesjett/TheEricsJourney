@@ -110,6 +110,3 @@ bool Pawn::Attack(){
     return true;
 }
 
-Pawn::~Pawn(){
-
-}

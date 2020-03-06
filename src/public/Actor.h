@@ -22,4 +22,7 @@ class Actor {
   private:
     Vector2f location;
     Vector2f boundingBox;
+
+  protected:
+    virtual ~Actor();
 };

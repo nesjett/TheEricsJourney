@@ -5,3 +5,7 @@
 Actor::Actor() {
   std::cout << "Creando mi modulo2...";
 }
+
+Actor::~Actor(){
+
+}
