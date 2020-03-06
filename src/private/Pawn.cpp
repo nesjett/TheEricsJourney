@@ -2,13 +2,12 @@
 
 #include <iostream>
 
-Pawn::Pawn() {
+Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
     texture_file = "./resources/sprites.png";
 
-    location = Vector2f(0.f, 0.f); // INit location to world center
-    direction = Vector2f(0.f, 0.f);
+    direction = Vector2f(0.f, 0.f); // Initially It has no direction
 
     health_MAX = 100.0f;
     health_Current = health_MAX; // Init health
@@ -21,8 +20,6 @@ Pawn::Pawn() {
     bala.setFillColor(sf::Color::Red);
 
     PrepareSprite();
-
-    Update(0.f);
 }
 
 void Pawn::PrepareSprite(){

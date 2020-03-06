@@ -109,7 +109,7 @@ void game::run(){
 
         for (Actor *actor : actors) {
             //std::cout << "Actor info: " << actor->getActorLocation().x << std::endl;
-            actor->update();
+            actor->Update();
         }
 
 

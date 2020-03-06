@@ -9,7 +9,6 @@ class Pawn: public Actor {
         string texture_file;
         sf::Sprite sprite;
 
-        Vector2f location;
         Vector2f direction;
 
         float movementSpeed;
