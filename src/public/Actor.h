@@ -11,18 +11,19 @@ class Actor {
 
   public:
     Actor();
+    virtual ~Actor();
     Vector2f getActorLocation() {return location;}
 		Vector2f getBoundingBox() {return boundingBox;}
 		void setActorLocation(Vector2f loc) {location = loc;}
 		void setBoundingBox(Vector2f wh) {boundingBox = wh;}
-		void update();
-		void draw();
-		void setup();
+		void Update();
+		void Draw();
+		void Init();
 
   private:
     Vector2f location;
     Vector2f boundingBox;
 
   protected:
-    virtual ~Actor();
+    
 };
