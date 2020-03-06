@@ -6,19 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
+/home/nestor/Desktop/TheEricsJourney/include/config.h
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/main.cpp
+/home/nestor/Desktop/TheEricsJourney/main.cpp
 SFML/Graphics.hpp
 -
 iostream
 -
 include/config.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
+/home/nestor/Desktop/TheEricsJourney/include/config.h
 src/public/game.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
+/home/nestor/Desktop/TheEricsJourney/src/public/game.h
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
+/home/nestor/Desktop/TheEricsJourney/src/public/game.h
 SFML/Graphics.hpp
 -
 

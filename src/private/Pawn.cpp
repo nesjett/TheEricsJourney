@@ -1,4 +1,4 @@
-#include "Pawn.h"
+#include "../public/Pawn.h"
 
 #include <iostream>
 

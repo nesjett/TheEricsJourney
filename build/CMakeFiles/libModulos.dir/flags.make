@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++1y -Wall -Wextra -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/fv/Escritorio/Workspace/TheEricsJourney/src/public 
+CXX_INCLUDES = -I/home/nestor/Desktop/TheEricsJourney/src/public 
 

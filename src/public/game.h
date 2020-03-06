@@ -6,8 +6,7 @@
 class game
 {
     public:
-        game();
-        virtual ~game();
+        static game* Instance();
         void init(/*char*, int*/);
         void run();
         void Actualizar();
@@ -17,8 +16,13 @@ class game
         void plantaAbajo();
 
     protected:
+        game();
+        game(const game &);
+        game &operator= (const game &);
+        virtual ~game();
 
     private:
+        static game* pInstance;
         sf::RenderWindow app;
         int largo = 1080;
         int alto = 720;

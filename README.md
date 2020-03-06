@@ -1,8 +1,10 @@
 Class hierarchy:  
+GameInstance (SIngleton)
+Sprite (interface for smfl)
 Actor  
 - Pawn  
 -- Enemy  
--- Player
+-- Player 
 
 
 

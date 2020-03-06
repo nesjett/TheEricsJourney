@@ -8,9 +8,9 @@
 
 int main() {
   
-  game prueba;
-  prueba.init();
-  prueba.run();
+  game *gameinstance = game::Instance();
+  gameinstance->init();
+  gameinstance->run();
   return EXIT_SUCCESS;
   
   //Creamos una ventana

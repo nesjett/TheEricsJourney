@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fv/Escritorio/Workspace/TheEricsJourney
+CMAKE_SOURCE_DIR = /home/nestor/Desktop/TheEricsJourney
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fv/Escritorio/Workspace/TheEricsJourney/build
+CMAKE_BINARY_DIR = /home/nestor/Desktop/TheEricsJourney/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles /home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nestor/Desktop/TheEricsJourney/build/CMakeFiles /home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nestor/Desktop/TheEricsJourney/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -163,6 +163,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/MiJuego.dir/build.make CMakeFiles/MiJuego.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/private/Pawn.o: src/private/Pawn.cpp.o
+
+.PHONY : src/private/Pawn.o
+
+# target to build an object file
+src/private/Pawn.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
+.PHONY : src/private/Pawn.cpp.o
+
+src/private/Pawn.i: src/private/Pawn.cpp.i
+
+.PHONY : src/private/Pawn.i
+
+# target to preprocess a source file
+src/private/Pawn.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Pawn.cpp.i
+.PHONY : src/private/Pawn.cpp.i
+
+src/private/Pawn.s: src/private/Pawn.cpp.s
+
+.PHONY : src/private/Pawn.s
+
+# target to generate assembly for a file
+src/private/Pawn.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Pawn.cpp.s
+.PHONY : src/private/Pawn.cpp.s
+
 src/private/game.o: src/private/game.cpp.o
 
 .PHONY : src/private/game.o
@@ -190,6 +217,33 @@ src/private/game.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/game.cpp.s
 .PHONY : src/private/game.cpp.s
 
+src/private/mimodulo2.o: src/private/mimodulo2.cpp.o
+
+.PHONY : src/private/mimodulo2.o
+
+# target to build an object file
+src/private/mimodulo2.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o
+.PHONY : src/private/mimodulo2.cpp.o
+
+src/private/mimodulo2.i: src/private/mimodulo2.cpp.i
+
+.PHONY : src/private/mimodulo2.i
+
+# target to preprocess a source file
+src/private/mimodulo2.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.i
+.PHONY : src/private/mimodulo2.cpp.i
+
+src/private/mimodulo2.s: src/private/mimodulo2.cpp.s
+
+.PHONY : src/private/mimodulo2.s
+
+# target to generate assembly for a file
+src/private/mimodulo2.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.s
+.PHONY : src/private/mimodulo2.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -203,9 +257,15 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/private/Pawn.o"
+	@echo "... src/private/Pawn.i"
+	@echo "... src/private/Pawn.s"
 	@echo "... src/private/game.o"
 	@echo "... src/private/game.i"
 	@echo "... src/private/game.s"
+	@echo "... src/private/mimodulo2.o"
+	@echo "... src/private/mimodulo2.i"
+	@echo "... src/private/mimodulo2.s"
 .PHONY : help
 
 

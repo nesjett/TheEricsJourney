@@ -10,9 +10,33 @@
 SFML/Graphics.hpp
 -
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/game.cpp
-game.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/game.h
+../src/public/mimodulo2.h
+
+/home/nestor/Desktop/TheEricsJourney/src/private/Pawn.cpp
+../public/Pawn.h
+/home/nestor/Desktop/TheEricsJourney/src/public/Pawn.h
 iostream
+-
+
+/home/nestor/Desktop/TheEricsJourney/src/private/game.cpp
+game.h
+/home/nestor/Desktop/TheEricsJourney/src/private/game.h
+iostream
+-
+
+/home/nestor/Desktop/TheEricsJourney/src/private/mimodulo2.cpp
+mimodulo2.h
+/home/nestor/Desktop/TheEricsJourney/src/private/mimodulo2.h
+iostream
+-
+
+/home/nestor/Desktop/TheEricsJourney/src/public/Pawn.h
+string
+-
+stdlib.h
+-
+SFML/Graphics.hpp
+-
+vector
 -
 
