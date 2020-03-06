@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+../src/public/Actor.h
+string
+-
+stdlib.h
+-
+SFML/Graphics.hpp
+-
+vector
+-
+
 /home/nestor/Desktop/TheEricsJourney/include/config.h
 
 /home/nestor/Desktop/TheEricsJourney/main.cpp
@@ -19,6 +29,14 @@ src/public/game.h
 /home/nestor/Desktop/TheEricsJourney/src/public/game.h
 
 /home/nestor/Desktop/TheEricsJourney/src/public/game.h
+iostream
+-
+list
+-
+iterator
+-
 SFML/Graphics.hpp
+-
+Actor.h
 -
 

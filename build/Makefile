@@ -163,6 +163,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/MiJuego.dir/build.make CMakeFiles/MiJuego.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/private/Actor.o: src/private/Actor.cpp.o
+
+.PHONY : src/private/Actor.o
+
+# target to build an object file
+src/private/Actor.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Actor.cpp.o
+.PHONY : src/private/Actor.cpp.o
+
+src/private/Actor.i: src/private/Actor.cpp.i
+
+.PHONY : src/private/Actor.i
+
+# target to preprocess a source file
+src/private/Actor.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Actor.cpp.i
+.PHONY : src/private/Actor.cpp.i
+
+src/private/Actor.s: src/private/Actor.cpp.s
+
+.PHONY : src/private/Actor.s
+
+# target to generate assembly for a file
+src/private/Actor.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Actor.cpp.s
+.PHONY : src/private/Actor.cpp.s
+
 src/private/Pawn.o: src/private/Pawn.cpp.o
 
 .PHONY : src/private/Pawn.o
@@ -217,33 +244,6 @@ src/private/game.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/game.cpp.s
 .PHONY : src/private/game.cpp.s
 
-src/private/mimodulo2.o: src/private/mimodulo2.cpp.o
-
-.PHONY : src/private/mimodulo2.o
-
-# target to build an object file
-src/private/mimodulo2.cpp.o:
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o
-.PHONY : src/private/mimodulo2.cpp.o
-
-src/private/mimodulo2.i: src/private/mimodulo2.cpp.i
-
-.PHONY : src/private/mimodulo2.i
-
-# target to preprocess a source file
-src/private/mimodulo2.cpp.i:
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.i
-.PHONY : src/private/mimodulo2.cpp.i
-
-src/private/mimodulo2.s: src/private/mimodulo2.cpp.s
-
-.PHONY : src/private/mimodulo2.s
-
-# target to generate assembly for a file
-src/private/mimodulo2.cpp.s:
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.s
-.PHONY : src/private/mimodulo2.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -257,15 +257,15 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/private/Actor.o"
+	@echo "... src/private/Actor.i"
+	@echo "... src/private/Actor.s"
 	@echo "... src/private/Pawn.o"
 	@echo "... src/private/Pawn.i"
 	@echo "... src/private/Pawn.s"
 	@echo "... src/private/game.o"
 	@echo "... src/private/game.i"
 	@echo "... src/private/game.s"
-	@echo "... src/private/mimodulo2.o"
-	@echo "... src/private/mimodulo2.i"
-	@echo "... src/private/mimodulo2.s"
 .PHONY : help
 
 

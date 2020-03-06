@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o"
-  "CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o"
+  "CMakeFiles/libModulos.dir/src/private/Actor.cpp.o"
   "CMakeFiles/libModulos.dir/src/private/game.cpp.o"
   "liblibModulos.pdb"
   "liblibModulos.a"

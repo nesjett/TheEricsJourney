@@ -1,9 +1,14 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <iostream>
 #include <list>
 #include <iterator>
 #include <SFML/Graphics.hpp>
+
+#include <Actor.h>
+
+using namespace std;
 
 class game
 {
@@ -35,10 +40,7 @@ class game
         int test = 1;
         int largo = 1080;
         int alto = 720;
-        list <Pawn> enemies;
-        //sprite *Paco;
-        //Player *amigo;
-        //Mapa *Mapita;
+        list<Actor*> actors;
 
         //nuevo 19-20
         sf::Texture tex;

@@ -11,8 +11,8 @@
 },
 {
   "directory": "/home/nestor/Desktop/TheEricsJourney/build",
-  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/private/mimodulo2.cpp",
-  "file": "/home/nestor/Desktop/TheEricsJourney/src/private/mimodulo2.cpp"
+  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Actor.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/private/Actor.cpp",
+  "file": "/home/nestor/Desktop/TheEricsJourney/src/private/Actor.cpp"
 },
 {
   "directory": "/home/nestor/Desktop/TheEricsJourney/build",

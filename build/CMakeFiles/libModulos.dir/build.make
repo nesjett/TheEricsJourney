@@ -81,28 +81,28 @@ CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o.provides: CMakeFiles/libModulos
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o.provides.build: CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
 
 
-CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o: CMakeFiles/libModulos.dir/flags.make
-CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o: ../src/private/mimodulo2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/private/mimodulo2.cpp
+CMakeFiles/libModulos.dir/src/private/Actor.cpp.o: CMakeFiles/libModulos.dir/flags.make
+CMakeFiles/libModulos.dir/src/private/Actor.cpp.o: ../src/private/Actor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/libModulos.dir/src/private/Actor.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/libModulos.dir/src/private/Actor.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/private/Actor.cpp
 
-CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nestor/Desktop/TheEricsJourney/src/private/mimodulo2.cpp > CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.i
+CMakeFiles/libModulos.dir/src/private/Actor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libModulos.dir/src/private/Actor.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nestor/Desktop/TheEricsJourney/src/private/Actor.cpp > CMakeFiles/libModulos.dir/src/private/Actor.cpp.i
 
-CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nestor/Desktop/TheEricsJourney/src/private/mimodulo2.cpp -o CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.s
+CMakeFiles/libModulos.dir/src/private/Actor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libModulos.dir/src/private/Actor.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nestor/Desktop/TheEricsJourney/src/private/Actor.cpp -o CMakeFiles/libModulos.dir/src/private/Actor.cpp.s
 
-CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o.requires:
+CMakeFiles/libModulos.dir/src/private/Actor.cpp.o.requires:
 
-.PHONY : CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o.requires
+.PHONY : CMakeFiles/libModulos.dir/src/private/Actor.cpp.o.requires
 
-CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o.provides: CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o.requires
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o.provides.build
-.PHONY : CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o.provides
+CMakeFiles/libModulos.dir/src/private/Actor.cpp.o.provides: CMakeFiles/libModulos.dir/src/private/Actor.cpp.o.requires
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Actor.cpp.o.provides.build
+.PHONY : CMakeFiles/libModulos.dir/src/private/Actor.cpp.o.provides
 
-CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o.provides.build: CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o
+CMakeFiles/libModulos.dir/src/private/Actor.cpp.o.provides.build: CMakeFiles/libModulos.dir/src/private/Actor.cpp.o
 
 
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: CMakeFiles/libModulos.dir/flags.make
@@ -132,14 +132,14 @@ CMakeFiles/libModulos.dir/src/private/game.cpp.o.provides.build: CMakeFiles/libM
 # Object files for target libModulos
 libModulos_OBJECTS = \
 "CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o" \
-"CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o" \
+"CMakeFiles/libModulos.dir/src/private/Actor.cpp.o" \
 "CMakeFiles/libModulos.dir/src/private/game.cpp.o"
 
 # External object files for target libModulos
 libModulos_EXTERNAL_OBJECTS =
 
 liblibModulos.a: CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
-liblibModulos.a: CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o
+liblibModulos.a: CMakeFiles/libModulos.dir/src/private/Actor.cpp.o
 liblibModulos.a: CMakeFiles/libModulos.dir/src/private/game.cpp.o
 liblibModulos.a: CMakeFiles/libModulos.dir/build.make
 liblibModulos.a: CMakeFiles/libModulos.dir/link.txt
@@ -153,7 +153,7 @@ CMakeFiles/libModulos.dir/build: liblibModulos.a
 .PHONY : CMakeFiles/libModulos.dir/build
 
 CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o.requires
-CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/mimodulo2.cpp.o.requires
+CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/Actor.cpp.o.requires
 CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/game.cpp.o.requires
 
 .PHONY : CMakeFiles/libModulos.dir/requires

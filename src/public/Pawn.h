@@ -1,16 +1,8 @@
 #pragma once
-#include <string>
-#include <stdlib.h>
-#include <SFML/Graphics.hpp>
-#include <vector>
-#include <game.h>
-
-using namespace std;
-using namespace sf;
+#include <Actor.h>
 
 
-
-class Pawn{
+class Pawn: public Actor {
     public:
         Pawn();
 

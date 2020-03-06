@@ -55,12 +55,12 @@ void Pawn::Update(float delta){
         cInterp.restart();
     }*/
 
-    game& gi = *game::Instance();
+    /*game& gi = *game::Instance();
     std::cout << gi.getWindow().isOpen() << std::endl;
     while (gi.getWindow().isOpen()) {
         gi.getWindow().draw(bala);
         //std::cout << "PINTANDO!!" << std::endl;
-    }
+    }*/
 }
 
 // TODO: Use delta time and interpolation
