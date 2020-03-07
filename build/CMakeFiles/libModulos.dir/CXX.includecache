@@ -6,13 +6,9 @@
 
 #IncludeRegexTransform: 
 
-../src/public/game.h
-SFML/Graphics.hpp
--
-
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/game.cpp
-game.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/game.h
+src/public/game.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/src/public/game.h
 iostream
 -
 

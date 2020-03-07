@@ -15,6 +15,10 @@ class game
         void aMoverse();
         void auxiliarMov(bool, sf::Keyboard::Key);
         void plantaAbajo();
+        void moverInterpolado(float);
+        void mover(float, float);
+        void pinta(float);
+        void aMoverse();
 
     protected:
 
@@ -30,6 +34,15 @@ class game
         sf::Texture tex;
         sf::Sprite sprite;
         int kVel = 5;
+        float futurPosx;
+        float futurPosy;
+        int x, y;
+        float posx, posy;
+        float velX=9; 
+        float velY=9;
+        bool mouve = false;
+        float durAnim = 1000.0/6.0;
+        float tFrame  = 0.0;
         //fin nuevo 19-20
         bool GodMode = false;
         sf::Clock *relojDios;
@@ -51,6 +64,7 @@ class game
         float auxPedoX =0.0;
         bool cambiado = false;
         bool subir = false;
+        
 };
 
 #endif // GAME_H
