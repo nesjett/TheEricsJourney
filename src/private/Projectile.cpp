@@ -11,10 +11,11 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
 
     movementSpeed = 2.0f;
     
-    bala = sf::CircleShape(25);
-    bala.setFillColor(sf::Color::Red);
+    bala = sf::CircleShape(125);
+    bala.setFillColor(sf::Color::Green);
+    bala.setPosition(250.f,150.f);
 
-    PrepareSprite();
+    //PrepareSprite();
 }
 
 void Projectile::PrepareSprite(){
@@ -71,7 +72,6 @@ void Projectile::UpdateMovement(){
 void Projectile::Draw(sf::RenderWindow &window){
     //Actor::Draw();
     window.draw(bala);
-    
 }
 
 

@@ -19,7 +19,7 @@ void game::init(/*char* nombre, int AuxMapa*/){
     
     //Creamos una ventana
     //sf::RenderWindow window(sf::VideoMode(640, 480), "P0. Fundamentos de los Videojuegos. DCCIA");
-    app.create(sf::VideoMode(largo, alto), "P0. Fundamentos de los Videojuegos. DCCIA");
+    app.create(sf::VideoMode(largo, alto), "THe Eric's Journey");
 
     //Cargo la imagen donde reside la textura del sprite
     //sf::Texture tex;
@@ -56,14 +56,7 @@ void game::init(/*char* nombre, int AuxMapa*/){
     NextLevel=false;*/
 
 
-    Pawn *enemyTest = new Pawn();
-    actors.push_back(enemyTest);
-
-    Projectile *projTest = new Projectile();
-    actors.push_back(projTest);
-
-
-    std::cout << "Actors length: " << actors.size() << std::endl;
+    
 }
 
 
@@ -73,6 +66,13 @@ void game::init(/*char* nombre, int AuxMapa*/){
 
 //bucle del juego
 void game::run(){
+    Pawn *enemyTest = new Pawn();
+    actors.push_back(enemyTest);
+
+    Projectile *projTest = new Projectile();
+    actors.push_back(projTest);
+    std::cout << "Actors length: " << actors.size() << std::endl;
+
 
     //Bucle del juego
     while (app.isOpen()) {
@@ -113,14 +113,15 @@ void game::run(){
             }
         }
 
+
+        app.clear(); // CLear last frame drawings
+
         for (Actor *actor : actors) {
             //std::cout << "Actor info: " << actor->getActorLocation().x << std::endl;
             actor->Update();
             actor->Draw(app);
         }
-
-
-        app.clear();
+        
         app.draw(sprite);
         app.display();
     }
