@@ -18,7 +18,7 @@ void Actor::Update(){
   // Check for collisions here in the parent?
 }
 
-void Actor::Draw(){
+void Actor::Draw(sf::RenderWindow &window){
 
 }
 

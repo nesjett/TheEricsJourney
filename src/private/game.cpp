@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "../public/Pawn.h"
+#include "../public/Projectile.h"
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -57,6 +58,11 @@ void game::init(/*char* nombre, int AuxMapa*/){
 
     Pawn *enemyTest = new Pawn();
     actors.push_back(enemyTest);
+
+    Projectile *projTest = new Projectile();
+    actors.push_back(projTest);
+
+
     std::cout << "Actors length: " << actors.size() << std::endl;
 }
 
@@ -110,6 +116,7 @@ void game::run(){
         for (Actor *actor : actors) {
             //std::cout << "Actor info: " << actor->getActorLocation().x << std::endl;
             actor->Update();
+            actor->Draw(app);
         }
 
 

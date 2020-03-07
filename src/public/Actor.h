@@ -16,9 +16,9 @@ class Actor {
 		Vector2f getBoundingBox() {return boundingBox;}
 		void setActorLocation(Vector2f loc) {location = loc;}
 		void setBoundingBox(Vector2f wh) {boundingBox = wh;}
-		void Update();
-		void Draw();
-		void Init();
+		virtual void Update();
+		virtual void Draw(sf::RenderWindow &window);
+		virtual void Init();
 
   private:
     Vector2f location;
