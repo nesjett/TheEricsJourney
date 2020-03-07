@@ -21,7 +21,7 @@ class Projectile: public Actor {
 
         void Update(float delta);
         void Init();
-        void Draw(sf::RenderWindow &window);
+        void Draw(sf::RenderWindow &window, float percent);
 
     protected:
 };

@@ -13,11 +13,11 @@ void Actor::Init(){
 
 }
 
-void Actor::Update(){
+void Actor::Update(float delta){
   // Check for collisions here in the parent?
 }
 
-void Actor::Draw(sf::RenderWindow &window){
+void Actor::Draw(sf::RenderWindow &window, float percent){
 
 }
 

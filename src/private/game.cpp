@@ -1,10 +1,11 @@
 #include "../public/game.h"
 #include <iostream>
+#include <algorithm>
 
 #include "../public/Pawn.h"
 #include "../public/Projectile.h"
 
-#define UPDATE_INTERVAL 1000/15
+#define UPDATE_INTERVAL 1000/1
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -79,12 +80,17 @@ void game::run(){
     actors.push_back(projTest);
     std::cout << "Actors length: " << actors.size() << std::endl;
 
+    enemyTest->setAsleep(true);
+
 
     /***********************************
      * Game loop
      ***********************************/
     sf::Clock clock;
-    sf::Clock updateClock;
+    //sf::Clock updateClock;
+
+    sf::Int64 lastUpdate = clock.getElapsedTime().asMilliseconds();
+    sf::Int64 luf = clock.getElapsedTime().asMilliseconds();
 
     while (app.isOpen()) {
         //Bucle de obtención de eventos
@@ -124,30 +130,41 @@ void game::run(){
             }
         }
 
+        //sf::Int64 t = clock.getElapsedTime().asMilliseconds();
+
 
         // UPDATE LOOP
-        if(updateClock.getElapsedTime.asMilliseconds() > UPDATE_INTERVAL){
+        float delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;
+        if(delta > UPDATE_INTERVAL){
+            std::cout << "GameUpdate() " << std::endl;
             
             for (Actor *actor : actors) {
                 if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
-                    actor->Update();
+                    actor->Update(delta);
                 }
             }
-            updateClock.restart();
+            lastUpdate = clock.getElapsedTime().asMilliseconds();
+            //updateClock.restart();
         }
 
 
         // DRAW LOOP
         // TODO: Add interpolation
         // TODO: This loop should be inside the gamestate.cpp
+        //std::cout << "Frame() " << std::endl;
+        
+        float tup = lastUpdate / UPDATE_INTERVAL;
+        tup = delta / UPDATE_INTERVAL;
+        float percentTick = min(1.f, tup);
+
         app.clear(); // CLear last frame drawings
 
         for (Actor *actor : actors) {
             //std::cout << "Actor info: " << actor->getActorLocation().x << std::endl;
             //actor->Update();
-            actor->Draw(app);
+            actor->Draw(app, tup);
         }
-        
+        luf = clock.getElapsedTime().asMilliseconds();
         app.draw(sprite);
         app.display();
     }

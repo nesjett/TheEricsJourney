@@ -14,10 +14,10 @@ class Actor {
     virtual ~Actor();
     Vector2f getActorLocation() {return location;}
 		Vector2f getBoundingBox() {return boundingBox;}
-		void setActorLocation(Vector2f loc) {location = loc;}
+		void setActorLocation(Vector2f loc) {location_prev = location; location = loc;}
 		void setBoundingBox(Vector2f wh) {boundingBox = wh;}
-		virtual void Update();
-		virtual void Draw(sf::RenderWindow &window);
+		virtual void Update(float delta);
+		virtual void Draw(sf::RenderWindow &window, float percent);
 		virtual void Init();
     bool isAsleep() {return asleep;}
     void setAsleep(bool newAsleep) {asleep = newAsleep;}
@@ -27,6 +27,7 @@ class Actor {
 
   protected:
     bool asleep;
+    Vector2f location_prev;
     Vector2f location;
     Vector2f boundingBox;
 };
