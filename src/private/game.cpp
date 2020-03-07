@@ -89,7 +89,6 @@ void game::run(){
     sf::Clock clock;
 
     sf::Int64 lastUpdate = clock.getElapsedTime().asMilliseconds();
-    sf::Int64 luf = clock.getElapsedTime().asMilliseconds();
 
     while (app.isOpen()) {
         //Bucle de obtención de eventos
@@ -154,7 +153,6 @@ void game::run(){
         for (Actor *actor : actors) {
             actor->Draw(app, tup);
         }
-        luf = clock.getElapsedTime().asMilliseconds();
         app.draw(sprite);
         app.display();
     }
