@@ -4,6 +4,7 @@ target_sources(libModulos PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Actor.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/private/game.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Projectile.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Animation.cpp"
 
 )
 

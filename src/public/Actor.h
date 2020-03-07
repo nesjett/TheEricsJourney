@@ -19,11 +19,14 @@ class Actor {
 		virtual void Update();
 		virtual void Draw(sf::RenderWindow &window);
 		virtual void Init();
+    bool isAsleep() {return asleep;}
+    void setAsleep(bool newAsleep) {asleep = newAsleep;}
 
   private:
-    Vector2f location;
-    Vector2f boundingBox;
+    
 
   protected:
-    
+    bool asleep;
+    Vector2f location;
+    Vector2f boundingBox;
 };

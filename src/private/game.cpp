@@ -4,6 +4,8 @@
 #include "../public/Pawn.h"
 #include "../public/Projectile.h"
 
+#define UPDATE_INTERVAL 1000/15
+
 game* game::pInstance = NULL;
 game* game::Instance() {
     if(pInstance == NULL) { // If not created earlier, create a new instance and return it
@@ -19,7 +21,7 @@ void game::init(/*char* nombre, int AuxMapa*/){
     
     //Creamos una ventana
     //sf::RenderWindow window(sf::VideoMode(640, 480), "P0. Fundamentos de los Videojuegos. DCCIA");
-    app.create(sf::VideoMode(largo, alto), "THe Eric's Journey");
+    app.create(sf::VideoMode(largo, alto), "The Eric's Journey");
 
     //Cargo la imagen donde reside la textura del sprite
     //sf::Texture tex;
@@ -66,6 +68,10 @@ void game::init(/*char* nombre, int AuxMapa*/){
 
 //bucle del juego
 void game::run(){
+
+    /***********************************
+     * TEST Actors, pawns and projectiles
+     ***********************************/
     Pawn *enemyTest = new Pawn();
     actors.push_back(enemyTest);
 
@@ -74,7 +80,12 @@ void game::run(){
     std::cout << "Actors length: " << actors.size() << std::endl;
 
 
-    //Bucle del juego
+    /***********************************
+     * Game loop
+     ***********************************/
+    sf::Clock clock;
+    sf::Clock updateClock;
+
     while (app.isOpen()) {
         //Bucle de obtención de eventos
         //sf::Event event;
@@ -114,11 +125,26 @@ void game::run(){
         }
 
 
+        // UPDATE LOOP
+        if(updateClock.getElapsedTime.asMilliseconds() > UPDATE_INTERVAL){
+            
+            for (Actor *actor : actors) {
+                if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
+                    actor->Update();
+                }
+            }
+            updateClock.restart();
+        }
+
+
+        // DRAW LOOP
+        // TODO: Add interpolation
+        // TODO: This loop should be inside the gamestate.cpp
         app.clear(); // CLear last frame drawings
 
         for (Actor *actor : actors) {
             //std::cout << "Actor info: " << actor->getActorLocation().x << std::endl;
-            actor->Update();
+            //actor->Update();
             actor->Draw(app);
         }
         
