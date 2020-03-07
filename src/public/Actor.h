@@ -15,6 +15,7 @@ class Actor {
     Vector2f getActorLocation() {return location;}
 		Vector2f getBoundingBox() {return boundingBox;}
 		void setActorLocation(Vector2f loc) {location_prev = location; location = loc;}
+    void setActorLocation(Vector2f loc, bool teleport) {if(teleport) { location_prev = location = loc; } else { setActorLocation(loc); }}
 		void setBoundingBox(Vector2f wh) {boundingBox = wh;}
 		virtual void Update(float delta);
 		virtual void Draw(sf::RenderWindow &window, float percent);

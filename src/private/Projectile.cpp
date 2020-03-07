@@ -51,8 +51,11 @@ void Projectile::Update(float delta){
     float y = movementSpeed*direction.y*delta;
     x = getActorLocation().x + x;
     y = getActorLocation().y + y;
-    if(x > 700) { x = 0; y = 0; } // reset position for testing
-    setActorLocation(Vector2f(x,y));
+    if( x > 700) { // reset position for testing
+        setActorLocation(Vector2f(0,0), true);
+    } else {
+        setActorLocation(Vector2f(x,y));
+    }
     
     //sprite.setPosition(x,y);
 }

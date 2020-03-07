@@ -5,7 +5,7 @@
 #include "../public/Pawn.h"
 #include "../public/Projectile.h"
 
-#define UPDATE_INTERVAL 1000/1
+#define UPDATE_INTERVAL 1000/15
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -87,7 +87,6 @@ void game::run(){
      * Game loop
      ***********************************/
     sf::Clock clock;
-    //sf::Clock updateClock;
 
     sf::Int64 lastUpdate = clock.getElapsedTime().asMilliseconds();
     sf::Int64 luf = clock.getElapsedTime().asMilliseconds();
@@ -130,13 +129,12 @@ void game::run(){
             }
         }
 
-        //sf::Int64 t = clock.getElapsedTime().asMilliseconds();
-
+        // TODO: This loops should be inside the gamestate.cpp 
 
         // UPDATE LOOP
         float delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;
         if(delta > UPDATE_INTERVAL){
-            std::cout << "GameUpdate() " << std::endl;
+            //std::cout << "GameUpdate() " << std::endl;
             
             for (Actor *actor : actors) {
                 if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
@@ -144,24 +142,16 @@ void game::run(){
                 }
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
-            //updateClock.restart();
         }
 
 
-        // DRAW LOOP
-        // TODO: Add interpolation
-        // TODO: This loop should be inside the gamestate.cpp
-        //std::cout << "Frame() " << std::endl;
-        
-        float tup = lastUpdate / UPDATE_INTERVAL;
-        tup = delta / UPDATE_INTERVAL;
+        // DRAW LOOP 
+        float tup = delta / UPDATE_INTERVAL;
         float percentTick = min(1.f, tup);
 
         app.clear(); // CLear last frame drawings
 
         for (Actor *actor : actors) {
-            //std::cout << "Actor info: " << actor->getActorLocation().x << std::endl;
-            //actor->Update();
             actor->Draw(app, tup);
         }
         luf = clock.getElapsedTime().asMilliseconds();
