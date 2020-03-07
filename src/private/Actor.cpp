@@ -7,7 +7,7 @@ Actor::Actor() {
   setActorLocation(Vector2f(0.f,0.f)); 
   setBoundingBox(Vector2f(5.f,10.f));
 
-  Init();
+  
 }
 
 void Actor::Init(){

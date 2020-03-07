@@ -7,6 +7,7 @@ class Projectile: public Actor {
         Projectile();
 
         string texture_file;
+        sf::Texture tex;
         sf::Sprite sprite;
 
         Vector2f direction;
@@ -15,13 +16,11 @@ class Projectile: public Actor {
         // Adds movement to the desired direction
         void UpdateMovement(); 
 
-        sf::CircleShape bala;
+        //sf::CircleShape bala;
 
         void Update(float delta);
-
+        void Init();
         void Draw(sf::RenderWindow &window);
 
     protected:
-        Clock cD, cInterp, cMov;
-        void PrepareSprite();
 };
