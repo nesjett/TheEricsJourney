@@ -18,7 +18,6 @@ class game
         void moverInterpolado(float);
         void mover(float, float);
         void pinta(float);
-        void aMoverse();
 
     protected:
 
