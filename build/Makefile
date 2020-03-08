@@ -190,6 +190,33 @@ src/private/Actor.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Actor.cpp.s
 .PHONY : src/private/Actor.cpp.s
 
+src/private/Animation.o: src/private/Animation.cpp.o
+
+.PHONY : src/private/Animation.o
+
+# target to build an object file
+src/private/Animation.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Animation.cpp.o
+.PHONY : src/private/Animation.cpp.o
+
+src/private/Animation.i: src/private/Animation.cpp.i
+
+.PHONY : src/private/Animation.i
+
+# target to preprocess a source file
+src/private/Animation.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Animation.cpp.i
+.PHONY : src/private/Animation.cpp.i
+
+src/private/Animation.s: src/private/Animation.cpp.s
+
+.PHONY : src/private/Animation.s
+
+# target to generate assembly for a file
+src/private/Animation.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Animation.cpp.s
+.PHONY : src/private/Animation.cpp.s
+
 src/private/Pawn.o: src/private/Pawn.cpp.o
 
 .PHONY : src/private/Pawn.o
@@ -216,6 +243,33 @@ src/private/Pawn.s: src/private/Pawn.cpp.s
 src/private/Pawn.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Pawn.cpp.s
 .PHONY : src/private/Pawn.cpp.s
+
+src/private/Projectile.o: src/private/Projectile.cpp.o
+
+.PHONY : src/private/Projectile.o
+
+# target to build an object file
+src/private/Projectile.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o
+.PHONY : src/private/Projectile.cpp.o
+
+src/private/Projectile.i: src/private/Projectile.cpp.i
+
+.PHONY : src/private/Projectile.i
+
+# target to preprocess a source file
+src/private/Projectile.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Projectile.cpp.i
+.PHONY : src/private/Projectile.cpp.i
+
+src/private/Projectile.s: src/private/Projectile.cpp.s
+
+.PHONY : src/private/Projectile.s
+
+# target to generate assembly for a file
+src/private/Projectile.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Projectile.cpp.s
+.PHONY : src/private/Projectile.cpp.s
 
 src/private/game.o: src/private/game.cpp.o
 
@@ -260,9 +314,15 @@ help:
 	@echo "... src/private/Actor.o"
 	@echo "... src/private/Actor.i"
 	@echo "... src/private/Actor.s"
+	@echo "... src/private/Animation.o"
+	@echo "... src/private/Animation.i"
+	@echo "... src/private/Animation.s"
 	@echo "... src/private/Pawn.o"
 	@echo "... src/private/Pawn.i"
 	@echo "... src/private/Pawn.s"
+	@echo "... src/private/Projectile.o"
+	@echo "... src/private/Projectile.i"
+	@echo "... src/private/Projectile.s"
 	@echo "... src/private/game.o"
 	@echo "... src/private/game.i"
 	@echo "... src/private/game.s"

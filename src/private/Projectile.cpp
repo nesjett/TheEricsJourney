@@ -38,7 +38,7 @@ void Projectile::Init(){
     //Escala por defecto
     sprite.setScale(1, 1);
 
-    sprite.setRotation(90);
+    //sprite.setRotation(90);
 
     std::cout << "Terminamos INIT()" << std::endl;
 }
@@ -47,45 +47,41 @@ void Projectile::Init(){
 
 void Projectile::Update(float delta){
     //std::cout << "Iniciamos UPDATE(): " << delta << std::endl;
+    
+    UpdateMovement(delta);
+}
+
+
+void Projectile::UpdateMovement(float delta){
     float x = movementSpeed*direction.x*delta;
     float y = movementSpeed*direction.y*delta;
     x = getActorLocation().x + x;
     y = getActorLocation().y + y;
-    if( x > 700) { // reset position for testing
-        setActorLocation(Vector2f(0,0), true);
-    } else {
+    //if( x > 700) { // reset position for testing
+        //setActorLocation(Vector2f(0,0), true);
+    //} else {
         setActorLocation(Vector2f(x,y));
-    }
-    
-    //sprite.setPosition(x,y);
-}
+    //}
 
-// TODO: Use delta time and interpolation
-void Projectile::UpdateMovement(){
-    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-    float d = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-
-    std::cout << "Movement dir: " << r << ":" << d << std::endl; 
-
-    direction.x = r;
-    direction.y = d;
-
-    sprite.setPosition(r, d);
+    // std::atan2 uses y, x signs' for quadrant signification, unlike std::atan
+    // SFML's y-axis is flipped: flip our y-component
+    auto angleRads = std::atan2(direction.y, -direction.x);
+    auto angleDegs = angleRads * 180.0 / M_PI;
+    sprite.setRotation(angleDegs);
 }
 
 void Projectile::Draw(sf::RenderWindow &window, float percent){
     //Actor::Draw();
-    float cX = this->getActorLocation().x;
-    float oX = this->location_prev.x;
+    float cX = this->location.x; // Current X
+    float oX = this->location_prev.x; // Old X
 
-    float cY = this->getActorLocation().y;
-    float oY = this->location_prev.y;
+    float cY = this->location.y; // Current Y
+    float oY = this->location_prev.y; // Old Y
 
-    //float x = (cX-oX)* percent +1;
-    //float y = (cY-oY)* percent +1;
-    float x = oX + percent * (cX - oX);
+    float x = (cX-oX) * percent + oX;
+    float y = (cY-oY) * percent + oY;
 
-    sprite.setPosition(x,120);
+    sprite.setPosition(x,y);
     window.draw(sprite);
 }
 

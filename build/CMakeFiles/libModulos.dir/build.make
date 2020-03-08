@@ -129,11 +129,61 @@ CMakeFiles/libModulos.dir/src/private/game.cpp.o.provides: CMakeFiles/libModulos
 CMakeFiles/libModulos.dir/src/private/game.cpp.o.provides.build: CMakeFiles/libModulos.dir/src/private/game.cpp.o
 
 
+CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: CMakeFiles/libModulos.dir/flags.make
+CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/private/Projectile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/private/Projectile.cpp
+
+CMakeFiles/libModulos.dir/src/private/Projectile.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libModulos.dir/src/private/Projectile.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nestor/Desktop/TheEricsJourney/src/private/Projectile.cpp > CMakeFiles/libModulos.dir/src/private/Projectile.cpp.i
+
+CMakeFiles/libModulos.dir/src/private/Projectile.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libModulos.dir/src/private/Projectile.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nestor/Desktop/TheEricsJourney/src/private/Projectile.cpp -o CMakeFiles/libModulos.dir/src/private/Projectile.cpp.s
+
+CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o.requires:
+
+.PHONY : CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o.requires
+
+CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o.provides: CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o.requires
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o.provides.build
+.PHONY : CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o.provides
+
+CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o.provides.build: CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o
+
+
+CMakeFiles/libModulos.dir/src/private/Animation.cpp.o: CMakeFiles/libModulos.dir/flags.make
+CMakeFiles/libModulos.dir/src/private/Animation.cpp.o: ../src/private/Animation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/libModulos.dir/src/private/Animation.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/libModulos.dir/src/private/Animation.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/private/Animation.cpp
+
+CMakeFiles/libModulos.dir/src/private/Animation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libModulos.dir/src/private/Animation.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nestor/Desktop/TheEricsJourney/src/private/Animation.cpp > CMakeFiles/libModulos.dir/src/private/Animation.cpp.i
+
+CMakeFiles/libModulos.dir/src/private/Animation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libModulos.dir/src/private/Animation.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nestor/Desktop/TheEricsJourney/src/private/Animation.cpp -o CMakeFiles/libModulos.dir/src/private/Animation.cpp.s
+
+CMakeFiles/libModulos.dir/src/private/Animation.cpp.o.requires:
+
+.PHONY : CMakeFiles/libModulos.dir/src/private/Animation.cpp.o.requires
+
+CMakeFiles/libModulos.dir/src/private/Animation.cpp.o.provides: CMakeFiles/libModulos.dir/src/private/Animation.cpp.o.requires
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Animation.cpp.o.provides.build
+.PHONY : CMakeFiles/libModulos.dir/src/private/Animation.cpp.o.provides
+
+CMakeFiles/libModulos.dir/src/private/Animation.cpp.o.provides.build: CMakeFiles/libModulos.dir/src/private/Animation.cpp.o
+
+
 # Object files for target libModulos
 libModulos_OBJECTS = \
 "CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o" \
 "CMakeFiles/libModulos.dir/src/private/Actor.cpp.o" \
-"CMakeFiles/libModulos.dir/src/private/game.cpp.o"
+"CMakeFiles/libModulos.dir/src/private/game.cpp.o" \
+"CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o" \
+"CMakeFiles/libModulos.dir/src/private/Animation.cpp.o"
 
 # External object files for target libModulos
 libModulos_EXTERNAL_OBJECTS =
@@ -141,9 +191,11 @@ libModulos_EXTERNAL_OBJECTS =
 liblibModulos.a: CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
 liblibModulos.a: CMakeFiles/libModulos.dir/src/private/Actor.cpp.o
 liblibModulos.a: CMakeFiles/libModulos.dir/src/private/game.cpp.o
+liblibModulos.a: CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o
+liblibModulos.a: CMakeFiles/libModulos.dir/src/private/Animation.cpp.o
 liblibModulos.a: CMakeFiles/libModulos.dir/build.make
 liblibModulos.a: CMakeFiles/libModulos.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library liblibModulos.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library liblibModulos.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/libModulos.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/libModulos.dir/link.txt --verbose=$(VERBOSE)
 
@@ -155,6 +207,8 @@ CMakeFiles/libModulos.dir/build: liblibModulos.a
 CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o.requires
 CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/Actor.cpp.o.requires
 CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/game.cpp.o.requires
+CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o.requires
+CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/Animation.cpp.o.requires
 
 .PHONY : CMakeFiles/libModulos.dir/requires
 

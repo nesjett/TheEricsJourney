@@ -16,15 +16,31 @@ SFML/Graphics.hpp
 vector
 -
 
+../src/public/Animation.h
+SFML/Graphics.hpp
+-
+
 /home/nestor/Desktop/TheEricsJourney/src/private/Actor.cpp
 Actor.h
 /home/nestor/Desktop/TheEricsJourney/src/private/Actor.h
 iostream
 -
 
+/home/nestor/Desktop/TheEricsJourney/src/private/Animation.cpp
+iostream
+-
+../public/Animation.h
+/home/nestor/Desktop/TheEricsJourney/src/public/Animation.h
+
 /home/nestor/Desktop/TheEricsJourney/src/private/Pawn.cpp
 ../public/Pawn.h
 /home/nestor/Desktop/TheEricsJourney/src/public/Pawn.h
+iostream
+-
+
+/home/nestor/Desktop/TheEricsJourney/src/private/Projectile.cpp
+../public/Projectile.h
+/home/nestor/Desktop/TheEricsJourney/src/public/Projectile.h
 iostream
 -
 
@@ -33,11 +49,27 @@ iostream
 /home/nestor/Desktop/TheEricsJourney/src/public/game.h
 iostream
 -
+algorithm
+-
 ../public/Pawn.h
 /home/nestor/Desktop/TheEricsJourney/src/public/Pawn.h
+../public/Projectile.h
+/home/nestor/Desktop/TheEricsJourney/src/public/Projectile.h
+
+/home/nestor/Desktop/TheEricsJourney/src/public/Animation.h
+SFML/Graphics.hpp
+-
 
 /home/nestor/Desktop/TheEricsJourney/src/public/Pawn.h
 Actor.h
+-
+
+/home/nestor/Desktop/TheEricsJourney/src/public/Projectile.h
+Actor.h
+-
+Animation.h
+-
+math.h
 -
 
 /home/nestor/Desktop/TheEricsJourney/src/public/game.h

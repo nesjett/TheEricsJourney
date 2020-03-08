@@ -5,7 +5,7 @@
 #include "../public/Pawn.h"
 #include "../public/Projectile.h"
 
-#define UPDATE_INTERVAL 1000/15
+#define UPDATE_INTERVAL 1000/3
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -87,7 +87,6 @@ void game::run(){
      * Game loop
      ***********************************/
     sf::Clock clock;
-
     sf::Int64 lastUpdate = clock.getElapsedTime().asMilliseconds();
 
     while (app.isOpen()) {
@@ -133,7 +132,7 @@ void game::run(){
         // UPDATE LOOP
         float delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;
         if(delta > UPDATE_INTERVAL){
-            //std::cout << "GameUpdate() " << std::endl;
+            std::cout << "GameUpdate() " << std::endl;
             
             for (Actor *actor : actors) {
                 if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
@@ -151,7 +150,7 @@ void game::run(){
         app.clear(); // CLear last frame drawings
 
         for (Actor *actor : actors) {
-            actor->Draw(app, tup);
+            actor->Draw(app, percentTick);
         }
         app.draw(sprite);
         app.display();

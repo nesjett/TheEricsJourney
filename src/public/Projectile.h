@@ -1,6 +1,7 @@
 #pragma once
 #include <Actor.h>
 #include <Animation.h>
+#include <math.h>
 
 
 class Projectile: public Actor {
@@ -15,7 +16,7 @@ class Projectile: public Actor {
         float movementSpeed;
 
         // Adds movement to the desired direction
-        void UpdateMovement(); 
+        void UpdateMovement(float delta); 
 
         //sf::CircleShape bala;
 

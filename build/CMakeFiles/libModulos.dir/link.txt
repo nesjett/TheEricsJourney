@@ -1,2 +1,2 @@
-/usr/bin/ar qc liblibModulos.a  CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o CMakeFiles/libModulos.dir/src/private/Actor.cpp.o CMakeFiles/libModulos.dir/src/private/game.cpp.o
+/usr/bin/ar qc liblibModulos.a  CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o CMakeFiles/libModulos.dir/src/private/Actor.cpp.o CMakeFiles/libModulos.dir/src/private/game.cpp.o CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o CMakeFiles/libModulos.dir/src/private/Animation.cpp.o
 /usr/bin/ranlib liblibModulos.a

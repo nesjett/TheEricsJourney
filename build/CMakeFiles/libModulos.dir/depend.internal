@@ -4,12 +4,22 @@
 CMakeFiles/libModulos.dir/src/private/Actor.cpp.o
  ../src/public/Actor.h
  /home/nestor/Desktop/TheEricsJourney/src/private/Actor.cpp
+CMakeFiles/libModulos.dir/src/private/Animation.cpp.o
+ /home/nestor/Desktop/TheEricsJourney/src/private/Animation.cpp
+ /home/nestor/Desktop/TheEricsJourney/src/public/Animation.h
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
  ../src/public/Actor.h
  /home/nestor/Desktop/TheEricsJourney/src/private/Pawn.cpp
  /home/nestor/Desktop/TheEricsJourney/src/public/Pawn.h
+CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o
+ ../src/public/Actor.h
+ ../src/public/Animation.h
+ /home/nestor/Desktop/TheEricsJourney/src/private/Projectile.cpp
+ /home/nestor/Desktop/TheEricsJourney/src/public/Projectile.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o
  ../src/public/Actor.h
+ ../src/public/Animation.h
  /home/nestor/Desktop/TheEricsJourney/src/private/game.cpp
  /home/nestor/Desktop/TheEricsJourney/src/public/Pawn.h
+ /home/nestor/Desktop/TheEricsJourney/src/public/Projectile.h
  /home/nestor/Desktop/TheEricsJourney/src/public/game.h
