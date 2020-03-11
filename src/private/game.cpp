@@ -5,7 +5,7 @@
 #include "../public/Pawn.h"
 #include "../public/Projectile.h"
 
-#define UPDATE_INTERVAL 1000/3
+#define UPDATE_INTERVAL (1000/15.0)
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -128,9 +128,25 @@ void game::run(){
         }
 
         // TODO: This loops should be inside the gamestate.cpp 
+        double delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;
+
+
+        // DRAW LOOP 
+        double tup = delta / UPDATE_INTERVAL; // Parenthesis very important for a proper calculation! DON'T REMOVE
+        double percentTick = min(1.0, tup);
+        std::cout << "Percent: " << percentTick << std::endl;
+        std::cout << "tup: " << tup << " delta: " << delta << " update_interval: " << UPDATE_INTERVAL << std::endl;
+
+        app.clear(); // CLear last frame drawings
+
+        for (Actor *actor : actors) {
+            actor->Draw(app, percentTick);
+        }
+        app.draw(sprite);
+        app.display();
+
 
         // UPDATE LOOP
-        float delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;
         if(delta > UPDATE_INTERVAL){
             std::cout << "GameUpdate() " << std::endl;
             
@@ -141,19 +157,6 @@ void game::run(){
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
         }
-
-
-        // DRAW LOOP 
-        float tup = delta / UPDATE_INTERVAL;
-        float percentTick = min(1.f, tup);
-
-        app.clear(); // CLear last frame drawings
-
-        for (Actor *actor : actors) {
-            actor->Draw(app, percentTick);
-        }
-        app.draw(sprite);
-        app.display();
     }
 }
 
