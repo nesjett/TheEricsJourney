@@ -1,6 +1,10 @@
 #pragma once
+#ifndef PAWN_H
+#define PAWN_H
 #include <Actor.h>
 
+using namespace std;
+using namespace sf;
 
 class Pawn: public Actor {
     public:
@@ -46,3 +50,5 @@ class Pawn: public Actor {
         // Apply hit effects on takeDamage()
         void ApplyHitEffects(string effect); // TODO: effect should be a class of type damage_type, not  astring
 };
+
+#endif

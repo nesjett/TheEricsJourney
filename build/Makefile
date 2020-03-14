@@ -190,32 +190,59 @@ src/private/Actor.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Actor.cpp.s
 .PHONY : src/private/Actor.cpp.s
 
-src/private/Animation.o: src/private/Animation.cpp.o
+src/private/Enemy.o: src/private/Enemy.cpp.o
 
-.PHONY : src/private/Animation.o
+.PHONY : src/private/Enemy.o
 
 # target to build an object file
-src/private/Animation.cpp.o:
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Animation.cpp.o
-.PHONY : src/private/Animation.cpp.o
+src/private/Enemy.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o
+.PHONY : src/private/Enemy.cpp.o
 
-src/private/Animation.i: src/private/Animation.cpp.i
+src/private/Enemy.i: src/private/Enemy.cpp.i
 
-.PHONY : src/private/Animation.i
+.PHONY : src/private/Enemy.i
 
 # target to preprocess a source file
-src/private/Animation.cpp.i:
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Animation.cpp.i
-.PHONY : src/private/Animation.cpp.i
+src/private/Enemy.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Enemy.cpp.i
+.PHONY : src/private/Enemy.cpp.i
 
-src/private/Animation.s: src/private/Animation.cpp.s
+src/private/Enemy.s: src/private/Enemy.cpp.s
 
-.PHONY : src/private/Animation.s
+.PHONY : src/private/Enemy.s
 
 # target to generate assembly for a file
-src/private/Animation.cpp.s:
-	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Animation.cpp.s
-.PHONY : src/private/Animation.cpp.s
+src/private/Enemy.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Enemy.cpp.s
+.PHONY : src/private/Enemy.cpp.s
+
+src/private/Engine.o: src/private/Engine.cpp.o
+
+.PHONY : src/private/Engine.o
+
+# target to build an object file
+src/private/Engine.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Engine.cpp.o
+.PHONY : src/private/Engine.cpp.o
+
+src/private/Engine.i: src/private/Engine.cpp.i
+
+.PHONY : src/private/Engine.i
+
+# target to preprocess a source file
+src/private/Engine.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Engine.cpp.i
+.PHONY : src/private/Engine.cpp.i
+
+src/private/Engine.s: src/private/Engine.cpp.s
+
+.PHONY : src/private/Engine.s
+
+# target to generate assembly for a file
+src/private/Engine.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Engine.cpp.s
+.PHONY : src/private/Engine.cpp.s
 
 src/private/Pawn.o: src/private/Pawn.cpp.o
 
@@ -314,9 +341,12 @@ help:
 	@echo "... src/private/Actor.o"
 	@echo "... src/private/Actor.i"
 	@echo "... src/private/Actor.s"
-	@echo "... src/private/Animation.o"
-	@echo "... src/private/Animation.i"
-	@echo "... src/private/Animation.s"
+	@echo "... src/private/Enemy.o"
+	@echo "... src/private/Enemy.i"
+	@echo "... src/private/Enemy.s"
+	@echo "... src/private/Engine.o"
+	@echo "... src/private/Engine.i"
+	@echo "... src/private/Engine.s"
 	@echo "... src/private/Pawn.o"
 	@echo "... src/private/Pawn.i"
 	@echo "... src/private/Pawn.s"

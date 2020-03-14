@@ -1,12 +1,14 @@
 #pragma once
+#ifndef Actor_H
+#define Actor_H
 #include <string>
 #include <stdlib.h>
 #include <SFML/Graphics.hpp>
+#include <Engine.h>
 #include <vector>
 #include <iostream>
 
 using namespace sf;
-using namespace std;
 
 class Actor {
 
@@ -33,3 +35,5 @@ class Actor {
     Vector2f location;
     Vector2f boundingBox;
 };
+
+#endif

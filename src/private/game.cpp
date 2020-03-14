@@ -1,9 +1,6 @@
 #include "../public/game.h"
-#include <iostream>
-#include <algorithm>
 
-#include "../public/Pawn.h"
-#include "../public/Projectile.h"
+
 
 #define UPDATE_INTERVAL (1000/15.0)
 
@@ -134,8 +131,8 @@ void game::run(){
         // DRAW LOOP 
         double tup = delta / UPDATE_INTERVAL; // Parenthesis very important for a proper calculation! DON'T REMOVE
         double percentTick = min(1.0, tup);
-        std::cout << "Percent: " << percentTick << std::endl;
-        std::cout << "tup: " << tup << " delta: " << delta << " update_interval: " << UPDATE_INTERVAL << std::endl;
+        //std::cout << "Percent: " << percentTick << std::endl;
+        //std::cout << "tup: " << tup << " delta: " << delta << " update_interval: " << UPDATE_INTERVAL << std::endl;
 
         app.clear(); // CLear last frame drawings
 
@@ -148,7 +145,7 @@ void game::run(){
 
         // UPDATE LOOP
         if(delta > UPDATE_INTERVAL){
-            std::cout << "GameUpdate() " << std::endl;
+            //std::cout << "GameUpdate() " << std::endl;
             
             for (Actor *actor : actors) {
                 if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)

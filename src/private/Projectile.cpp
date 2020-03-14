@@ -1,6 +1,6 @@
 #include "../public/Projectile.h"
 
-#include <iostream>
+
 
 Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor first
     std::cout << "Projectile spawned..." << std::endl;  
@@ -19,7 +19,7 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
     Init();
 }
 void Projectile::Init(){
-    if (!tex.loadFromFile(texture_file)) {
+    /*if (!tex.loadFromFile(texture_file)) {
         std::cerr << "Error cargando la imagen sprites.png";
         exit(0);
     }
@@ -39,6 +39,9 @@ void Projectile::Init(){
     sprite.setScale(1, 1);
 
     //sprite.setRotation(90);
+    */
+
+    sprite = new SSprite(texture_file);
 
     std::cout << "Terminamos INIT()" << std::endl;
 }
@@ -67,7 +70,7 @@ void Projectile::UpdateMovement(float delta){
     // SFML's y-axis is flipped: flip our y-component
     auto angleRads = std::atan2(direction.y, -direction.x);
     auto angleDegs = angleRads * 180.0 / M_PI;
-    sprite.setRotation(angleDegs);
+    sprite->setRotation(angleDegs);
 }
 
 void Projectile::Draw(sf::RenderWindow &window, float percent){
@@ -81,8 +84,13 @@ void Projectile::Draw(sf::RenderWindow &window, float percent){
     float x = (cX-oX) * percent + oX;
     float y = (cY-oY) * percent + oY;
 
-    sprite.setPosition(x,y);
-    window.draw(sprite);
+    //sprite->setPosition(x,y);
+    //window.draw(sprite->getSprite());
+    sprite->Draw(location, location_prev, percent);
+}
+
+Projectile::~Projectile(){
+    //delete sprite;
 }
 
 

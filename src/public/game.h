@@ -1,3 +1,4 @@
+#pragma once
 #ifndef GAME_H
 #define GAME_H
 
@@ -5,8 +6,11 @@
 #include <list>
 #include <iterator>
 #include <SFML/Graphics.hpp>
+#include <algorithm>
 
+//#include <Engine.h>
 #include <Actor.h>
+#include <Pawn.h>
 #include <Enemy.h>
 #include <Projectile.h>
 

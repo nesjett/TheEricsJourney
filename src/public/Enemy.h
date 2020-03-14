@@ -1,5 +1,8 @@
 #include <Pawn.h>
 
+using namespace std;
+using namespace sf;
+
 class Enemy: public Pawn {
     public:
         Enemy();

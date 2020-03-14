@@ -1,16 +1,19 @@
 #pragma once
 #include <Actor.h>
-#include <Animation.h>
+//#include <Animation.h>
 #include <math.h>
+#include <Engine.h>
 
 
 class Projectile: public Actor {
     public:
         Projectile();
+        ~Projectile();
 
         string texture_file;
-        sf::Texture tex;
-        sf::Sprite sprite;
+        //sf::Texture tex;
+        //sf::Sprite sprite;
+        SSprite *sprite;
 
         Vector2f direction;
         float movementSpeed;
@@ -25,4 +28,6 @@ class Projectile: public Actor {
         void Draw(sf::RenderWindow &window, float percent);
 
     protected:
+    private:
+
 };
