@@ -1,6 +1,5 @@
 #include "../public/Pawn.h"
 
-#include <iostream>
 
 Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  

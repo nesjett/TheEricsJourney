@@ -7,6 +7,8 @@
 #include <SFML/Graphics.hpp>
 
 #include <Actor.h>
+#include <Enemy.h>
+#include <Projectile.h>
 
 using namespace std;
 
@@ -27,6 +29,11 @@ class game
         sf::RenderWindow &getWindow() {
             return app;
         }
+
+        /// Returns all enemies spawned in the world
+        list<Enemy*> getAllEnemies();
+        /// Returns all projectiles spawned in the world
+        list<Projectile*> getAllProjectiles();
 
     protected:
         game();

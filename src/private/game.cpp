@@ -160,6 +160,30 @@ void game::run(){
     }
 }
 
+list<Enemy*> game::getAllEnemies(){
+    list<Enemy*> tmp;
+    Enemy* tmpE = NULL;
+    for (Actor *actor : actors) {
+        if ( static_cast<Enemy*>( actor ) ) {
+            tmpE = static_cast<Enemy*>(actor);
+            tmp.push_back(tmpE);
+        }
+    }
+    return tmp;
+}
+
+list<Projectile*> game::getAllProjectiles(){
+    list<Projectile*> tmp;
+    Projectile* tmpE = NULL;
+    for (Actor *actor : actors) {
+        if ( static_cast<Projectile*>( actor ) ) {
+            tmpE = static_cast<Projectile*>(actor);
+            tmp.push_back(tmpE);
+        }
+    }
+    return tmp;
+}
+
 
 game::~game() // Destructor
 {

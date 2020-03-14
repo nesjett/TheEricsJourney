@@ -1,6 +1,5 @@
 #include "Actor.h"
 
-#include <iostream>
 
 Actor::Actor() {
   std::cout << "New actor created" << std::endl;
