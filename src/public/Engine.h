@@ -19,6 +19,7 @@ class Engine
         Engine &operator= (const Engine &);
         virtual ~Engine();
     private:
+        static Engine* pInstance;
 };
 
 
