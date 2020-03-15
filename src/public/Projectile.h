@@ -20,9 +20,6 @@ class Projectile: public Actor {
 
         // Adds movement to the desired direction
         void UpdateMovement(float delta); 
-
-        //sf::CircleShape bala;
-
         void Update(float delta);
         void Init();
         void Draw(float percent);

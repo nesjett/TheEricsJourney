@@ -50,6 +50,7 @@ class SSprite
         sf::Sprite sfsprite;
     private:
         //game *gameinstance;
+        Engine *eng;
 
 };
 

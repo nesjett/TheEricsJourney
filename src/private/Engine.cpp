@@ -22,6 +22,7 @@ sf::RenderWindow &Engine::CreateApp(sf::VideoMode vm, string wn){
 
 
 SSprite::SSprite(string path){
+    eng = Engine::Instance();
     if (!texture.loadFromFile(path)) {
         std::cerr << "Error cargando la imagen sprites.png" << std::endl;
         exit(0);
@@ -33,25 +34,15 @@ SSprite::SSprite(string path){
     sfsprite.setOrigin(75 / 2, 75 / 2);
     //Cut desired area from texture
     sfsprite.setTextureRect(sf::IntRect(3 * 85, 0 * 75, 75, 75));
-
-    // Set in 
-    //sprite.setPosition(120, 240);
-
-    //Escala por defecto
-    //sprite.setScale(1, 1);
-
-    //gameinstance = game::Instance();
 }
 SSprite::SSprite(){
+    eng = Engine::Instance();
     std::cout << "SPRITE CREATED -------------" << std::endl;
 }
 
 // TODO: Create supercharge for Draw(Actor actor) so we only pass an object
 /// Draw with interpolation
 void SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent){
-    //game *gameinstance = game::Instance();
-    //gameinstance->getWindow().draw( sfsprite );
-
     float cX = location.x; // Current X
     float oX = location_prev.x; // Old X
 
@@ -62,9 +53,7 @@ void SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, double per
     float y = (cY-oY) * percent + oY;
 
     this->setPosition(x,y);
-    Engine *eng = Engine::Instance();
     eng->getApp().draw(sfsprite);
-    //gameinstance->getWindow().draw( sfsprite );
 }
 
 void SSprite::setPosition(double x, double y){
