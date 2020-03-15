@@ -38,7 +38,8 @@ class Pawn: public Actor {
 
         void Update(float delta);
         void Draw(float percent);
-
+        faction getFaction(){ return faction; }
+        void setFaction(faction f){ faction= f; }
     protected:
         Clock cD, cInterp, cMov;
 
@@ -50,6 +51,7 @@ class Pawn: public Actor {
         void ApplyHitEffects(string effect); // TODO: effect should be a class of type damage_type, not  astring
     private:
         string texture_file;
+        faction faction;
 };
 
 #endif

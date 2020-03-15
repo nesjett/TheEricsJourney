@@ -15,6 +15,8 @@ Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
     damage_Multiplier = 0.0f; 
 
     movementSpeed = 2.0f;
+
+    faction = enemy; // By default we set the faction to enemy, just for easy of use
     
     bala.setFillColor(sf::Color::Red);
 
