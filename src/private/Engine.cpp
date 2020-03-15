@@ -3,7 +3,7 @@
 Engine* Engine::pInstance = NULL;
 Engine* Engine::Instance() {
     if(pInstance == NULL) { // If not created earlier, create a new instance and return it
-        pInstance = new Engine;
+        pInstance = new Engine();
     } 
     return pInstance;
 }
@@ -14,6 +14,10 @@ Engine::Engine()
 }
 Engine::~Engine(){
 
+}
+sf::RenderWindow &Engine::CreateApp(sf::VideoMode vm, string wn){
+    app.create(vm, wn);
+    return app;
 }
 
 
@@ -36,7 +40,7 @@ SSprite::SSprite(string path){
     //Escala por defecto
     //sprite.setScale(1, 1);
 
-    gameinstance = game::Instance();
+    //gameinstance = game::Instance();
 }
 SSprite::SSprite(){
     std::cout << "SPRITE CREATED -------------" << std::endl;
@@ -58,7 +62,9 @@ void SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, double per
     float y = (cY-oY) * percent + oY;
 
     this->setPosition(x,y);
-    gameinstance->getWindow().draw( sfsprite );
+    Engine *eng = Engine::Instance();
+    eng->getApp().draw(sfsprite);
+    //gameinstance->getWindow().draw( sfsprite );
 }
 
 void SSprite::setPosition(double x, double y){

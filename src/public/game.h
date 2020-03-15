@@ -8,7 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include <algorithm>
 
-//#include <Engine.h>
+#include <Engine.h>
 #include <Actor.h>
 #include <Pawn.h>
 #include <Enemy.h>
@@ -30,9 +30,6 @@ class game
         int getTest() {
             return test;
         }
-        sf::RenderWindow &getWindow() {
-            return app;
-        }
 
         /// Returns all enemies spawned in the world
         list<Enemy*> getAllEnemies();
@@ -47,7 +44,8 @@ class game
 
     private:
         static game* pInstance;
-        sf::RenderWindow app;
+        Engine* eng;
+        //sf::RenderWindow &app;
         int test = 1;
         int largo = 1080;
         int alto = 720;

@@ -21,7 +21,7 @@ class Actor {
     void setActorLocation(Vector2f loc, bool teleport) {if(teleport) { location_prev = location = loc; } else { setActorLocation(loc); }}
 		void setBoundingBox(Vector2f wh) {boundingBox = wh;}
 		virtual void Update(float delta);
-		virtual void Draw(sf::RenderWindow &window, float percent);
+		virtual void Draw(float percent);
 		virtual void Init();
     bool isAsleep() {return asleep;}
     void setAsleep(bool newAsleep) {asleep = newAsleep;}

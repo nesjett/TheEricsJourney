@@ -16,7 +16,7 @@ void Actor::Update(float delta){
   // Check for collisions here in the parent?
 }
 
-void Actor::Draw(sf::RenderWindow &window, float percent){
+void Actor::Draw(float percent){
 
 }
 

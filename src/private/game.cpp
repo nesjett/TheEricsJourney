@@ -13,50 +13,17 @@ game* game::Instance() {
 }
 game::game()
 {
-
+    
 }
 void game::init(/*char* nombre, int AuxMapa*/){
     
     //Creamos una ventana
     //sf::RenderWindow window(sf::VideoMode(640, 480), "P0. Fundamentos de los Videojuegos. DCCIA");
-    app.create(sf::VideoMode(largo, alto), "The Eric's Journey");
+    //app.create(sf::VideoMode(largo, alto), "The Eric's Journey");
 
-    //Cargo la imagen donde reside la textura del sprite
-    //sf::Texture tex;
-    if (!tex.loadFromFile("resources/sprites.png")) {
-        std::cerr << "Error cargando la imagen sprites.png";
-        exit(0);
-    }
-
-    //Y creo el spritesheet a partir de la imagen anterior
-    //sf::Sprite sprite(tex);
-    sprite.setTexture(tex);
-
-    //Le pongo el centroide donde corresponde
-    sprite.setOrigin(75 / 2, 75 / 2);
-    //Cojo el sprite que me interesa por defecto del sheet
-    sprite.setTextureRect(sf::IntRect(0 * 75, 0 * 75, 75, 75));
-
-    // Lo dispongo en el centro de la pantalla
-    sprite.setPosition((largo/2), (alto/2));
-    
-    
-    /*app.create(sf::VideoMode(largo, alto), "Practica de Julio -King's Valley 2-");
-    app.setFramerateLimit(60); //Esto pa la interpolasio
-    //Paco = new sprite("ufo.png", 1, 1);
-    amigo = new Player("tileCompleto.png", 1, 3, 512, 530);
-    //amigo->pintarJugador();
-    //amigo->pinta(app, 1);
-    //Mapita = new Mapa("resources/mapa1.tmx", app);
-    Mapita = new Mapa(nombre, AuxMapa);
-    relojDios = new sf::Clock();
-    relojRe = new sf::Clock();
-    relojNivel = new sf::Clock();
-    ReMade=false;
-    NextLevel=false;*/
-
-
-    
+    eng = Engine::Instance();
+    eng->CreateApp(sf::VideoMode(largo, alto), "The Eric's Journey");
+    //app = eng->getApp(); // NOT WORKING FOR SOME REASON
 }
 
 
@@ -86,40 +53,20 @@ void game::run(){
     sf::Clock clock;
     sf::Int64 lastUpdate = clock.getElapsedTime().asMilliseconds();
 
-    while (app.isOpen()) {
+    while (eng->getApp().isOpen()) {
         //Bucle de obtención de eventos
         //sf::Event event;
-        while (app.pollEvent(tecla)) {
+        while (eng->getApp().pollEvent(tecla)) {
 
             if (tecla.type == sf::Event::Closed){
-                app.close();
+                eng->getApp().close();
             }
             if (tecla.type == sf::Event::KeyPressed){
                 //Escape
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-                    app.close();
+                    eng->getApp().close();
                 }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-                   sprite.setTextureRect(sf::IntRect(0 * 75, 2 * 75, 75, 75));
-                    //Escala por defecto
-                    sprite.setScale(1, 1);
-                    sprite.move(kVel, 0); 
-                }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-                    sprite.setTextureRect(sf::IntRect(0 * 75, 2 * 75, 75, 75));
-                    //Reflejo vertical
-                    sprite.setScale(-1, 1);
-                    sprite.move(-kVel, 0);
-                }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-                    sprite.setTextureRect(sf::IntRect(0 * 75, 3 * 75, 75, 75));
-                    sprite.move(0, -kVel);  
-                }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-                    sprite.setTextureRect(sf::IntRect(0 * 75, 0 * 75, 75, 75));
-                    sprite.move(0, kVel);
-                    //enemyTest->Update(0.f);
-                }
+                
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
         }
@@ -134,13 +81,13 @@ void game::run(){
         //std::cout << "Percent: " << percentTick << std::endl;
         //std::cout << "tup: " << tup << " delta: " << delta << " update_interval: " << UPDATE_INTERVAL << std::endl;
 
-        app.clear(); // CLear last frame drawings
+        eng->getApp().clear(); // CLear last frame drawings
 
         for (Actor *actor : actors) {
-            actor->Draw(app, percentTick);
+            actor->Draw(percentTick);
         }
-        app.draw(sprite);
-        app.display();
+        eng->getApp().draw(sprite);
+        eng->getApp().display();
 
 
         // UPDATE LOOP

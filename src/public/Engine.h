@@ -20,6 +20,8 @@ class Engine
     public:
         static Engine* Instance();
         void init(/*char*, int*/);
+        sf::RenderWindow &getApp(){ return app; }
+        sf::RenderWindow &CreateApp(sf::VideoMode vm, string wn);
     protected:
         Engine();
         Engine(const Engine &);
@@ -27,6 +29,7 @@ class Engine
         virtual ~Engine();
     private:
         static Engine* pInstance;
+        sf::RenderWindow app;
 };
 
 // Super Sprite (interface class)
@@ -46,7 +49,7 @@ class SSprite
         sf::Texture texture;
         sf::Sprite sfsprite;
     private:
-        game *gameinstance;
+        //game *gameinstance;
 
 };
 

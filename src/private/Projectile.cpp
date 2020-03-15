@@ -73,7 +73,7 @@ void Projectile::UpdateMovement(float delta){
     sprite->setRotation(angleDegs);
 }
 
-void Projectile::Draw(sf::RenderWindow &window, float percent){
+void Projectile::Draw(float percent){
     //Actor::Draw();
     float cX = this->location.x; // Current X
     float oX = this->location_prev.x; // Old X
