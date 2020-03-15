@@ -2,6 +2,7 @@
 #ifndef PAWN_H
 #define PAWN_H
 #include <Actor.h>
+#include <Engine.h>
 
 using namespace std;
 using namespace sf;

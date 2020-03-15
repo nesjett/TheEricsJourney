@@ -16,11 +16,6 @@ game::game()
     
 }
 void game::init(/*char* nombre, int AuxMapa*/){
-    
-    //Creamos una ventana
-    //sf::RenderWindow window(sf::VideoMode(640, 480), "P0. Fundamentos de los Videojuegos. DCCIA");
-    //app.create(sf::VideoMode(largo, alto), "The Eric's Journey");
-
     eng = Engine::Instance();
     eng->CreateApp(sf::VideoMode(largo, alto), "The Eric's Journey");
     //app = eng->getApp(); // NOT WORKING FOR SOME REASON
