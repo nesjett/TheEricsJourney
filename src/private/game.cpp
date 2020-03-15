@@ -81,7 +81,6 @@ void game::run(){
         for (Actor *actor : actors) {
             actor->Draw(percentTick);
         }
-        eng->getApp().draw(sprite);
         eng->getApp().display();
 
 

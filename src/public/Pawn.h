@@ -10,10 +10,7 @@ using namespace sf;
 class Pawn: public Actor {
     public:
         Pawn();
-
-        string texture_file;
-        sf::Sprite sprite;
-
+        SSprite *sprite;
         Vector2f direction;
 
         float movementSpeed;
@@ -40,6 +37,7 @@ class Pawn: public Actor {
         bool Attack();
 
         void Update(float delta);
+        void Draw(float percent);
 
     protected:
         Clock cD, cInterp, cMov;
@@ -50,6 +48,8 @@ class Pawn: public Actor {
         void Die();
         // Apply hit effects on takeDamage()
         void ApplyHitEffects(string effect); // TODO: effect should be a class of type damage_type, not  astring
+    private:
+        string texture_file;
 };
 
 #endif

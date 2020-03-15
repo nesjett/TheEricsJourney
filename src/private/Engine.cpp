@@ -1,5 +1,11 @@
 #include "../public/Engine.h"
 
+/***********************
+ * 
+ * CLASS: ENGINE
+ * 
+ * **********************/
+
 Engine* Engine::pInstance = NULL;
 Engine* Engine::Instance() {
     if(pInstance == NULL) { // If not created earlier, create a new instance and return it
@@ -21,6 +27,17 @@ sf::RenderWindow &Engine::CreateApp(sf::VideoMode vm, string wn){
 }
 
 
+
+
+
+
+
+
+/***********************
+ * 
+ * CLASS: SPRITE
+ * 
+ * **********************/
 SSprite::SSprite(string path){
     eng = Engine::Instance();
     if (!texture.loadFromFile(path)) {
@@ -62,6 +79,16 @@ void SSprite::setPosition(double x, double y){
 
 void SSprite::setRotation(double angle){
     sfsprite.setRotation(angle);
+}
+
+void SSprite::setOrigin(double x, double y){
+    sfsprite.setOrigin(x, y);
+}
+void SSprite::setTextureRect(double xx, double xy, double yx, double yy){
+    sfsprite.setTextureRect(sf::IntRect(xx, yx, yx, yy));
+}
+void SSprite::setScale(double x, double y){
+    sfsprite.setScale(x, y);
 }
 
 SSprite::~SSprite(){

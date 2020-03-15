@@ -27,7 +27,7 @@ class Actor {
     void setAsleep(bool newAsleep) {asleep = newAsleep;}
 
   private:
-    
+    bool debug;
 
   protected:
     bool asleep;

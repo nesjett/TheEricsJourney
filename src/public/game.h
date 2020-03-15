@@ -50,6 +50,8 @@ class game
         int largo = 1080;
         int alto = 720;
         list<Actor*> actors;
+
+        sf::Event tecla;
 };
 
 #endif // GAME_H

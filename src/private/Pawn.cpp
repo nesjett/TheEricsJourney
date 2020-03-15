@@ -22,25 +22,9 @@ Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
 }
 
 void Pawn::PrepareSprite(){
-    sf::Texture tex;
-    if (!tex.loadFromFile(texture_file)) {
-        std::cerr << "Error cargando la imagen sprites.png";
-        exit(0);
-    }
-
-    //Y creo el spritesheet a partir de la imagen anterior
-    sprite.setTexture(tex);
-
-    //Le pongo el centroide donde corresponde
-    sprite.setOrigin(75 / 2, 75 / 2);
-    //Cojo el sprite que me interesa por defecto del sheet
-    sprite.setTextureRect(sf::IntRect(0 * 75, 0 * 75, 75, 75));
-
-    // Lo dispongo en el centro de la pantalla
-    sprite.setPosition(120, 240);
-
-    //Escala por defecto
-    sprite.setScale(1, 1);
+    sprite = new SSprite(texture_file);
+    sprite->setOrigin(75 / 2, 75 / 2);
+    sprite->setTextureRect(0 * 75, 0 * 75, 75, 75);
 }
 
 
@@ -66,10 +50,14 @@ void Pawn::UpdateMovement(){
 
     std::cout << "Movement dir: " << r << ":" << d << std::endl; 
 
-    direction.x = r;
-    direction.y = d;
+    //direction.x = r;
+    //direction.y = d;
 
-    sprite.setPosition(r, d);
+    setActorLocation(Vector2f(r, d));
+}
+
+void Pawn::Draw(float percent){
+    sprite->Draw(location, location_prev, percent);
 }
 
 
