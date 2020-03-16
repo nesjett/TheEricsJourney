@@ -32,14 +32,12 @@ class Pawn: public Actor {
         // Adds movement to the desired direction
         void UpdateMovement(); 
 
-        sf::CircleShape bala = sf::CircleShape(5);
-
         bool Attack();
 
         void Update(float delta);
         void Draw(double percent, double delta );
-        //faction getFaction(){ return faction; }
-        //void setFaction(faction f){ faction = f; }
+        Faction getFaction(){ return faction; }
+        void setFaction(Faction f){ faction = f; }
     protected:
         void PrepareSprite();
 
@@ -50,7 +48,7 @@ class Pawn: public Actor {
         Animation* animation;
     private:
         string texture_file;
-        //faction faction;
+        Faction faction;
 };
 
 #endif

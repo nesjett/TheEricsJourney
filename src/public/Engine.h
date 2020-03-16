@@ -14,7 +14,7 @@ struct AnimFrame {
    double duration; // in milliseconds
 };
 
-//enum faction { enemy=2, allie=1, neutral=0 };
+enum Faction { enemy=2, allie=1, neutral=0 };
 
 
 class Engine
