@@ -17,12 +17,14 @@ class Projectile: public Actor {
 
         Vector2f direction;
         float movementSpeed;
+        float damage;
 
         // Adds movement to the desired direction
         void UpdateMovement(float delta); 
         void Update(float delta);
         void Init();
         void Draw(double percent, double delta );
+        void ActorOverlap(Actor otherActor);
 
     protected:
     private:

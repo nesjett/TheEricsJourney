@@ -29,6 +29,10 @@ void Enemy::UpdateMovement(){
 
 }
 
+void Enemy::ActorOverlap(Actor otherActor){
+    
+}
+
 
 // Base to implement attacks. This should be on the base class and be overriden by the different enemies
 bool Enemy::Attack(){

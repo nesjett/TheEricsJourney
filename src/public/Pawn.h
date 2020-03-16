@@ -36,8 +36,9 @@ class Pawn: public Actor {
 
         void Update(float delta);
         void Draw(double percent, double delta );
-        Faction getFaction(){ return faction; }
-        void setFaction(Faction f){ faction = f; }
+        Faction getFaction(){ return faction; };
+        void setFaction(Faction f){ faction = f; };
+        void ActorOverlap(Actor otherActor);
     protected:
         void PrepareSprite();
 

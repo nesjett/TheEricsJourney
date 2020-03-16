@@ -63,7 +63,7 @@ SSprite::SSprite(){
 
 // TODO: Create supercharge for Draw(Actor actor) so we only pass an object
 /// Draw with interpolation
-void SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent){
+sf::Vector2f SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent){
     float cX = location.x; // Current X
     float oX = location_prev.x; // Old X
 
@@ -75,6 +75,8 @@ void SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, double per
 
     this->setPosition(x,y);
     eng->getApp().draw(sfsprite);
+
+    return sf::Vector2f(x,y);
 }
 
 void SSprite::setPosition(double x, double y){

@@ -28,7 +28,11 @@ void Pawn::PrepareSprite(){
     sprite->setScale(0.4,0.4);
     //sprite->setTextureRect(0 * 75, 0 * 75, 75, 75);
     double playrate = 5000.0;
-    int sizeX = 430, sizeY = 500;
+    float offsetX = 0.0, offsetY = 0.0;
+    float sizeX = 430.0, sizeY = 500.0;
+
+
+    setBoundingBox( Rect<float>(sprite->getSprite().getTextureRect()) );
 
     animation = new Animation(sprite->getSpriteR());
     animation->addFrame({sf::IntRect(0,0,sizeX,sizeY), playrate});
@@ -79,7 +83,18 @@ void Pawn::UpdateMovement(){
 
 void Pawn::Draw(double percent, double delta ){
     animation->update(delta);
-    sprite->Draw(location, location_prev, percent);
+
+    Vector2f currentLoc = sprite->Draw(location, location_prev, percent);
+
+    sf::Rect<float> bb = getBoundingBox();
+    sf::RectangleShape rect( Vector2f(bb.width,bb.height) );
+    rect.setPosition(currentLoc.x+bb.left,currentLoc.y+bb.top);
+    rect.setOutlineThickness(5.f);
+    rect.setOutlineColor(sf::Color(250, 0, 0));
+}
+
+void Pawn::ActorOverlap(Actor otherActor){
+
 }
 
 

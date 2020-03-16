@@ -16,15 +16,17 @@ class Actor {
     Actor();
     virtual ~Actor();
     Vector2f getActorLocation() {return location;}
-		Vector2f getBoundingBox() {return boundingBox;}
+		virtual Rect<float> getBoundingBox() {return boundingBox;}
 		void setActorLocation(Vector2f loc) {location_prev = location; location = loc;}
     void setActorLocation(Vector2f loc, bool teleport) {if(teleport) { location_prev = location = loc; } else { setActorLocation(loc); }}
-		void setBoundingBox(Vector2f wh) {boundingBox = wh;}
+		void setBoundingBox(Rect<float> rs) {boundingBox = rs;}
 		virtual void Update(float delta);
 		virtual void Draw(double percent, double delta );
 		virtual void Init();
-    bool isAsleep() {return asleep;}
-    void setAsleep(bool newAsleep) {asleep = newAsleep;}
+    virtual void TakeDamage(float damage, string damage_type);
+    bool isAsleep() {return asleep;};
+    void setAsleep(bool newAsleep) {asleep = newAsleep;};
+    virtual void ActorOverlap(Actor otherActor);
 
   private:
     bool debug;
@@ -33,7 +35,7 @@ class Actor {
     bool asleep;
     Vector2f location_prev;
     Vector2f location;
-    Vector2f boundingBox;
+    Rect<float> boundingBox;
 };
 
 #endif

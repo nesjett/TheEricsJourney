@@ -8,6 +8,7 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
     texture_file = "./resources/sprites.png";
     direction = Vector2f(1.f, 1.f); // Initially It has no direction
     movementSpeed = 0.2;
+    damage = 20;
     //PrepareSprite();
     Init();
 }
@@ -42,6 +43,10 @@ void Projectile::UpdateMovement(float delta){
 
 void Projectile::Draw(double percent, double delta ){
     sprite->Draw(location, location_prev, percent);
+}
+
+void Projectile::ActorOverlap(Actor otherActor){
+    //otherActor.TakeDamage(damage, "default");
 }
 
 Projectile::~Projectile(){

@@ -58,7 +58,7 @@ class SSprite
             return sfsprite;
         }
         sf::Sprite &getSpriteR(){ return sfsprite; }
-        void Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent);
+        sf::Vector2f Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent);
         void setOrigin(double x, double y);
         void setTextureRect(double xx, double xy, double yx, double yy);
         void setScale(double x, double y);

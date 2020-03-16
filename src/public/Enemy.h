@@ -13,5 +13,5 @@ class Enemy: public Pawn {
         void UpdateMovement(); 
         bool Attack();
         void Update(float delta);
-
+        void ActorOverlap(Actor otherActor);
 };

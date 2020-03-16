@@ -92,6 +92,14 @@ void game::run(){
                 if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
                     actor->Update(delta);
                 }
+
+                // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
+                for (Actor *test : actors) {
+                    bool overlaps = actor->getBoundingBox().intersects( actor->getBoundingBox() );
+                    if(overlaps){
+                        std::cout << "--------------------------------- OVERLAPS! ----------------------------" << tecla.key.code << std::endl;
+                    }
+                }
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
         }
