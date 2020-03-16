@@ -22,7 +22,7 @@ class Projectile: public Actor {
         void UpdateMovement(float delta); 
         void Update(float delta);
         void Init();
-        void Draw(float percent);
+        void Draw(double percent, double delta );
 
     protected:
     private:

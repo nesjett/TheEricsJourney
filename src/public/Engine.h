@@ -14,7 +14,7 @@ struct AnimFrame {
    double duration; // in milliseconds
 };
 
-enum faction { enemy, allie, neutral };
+//enum faction { enemy=2, allie=1, neutral=0 };
 
 
 class Engine
@@ -34,6 +34,9 @@ class Engine
         sf::RenderWindow app;
 };
 
+
+
+
 // Super Sprite (interface class)
 class SSprite
 {
@@ -46,6 +49,7 @@ class SSprite
         sf::Sprite getSprite(){
             return sfsprite;
         }
+        sf::Sprite &getSpriteR(){ return sfsprite; }
         void Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent);
         void setOrigin(double x, double y);
         void setTextureRect(double xx, double xy, double yx, double yy);
@@ -54,25 +58,25 @@ class SSprite
         sf::Texture texture;
         sf::Sprite sfsprite;
     private:
-        //game *gameinstance;
         Engine *eng;
 
 };
 
-/*
-class Animation {
-std::vector<AnimFrame> frames;
-double totalLength;
-double progress;
-sf::Sprite &target;
 
-public:
-Animation(sf::Sprite &target);
-virtual ~Animation();
-void addFrame(AnimFrame&& frame);
-void update(double elapsed); 
-const double getLength() const { return totalLength; }
-};*/
+
+class Animation {
+    std::vector<AnimFrame> frames;
+    double totalLength;
+    double progress;
+    sf::Sprite &target;
+
+    public:
+        Animation(sf::Sprite &target);
+        virtual ~Animation();
+        void addFrame(AnimFrame&& frame);
+        void update(double elapsed); 
+        const double getLength() const { return totalLength; }
+};
 
 
 

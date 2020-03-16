@@ -16,17 +16,26 @@ Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
 
     movementSpeed = 2.0f;
 
-    faction = enemy; // By default we set the faction to enemy, just for easy of use
+    //faction = enemy; // By default we set the faction to enemy, just for easy of use
     
     bala.setFillColor(sf::Color::Red);
 
     PrepareSprite();
+
+    sf::Clock clock;
+    sf::Int64 lastUpdate = clock.getElapsedTime().asMilliseconds();
 }
 
 void Pawn::PrepareSprite(){
     sprite = new SSprite(texture_file);
     sprite->setOrigin(75 / 2, 75 / 2);
     sprite->setTextureRect(0 * 75, 0 * 75, 75, 75);
+
+    animation = new Animation(sprite->getSpriteR());
+    animation->addFrame({sf::IntRect(0,0,75,75), 10000.4});
+    animation->addFrame({sf::IntRect(75,0,75,75), 10000.4});
+    animation->addFrame({sf::IntRect(150,0,75,75), 10000.4});
+    animation->addFrame({sf::IntRect(225,75,75,75), 10000.4});
 }
 
 
@@ -58,7 +67,8 @@ void Pawn::UpdateMovement(){
     setActorLocation(Vector2f(r, d));
 }
 
-void Pawn::Draw(float percent){
+void Pawn::Draw(double percent, double delta ){
+    animation->update(delta);
     sprite->Draw(location, location_prev, percent);
 }
 

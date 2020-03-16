@@ -37,11 +37,12 @@ class Pawn: public Actor {
         bool Attack();
 
         void Update(float delta);
-        void Draw(float percent);
-        faction getFaction(){ return faction; }
-        void setFaction(faction f){ faction= f; }
+        void Draw(double percent, double delta );
+        //faction getFaction(){ return faction; }
+        //void setFaction(faction f){ faction = f; }
     protected:
-        Clock cD, cInterp, cMov;
+        Clock clock;
+        sf::Int64 lastUpdate;
 
         void PrepareSprite();
 
@@ -49,9 +50,10 @@ class Pawn: public Actor {
         void Die();
         // Apply hit effects on takeDamage()
         void ApplyHitEffects(string effect); // TODO: effect should be a class of type damage_type, not  astring
+        Animation* animation;
     private:
         string texture_file;
-        faction faction;
+        //faction faction;
 };
 
 #endif

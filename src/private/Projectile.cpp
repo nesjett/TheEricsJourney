@@ -40,7 +40,7 @@ void Projectile::UpdateMovement(float delta){
     sprite->setRotation(angleDegs);
 }
 
-void Projectile::Draw(float percent){
+void Projectile::Draw(double percent, double delta ){
     sprite->Draw(location, location_prev, percent);
 }
 

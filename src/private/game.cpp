@@ -79,7 +79,7 @@ void game::run(){
         eng->getApp().clear(); // CLear last frame drawings
 
         for (Actor *actor : actors) {
-            actor->Draw(percentTick);
+            actor->Draw(percentTick, delta);
         }
         eng->getApp().display();
 
