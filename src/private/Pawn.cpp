@@ -21,9 +21,6 @@ Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
     bala.setFillColor(sf::Color::Red);
 
     PrepareSprite();
-
-    sf::Clock clock;
-    sf::Int64 lastUpdate = clock.getElapsedTime().asMilliseconds();
 }
 
 void Pawn::PrepareSprite(){
@@ -32,23 +29,25 @@ void Pawn::PrepareSprite(){
     sprite->setOrigin(0, 0);
     sprite->setScale(0.4,0.4);
     //sprite->setTextureRect(0 * 75, 0 * 75, 75, 75);
+    double playrate = 5000.0;
+    int sizeX = 430, sizeY = 500;
 
     animation = new Animation(sprite->getSpriteR());
-    animation->addFrame({sf::IntRect(0,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(430,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(860,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(1290,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(1720,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(2150,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(2580,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(3010,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(3440,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(3870,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(4300,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(4730,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(5160,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(5590,0,430,500), 5000.0});
-    animation->addFrame({sf::IntRect(6020,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(0,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(430,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(860,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(1290,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(1720,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(2150,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(2580,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(3010,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(3440,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(3870,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(4300,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(4730,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(5160,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(5590,0,sizeX,sizeY), playrate});
+    animation->addFrame({sf::IntRect(6020,0,sizeX,sizeY), playrate});
 }
 
 

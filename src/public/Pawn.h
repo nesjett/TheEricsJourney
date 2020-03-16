@@ -41,9 +41,6 @@ class Pawn: public Actor {
         //faction getFaction(){ return faction; }
         //void setFaction(faction f){ faction = f; }
     protected:
-        Clock clock;
-        sf::Int64 lastUpdate;
-
         void PrepareSprite();
 
         // Apply dying effects
