@@ -4,7 +4,7 @@
 Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/sprites.png";
+    texture_file = "./resources/zombie_male_idle.png";
 
     direction = Vector2f(0.f, 0.f); // Initially It has no direction
 
@@ -28,14 +28,27 @@ Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
 
 void Pawn::PrepareSprite(){
     sprite = new SSprite(texture_file);
-    sprite->setOrigin(75 / 2, 75 / 2);
-    sprite->setTextureRect(0 * 75, 0 * 75, 75, 75);
+    //sprite->setOrigin(450 / 2, 550 / 2);
+    sprite->setOrigin(0, 0);
+    sprite->setScale(0.4,0.4);
+    //sprite->setTextureRect(0 * 75, 0 * 75, 75, 75);
 
     animation = new Animation(sprite->getSpriteR());
-    animation->addFrame({sf::IntRect(0,0,75,75), 10000.4});
-    animation->addFrame({sf::IntRect(75,0,75,75), 10000.4});
-    animation->addFrame({sf::IntRect(150,0,75,75), 10000.4});
-    animation->addFrame({sf::IntRect(225,75,75,75), 10000.4});
+    animation->addFrame({sf::IntRect(0,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(430,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(860,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(1290,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(1720,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(2150,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(2580,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(3010,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(3440,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(3870,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(4300,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(4730,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(5160,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(5590,0,430,500), 5000.0});
+    animation->addFrame({sf::IntRect(6020,0,430,500), 5000.0});
 }
 
 
