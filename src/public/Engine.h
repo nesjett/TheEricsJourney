@@ -16,7 +16,11 @@ struct AnimFrame {
 
 enum Faction { enemy=2, allie=1, neutral=0 };
 
-
+/***********************
+ * 
+ * CLASS: ENGINE
+ * 
+ * **********************/
 class Engine
 {
     public:
@@ -36,7 +40,11 @@ class Engine
 
 
 
-
+/***********************
+ * 
+ * CLASS: SPRITE
+ * 
+ * **********************/
 // Super Sprite (interface class)
 class SSprite
 {
@@ -63,7 +71,12 @@ class SSprite
 };
 
 
-
+/***********************
+ * 
+ * CLASS: ANIMATION
+ * 
+ * **********************/
+// Source: https://github.com/SFML/SFML/wiki/Easy-Animations-With-Spritesheets
 class Animation {
     std::vector<AnimFrame> frames;
     double totalLength;
