@@ -49,9 +49,9 @@ void Projectile::TakeDamage(float damage, string damage_type){
 
 }
 
-/*void Projectile::ActorOverlap(Actor otherActor){
+void Projectile::ActorOverlap(Actor otherActor){
     //otherActor.TakeDamage(damage, "default");
-}*/
+}
 
 Projectile::~Projectile(){
     //delete sprite;

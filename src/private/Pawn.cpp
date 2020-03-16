@@ -93,9 +93,9 @@ void Pawn::Draw(double percent, double delta ){
     rect.setOutlineColor(sf::Color(250, 0, 0));
 }
 
-/*void Pawn::ActorOverlap(Actor otherActor){
+void Pawn::ActorOverlap(Actor otherActor){
 
-}*/
+}
 
 
 void Pawn::TakeDamage(float damage, string damage_type){
