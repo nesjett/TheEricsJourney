@@ -45,9 +45,13 @@ void Projectile::Draw(double percent, double delta ){
     sprite->Draw(location, location_prev, percent);
 }
 
-void Projectile::ActorOverlap(Actor otherActor){
-    //otherActor.TakeDamage(damage, "default");
+void Projectile::TakeDamage(float damage, string damage_type){
+
 }
+
+/*void Projectile::ActorOverlap(Actor otherActor){
+    //otherActor.TakeDamage(damage, "default");
+}*/
 
 Projectile::~Projectile(){
     //delete sprite;

@@ -26,7 +26,7 @@ class Actor {
     virtual void TakeDamage(float damage, string damage_type);
     bool isAsleep() {return asleep;};
     void setAsleep(bool newAsleep) {asleep = newAsleep;};
-    virtual void ActorOverlap(Actor otherActor);
+    //virtual void ActorOverlap(Actor otherActor);
 
   private:
     bool debug;

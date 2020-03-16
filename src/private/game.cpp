@@ -95,7 +95,7 @@ void game::run(){
 
                 // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
                 for (Actor *test : actors) {
-                    bool overlaps = actor->getBoundingBox().intersects( actor->getBoundingBox() );
+                    bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
                     if(overlaps){
                         std::cout << "--------------------------------- OVERLAPS! ----------------------------" << tecla.key.code << std::endl;
                     }
