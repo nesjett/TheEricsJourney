@@ -14,6 +14,7 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
 }
 void Projectile::Init(){
     sprite = new SSprite(texture_file);
+    sprite->setTextureRect( 0, 0 ,75,75 );
     std::cout << "Terminamos INIT()" << std::endl;
 }
 
@@ -29,9 +30,9 @@ void Projectile::UpdateMovement(float delta){
     x = getActorLocation().x + x;
     y = getActorLocation().y + y;
     if( x > 700) { // reset position for testing
-        setActorLocation(Vector2f(0,0), true);
+        setActorLocation(Vector2f(0,0));
     } else {
-        setActorLocation(Vector2f(x,y));
+        moveTo(Vector2f(x,y));
     }
 
     // std::atan2 uses y, x signs' for quadrant signification, unlike std::atan

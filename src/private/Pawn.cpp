@@ -18,21 +18,33 @@ Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
 
     faction = enemy; // By default we set the faction to enemy, just for easy of use
 
+    setActorLocation(Vector2f(250.0, 120.0)); // PLace actor somewhere in the map
+
     PrepareSprite();
 }
 
 void Pawn::PrepareSprite(){
+    float scale = 0.4;
+    float sizeX = 430.0, sizeY = 519.0;
+    float offsetX = sizeX / 2.0;
+    float offsetY = sizeY / 2.0;
+
     sprite = new SSprite(texture_file);
-    //sprite->setOrigin(450 / 2, 550 / 2);
-    sprite->setOrigin(0, 0);
-    sprite->setScale(0.4,0.4);
-    //sprite->setTextureRect(0 * 75, 0 * 75, 75, 75);
+    sprite->setOrigin(offsetX, offsetY);
+    sprite->setTextureRect( 0, 0, sizeX*scale, sizeY*scale );
+
+    sprite->setScale(scale,scale);
+    //sprite->setPosition(getActorLocation().x, getActorLocation().y);
+    
     double playrate = 5000.0;
-    float offsetX = 0.0, offsetY = 0.0;
-    float sizeX = 430.0, sizeY = 500.0;
+    
 
+    //Rect<int> t = sprite->getSprite().getTextureRect();
+    Rect<float> bb = sprite->getSprite().getLocalBounds();
+    //bb.left = bb.left-offsetX;
+    //bb.top = bb.top-offsetY;
 
-    setBoundingBox( Rect<float>(sprite->getSprite().getTextureRect()) );
+    setBoundingBox( Rect<float>( getActorLocation().x-offsetX, getActorLocation().y-offsetY, bb.width, bb.height ) ); // make the actor bounds be the same as the sprite used here.
 
     animation = new Animation(sprite->getSpriteR());
     animation->addFrame({sf::IntRect(0,0,sizeX,sizeY), playrate});
@@ -78,19 +90,33 @@ void Pawn::UpdateMovement(){
     //direction.x = r;
     //direction.y = d;
 
-    setActorLocation(Vector2f(r, d));
+    moveTo(Vector2f(r, d));
 }
 
 void Pawn::Draw(double percent, double delta ){
     animation->update(delta);
 
-    Vector2f currentLoc = sprite->Draw(location, location_prev, percent);
+    Vector2f currentLoc = sprite->Draw(location, location_prev, percent); // Location of sprite during interpolation
 
     sf::Rect<float> bb = getBoundingBox();
     sf::RectangleShape rect( Vector2f(bb.width,bb.height) );
-    rect.setPosition(currentLoc.x+bb.left,currentLoc.y+bb.top);
-    rect.setOutlineThickness(5.f);
+
+    // Show actor bounding box
+    rect.setPosition(bb.left,bb.top);
+    rect.setFillColor(sf::Color(0,0,0,0));
+    rect.setOutlineThickness(1.3);
     rect.setOutlineColor(sf::Color(250, 0, 0));
+
+    // Show actor location
+    sf::CircleShape circ( 6.0, 10.0 );
+    circ.setPosition(currentLoc.x-3,currentLoc.y-3);
+    circ.setFillColor(sf::Color(0,250,0));
+    circ.setOutlineColor(sf::Color(0, 250, 0));
+    
+    Engine *eng = Engine::Instance();
+    eng->getApp().draw(rect);
+    eng->getApp().draw(circ);
+
 }
 
 void Pawn::ActorOverlap(Actor otherActor){

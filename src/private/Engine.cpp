@@ -50,12 +50,8 @@ SSprite::SSprite(string path){
     }
     //Create spriteSheet from texture
     sfsprite.setTexture(texture);
-
-    //Set centroid
-    sfsprite.setOrigin(75 / 2, 75 / 2);
-    //Cut desired area from texture
-    sfsprite.setTextureRect(sf::IntRect(3 * 85, 0 * 75, 75, 75));
 }
+
 SSprite::SSprite(){
     eng = Engine::Instance();
     std::cout << "SPRITE CREATED -------------" << std::endl;
@@ -90,8 +86,8 @@ void SSprite::setRotation(double angle){
 void SSprite::setOrigin(double x, double y){
     sfsprite.setOrigin(x, y);
 }
-void SSprite::setTextureRect(double xx, double xy, double yx, double yy){
-    sfsprite.setTextureRect(sf::IntRect(xx, yx, yx, yy));
+void SSprite::setTextureRect(double x, double y, double w, double h){
+    sfsprite.setTextureRect(sf::IntRect(x, y, w, h));
 }
 void SSprite::setScale(double x, double y){
     sfsprite.setScale(x, y);

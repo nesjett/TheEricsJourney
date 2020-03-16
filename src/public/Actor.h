@@ -17,8 +17,8 @@ class Actor {
     virtual ~Actor();
     Vector2f getActorLocation() {return location;}
 		virtual Rect<float> getBoundingBox() {return boundingBox;}
-		void setActorLocation(Vector2f loc) {location_prev = location; location = loc;}
-    void setActorLocation(Vector2f loc, bool teleport) {if(teleport) { location_prev = location = loc; } else { setActorLocation(loc); }}
+		void moveTo(Vector2f loc) {location_prev = location; location = loc;}
+    void setActorLocation(Vector2f loc) { location_prev = location = loc; }
 		void setBoundingBox(Rect<float> rs) {boundingBox = rs;}
 		virtual void Update(float delta);
 		virtual void Draw(double percent, double delta );
