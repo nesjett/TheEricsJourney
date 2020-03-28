@@ -73,7 +73,8 @@ void Pawn::Draw(double percent, double delta ){
 }
 
 void Pawn::OnActorOverlap(Actor *otherActor){
-    std::cout << " Me han colisionado! " << std::endl;
+    Engine *eng = Engine::Instance();
+    std::cout << "Soy " << eng->getObjectType(getObjectType()) << " y me ha tocado un objeto tipo: " << eng->getObjectType(otherActor->getObjectType()) << std::endl;
 }
 
 

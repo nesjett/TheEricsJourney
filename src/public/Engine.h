@@ -29,6 +29,7 @@ class Engine
         void init(/*char*, int*/);
         sf::RenderWindow &getApp(){ return app; }
         sf::RenderWindow &CreateApp(sf::VideoMode vm, string wn);
+        std::string getObjectType(ObjectType type) { if(type <= sizeof(oTypeNames)) { return oTypeNames[type]; } };
     protected:
         Engine();
         Engine(const Engine &);
@@ -37,6 +38,7 @@ class Engine
     private:
         static Engine* pInstance;
         sf::RenderWindow app;
+        std::string oTypeNames[5] = {"WorldStatic", "WorldDynamic", "Pawn", "Projectile", "Trap"};
 };
 
 

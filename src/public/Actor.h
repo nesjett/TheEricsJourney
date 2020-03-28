@@ -35,9 +35,8 @@ class Actor {
 		//void setBoundingBox(IntRect rs) {boundingBox = rs;} // TODO: In the future we should be able to modify bounding box on demand.
     bool isAsleep() {return asleep;};
     void setAsleep(bool newAsleep) {asleep = newAsleep;};
-    Vector2f getActorLastLocation() { return location_prev; }
-    Vector2f getTargetLocation() { return targetLocation; }
-    void setTargetLocation(Vector2f loc) { targetLocation = loc; }
+    Vector2f getActorLastLocation() { return location_prev; };
+    ObjectType getObjectType(){return oType; };
 
     virtual void Update(float delta);
 		virtual void Draw(double percent, double delta );
@@ -63,7 +62,6 @@ class Actor {
     Vector2f location;
     //IntRect boundingBox;
     sf::Font font;
-    Vector2f targetLocation;
 
   protected:
     bool asleep;
