@@ -14,9 +14,11 @@ Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
 
-    movementSpeed = 2.0f;
+    movementSpeed = 0.1f;
 
     faction = enemy; // By default we set the faction to enemy, just for easy of use
+
+    oType = pawn; // Set the collision channel
 
     setActorLocation(Vector2f(250.0, 120.0)); // PLace actor somewhere in the map
 
@@ -54,22 +56,15 @@ void Pawn::PrepareSprite(){
     animation->addFrame({sf::IntRect(6020,0,sizeX,sizeY), playrate});
 }
 
-
 void Pawn::Update(float delta){
     //std::cout << "Iniciamos UPDATE()" << std::endl;
-}
-
-// TODO: Use delta time and interpolation
-void Pawn::UpdateMovement(){
-    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-    float d = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-
-    std::cout << "Movement dir: " << r << ":" << d << std::endl; 
-
-    //direction.x = r;
-    //direction.y = d;
-
-    moveTo(Vector2f(r, d));
+    float x = movementSpeed*direction.x*delta;
+    float y = movementSpeed*direction.y*delta;
+    x = getActorLocation().x + x;
+    y = getActorLocation().y + y;
+    if(direction.x != 0.f || direction.y != 0.f) {
+        UpdateMovement( Vector2f (x,y) );
+    }
 }
 
 void Pawn::Draw(double percent, double delta ){

@@ -25,10 +25,6 @@ bool Enemy::IsAlive(){
     }
 }
 
-void Enemy::UpdateMovement(){
-
-}
-
 void Enemy::OnActorOverlap(Actor *otherActor){
 
 }

@@ -9,6 +9,8 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
     direction = Vector2f(1.f, 1.f); // Initially It has no direction
     movementSpeed = 0.2;
     damage = 20;
+
+    oType = projectile; // Set the collision channel
     Init();
 }
 void Projectile::Init(){
@@ -19,12 +21,6 @@ void Projectile::Init(){
 }
 
 void Projectile::Update(float delta){
-    //std::cout << "Iniciamos UPDATE(): " << delta << std::endl;
-    UpdateMovement(delta);
-}
-
-
-void Projectile::UpdateMovement(float delta){
     float x = movementSpeed*direction.x*delta;
     float y = movementSpeed*direction.y*delta;
     x = getActorLocation().x + x;
@@ -32,7 +28,7 @@ void Projectile::UpdateMovement(float delta){
     if( x > 700) { // reset position for testing
         setActorLocation(Vector2f(0,0));
     } else {
-        moveTo(Vector2f(x,y));
+        UpdateMovement(Vector2f(x,y));
     }
 
     // std::atan2 uses y, x signs' for quadrant signification, unlike std::atan

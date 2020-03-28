@@ -34,6 +34,7 @@ void game::run(){
      ***********************************/
     Pawn *enemyTest = new Pawn();
     actors.push_back(enemyTest);
+    //enemyTest->setTargetLocation(Vector2f(500,400));
 
     Projectile *projTest = new Projectile();
     actors.push_back(projTest);
@@ -63,7 +64,10 @@ void game::run(){
                 }
 
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-                    enemyTest->moveTo( Vector2f( enemyTest->getActorLocation().x, enemyTest->getActorLocation().y + 100 ) );
+                    enemyTest->direction = Vector2f(1.0,0.0); // MOverse hacia la derecha
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+                    enemyTest->direction = Vector2f(-1.0,0.0); // Moverse hacia la izquierda
                 }
                 
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;

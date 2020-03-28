@@ -28,9 +28,6 @@ class Pawn: public Actor {
         void TakeDamage(float damage, string damage_type);
         bool IsAlive(); // This should go to an interface or to parent PAWN class
 
-        // Adds movement to the desired direction
-        void UpdateMovement(); 
-
         bool Attack();
 
         void Update(float delta);

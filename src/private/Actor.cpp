@@ -4,7 +4,9 @@
 Actor::Actor() {
   std::cout << "New actor created" << std::endl;
   setActorLocation(Vector2f(0.f,0.f)); 
+  targetLocation = Vector2f(0.f,0.f);
   //setBoundingBox( sf::IntRect( 0, 0, 0, 0 ) ); // Init bounding box to 0
+  oType = worldstatic;
   asleep = false;
   debug = true;
 
@@ -22,11 +24,11 @@ void Actor::Update(float delta){
 }
 
 void Actor::Draw(double percent, double delta ){
+  Vector2f currentLoc = sprite->Draw(getActorLocation(), getActorLastLocation(), percent); // Location of sprite during interpolation
+
   if(!debug){ 
     return;
   }
-  Vector2f currentLoc = sprite->Draw(getActorLocation(), getActorLastLocation(), percent); // Location of sprite during interpolation
-  //location = currentLoc;
 
   FloatRect globalBounds = getBoundingBox();
   sf::RectangleShape rect( Vector2f(globalBounds.width,globalBounds.height) );
