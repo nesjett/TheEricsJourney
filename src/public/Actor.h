@@ -16,10 +16,10 @@ class Actor {
     Actor();
     virtual ~Actor();
     Vector2f getActorLocation() {return location;}
-		IntRect getBoundingBox() {return boundingBox;}
+	  FloatRect getBoundingBox() {return sprite->getSprite().getGlobalBounds();}
 		void moveTo(Vector2f loc) {location_prev = location; location = loc;}
     void setActorLocation(Vector2f loc) { location_prev = location = loc; }
-		void setBoundingBox(IntRect rs) {boundingBox = rs;}
+		//void setBoundingBox(IntRect rs) {boundingBox = rs;} // TODO: In the future we should be able to modify bounding box on demand.
     bool isAsleep() {return asleep;};
     void setAsleep(bool newAsleep) {asleep = newAsleep;};
     Vector2f getActorLastLocation() { return location_prev; }
@@ -33,7 +33,8 @@ class Actor {
     bool debug;
     Vector2f location_prev;
     Vector2f location;
-    IntRect boundingBox;
+    //IntRect boundingBox;
+    sf::Font font;
 
   protected:
     bool asleep;

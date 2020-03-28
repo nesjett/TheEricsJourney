@@ -13,7 +13,6 @@ class Projectile: public Actor {
         string texture_file;
         //sf::Texture tex;
         //sf::Sprite sprite;
-        SSprite *sprite;
 
         Vector2f direction;
         float movementSpeed;

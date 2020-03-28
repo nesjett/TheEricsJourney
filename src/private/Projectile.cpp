@@ -9,11 +9,11 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
     direction = Vector2f(1.f, 1.f); // Initially It has no direction
     movementSpeed = 0.2;
     damage = 20;
-    //PrepareSprite();
     Init();
 }
 void Projectile::Init(){
     sprite = new SSprite(texture_file);
+    sprite->setOrigin(75/2, 75/2);
     sprite->setTextureRect( 0, 0 ,75,75 );
     std::cout << "Terminamos INIT()" << std::endl;
 }
@@ -43,7 +43,8 @@ void Projectile::UpdateMovement(float delta){
 }
 
 void Projectile::Draw(double percent, double delta ){
-    sprite->Draw(getActorLocation(), getActorLastLocation(), percent);
+   Actor::Draw(percent, delta); // Debugging
+   //sprite->Draw(getActorLocation(), getActorLastLocation(), percent);
 }
 
 void Projectile::TakeDamage(float damage, string damage_type){

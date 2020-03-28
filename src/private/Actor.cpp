@@ -4,9 +4,13 @@
 Actor::Actor() {
   std::cout << "New actor created" << std::endl;
   setActorLocation(Vector2f(0.f,0.f)); 
-  setBoundingBox( sf::IntRect( 0, 0, 0, 0 ) ); // Init bounding box to 0
+  //setBoundingBox( sf::IntRect( 0, 0, 0, 0 ) ); // Init bounding box to 0
   asleep = false;
   debug = true;
+
+  if(debug){
+    font.loadFromFile("./resources/arial.ttf");
+  }
 }
 
 void Actor::Init(){
@@ -18,10 +22,13 @@ void Actor::Update(float delta){
 }
 
 void Actor::Draw(double percent, double delta ){
+  if(!debug){ 
+    return;
+  }
   Vector2f currentLoc = sprite->Draw(getActorLocation(), getActorLastLocation(), percent); // Location of sprite during interpolation
-  location = currentLoc;
+  //location = currentLoc;
 
-  FloatRect globalBounds = sprite->getSprite().getGlobalBounds();
+  FloatRect globalBounds = getBoundingBox();
   sf::RectangleShape rect( Vector2f(globalBounds.width,globalBounds.height) );
 
   // Show actor bounding box
@@ -36,9 +43,6 @@ void Actor::Draw(double percent, double delta ){
   circ.setFillColor(sf::Color(0,250,0));
   circ.setOutlineColor(sf::Color(0, 250, 0));
 
-
-  sf::Font font;
-  font.loadFromFile("./resources/arial.ttf");
 
   // Show actor location coords
   sf::Text text;

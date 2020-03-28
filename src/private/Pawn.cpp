@@ -33,21 +33,9 @@ void Pawn::PrepareSprite(){
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
     IntRect rectangle = IntRect(0, 0, sizeX*scale, sizeY*scale);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    setBoundingBox(rectangle);
-
     sprite->setScale(scale,scale); // Set the scale of the sprite.
-    //sprite->setPosition(getActorLocation().x, getActorLocation().y);
     
-    double playrate = 5000.0;
-    
-
-    //Rect<int> t = sprite->getSprite().getTextureRect();
-    Rect<float> bb = sprite->getSprite().getLocalBounds();
-    //bb.left = bb.left-offsetX;
-    //bb.top = bb.top-offsetY;
-
-    //setBoundingBox( Rect<float>( getActorLocation().x-offsetX, getActorLocation().y-offsetY, bb.width, bb.height ) ); // make the actor bounds be the same as the sprite used here.
-
+    double playrate = 1000.0;
     animation = new Animation(sprite->getSpriteR());
     animation->addFrame({sf::IntRect(0,0,sizeX,sizeY), playrate});
     animation->addFrame({sf::IntRect(430,0,sizeX,sizeY), playrate});
@@ -69,17 +57,6 @@ void Pawn::PrepareSprite(){
 
 void Pawn::Update(float delta){
     std::cout << "Iniciamos UPDATE()" << std::endl;
-    /*if(cInterp.getElapsedTime().asMilliseconds() >= 1000/15){
-        UpdateMovement();
-        cInterp.restart();
-    }*/
-
-    /*game& gi = *game::Instance();
-    std::cout << gi.getWindow().isOpen() << std::endl;
-    while (gi.getWindow().isOpen()) {
-        gi.getWindow().draw(bala);
-        //std::cout << "PINTANDO!!" << std::endl;
-    }*/
 }
 
 // TODO: Use delta time and interpolation
@@ -98,33 +75,6 @@ void Pawn::UpdateMovement(){
 void Pawn::Draw(double percent, double delta ){
     animation->update(delta);
     Actor::Draw(percent, delta); // Use this to debug draw bounding box
-
-    /*Vector2f currentLoc = sprite->Draw(getActorLocation(), getActorLastLocation(), percent); // Location of sprite during interpolation
-
-    FloatRect globalBounds = sprite->getSprite().getGlobalBounds();
-    
-
-    sf::IntRect bb = getBoundingBox();
-    //sf::RectangleShape rect( Vector2f(bb.width,bb.height) );
-    sf::RectangleShape rect( Vector2f(globalBounds.width,globalBounds.height) );
-
-    // Show actor bounding box
-    rect.setPosition(globalBounds.left,globalBounds.top);
-    rect.setFillColor(sf::Color(0,0,0,0));
-    rect.setOutlineThickness(1.3);
-    rect.setOutlineColor(sf::Color(250, 0, 0));
-
-    // Show actor location
-    sf::CircleShape circ( 6.0, 10.0 );
-    circ.setPosition(currentLoc.x-3,currentLoc.y-3);
-    circ.setFillColor(sf::Color(0,250,0));
-    circ.setOutlineColor(sf::Color(0, 250, 0));
-    
-    Engine *eng = Engine::Instance();
-    eng->getApp().draw(rect); // bounding box
-    eng->getApp().draw(circ); // actor location
-    */
-
 }
 
 void Pawn::ActorOverlap(Actor otherActor){
