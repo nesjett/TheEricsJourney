@@ -57,7 +57,6 @@ SSprite::SSprite(){
     std::cout << "SPRITE CREATED -------------" << std::endl;
 }
 
-// TODO: Create supercharge for Draw(Actor actor) so we only pass an object
 /// Draw with interpolation
 sf::Vector2f SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent){
     float cX = location.x; // Current X
@@ -75,20 +74,107 @@ sf::Vector2f SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, do
     return sf::Vector2f(x,y);
 }
 
+
+/*/////////////////////////////////////////////////////////
+\brief set the position of the object
+
+This function completely overwrites the previous position.
+See the move function to apply an offset based on the previous position instead.
+The default position of a transformable object is (0, 0).
+
+\param x X coordinate of the new position
+\param y Y coordinate of the new position
+
+\see move, getPosition
+
+/////////////////////////////////////////////////////////*/
 void SSprite::setPosition(double x, double y){
     sfsprite.setPosition(x, y);
 }
 
+
+/*/////////////////////////////////////////////////////////
+\brief set the orientation of the object
+
+This function completely overwrites the previous rotation.
+See the rotate function to add an angle based on the previous rotation instead.
+The default rotation of a transformable object is 0.
+
+\param angle New rotation, in degrees
+
+\see rotate, getRotation
+
+/////////////////////////////////////////////////////////*/
 void SSprite::setRotation(double angle){
     sfsprite.setRotation(angle);
 }
 
+/*/////////////////////////////////////////////////////////
+\brief set the local origin of the object
+
+The origin of an object defines the center point for
+all transformations (position, scale, rotation).
+The coordinates of this point must be relative to the
+top-left corner of the object, and ignore all
+transformations (position, scale, rotation).
+The default origin of a transformable object is (0, 0).
+
+\param x X coordinate of the new origin
+\param y Y coordinate of the new origin
+
+\see getOrigin
+
+/////////////////////////////////////////////////////////*/
 void SSprite::setOrigin(double x, double y){
     sfsprite.setOrigin(x, y);
 }
+
+/*/////////////////////////////////////////////////////////
+\brief Set the sub-rectangle of the texture that the sprite will display
+
+The texture rect is useful when you don't want to display
+the whole texture, but rather a part of it.
+By default, the texture rect covers the entire texture.
+
+\param x, y, width, height
+\
+
+\see getTextureRect, setTexture
+
+/////////////////////////////////////////////////////////*/
 void SSprite::setTextureRect(double x, double y, double w, double h){
     sfsprite.setTextureRect(sf::IntRect(x, y, w, h));
 }
+
+/*/////////////////////////////////////////////////////////
+\brief Set the sub-rectangle of the texture that the sprite will display
+
+The texture rect is useful when you don't want to display
+the whole texture, but rather a part of it.
+By default, the texture rect covers the entire texture.
+
+\param Rect rectangle to crop the texture
+
+\see getTextureRect, setTexture
+
+/////////////////////////////////////////////////////////*/
+void SSprite::setTextureRect(sf::IntRect rect){
+    sfsprite.setTextureRect(rect);
+}
+
+/*/////////////////////////////////////////////////////////
+\brief set the scale factors of the object
+
+This function completely overwrites the previous scale.
+See the scale function to add a factor based on the previous scale instead.
+The default scale of a transformable object is (1, 1).
+
+\param factorX New horizontal scale factor
+\param factorY New vertical scale factor
+
+\see scale, getScale
+
+/////////////////////////////////////////////////////////*/
 void SSprite::setScale(double x, double y){
     sfsprite.setScale(x, y);
 }
@@ -114,6 +200,12 @@ Animation::~Animation(){
 
 }
 
+/*/////////////////////////////////////////////////////////
+\brief set a new frame to the animation array
+
+\param frame FRAME struct to add
+
+/////////////////////////////////////////////////////////*/
 void Animation::addFrame(AnimFrame&& frame) {
     totalLength += frame.duration; 
     frames.push_back(std::move(frame)); 

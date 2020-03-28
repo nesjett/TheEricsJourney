@@ -43,7 +43,7 @@ void Projectile::UpdateMovement(float delta){
 }
 
 void Projectile::Draw(double percent, double delta ){
-    sprite->Draw(location, location_prev, percent);
+    sprite->Draw(getActorLocation(), getActorLastLocation(), percent);
 }
 
 void Projectile::TakeDamage(float damage, string damage_type){

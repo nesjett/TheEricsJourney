@@ -4,7 +4,7 @@
 Actor::Actor() {
   std::cout << "New actor created" << std::endl;
   setActorLocation(Vector2f(0.f,0.f)); 
-  setBoundingBox( sf::Rect<float>( 0.0, 0.0, 0.0, 0.0 ) ); // Init bounding box to 0
+  setBoundingBox( sf::IntRect( 0, 0, 0, 0 ) ); // Init bounding box to 0
   asleep = false;
   debug = true;
 }

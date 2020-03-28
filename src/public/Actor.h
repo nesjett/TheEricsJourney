@@ -16,26 +16,27 @@ class Actor {
     Actor();
     virtual ~Actor();
     Vector2f getActorLocation() {return location;}
-		virtual Rect<float> getBoundingBox() {return boundingBox;}
+		IntRect getBoundingBox() {return boundingBox;}
 		void moveTo(Vector2f loc) {location_prev = location; location = loc;}
     void setActorLocation(Vector2f loc) { location_prev = location = loc; }
-		void setBoundingBox(Rect<float> rs) {boundingBox = rs;}
-		virtual void Update(float delta);
+		void setBoundingBox(IntRect rs) {boundingBox = rs;}
+    bool isAsleep() {return asleep;};
+    void setAsleep(bool newAsleep) {asleep = newAsleep;};
+    Vector2f getActorLastLocation() { return location_prev; }
+
+    virtual void Update(float delta);
 		virtual void Draw(double percent, double delta );
 		virtual void Init();
     virtual void TakeDamage(float damage, string damage_type);
-    bool isAsleep() {return asleep;};
-    void setAsleep(bool newAsleep) {asleep = newAsleep;};
     virtual void ActorOverlap(Actor otherActor);
-
   private:
     bool debug;
+    Vector2f location_prev;
+    Vector2f location;
+    IntRect boundingBox;
 
   protected:
     bool asleep;
-    Vector2f location_prev;
-    Vector2f location;
-    Rect<float> boundingBox;
 };
 
 #endif

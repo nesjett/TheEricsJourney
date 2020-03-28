@@ -30,10 +30,12 @@ void Pawn::PrepareSprite(){
     float offsetY = sizeY / 2.0;
 
     sprite = new SSprite(texture_file);
-    sprite->setOrigin(offsetX, offsetY);
-    sprite->setTextureRect( 0, 0, sizeX*scale, sizeY*scale );
+    sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+    IntRect rectangle = IntRect(0, 0, sizeX*scale, sizeY*scale);
+    sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    setBoundingBox(rectangle);
 
-    sprite->setScale(scale,scale);
+    //sprite->setScale(scale,scale); // Set the scale of the sprite.
     //sprite->setPosition(getActorLocation().x, getActorLocation().y);
     
     double playrate = 5000.0;
@@ -44,7 +46,7 @@ void Pawn::PrepareSprite(){
     //bb.left = bb.left-offsetX;
     //bb.top = bb.top-offsetY;
 
-    setBoundingBox( Rect<float>( getActorLocation().x-offsetX, getActorLocation().y-offsetY, bb.width, bb.height ) ); // make the actor bounds be the same as the sprite used here.
+    //setBoundingBox( Rect<float>( getActorLocation().x-offsetX, getActorLocation().y-offsetY, bb.width, bb.height ) ); // make the actor bounds be the same as the sprite used here.
 
     animation = new Animation(sprite->getSpriteR());
     animation->addFrame({sf::IntRect(0,0,sizeX,sizeY), playrate});
@@ -96,13 +98,17 @@ void Pawn::UpdateMovement(){
 void Pawn::Draw(double percent, double delta ){
     animation->update(delta);
 
-    Vector2f currentLoc = sprite->Draw(location, location_prev, percent); // Location of sprite during interpolation
+    Vector2f currentLoc = sprite->Draw(getActorLocation(), getActorLastLocation(), percent); // Location of sprite during interpolation
 
-    sf::Rect<float> bb = getBoundingBox();
-    sf::RectangleShape rect( Vector2f(bb.width,bb.height) );
+    FloatRect globalBounds = sprite->getSprite().getGlobalBounds();
+    
+
+    sf::IntRect bb = getBoundingBox();
+    //sf::RectangleShape rect( Vector2f(bb.width,bb.height) );
+    sf::RectangleShape rect( Vector2f(globalBounds.width,globalBounds.height) );
 
     // Show actor bounding box
-    rect.setPosition(bb.left,bb.top);
+    rect.setPosition(globalBounds.left,globalBounds.top);
     rect.setFillColor(sf::Color(0,0,0,0));
     rect.setOutlineThickness(1.3);
     rect.setOutlineColor(sf::Color(250, 0, 0));
@@ -114,8 +120,8 @@ void Pawn::Draw(double percent, double delta ){
     circ.setOutlineColor(sf::Color(0, 250, 0));
     
     Engine *eng = Engine::Instance();
-    eng->getApp().draw(rect);
-    eng->getApp().draw(circ);
+    eng->getApp().draw(rect); // bounding box
+    eng->getApp().draw(circ); // actor location
 
 }
 

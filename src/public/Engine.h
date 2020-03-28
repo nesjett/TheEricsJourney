@@ -3,7 +3,7 @@
 #define ENGINE_H
 
 #include <SFML/Graphics.hpp>
-//#include <game.h>
+//#include <Actor.h>
 #include <iostream>
 //#include <algorithm>
 
@@ -15,6 +15,7 @@ struct AnimFrame {
 };
 
 enum Faction { enemy=2, allie=1, neutral=0 };
+enum ObjectType { worldstatic=0, worlddynamic=1, pawn=2, projectile=3, trap=4 }; // NOTA: Parece que c++ no permite que los nombres de una enum tengan mayusculas!!
 
 /***********************
  * 
@@ -61,6 +62,7 @@ class SSprite
         sf::Vector2f Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent);
         void setOrigin(double x, double y);
         void setTextureRect(double x, double y, double w, double h);
+        void setTextureRect(sf::IntRect rect);
         void setScale(double x, double y);
     protected:
         sf::Texture texture;
@@ -86,7 +88,7 @@ class Animation {
     public:
         Animation(sf::Sprite &target);
         virtual ~Animation();
-        void addFrame(AnimFrame&& frame);
+        void addFrame(AnimFrame&& frame); // TODO: Could forget about this if we add a standard size for the rect in the constructor, and a default rate.
         void update(double elapsed); 
         const double getLength() const { return totalLength; }
 };
