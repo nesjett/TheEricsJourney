@@ -35,7 +35,7 @@ void Pawn::PrepareSprite(){
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
     setBoundingBox(rectangle);
 
-    //sprite->setScale(scale,scale); // Set the scale of the sprite.
+    sprite->setScale(scale,scale); // Set the scale of the sprite.
     //sprite->setPosition(getActorLocation().x, getActorLocation().y);
     
     double playrate = 5000.0;
@@ -97,8 +97,9 @@ void Pawn::UpdateMovement(){
 
 void Pawn::Draw(double percent, double delta ){
     animation->update(delta);
+    Actor::Draw(percent, delta); // Use this to debug draw bounding box
 
-    Vector2f currentLoc = sprite->Draw(getActorLocation(), getActorLastLocation(), percent); // Location of sprite during interpolation
+    /*Vector2f currentLoc = sprite->Draw(getActorLocation(), getActorLastLocation(), percent); // Location of sprite during interpolation
 
     FloatRect globalBounds = sprite->getSprite().getGlobalBounds();
     
@@ -122,6 +123,7 @@ void Pawn::Draw(double percent, double delta ){
     Engine *eng = Engine::Instance();
     eng->getApp().draw(rect); // bounding box
     eng->getApp().draw(circ); // actor location
+    */
 
 }
 

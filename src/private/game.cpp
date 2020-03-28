@@ -39,7 +39,7 @@ void game::run(){
     actors.push_back(projTest);
     std::cout << "Actors length: " << actors.size() << std::endl;
 
-    enemyTest->setAsleep(true);
+    //enemyTest->setAsleep(true);
 
 
     /***********************************
@@ -60,6 +60,10 @@ void game::run(){
                 //Escape
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
+                }
+
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+                    enemyTest->moveTo( Vector2f( enemyTest->getActorLocation().x, enemyTest->getActorLocation().y + 100 ) );
                 }
                 
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
@@ -95,9 +99,11 @@ void game::run(){
 
                 // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
                 for (Actor *test : actors) {
-                    bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
-                    if(overlaps){
-                        std::cout << "--------------------------------- OVERLAPS! ----------------------------" << tecla.key.code << std::endl;
+                    if(actor != test){
+                        bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
+                        if(overlaps){
+                            std::cout << "--------------------------------- OVERLAPS! ----------------------------" << tecla.key.code << std::endl;
+                        }
                     }
                 }
             }

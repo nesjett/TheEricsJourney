@@ -37,6 +37,7 @@ class Actor {
 
   protected:
     bool asleep;
+    SSprite *sprite;
 };
 
 #endif

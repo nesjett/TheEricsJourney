@@ -10,7 +10,6 @@ using namespace sf;
 class Pawn: public Actor {
     public:
         Pawn();
-        SSprite *sprite;
         Vector2f direction;
 
         float movementSpeed;
