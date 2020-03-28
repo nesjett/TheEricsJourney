@@ -98,11 +98,14 @@ void game::run(){
                 }
 
                 // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
+                // Can be improved by not checking the pairs that were already checked
                 for (Actor *test : actors) {
                     if(actor != test){
+                        //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
                         bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
                         if(overlaps){
-                            std::cout << "--------------------------------- OVERLAPS! ----------------------------" << tecla.key.code << std::endl;
+                            //std::cout << "--------------------------------- OVERLAPS! ----------------------------" << std::endl;
+                            test->OnActorOverlap(actor);
                         }
                     }
                 }

@@ -56,7 +56,7 @@ void Pawn::PrepareSprite(){
 
 
 void Pawn::Update(float delta){
-    std::cout << "Iniciamos UPDATE()" << std::endl;
+    //std::cout << "Iniciamos UPDATE()" << std::endl;
 }
 
 // TODO: Use delta time and interpolation
@@ -77,8 +77,8 @@ void Pawn::Draw(double percent, double delta ){
     Actor::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
-void Pawn::ActorOverlap(Actor otherActor){
-
+void Pawn::OnActorOverlap(Actor *otherActor){
+    std::cout << " Me han colisionado! " << std::endl;
 }
 
 

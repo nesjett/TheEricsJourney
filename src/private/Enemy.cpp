@@ -29,7 +29,7 @@ void Enemy::UpdateMovement(){
 
 }
 
-void Enemy::ActorOverlap(Actor otherActor){
+void Enemy::OnActorOverlap(Actor *otherActor){
 
 }
 

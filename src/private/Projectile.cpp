@@ -51,7 +51,7 @@ void Projectile::TakeDamage(float damage, string damage_type){
 
 }
 
-void Projectile::ActorOverlap(Actor otherActor){
+void Projectile::OnActorOverlap(Actor *otherActor){
     //otherActor.TakeDamage(damage, "default");
 }
 

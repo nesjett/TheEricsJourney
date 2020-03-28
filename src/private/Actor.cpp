@@ -91,7 +91,7 @@ void Actor::TakeDamage(float damage, string damage_type){
 
 }
 
-void Actor::ActorOverlap(Actor otherActor){
+void Actor::OnActorOverlap(Actor *otherActor){
 
 }
 

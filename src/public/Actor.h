@@ -28,7 +28,20 @@ class Actor {
 		virtual void Draw(double percent, double delta );
 		virtual void Init();
     virtual void TakeDamage(float damage, string damage_type);
-    virtual void ActorOverlap(Actor otherActor);
+  
+  /*/////////////////////////////////////////////////////////
+  \fires when the actor is overlapped by another actor
+
+  This function fires when OTHER actors overlap It. This means
+  you get the overlap event when a projectile hits this actor,
+  but the projectile will receive another overlap when the current
+  actor overlaps with the projectile. Projectile should apply damage
+  when It is overlapped, not when other are overlapped by It.
+
+  \param otherActor Actor that overlapped us
+
+  /////////////////////////////////////////////////////////*/
+    virtual void OnActorOverlap(Actor *otherActor);
   private:
     bool debug;
     Vector2f location_prev;
