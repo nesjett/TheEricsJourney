@@ -5,7 +5,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/nestor/Desktop/TheEricsJourney/src/private/Actor.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Actor.cpp.o"
-  "/home/nestor/Desktop/TheEricsJourney/src/private/Animation.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Animation.cpp.o"
+  "/home/nestor/Desktop/TheEricsJourney/src/private/Enemy.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o"
+  "/home/nestor/Desktop/TheEricsJourney/src/private/Engine.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Engine.cpp.o"
   "/home/nestor/Desktop/TheEricsJourney/src/private/Pawn.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o"
   "/home/nestor/Desktop/TheEricsJourney/src/private/Projectile.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o"
   "/home/nestor/Desktop/TheEricsJourney/src/private/game.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/game.cpp.o"

@@ -3,6 +3,10 @@
 
 CMakeFiles/MiJuego.dir/main.cpp.o
  ../src/public/Actor.h
+ ../src/public/Enemy.h
+ ../src/public/Engine.h
+ ../src/public/Pawn.h
+ ../src/public/Projectile.h
  /home/nestor/Desktop/TheEricsJourney/include/config.h
  /home/nestor/Desktop/TheEricsJourney/main.cpp
  /home/nestor/Desktop/TheEricsJourney/src/public/game.h

@@ -1,8 +1,9 @@
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 #include <iostream>
 
 #include "include/config.h"
-#include "src/public/game.h"
+#include "src/public/game.h" // Init the game instance
+//#include "src/public/Engine.h" // INit the graphics engine
 
 #define kVel 5
 
