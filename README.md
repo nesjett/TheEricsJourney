@@ -1,8 +1,10 @@
 Class hierarchy:  
-Actor  
-- Pawn  
--- Enemy  
--- Player
+GameInstance (SIngleton)
+Sprite (interface for smfl)
+Actor  (Base class for everything that has a visible representation in the world, like enemies, traps, walls...)
+- Pawn  (Base class for characters)
+-- Enemy  (Enemy characters)
+-- Player 
 
 
 

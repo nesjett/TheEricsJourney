@@ -9,6 +9,7 @@ add_subdirectory(src)
 
 #Opciones a pasar al compilador de C++
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wall -Wextra")
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${MiJuego_SOURCE_DIR})
 #Se desea generar un ejecutable, se especifica donde está el main
 #y ficheros que aporten código que no sean librerias o subcarpetas 
 add_executable(MiJuego main.cpp)

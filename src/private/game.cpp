@@ -1,245 +1,207 @@
-#include "src/public/game.h"
-#include <iostream>
+#include "../public/game.h"
 
+
+
+#define UPDATE_INTERVAL (1000/15.0)
+
+game* game::pInstance = NULL;
+game* game::Instance() {
+    if(pInstance == NULL) { // If not created earlier, create a new instance and return it
+        pInstance = new game;
+    } 
+    return pInstance;
+}
 game::game()
 {
     
 }
 void game::init(/*char* nombre, int AuxMapa*/){
-    
-    //Creamos una ventana
-    //sf::RenderWindow window(sf::VideoMode(640, 480), "P0. Fundamentos de los Videojuegos. DCCIA");
-    app.create(sf::VideoMode(largo, alto), "P0. Fundamentos de los Videojuegos. DCCIA");
-    app.setFramerateLimit(60); //Esto para la interpolación 
-    x = (largo/2);
-    y = (alto/2);
-    posx = x;
-    posy = y;
-    futurPosx = posx;
-    futurPosy = posy;
-    //Cargo la imagen donde reside la textura del sprite
-    //sf::Texture tex;
-    if (!tex.loadFromFile("resources/sprites.png")) {
-        std::cerr << "Error cargando la imagen sprites.png";
-        exit(0);
-    }
-
-    //Y creo el spritesheet a partir de la imagen anterior
-    //sf::Sprite sprite(tex);
-    sprite.setTexture(tex);
-
-    //Le pongo el centroide donde corresponde
-    sprite.setOrigin(75 / 2, 75 / 2);
-    //Cojo el sprite que me interesa por defecto del sheet
-    sprite.setTextureRect(sf::IntRect(0 * 75, 0 * 75, 75, 75));
-
-    // Lo dispongo en el centro de la pantalla
-    sprite.setPosition((largo/2), (alto/2));
-
+    eng = Engine::Instance();
+    eng->CreateApp(sf::VideoMode(largo, alto), "The Eric's Journey");
+    //app = eng->getApp(); // NOT WORKING FOR SOME REASON
 }
+
+
+
+
+
+
 //bucle del juego
 void game::run(){
-    relojInterpolacion.restart();
-    //Bucle del juego
-    while (app.isOpen()) {
 
-        //Variables de interpolacion
-        AuxInter = relojInterpolacion.getElapsedTime().asMilliseconds();
-        relojInterpolacion.restart();
-        AuxInter2 += AuxInter;
-        AuxInter3 = AuxInter2/AuxInter4;
-        aMoverse();
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){ //TECLA ESC --> CIERRA EL JUEGO
-            std::cout<<"Tecla Esc pulsada --> Se sale del juego."<<std::endl;
-            app.close(); //cierra el juego
-        }
+    /***********************************
+     * TEST Actors, pawns and projectiles
+     ***********************************/
+    Pawn *enemyTest = new Pawn();
+    actors.push_back(enemyTest);
+    //enemyTest->setTargetLocation(Vector2f(500,400));
+    Player *jugador = new Player();
+    actors.push_back(jugador);
+
+    Projectile *projTest = new Projectile();
+    actors.push_back(projTest);
+    std::cout << "Actors length: " << actors.size() << std::endl;
+
+    //enemyTest->setAsleep(true);
+    PlayerController *ControladorJugador = new PlayerController();
+
+    /***********************************
+     * Game loop
+     ***********************************/
+    sf::Clock clock;
+    sf::Int64 lastUpdate = clock.getElapsedTime().asMilliseconds();
+
+    while (eng->getApp().isOpen()) {
         //Bucle de obtención de eventos
         //sf::Event event;
-        /*while (app.pollEvent(tecla)) {
+
+        while (eng->getApp().pollEvent(tecla)) {
 
             if (tecla.type == sf::Event::Closed){
-                app.close();
+                eng->getApp().close();
             }
-            if (tecla.type == sf::Event::KeyPressed){
+
+            //aqui llamo a mi funcion TODO
+            //lo de abajo hay que cambiarlo
+
+            /*else if (tecla.type==sf::Event::KeyPressed){
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+                    //jugador->direction = Vector2f(0.0,-0.1); // Moverse hacia arriba
+                    sf::Vector2f pos1(0.0,-0.1);
+                    ControladorJugador->Update(pos1);
+                }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+                    //jugador->direction = Vector2f(0.0, 0.1);
+                    sf::Vector2f pos2(0.0, 0.1);
+                    ControladorJugador->Update(pos2);
+                }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+                    //jugador->direction = Vector2f(-0.1, 0.0);
+                    sf::Vector2 pos3(-0.1, 0.0);
+                    ControladorJugador->Update(pos3);
+                }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+                    //jugador->direction = Vector2f(0.1, 0.0);
+                    sf::Vector2f pos4(0.1, 0.0);
+                    ControladorJugador->Update(pos4);
+                }
+
+            }
+            else if (tecla.type==sf::Event::KeyReleased){
+                ControladorJugador->Update(tecla.key.code, jugador);
+                if(sf::Keyboard::isKeyReleased(sf::Keyboard::Up) || sf::Keyboard::isKeyReleased(sf::Keyboard::W)){
+                    //jugador->direction = Vector2f(0.0,0.0); // Moverse hacia arriba
+                    sf::Vector2f stop1(0.0, 0.0);
+                    ControladorJugador->Update(stop1);
+                }
+                if(sf::Keyboard::isKeyReleased(sf::Keyboard::Down) || sf::Keyboard::isKeyReleased(sf::Keyboard::S)){
+                    //jugador->direction = Vector2f(0.0, 0.0);
+                    sf::Vector2f stop2(0.0, 0.0);
+                    ControladorJugador->Update(stop2);
+                }
+                if(sf::Keyboard::isKeyReleased(sf::Keyboard::Left) || sf::Keyboard::isKeyReleased(sf::Keyboard::A)){
+                    //jugador->direction = Vector2f(0.0, 0.0);
+                    sf::Vector2f stop3(0.0, 0.0);
+                    ControladorJugador->Update(stop3);
+                }
+                if(sf::Keyboard::isKeyReleased(sf::Keyboard::Right) || sf::Keyboard::isKeyReleased(sf::Keyboard::D)){
+                    //jugador->direction = Vector2f(0.0, 0.0);
+                    sf::Vector2f stop4(0.0, 0.0);
+                    ControladorJugador->Update(stop4);
+                }
+
+            }*/
+
+
+
+            /*if (tecla.type == sf::Event::KeyPressed){
                 //Escape
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-                    app.close();
+                    eng->getApp().close();
                 }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-                   sprite.setTextureRect(sf::IntRect(0 * 75, 2 * 75, 75, 75));
-                    //Escala por defecto
-                    sprite.setScale(1, 1);
-                    sprite.move(kVel, 0); 
+
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+                    jugador->direction = Vector2f(1.0,0.0); // MOverse hacia la derecha
                 }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-                    sprite.setTextureRect(sf::IntRect(0 * 75, 2 * 75, 75, 75));
-                    //Reflejo vertical
-                    sprite.setScale(-1, 1);
-                    sprite.move(-kVel, 0);
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+                    jugador->direction = Vector2f(-1.0,0.0); // Moverse hacia la izquierda
                 }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-                    sprite.setTextureRect(sf::IntRect(0 * 75, 3 * 75, 75, 75));
-                    sprite.move(0, -kVel);  
-                }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-                    sprite.setTextureRect(sf::IntRect(0 * 75, 0 * 75, 75, 75));
-                    sprite.move(0, kVel);
-                }
+                
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
+            }*/
+        }
+
+        // TODO: This loops should be inside the gamestate.cpp 
+        double delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;
+
+
+        // DRAW LOOP 
+        double tup = delta / UPDATE_INTERVAL; // Parenthesis very important for a proper calculation! DON'T REMOVE
+        double percentTick = min(1.0, tup);
+        //std::cout << "Percent: " << percentTick << std::endl;
+        //std::cout << "tup: " << tup << " delta: " << delta << " update_interval: " << UPDATE_INTERVAL << std::endl;
+
+        eng->getApp().clear(); // CLear last frame drawings
+
+        for (Actor *actor : actors) {
+            actor->Draw(percentTick, delta);
+        }
+        eng->getApp().display();
+
+
+        // UPDATE LOOP
+        if(delta > UPDATE_INTERVAL){
+            //std::cout << "GameUpdate() " << std::endl;
+            
+            for (Actor *actor : actors) {
+                if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
+                    actor->Update(delta);
+                }
+
+                // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
+                // Can be improved by not checking the pairs that were already checked
+                for (Actor *test : actors) {
+                    if(actor != test){
+                        //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
+                        bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
+                        if(overlaps){
+                            //std::cout << "--------------------------------- OVERLAPS! ----------------------------" << std::endl;
+                            test->OnActorOverlap(actor);
+                        }
+                    }
+                }
             }
-        }*/
-        //justo aqui arriba se hace el update
-        if (AuxInter4<AuxInter2){
-            //Entonces se tiene que hacer el update.
-            Actualizar();
-            AuxInter3 = 0;
-            AuxInter2 = 0;
+            lastUpdate = clock.getElapsedTime().asMilliseconds();
         }
-        app.clear();
-        //app.draw(sprite);
-        Renderizado(AuxInter3, AuxInter);
-        app.display();
-    }
-}
-void game::aMoverse(){
-    do{
-        if (tecla.type == sf::Event::Closed){
-            app.close();
-        }
-        else if(tecla.type==sf::Event::KeyReleased){
-            enviar=false;
-            auxiliarMov(enviar, tecla.key.code);
-        }
-        else if(tecla.type==sf::Event::KeyPressed){
-            enviar=true;
-            auxiliarMov(enviar, tecla.key.code);
-        }
-    }while(app.pollEvent(tecla));
-}
-void game::auxiliarMov(bool auxMov, sf::Keyboard::Key teclita){
-    if(auxMov != true && teclita==sf::Keyboard::Up){
-        arriba=auxMov;
-    }
-    if(auxMov==true&&teclita==sf::Keyboard::Up){
-        arriba=auxMov;
-    }
-    else if(teclita==sf::Keyboard::Down){
-        abajo=auxMov;
-    }
-    else if(teclita==sf::Keyboard::Right){
-        _derecha=auxMov;
-        mouve = _derecha;
-        //amigo->muevePlayer(_derecha);
-    }
-    else if(teclita==sf::Keyboard::Left){
-        _izquierda=auxMov;
-        mouve = _izquierda;
-        //amigo->muevePlayer(_izquierda);
     }
 }
 
-void game::Renderizado(float interpol, float time){
-
-    //Esto es el famoso render.
-    if(interpol < 0 && interpol > 1 && interpol !=1){
-
-        interpol = 1;
-
-    }
-    //amigo->moverInterpolado(interpol);
-    moverInterpolado(interpol);
-    //pinta(time);
-    app.draw(sprite);
-
-}
-void game::moverInterpolado(float porcentajeInterpolacion){
-    if (posx != 0){
-        float coorx = posx * (1-porcentajeInterpolacion) + futurPosx * porcentajeInterpolacion;
-        float coory = posy * (1-porcentajeInterpolacion) + futurPosy * porcentajeInterpolacion;
-        posx=coorx;
-        posy=coory;
-        sprite.setPosition(posx, posy);
-    }
-}
-void game::pinta(float dTime){
-    
-}
-void game::Actualizar(){
-
-    //el update
-    /*if(Mapita->getMapa()==1){
-        plantaAbajo();
-        //plantaArriba();
-    }*/
-    if(arriba == true){
-        _vertical = -1.0;
-        _horizontal = 0.0;
-        mover(_horizontal, _vertical); 
-    }
-    if(abajo == true){
-        _vertical = 1.0;
-        _horizontal = 0.0;
-        mover(_horizontal, _vertical); 
-    }
-    if (_izquierda == true){
-        _vertical = 0.0;
-        _horizontal = -1.0;
-        mover(_horizontal, _vertical);
-    }
-    if (_derecha == true){
-        _vertical = 0.0;
-        _horizontal = 1.0;
-        mover(_horizontal, _vertical);
-    }
-    /*if (tecla.type == sf::Event::KeyPressed){
-        //Escape
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-            app.close();
+list<Enemy*> game::getAllEnemies(){
+    list<Enemy*> tmp;
+    Enemy* tmpE = NULL;
+    for (Actor *actor : actors) {
+        if ( static_cast<Enemy*>( actor ) ) {
+            tmpE = static_cast<Enemy*>(actor);
+            tmp.push_back(tmpE);
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){ //Horizontal
-            sprite.setTextureRect(sf::IntRect(0 * 75, 2 * 75, 75, 75));
-            //Escala por defecto
-            sprite.setScale(1, 1);
-            //sprite.move(kVel, 0);
-            _vertical = 0.0;
-            _horizontal = 1.0;
-            mover(_horizontal, _vertical);
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){ //Horizontal
-            sprite.setTextureRect(sf::IntRect(0 * 75, 2 * 75, 75, 75));
-            //Reflejo vertical
-            sprite.setScale(-1, 1);
-            //sprite.move(-kVel, 0);
-            _vertical = 0.0;
-            _horizontal = -1.0;
-            mover(_horizontal, _vertical);
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){ //Vertical
-            sprite.setTextureRect(sf::IntRect(0 * 75, 3 * 75, 75, 75));
-            //sprite.move(0, -kVel);
-            _vertical = -1.0;
-            _horizontal = 0.0;
-            mover(_horizontal, _vertical);  
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){ //Vertical
-            sprite.setTextureRect(sf::IntRect(0 * 75, 0 * 75, 75, 75));
-            //sprite.move(0, kVel);
-            _vertical = 1.0;
-            _horizontal = 0.0;
-            mover(_horizontal, _vertical); 
-        }
-        std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
-    }*/
-}
-void game::mover(float x, float y){
-    posx = futurPosx;
-    posy = futurPosy;
-    futurPosx=posx+x*velX;
-    futurPosy=posy+y*velY;
+    }
+    return tmp;
 }
 
-game::~game()
+list<Projectile*> game::getAllProjectiles(){
+    list<Projectile*> tmp;
+    Projectile* tmpE = NULL;
+    for (Actor *actor : actors) {
+        if ( static_cast<Projectile*>( actor ) ) {
+            tmpE = static_cast<Projectile*>(actor);
+            tmp.push_back(tmpE);
+        }
+    }
+    return tmp;
+}
+
+
+game::~game() // Destructor
 {
-    //delete amigo;
-    //delete Mapita;
+ 
 }

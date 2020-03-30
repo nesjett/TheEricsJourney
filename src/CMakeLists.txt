@@ -1,9 +1,14 @@
 #Especificar donde se encuentran los ficheros cpp a compilar
 target_sources(libModulos PRIVATE
-    #"${CMAKE_CURRENT_SOURCE_DIR}/private/Pawn.cpp"
-    #"${CMAKE_CURRENT_SOURCE_DIR}/private/mimodulo2.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Engine.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Pawn.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Actor.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/private/game.cpp"
-
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Projectile.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Enemy.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Player.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Controller.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/PlayerController.cpp"
 )
 
 #Y donde se encuentran los .h

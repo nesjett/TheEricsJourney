@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fv/Escritorio/Workspace/TheEricsJourney
+CMAKE_SOURCE_DIR = "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fv/Escritorio/Workspace/TheEricsJourney/build
+CMAKE_BINARY_DIR = "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles /home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build/CMakeFiles" "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -163,6 +163,222 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/MiJuego.dir/build.make CMakeFiles/MiJuego.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/private/Actor.o: src/private/Actor.cpp.o
+
+.PHONY : src/private/Actor.o
+
+# target to build an object file
+src/private/Actor.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Actor.cpp.o
+.PHONY : src/private/Actor.cpp.o
+
+src/private/Actor.i: src/private/Actor.cpp.i
+
+.PHONY : src/private/Actor.i
+
+# target to preprocess a source file
+src/private/Actor.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Actor.cpp.i
+.PHONY : src/private/Actor.cpp.i
+
+src/private/Actor.s: src/private/Actor.cpp.s
+
+.PHONY : src/private/Actor.s
+
+# target to generate assembly for a file
+src/private/Actor.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Actor.cpp.s
+.PHONY : src/private/Actor.cpp.s
+
+src/private/Controller.o: src/private/Controller.cpp.o
+
+.PHONY : src/private/Controller.o
+
+# target to build an object file
+src/private/Controller.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Controller.cpp.o
+.PHONY : src/private/Controller.cpp.o
+
+src/private/Controller.i: src/private/Controller.cpp.i
+
+.PHONY : src/private/Controller.i
+
+# target to preprocess a source file
+src/private/Controller.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Controller.cpp.i
+.PHONY : src/private/Controller.cpp.i
+
+src/private/Controller.s: src/private/Controller.cpp.s
+
+.PHONY : src/private/Controller.s
+
+# target to generate assembly for a file
+src/private/Controller.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Controller.cpp.s
+.PHONY : src/private/Controller.cpp.s
+
+src/private/Enemy.o: src/private/Enemy.cpp.o
+
+.PHONY : src/private/Enemy.o
+
+# target to build an object file
+src/private/Enemy.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o
+.PHONY : src/private/Enemy.cpp.o
+
+src/private/Enemy.i: src/private/Enemy.cpp.i
+
+.PHONY : src/private/Enemy.i
+
+# target to preprocess a source file
+src/private/Enemy.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Enemy.cpp.i
+.PHONY : src/private/Enemy.cpp.i
+
+src/private/Enemy.s: src/private/Enemy.cpp.s
+
+.PHONY : src/private/Enemy.s
+
+# target to generate assembly for a file
+src/private/Enemy.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Enemy.cpp.s
+.PHONY : src/private/Enemy.cpp.s
+
+src/private/Engine.o: src/private/Engine.cpp.o
+
+.PHONY : src/private/Engine.o
+
+# target to build an object file
+src/private/Engine.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Engine.cpp.o
+.PHONY : src/private/Engine.cpp.o
+
+src/private/Engine.i: src/private/Engine.cpp.i
+
+.PHONY : src/private/Engine.i
+
+# target to preprocess a source file
+src/private/Engine.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Engine.cpp.i
+.PHONY : src/private/Engine.cpp.i
+
+src/private/Engine.s: src/private/Engine.cpp.s
+
+.PHONY : src/private/Engine.s
+
+# target to generate assembly for a file
+src/private/Engine.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Engine.cpp.s
+.PHONY : src/private/Engine.cpp.s
+
+src/private/Pawn.o: src/private/Pawn.cpp.o
+
+.PHONY : src/private/Pawn.o
+
+# target to build an object file
+src/private/Pawn.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
+.PHONY : src/private/Pawn.cpp.o
+
+src/private/Pawn.i: src/private/Pawn.cpp.i
+
+.PHONY : src/private/Pawn.i
+
+# target to preprocess a source file
+src/private/Pawn.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Pawn.cpp.i
+.PHONY : src/private/Pawn.cpp.i
+
+src/private/Pawn.s: src/private/Pawn.cpp.s
+
+.PHONY : src/private/Pawn.s
+
+# target to generate assembly for a file
+src/private/Pawn.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Pawn.cpp.s
+.PHONY : src/private/Pawn.cpp.s
+
+src/private/Player.o: src/private/Player.cpp.o
+
+.PHONY : src/private/Player.o
+
+# target to build an object file
+src/private/Player.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Player.cpp.o
+.PHONY : src/private/Player.cpp.o
+
+src/private/Player.i: src/private/Player.cpp.i
+
+.PHONY : src/private/Player.i
+
+# target to preprocess a source file
+src/private/Player.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Player.cpp.i
+.PHONY : src/private/Player.cpp.i
+
+src/private/Player.s: src/private/Player.cpp.s
+
+.PHONY : src/private/Player.s
+
+# target to generate assembly for a file
+src/private/Player.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Player.cpp.s
+.PHONY : src/private/Player.cpp.s
+
+src/private/PlayerController.o: src/private/PlayerController.cpp.o
+
+.PHONY : src/private/PlayerController.o
+
+# target to build an object file
+src/private/PlayerController.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o
+.PHONY : src/private/PlayerController.cpp.o
+
+src/private/PlayerController.i: src/private/PlayerController.cpp.i
+
+.PHONY : src/private/PlayerController.i
+
+# target to preprocess a source file
+src/private/PlayerController.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.i
+.PHONY : src/private/PlayerController.cpp.i
+
+src/private/PlayerController.s: src/private/PlayerController.cpp.s
+
+.PHONY : src/private/PlayerController.s
+
+# target to generate assembly for a file
+src/private/PlayerController.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.s
+.PHONY : src/private/PlayerController.cpp.s
+
+src/private/Projectile.o: src/private/Projectile.cpp.o
+
+.PHONY : src/private/Projectile.o
+
+# target to build an object file
+src/private/Projectile.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o
+.PHONY : src/private/Projectile.cpp.o
+
+src/private/Projectile.i: src/private/Projectile.cpp.i
+
+.PHONY : src/private/Projectile.i
+
+# target to preprocess a source file
+src/private/Projectile.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Projectile.cpp.i
+.PHONY : src/private/Projectile.cpp.i
+
+src/private/Projectile.s: src/private/Projectile.cpp.s
+
+.PHONY : src/private/Projectile.s
+
+# target to generate assembly for a file
+src/private/Projectile.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Projectile.cpp.s
+.PHONY : src/private/Projectile.cpp.s
+
 src/private/game.o: src/private/game.cpp.o
 
 .PHONY : src/private/game.o
@@ -203,6 +419,30 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/private/Actor.o"
+	@echo "... src/private/Actor.i"
+	@echo "... src/private/Actor.s"
+	@echo "... src/private/Controller.o"
+	@echo "... src/private/Controller.i"
+	@echo "... src/private/Controller.s"
+	@echo "... src/private/Enemy.o"
+	@echo "... src/private/Enemy.i"
+	@echo "... src/private/Enemy.s"
+	@echo "... src/private/Engine.o"
+	@echo "... src/private/Engine.i"
+	@echo "... src/private/Engine.s"
+	@echo "... src/private/Pawn.o"
+	@echo "... src/private/Pawn.i"
+	@echo "... src/private/Pawn.s"
+	@echo "... src/private/Player.o"
+	@echo "... src/private/Player.i"
+	@echo "... src/private/Player.s"
+	@echo "... src/private/PlayerController.o"
+	@echo "... src/private/PlayerController.i"
+	@echo "... src/private/PlayerController.s"
+	@echo "... src/private/Projectile.o"
+	@echo "... src/private/Projectile.i"
+	@echo "... src/private/Projectile.s"
 	@echo "... src/private/game.o"
 	@echo "... src/private/game.i"
 	@echo "... src/private/game.s"
