@@ -52,8 +52,14 @@ class game
         int largo = 1080;
         int alto = 720;
         list<Actor*> actors;
+        PlayerController* ControladorJugador;
         sf::Event tecla;
-        //PlayerController *ControladorJugador;
+        sf::Vector2f pos1;
+        sf::Vector2f pos2;
+        sf::Vector2f pos3;
+        sf::Vector2f pos4;
+        bool pulsada = false;
+        Player* giocatore;
 };
 
 #endif // GAME_H

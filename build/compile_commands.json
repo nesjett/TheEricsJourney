@@ -1,52 +1,52 @@
 [
 {
-  "directory": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build",
-  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/MiJuego.dir/main.cpp.o -c \"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/main.cpp\"",
-  "file": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/main.cpp"
+  "directory": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build",
+  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/MiJuego.dir/main.cpp.o -c \"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/main.cpp\"",
+  "file": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/main.cpp"
 },
 {
-  "directory": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build",
-  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Engine.cpp.o -c \"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Engine.cpp\"",
-  "file": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Engine.cpp"
+  "directory": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build",
+  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Engine.cpp.o -c \"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Engine.cpp\"",
+  "file": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Engine.cpp"
 },
 {
-  "directory": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build",
-  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o -c \"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Pawn.cpp\"",
-  "file": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Pawn.cpp"
+  "directory": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build",
+  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o -c \"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Pawn.cpp\"",
+  "file": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Pawn.cpp"
 },
 {
-  "directory": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build",
-  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Actor.cpp.o -c \"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Actor.cpp\"",
-  "file": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Actor.cpp"
+  "directory": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build",
+  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Actor.cpp.o -c \"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Actor.cpp\"",
+  "file": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Actor.cpp"
 },
 {
-  "directory": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build",
-  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/game.cpp.o -c \"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/game.cpp\"",
-  "file": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/game.cpp"
+  "directory": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build",
+  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/game.cpp.o -c \"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/game.cpp\"",
+  "file": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/game.cpp"
 },
 {
-  "directory": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build",
-  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o -c \"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Projectile.cpp\"",
-  "file": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Projectile.cpp"
+  "directory": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build",
+  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o -c \"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Projectile.cpp\"",
+  "file": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Projectile.cpp"
 },
 {
-  "directory": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build",
-  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o -c \"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Enemy.cpp\"",
-  "file": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Enemy.cpp"
+  "directory": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build",
+  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o -c \"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Enemy.cpp\"",
+  "file": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Enemy.cpp"
 },
 {
-  "directory": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build",
-  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Player.cpp.o -c \"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Player.cpp\"",
-  "file": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Player.cpp"
+  "directory": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build",
+  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Player.cpp.o -c \"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Player.cpp\"",
+  "file": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Player.cpp"
 },
 {
-  "directory": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build",
-  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Controller.cpp.o -c \"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Controller.cpp\"",
-  "file": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Controller.cpp"
+  "directory": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build",
+  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Controller.cpp.o -c \"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Controller.cpp\"",
+  "file": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Controller.cpp"
 },
 {
-  "directory": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/build",
-  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o -c \"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/PlayerController.cpp\"",
-  "file": "/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/PlayerController.cpp"
+  "directory": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build",
+  "command": "/usr/bin/c++    -I\"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public\"   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o -c \"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/PlayerController.cpp\"",
+  "file": "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/PlayerController.cpp"
 }
 ]

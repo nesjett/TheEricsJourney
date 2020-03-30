@@ -19,6 +19,8 @@ void game::init(/*char* nombre, int AuxMapa*/){
     eng = Engine::Instance();
     eng->CreateApp(sf::VideoMode(largo, alto), "The Eric's Journey");
     //app = eng->getApp(); // NOT WORKING FOR SOME REASON
+    ControladorJugador = new PlayerController();
+    giocatore = new Player();
 }
 
 
@@ -43,7 +45,7 @@ void game::run(){
     std::cout << "Actors length: " << actors.size() << std::endl;
 
     //enemyTest->setAsleep(true);
-    PlayerController *ControladorJugador = new PlayerController();
+
 
     /***********************************
      * Game loop
@@ -54,81 +56,23 @@ void game::run(){
     while (eng->getApp().isOpen()) {
         //Bucle de obtención de eventos
         //sf::Event event;
-
         while (eng->getApp().pollEvent(tecla)) {
 
             if (tecla.type == sf::Event::Closed){
                 eng->getApp().close();
             }
-
-            //aqui llamo a mi funcion TODO
-            //lo de abajo hay que cambiarlo
-
-            /*else if (tecla.type==sf::Event::KeyPressed){
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-                    //jugador->direction = Vector2f(0.0,-0.1); // Moverse hacia arriba
-                    sf::Vector2f pos1(0.0,-0.1);
-                    ControladorJugador->Update(pos1);
-                }
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-                    //jugador->direction = Vector2f(0.0, 0.1);
-                    sf::Vector2f pos2(0.0, 0.1);
-                    ControladorJugador->Update(pos2);
-                }
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-                    //jugador->direction = Vector2f(-0.1, 0.0);
-                    sf::Vector2 pos3(-0.1, 0.0);
-                    ControladorJugador->Update(pos3);
-                }
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-                    //jugador->direction = Vector2f(0.1, 0.0);
-                    sf::Vector2f pos4(0.1, 0.0);
-                    ControladorJugador->Update(pos4);
-                }
-
-            }
             else if (tecla.type==sf::Event::KeyReleased){
-                ControladorJugador->Update(tecla.key.code, jugador);
-                if(sf::Keyboard::isKeyReleased(sf::Keyboard::Up) || sf::Keyboard::isKeyReleased(sf::Keyboard::W)){
-                    //jugador->direction = Vector2f(0.0,0.0); // Moverse hacia arriba
-                    sf::Vector2f stop1(0.0, 0.0);
-                    ControladorJugador->Update(stop1);
-                }
-                if(sf::Keyboard::isKeyReleased(sf::Keyboard::Down) || sf::Keyboard::isKeyReleased(sf::Keyboard::S)){
-                    //jugador->direction = Vector2f(0.0, 0.0);
-                    sf::Vector2f stop2(0.0, 0.0);
-                    ControladorJugador->Update(stop2);
-                }
-                if(sf::Keyboard::isKeyReleased(sf::Keyboard::Left) || sf::Keyboard::isKeyReleased(sf::Keyboard::A)){
-                    //jugador->direction = Vector2f(0.0, 0.0);
-                    sf::Vector2f stop3(0.0, 0.0);
-                    ControladorJugador->Update(stop3);
-                }
-                if(sf::Keyboard::isKeyReleased(sf::Keyboard::Right) || sf::Keyboard::isKeyReleased(sf::Keyboard::D)){
-                    //jugador->direction = Vector2f(0.0, 0.0);
-                    sf::Vector2f stop4(0.0, 0.0);
-                    ControladorJugador->Update(stop4);
-                }
-
-            }*/
-
-
-
-            /*if (tecla.type == sf::Event::KeyPressed){
-                //Escape
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-                    eng->getApp().close();
-                }
-
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-                    jugador->direction = Vector2f(1.0,0.0); // MOverse hacia la derecha
-                }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-                    jugador->direction = Vector2f(-1.0,0.0); // Moverse hacia la izquierda
-                }
-                
-                std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
-            }*/
+                pulsada = false;
+                ControladorJugador->Update(pulsada, jugador, tecla.key.code);
+            }
+            else if (tecla.type == sf::Event::KeyPressed){
+                pulsada = true;
+                ControladorJugador->Update(pulsada, jugador, tecla.key.code);
+            }
+            //Escape
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+                eng->getApp().close();
+            }
         }
 
         // TODO: This loops should be inside the gamestate.cpp 

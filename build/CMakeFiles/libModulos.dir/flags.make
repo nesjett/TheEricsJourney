@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++1y -Wall -Wextra -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public" 
+CXX_INCLUDES = -I"/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public" 
 

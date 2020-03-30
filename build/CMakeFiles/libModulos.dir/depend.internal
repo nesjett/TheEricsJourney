@@ -4,41 +4,43 @@
 CMakeFiles/libModulos.dir/src/private/Actor.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Actor.cpp
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Actor.cpp
 CMakeFiles/libModulos.dir/src/private/Controller.cpp.o
- ../src/public/Controller.h
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Controller.cpp
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Controller.cpp
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Controller.h
 CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
  ../src/public/Pawn.h
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Enemy.cpp
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public/Enemy.h
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Enemy.cpp
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Enemy.h
 CMakeFiles/libModulos.dir/src/private/Engine.cpp.o
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Engine.cpp
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public/Engine.h
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Engine.cpp
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Engine.h
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Pawn.cpp
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public/Pawn.h
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Pawn.cpp
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Pawn.h
 CMakeFiles/libModulos.dir/src/private/Player.cpp.o
+ ../src/public/Actor.h
+ ../src/public/Engine.h
+ ../src/public/Pawn.h
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Player.cpp
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Player.h
+CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o
  ../src/public/Actor.h
  ../src/public/Controller.h
  ../src/public/Engine.h
  ../src/public/Pawn.h
- ../src/public/PlayerController.h
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Player.cpp
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public/Player.h
-CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o
- ../src/public/Controller.h
- ../src/public/PlayerController.h
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/PlayerController.cpp
+ ../src/public/Player.h
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/PlayerController.cpp
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/PlayerController.h
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/Projectile.cpp
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public/Projectile.h
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Projectile.cpp
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Projectile.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o
  ../src/public/Actor.h
  ../src/public/Controller.h
@@ -48,5 +50,5 @@ CMakeFiles/libModulos.dir/src/private/game.cpp.o
  ../src/public/Player.h
  ../src/public/PlayerController.h
  ../src/public/Projectile.h
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/private/game.cpp
- /home/fv/Escritorio/Mark 3 Mov/TheEricsJourney-Nestor_Enemies/src/public/game.h
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/game.cpp
+ /home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/game.h

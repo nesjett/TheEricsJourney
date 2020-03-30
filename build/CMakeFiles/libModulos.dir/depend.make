@@ -5,8 +5,8 @@ CMakeFiles/libModulos.dir/src/private/Actor.cpp.o: ../src/public/Actor.h
 CMakeFiles/libModulos.dir/src/private/Actor.cpp.o: ../src/public/Engine.h
 CMakeFiles/libModulos.dir/src/private/Actor.cpp.o: ../src/private/Actor.cpp
 
-CMakeFiles/libModulos.dir/src/private/Controller.cpp.o: ../src/public/Controller.h
 CMakeFiles/libModulos.dir/src/private/Controller.cpp.o: ../src/private/Controller.cpp
+CMakeFiles/libModulos.dir/src/private/Controller.cpp.o: ../src/public/Controller.h
 
 CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o: ../src/public/Actor.h
 CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o: ../src/public/Engine.h
@@ -23,16 +23,18 @@ CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o: ../src/private/Pawn.cpp
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o: ../src/public/Pawn.h
 
 CMakeFiles/libModulos.dir/src/private/Player.cpp.o: ../src/public/Actor.h
-CMakeFiles/libModulos.dir/src/private/Player.cpp.o: ../src/public/Controller.h
 CMakeFiles/libModulos.dir/src/private/Player.cpp.o: ../src/public/Engine.h
 CMakeFiles/libModulos.dir/src/private/Player.cpp.o: ../src/public/Pawn.h
-CMakeFiles/libModulos.dir/src/private/Player.cpp.o: ../src/public/PlayerController.h
 CMakeFiles/libModulos.dir/src/private/Player.cpp.o: ../src/private/Player.cpp
 CMakeFiles/libModulos.dir/src/private/Player.cpp.o: ../src/public/Player.h
 
+CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/Actor.h
 CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/Controller.h
-CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/PlayerController.h
+CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/Pawn.h
+CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/Player.h
 CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/private/PlayerController.cpp
+CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/PlayerController.h
 
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Actor.h
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Engine.h
