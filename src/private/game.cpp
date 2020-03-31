@@ -19,8 +19,7 @@ void game::init(/*char* nombre, int AuxMapa*/){
     eng = Engine::Instance();
     eng->CreateApp(sf::VideoMode(largo, alto), "The Eric's Journey");
     //app = eng->getApp(); // NOT WORKING FOR SOME REASON
-    
-    giocatore = new Player();
+    soltada = false;
 }
 
 
@@ -62,14 +61,20 @@ void game::run(){
                 eng->getApp().close();
             }
             if (tecla.type == sf::Event::KeyPressed){
-                ControladorJugador->Update(tecla.key.code);
+                soltada = false;
+                ControladorJugador->Update(tecla.key.code, soltada);
             }
+            if (tecla.type == sf::Event::KeyReleased){
+                soltada = true;
+                ControladorJugador->Update(tecla.key.code, soltada);
+            }
+            
             //Escape
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                 eng->getApp().close();
             }
             //los movimientos siempre al final
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+            /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
                 
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
@@ -83,7 +88,7 @@ void game::run(){
             }
             else{
 
-            }
+            }*/
         }
 
         // TODO: This loops should be inside the gamestate.cpp 

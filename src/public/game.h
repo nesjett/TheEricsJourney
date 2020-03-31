@@ -42,6 +42,7 @@ class game
         game();
         game(const game &);
         game &operator= (const game &);
+        bool soltada;
         virtual ~game();
 
     private:
@@ -54,12 +55,7 @@ class game
         list<Actor*> actors;
         PlayerController* ControladorJugador;
         sf::Event tecla;
-        //sf::Vector2f pos1;
-        sf::Vector2f pos2;
-        sf::Vector2f pos3;
-        sf::Vector2f pos4;
-        bool pulsada = false;
-        Player* giocatore;
+        
 };
 
 #endif // GAME_H

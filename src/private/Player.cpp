@@ -56,6 +56,13 @@ bool Player::IsAlive(){
 void Player::Movimiento(sf::Vector2f pos){
     direction = pos;
 }
+void Player::setDirection(float x, float y){
+    direction.x = x;
+    direction.y = y;
+}
+sf::Vector2f Player::getDirection(){
+    return direction;
+}
 
 
 void Player::UpdateMovement(){
