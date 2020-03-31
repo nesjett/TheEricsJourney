@@ -6,7 +6,7 @@ Player::Player(){ // Use this to call to parent's contructor first
     texture_file2 = "./resources/sprites.png";
 
     setActorLocation(Vector2f(100.f, 100.f));
-    //direction = Vector2f(0.f, 0.f);
+    direction = Vector2f(0.f, 0.f);
 
     health_MAX = 100.0f;
     health_Current = health_MAX; // Init health
@@ -53,10 +53,8 @@ bool Player::IsAlive(){
     }
 }
 
-void Player::Movimiento(bool pulsada, sf::Keyboard::Key tecla){
-    if (tecla==sf::Keyboard::Right){
-        direction = sf::Vector2f(direction.x+0.2, direction.y);
-    }
+void Player::Movimiento(sf::Vector2f pos){
+    direction = pos;
     
 }
 

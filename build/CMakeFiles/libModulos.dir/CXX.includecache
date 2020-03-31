@@ -47,15 +47,7 @@ Controller.h
 -
 Player.h
 -
-iostream
--
-list
--
-iterator
--
 SFML/Graphics.hpp
--
-algorithm
 -
 
 ../src/public/Projectile.h
@@ -66,33 +58,33 @@ math.h
 Engine.h
 -
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Actor.cpp
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Actor.cpp
 Actor.h
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Actor.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Actor.h
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Controller.cpp
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Controller.cpp
 ../public/Controller.h
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Controller.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Controller.h
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Enemy.cpp
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Enemy.cpp
 ../public/Enemy.h
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Enemy.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Enemy.h
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Engine.cpp
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Engine.cpp
 ../public/Engine.h
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Engine.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Engine.h
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Pawn.cpp
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Pawn.cpp
 ../public/Pawn.h
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Pawn.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Pawn.h
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Player.cpp
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Player.cpp
 ../public/Player.h
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Player.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Player.h
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/PlayerController.cpp
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/PlayerController.cpp
 ../public/PlayerController.h
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/PlayerController.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/PlayerController.h
 iostream
 -
 list
@@ -104,53 +96,45 @@ SFML/Graphics.hpp
 algorithm
 -
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/Projectile.cpp
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Projectile.cpp
 ../public/Projectile.h
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Projectile.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Projectile.h
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/private/game.cpp
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/game.cpp
 ../public/game.h
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/game.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Controller.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Controller.h
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Enemy.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Enemy.h
 Pawn.h
 -
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Engine.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Engine.h
 SFML/Graphics.hpp
 -
 iostream
 -
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Pawn.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Pawn.h
 Actor.h
 -
 Engine.h
 -
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Player.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Player.h
 Pawn.h
 -
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/PlayerController.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/PlayerController.h
 Controller.h
 -
 Player.h
 -
-iostream
--
-list
--
-iterator
--
 SFML/Graphics.hpp
 -
-algorithm
--
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/Projectile.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Projectile.h
 Actor.h
 -
 math.h
@@ -158,7 +142,7 @@ math.h
 Engine.h
 -
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/game.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
 iostream
 -
 list

@@ -47,15 +47,7 @@ Controller.h
 -
 Player.h
 -
-iostream
--
-list
--
-iterator
--
 SFML/Graphics.hpp
--
-algorithm
 -
 
 ../src/public/Projectile.h
@@ -66,17 +58,17 @@ math.h
 Engine.h
 -
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/include/config.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/main.cpp
+/home/fv/Escritorio/Workspace/TheEricsJourney/main.cpp
 iostream
 -
 include/config.h
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/include/config.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
 src/public/game.h
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/game.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
 
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/src/public/game.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
 iostream
 -
 list

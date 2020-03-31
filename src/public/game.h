@@ -54,7 +54,7 @@ class game
         list<Actor*> actors;
         PlayerController* ControladorJugador;
         sf::Event tecla;
-        sf::Vector2f pos1;
+        //sf::Vector2f pos1;
         sf::Vector2f pos2;
         sf::Vector2f pos3;
         sf::Vector2f pos4;

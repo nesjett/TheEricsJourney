@@ -19,7 +19,7 @@ void game::init(/*char* nombre, int AuxMapa*/){
     eng = Engine::Instance();
     eng->CreateApp(sf::VideoMode(largo, alto), "The Eric's Journey");
     //app = eng->getApp(); // NOT WORKING FOR SOME REASON
-    ControladorJugador = new PlayerController();
+    
     giocatore = new Player();
 }
 
@@ -45,7 +45,7 @@ void game::run(){
     std::cout << "Actors length: " << actors.size() << std::endl;
 
     //enemyTest->setAsleep(true);
-
+    ControladorJugador = new PlayerController(jugador);
 
     /***********************************
      * Game loop
@@ -61,17 +61,38 @@ void game::run(){
             if (tecla.type == sf::Event::Closed){
                 eng->getApp().close();
             }
-            else if (tecla.type==sf::Event::KeyReleased){
+            /*else if (tecla.type==sf::Event::KeyReleased){
                 pulsada = false;
-                ControladorJugador->Update(pulsada, jugador, tecla.key.code);
-            }
-            else if (tecla.type == sf::Event::KeyPressed){
+                ControladorJugador->Update(pulsada, tecla.key.code);
+            }*/
+            if (tecla.type == sf::Event::KeyPressed){
                 pulsada = true;
-                ControladorJugador->Update(pulsada, jugador, tecla.key.code);
+                ControladorJugador->Update(pulsada, tecla.key.code);
             }
             //Escape
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                 eng->getApp().close();
+            }
+            //sf::Vector2f pos1 = sf::Vector2f(0.0, -0.3);
+            //jugador->Movimiento(sf::Vector2f(0.0, -0.3));
+            //los movimientos siempre al final
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+                //eng->getApp().close();
+                
+                //jugador->direction = pos1;
+                
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+
+            }
+            else{
+
             }
         }
 

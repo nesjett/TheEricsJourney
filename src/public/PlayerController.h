@@ -1,18 +1,14 @@
 #include <Controller.h>
 #include <Player.h>
 
-#include <iostream>
-#include <list>
-#include <iterator>
 #include <SFML/Graphics.hpp>
-#include <algorithm>
 
 class PlayerController{
 
     public:
-        PlayerController();
+        PlayerController(Player*);
         //void Update(sf::Vector2f, bool, Player*);
-        void Update(bool, Player*, sf::Keyboard::Key);
+        void Update(bool, sf::Keyboard::Key);
     protected:
         virtual ~PlayerController(); 
     private: 
@@ -22,5 +18,6 @@ class PlayerController{
         sf::Vector2f pos4;
         sf::Vector2f stop;
         sf::Vector2f directionAux;
+        Player* miJugador;
 
 };

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies"
+CMAKE_SOURCE_DIR = /home/fv/Escritorio/Workspace/TheEricsJourney
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build"
+CMAKE_BINARY_DIR = /home/fv/Escritorio/Workspace/TheEricsJourney/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build/CMakeFiles" "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles /home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

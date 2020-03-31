@@ -1,6 +1,6 @@
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build/CMakeFiles/rebuild_cache.dir
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build/CMakeFiles/edit_cache.dir
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build/CMakeFiles/MiJuego.dir
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build/CMakeFiles/libModulos.dir
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build/src/CMakeFiles/edit_cache.dir
-/home/fv/Escritorio/Mark 4 Mov/TheEricsJourney-Nestor_Enemies/build/src/CMakeFiles/rebuild_cache.dir
+/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/rebuild_cache.dir
+/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/edit_cache.dir
+/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/MiJuego.dir
+/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir
+/home/fv/Escritorio/Workspace/TheEricsJourney/build/src/CMakeFiles/edit_cache.dir
+/home/fv/Escritorio/Workspace/TheEricsJourney/build/src/CMakeFiles/rebuild_cache.dir

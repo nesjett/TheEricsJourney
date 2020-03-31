@@ -11,7 +11,7 @@ class Player:  public Pawn{
         bool IsAlive(); // This should go to an interface or to parent PAWN class
         void Init();
         // Adds movement to the desired direction
-        void Movimiento(bool, sf::Keyboard::Key);
+        void Movimiento(sf::Vector2f);
         void UpdateMovement(); 
         bool Attack();
         void Update(float delta);
