@@ -55,7 +55,6 @@ bool Player::IsAlive(){
 
 void Player::Movimiento(sf::Vector2f pos){
     direction = pos;
-    
 }
 
 

@@ -61,25 +61,15 @@ void game::run(){
             if (tecla.type == sf::Event::Closed){
                 eng->getApp().close();
             }
-            /*else if (tecla.type==sf::Event::KeyReleased){
-                pulsada = false;
-                ControladorJugador->Update(pulsada, tecla.key.code);
-            }*/
             if (tecla.type == sf::Event::KeyPressed){
-                pulsada = true;
-                ControladorJugador->Update(pulsada, tecla.key.code);
+                ControladorJugador->Update(tecla.key.code);
             }
             //Escape
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                 eng->getApp().close();
             }
-            //sf::Vector2f pos1 = sf::Vector2f(0.0, -0.3);
-            //jugador->Movimiento(sf::Vector2f(0.0, -0.3));
             //los movimientos siempre al final
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-                //eng->getApp().close();
-                
-                //jugador->direction = pos1;
                 
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)){

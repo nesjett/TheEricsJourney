@@ -17,7 +17,7 @@ class Player:  public Pawn{
         void Update(float delta);
         void ActorOverlap(Actor otherActor);
         void Draw(double percent, double delta);
-        sf::Vector2f direction;
+        //sf::Vector2f direction;
 
     protected:
         void PrepareSprite2();
