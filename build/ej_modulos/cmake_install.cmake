@@ -1,4 +1,4 @@
-# Install script for directory: /home/nestor/Desktop/TheEricsJourney/ej_modulos
+# Install script for directory: /home/amador/Documents/git/TheEricsJourney/ej_modulos
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

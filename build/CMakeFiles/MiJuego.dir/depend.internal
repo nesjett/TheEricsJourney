@@ -3,10 +3,15 @@
 
 CMakeFiles/MiJuego.dir/main.cpp.o
  ../src/public/Actor.h
+ ../src/public/AudioManager.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
+ ../src/public/Mapa.h
+ ../src/public/Menu.h
  ../src/public/Pawn.h
  ../src/public/Projectile.h
- /home/nestor/Desktop/TheEricsJourney/include/config.h
- /home/nestor/Desktop/TheEricsJourney/main.cpp
- /home/nestor/Desktop/TheEricsJourney/src/public/game.h
+ ../src/public/Tile.h
+ ../src/public/tinyxml2.h
+ /home/amador/Documents/git/TheEricsJourney/include/config.h
+ /home/amador/Documents/git/TheEricsJourney/main.cpp
+ /home/amador/Documents/git/TheEricsJourney/src/public/game.h

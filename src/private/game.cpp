@@ -19,6 +19,11 @@ void game::init(/*char* nombre, int AuxMapa*/){
     eng = Engine::Instance();
     eng->CreateApp(sf::VideoMode(largo, alto), "The Eric's Journey");
     //app = eng->getApp(); // NOT WORKING FOR SOME REASON
+
+    estadoJuego = false;
+    menu = Menu::getInstance();
+    mapaActual = 0;
+    vMapas.push_back(new Mapa("MapaNivel1.tmx"));
 }
 
 
@@ -72,6 +77,10 @@ void game::run(){
                 
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
+            if(estadoJuego == false) //Estamos en el menu
+            {
+                estadoJuego = menu->update(tecla);
+            }
         }
 
         // TODO: This loops should be inside the gamestate.cpp 
@@ -84,38 +93,52 @@ void game::run(){
         //std::cout << "Percent: " << percentTick << std::endl;
         //std::cout << "tup: " << tup << " delta: " << delta << " update_interval: " << UPDATE_INTERVAL << std::endl;
 
-        eng->getApp().clear(); // CLear last frame drawings
+        // eng->getApp().clear(); // CLear last frame drawings
 
-        for (Actor *actor : actors) {
-            actor->Draw(percentTick, delta);
-        }
-        eng->getApp().display();
+        // for (Actor *actor : actors) {
+        //     actor->Draw(percentTick, delta);
+        // }
+        // eng->getApp().display();
 
 
         // UPDATE LOOP
         if(delta > UPDATE_INTERVAL){
             //std::cout << "GameUpdate() " << std::endl;
-            
-            for (Actor *actor : actors) {
-                if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
-                    actor->Update(delta);
-                }
+            if(estadoJuego == true){ //Estamos jugando! ;-)
+                for (Actor *actor : actors) {
+                    if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
+                        actor->Update(delta);
+                    }
 
-                // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
-                // Can be improved by not checking the pairs that were already checked
-                for (Actor *test : actors) {
-                    if(actor != test){
-                        //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
-                        bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
-                        if(overlaps){
-                            //std::cout << "--------------------------------- OVERLAPS! ----------------------------" << std::endl;
-                            test->OnActorOverlap(actor);
+                    // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
+                    // Can be improved by not checking the pairs that were already checked
+                    for (Actor *test : actors) {
+                        if(actor != test){
+                            //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
+                            bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
+                            if(overlaps){
+                                //std::cout << "--------------------------------- OVERLAPS! ----------------------------" << std::endl;
+                                test->OnActorOverlap(actor);
+                            }
                         }
                     }
                 }
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
         }
+        //RENDER
+        eng->getApp().clear(); 
+        if(estadoJuego == false)
+        {
+            menu->draw();
+        }
+        else{
+            vMapas[mapaActual]->render();
+            for (Actor *actor : actors) {
+                actor->Draw(percentTick, delta);
+            }
+        }
+        eng->getApp().display();
     }
 }
 

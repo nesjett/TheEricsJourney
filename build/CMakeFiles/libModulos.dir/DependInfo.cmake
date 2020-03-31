@@ -4,12 +4,17 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/nestor/Desktop/TheEricsJourney/src/private/Actor.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Actor.cpp.o"
-  "/home/nestor/Desktop/TheEricsJourney/src/private/Enemy.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o"
-  "/home/nestor/Desktop/TheEricsJourney/src/private/Engine.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Engine.cpp.o"
-  "/home/nestor/Desktop/TheEricsJourney/src/private/Pawn.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o"
-  "/home/nestor/Desktop/TheEricsJourney/src/private/Projectile.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o"
-  "/home/nestor/Desktop/TheEricsJourney/src/private/game.cpp" "/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/game.cpp.o"
+  "/home/amador/Documents/git/TheEricsJourney/src/private/Actor.cpp" "/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Actor.cpp.o"
+  "/home/amador/Documents/git/TheEricsJourney/src/private/AudioManager.cpp" "/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o"
+  "/home/amador/Documents/git/TheEricsJourney/src/private/Enemy.cpp" "/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o"
+  "/home/amador/Documents/git/TheEricsJourney/src/private/Engine.cpp" "/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Engine.cpp.o"
+  "/home/amador/Documents/git/TheEricsJourney/src/private/Mapa.cpp" "/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o"
+  "/home/amador/Documents/git/TheEricsJourney/src/private/Menu.cpp" "/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Menu.cpp.o"
+  "/home/amador/Documents/git/TheEricsJourney/src/private/Pawn.cpp" "/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o"
+  "/home/amador/Documents/git/TheEricsJourney/src/private/Projectile.cpp" "/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o"
+  "/home/amador/Documents/git/TheEricsJourney/src/private/Tile.cpp" "/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Tile.cpp.o"
+  "/home/amador/Documents/git/TheEricsJourney/src/private/game.cpp" "/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/game.cpp.o"
+  "/home/amador/Documents/git/TheEricsJourney/src/private/tinyxml2.cpp" "/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

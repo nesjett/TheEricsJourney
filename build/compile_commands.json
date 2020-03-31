@@ -1,37 +1,62 @@
 [
 {
-  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
-  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/MiJuego.dir/main.cpp.o -c /home/nestor/Desktop/TheEricsJourney/main.cpp",
-  "file": "/home/nestor/Desktop/TheEricsJourney/main.cpp"
+  "directory": "/home/amador/Documents/git/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/amador/Documents/git/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/MiJuego.dir/main.cpp.o -c /home/amador/Documents/git/TheEricsJourney/main.cpp",
+  "file": "/home/amador/Documents/git/TheEricsJourney/main.cpp"
 },
 {
-  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
-  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Engine.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/private/Engine.cpp",
-  "file": "/home/nestor/Desktop/TheEricsJourney/src/private/Engine.cpp"
+  "directory": "/home/amador/Documents/git/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/amador/Documents/git/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o -c /home/amador/Documents/git/TheEricsJourney/src/private/tinyxml2.cpp",
+  "file": "/home/amador/Documents/git/TheEricsJourney/src/private/tinyxml2.cpp"
 },
 {
-  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
-  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/private/Pawn.cpp",
-  "file": "/home/nestor/Desktop/TheEricsJourney/src/private/Pawn.cpp"
+  "directory": "/home/amador/Documents/git/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/amador/Documents/git/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Menu.cpp.o -c /home/amador/Documents/git/TheEricsJourney/src/private/Menu.cpp",
+  "file": "/home/amador/Documents/git/TheEricsJourney/src/private/Menu.cpp"
 },
 {
-  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
-  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Actor.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/private/Actor.cpp",
-  "file": "/home/nestor/Desktop/TheEricsJourney/src/private/Actor.cpp"
+  "directory": "/home/amador/Documents/git/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/amador/Documents/git/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Engine.cpp.o -c /home/amador/Documents/git/TheEricsJourney/src/private/Engine.cpp",
+  "file": "/home/amador/Documents/git/TheEricsJourney/src/private/Engine.cpp"
 },
 {
-  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
-  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/game.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/private/game.cpp",
-  "file": "/home/nestor/Desktop/TheEricsJourney/src/private/game.cpp"
+  "directory": "/home/amador/Documents/git/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/amador/Documents/git/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o -c /home/amador/Documents/git/TheEricsJourney/src/private/Pawn.cpp",
+  "file": "/home/amador/Documents/git/TheEricsJourney/src/private/Pawn.cpp"
 },
 {
-  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
-  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/private/Projectile.cpp",
-  "file": "/home/nestor/Desktop/TheEricsJourney/src/private/Projectile.cpp"
+  "directory": "/home/amador/Documents/git/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/amador/Documents/git/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Actor.cpp.o -c /home/amador/Documents/git/TheEricsJourney/src/private/Actor.cpp",
+  "file": "/home/amador/Documents/git/TheEricsJourney/src/private/Actor.cpp"
 },
 {
-  "directory": "/home/nestor/Desktop/TheEricsJourney/build",
-  "command": "/usr/bin/c++    -I/home/nestor/Desktop/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o -c /home/nestor/Desktop/TheEricsJourney/src/private/Enemy.cpp",
-  "file": "/home/nestor/Desktop/TheEricsJourney/src/private/Enemy.cpp"
+  "directory": "/home/amador/Documents/git/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/amador/Documents/git/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Tile.cpp.o -c /home/amador/Documents/git/TheEricsJourney/src/private/Tile.cpp",
+  "file": "/home/amador/Documents/git/TheEricsJourney/src/private/Tile.cpp"
+},
+{
+  "directory": "/home/amador/Documents/git/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/amador/Documents/git/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o -c /home/amador/Documents/git/TheEricsJourney/src/private/Mapa.cpp",
+  "file": "/home/amador/Documents/git/TheEricsJourney/src/private/Mapa.cpp"
+},
+{
+  "directory": "/home/amador/Documents/git/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/amador/Documents/git/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o -c /home/amador/Documents/git/TheEricsJourney/src/private/AudioManager.cpp",
+  "file": "/home/amador/Documents/git/TheEricsJourney/src/private/AudioManager.cpp"
+},
+{
+  "directory": "/home/amador/Documents/git/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/amador/Documents/git/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/game.cpp.o -c /home/amador/Documents/git/TheEricsJourney/src/private/game.cpp",
+  "file": "/home/amador/Documents/git/TheEricsJourney/src/private/game.cpp"
+},
+{
+  "directory": "/home/amador/Documents/git/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/amador/Documents/git/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o -c /home/amador/Documents/git/TheEricsJourney/src/private/Projectile.cpp",
+  "file": "/home/amador/Documents/git/TheEricsJourney/src/private/Projectile.cpp"
+},
+{
+  "directory": "/home/amador/Documents/git/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/amador/Documents/git/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o -c /home/amador/Documents/git/TheEricsJourney/src/private/Enemy.cpp",
+  "file": "/home/amador/Documents/git/TheEricsJourney/src/private/Enemy.cpp"
 }
 ]
