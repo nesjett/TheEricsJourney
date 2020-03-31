@@ -85,16 +85,6 @@ Actor.h
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/PlayerController.cpp
 ../public/PlayerController.h
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/PlayerController.h
-iostream
--
-list
--
-iterator
--
-SFML/Graphics.hpp
--
-algorithm
--
 
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Projectile.cpp
 ../public/Projectile.h
