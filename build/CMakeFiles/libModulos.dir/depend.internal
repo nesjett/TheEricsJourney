@@ -3,54 +3,60 @@
 
 CMakeFiles/libModulos.dir/src/private/Actor.cpp.o
  ../src/public/Actor.h
- ../src/public/Enemy.h
  ../src/public/Engine.h
- ../src/public/Pawn.h
- ../src/public/Projectile.h
- ../src/public/game.h
- /home/nestor/Desktop/TheEricsJourney/src/private/Actor.cpp
+ /home/amador/Documents/git/TheEricsJourney/src/private/Actor.cpp
+CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o
+ ../src/public/AudioManager.h
+ /home/amador/Documents/git/TheEricsJourney/src/private/AudioManager.cpp
 CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o
  ../src/public/Actor.h
- ../src/public/Enemy.h
  ../src/public/Engine.h
  ../src/public/Pawn.h
- ../src/public/Projectile.h
- ../src/public/game.h
- /home/nestor/Desktop/TheEricsJourney/src/private/Enemy.cpp
- /home/nestor/Desktop/TheEricsJourney/src/public/Enemy.h
+ /home/amador/Documents/git/TheEricsJourney/src/private/Enemy.cpp
+ /home/amador/Documents/git/TheEricsJourney/src/public/Enemy.h
 CMakeFiles/libModulos.dir/src/private/Engine.cpp.o
+ /home/amador/Documents/git/TheEricsJourney/src/private/Engine.cpp
+ /home/amador/Documents/git/TheEricsJourney/src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o
  ../src/public/Actor.h
- ../src/public/Enemy.h
  ../src/public/Engine.h
- ../src/public/Pawn.h
- ../src/public/Projectile.h
- ../src/public/game.h
- /home/nestor/Desktop/TheEricsJourney/src/private/Engine.cpp
- /home/nestor/Desktop/TheEricsJourney/src/public/Engine.h
+ ../src/public/Mapa.h
+ ../src/public/Tile.h
+ ../src/public/tinyxml2.h
+ /home/amador/Documents/git/TheEricsJourney/src/private/Mapa.cpp
+CMakeFiles/libModulos.dir/src/private/Menu.cpp.o
+ ../src/public/AudioManager.h
+ /home/amador/Documents/git/TheEricsJourney/src/private/Menu.cpp
+ /home/amador/Documents/git/TheEricsJourney/src/public/Engine.h
+ /home/amador/Documents/git/TheEricsJourney/src/public/Menu.h
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
  ../src/public/Actor.h
- ../src/public/Enemy.h
  ../src/public/Engine.h
- ../src/public/Pawn.h
- ../src/public/Projectile.h
- ../src/public/game.h
- /home/nestor/Desktop/TheEricsJourney/src/private/Pawn.cpp
- /home/nestor/Desktop/TheEricsJourney/src/public/Pawn.h
+ /home/amador/Documents/git/TheEricsJourney/src/private/Pawn.cpp
+ /home/amador/Documents/git/TheEricsJourney/src/public/Pawn.h
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o
  ../src/public/Actor.h
- ../src/public/Enemy.h
  ../src/public/Engine.h
- ../src/public/Pawn.h
- ../src/public/Projectile.h
- ../src/public/game.h
- /home/nestor/Desktop/TheEricsJourney/src/private/Projectile.cpp
- /home/nestor/Desktop/TheEricsJourney/src/public/Projectile.h
+ /home/amador/Documents/git/TheEricsJourney/src/private/Projectile.cpp
+ /home/amador/Documents/git/TheEricsJourney/src/public/Projectile.h
+CMakeFiles/libModulos.dir/src/private/Tile.cpp.o
+ ../src/public/Actor.h
+ ../src/public/Engine.h
+ /home/amador/Documents/git/TheEricsJourney/src/private/Tile.cpp
+ /home/amador/Documents/git/TheEricsJourney/src/public/Tile.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o
  ../src/public/Actor.h
+ ../src/public/AudioManager.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
+ ../src/public/Mapa.h
+ ../src/public/Menu.h
  ../src/public/Pawn.h
  ../src/public/Projectile.h
- ../src/public/game.h
- /home/nestor/Desktop/TheEricsJourney/src/private/game.cpp
- /home/nestor/Desktop/TheEricsJourney/src/public/game.h
+ ../src/public/Tile.h
+ ../src/public/tinyxml2.h
+ /home/amador/Documents/git/TheEricsJourney/src/private/game.cpp
+ /home/amador/Documents/git/TheEricsJourney/src/public/game.h
+CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o
+ /home/amador/Documents/git/TheEricsJourney/src/private/tinyxml2.cpp
+ /home/amador/Documents/git/TheEricsJourney/src/public/tinyxml2.h

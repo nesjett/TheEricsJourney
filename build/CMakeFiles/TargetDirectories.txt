@@ -1,6 +1,6 @@
-/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/rebuild_cache.dir
-/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/edit_cache.dir
-/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/MiJuego.dir
-/home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/libModulos.dir
-/home/nestor/Desktop/TheEricsJourney/build/src/CMakeFiles/edit_cache.dir
-/home/nestor/Desktop/TheEricsJourney/build/src/CMakeFiles/rebuild_cache.dir
+/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/rebuild_cache.dir
+/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/edit_cache.dir
+/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/MiJuego.dir
+/home/amador/Documents/git/TheEricsJourney/build/CMakeFiles/libModulos.dir
+/home/amador/Documents/git/TheEricsJourney/build/src/CMakeFiles/edit_cache.dir
+/home/amador/Documents/git/TheEricsJourney/build/src/CMakeFiles/rebuild_cache.dir

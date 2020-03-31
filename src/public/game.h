@@ -13,6 +13,8 @@
 #include <Pawn.h>
 #include <Enemy.h>
 #include <Projectile.h>
+#include <Menu.h>
+#include <Mapa.h>
 
 using namespace std;
 
@@ -52,6 +54,10 @@ class game
         list<Actor*> actors;
 
         sf::Event tecla;
+        bool estadoJuego;
+        Menu* menu;
+        vector<Mapa*> vMapas;
+        int mapaActual;
 };
 
 #endif // GAME_H
