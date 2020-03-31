@@ -5,6 +5,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/libModulos.dir/src/private/game.cpp.o"
   "CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o"
   "CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o"
+  "CMakeFiles/libModulos.dir/src/private/Player.cpp.o"
+  "CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o"
+  "CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o"
   "liblibModulos.pdb"
   "liblibModulos.a"
 )

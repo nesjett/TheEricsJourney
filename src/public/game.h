@@ -13,6 +13,9 @@
 #include <Pawn.h>
 #include <Enemy.h>
 #include <Projectile.h>
+#include <Player.h>
+#include <Fixedenemy.h>
+#include <Movingenemy.h>
 
 using namespace std;
 

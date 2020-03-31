@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nestor/Desktop/TheEricsJourney
+CMAKE_SOURCE_DIR = /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nestor/Desktop/TheEricsJourney/build
+CMAKE_BINARY_DIR = /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nestor/Desktop/TheEricsJourney/build/CMakeFiles /home/nestor/Desktop/TheEricsJourney/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build/CMakeFiles /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nestor/Desktop/TheEricsJourney/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -244,6 +244,60 @@ src/private/Engine.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Engine.cpp.s
 .PHONY : src/private/Engine.cpp.s
 
+src/private/Fixedenemy.o: src/private/Fixedenemy.cpp.o
+
+.PHONY : src/private/Fixedenemy.o
+
+# target to build an object file
+src/private/Fixedenemy.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o
+.PHONY : src/private/Fixedenemy.cpp.o
+
+src/private/Fixedenemy.i: src/private/Fixedenemy.cpp.i
+
+.PHONY : src/private/Fixedenemy.i
+
+# target to preprocess a source file
+src/private/Fixedenemy.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.i
+.PHONY : src/private/Fixedenemy.cpp.i
+
+src/private/Fixedenemy.s: src/private/Fixedenemy.cpp.s
+
+.PHONY : src/private/Fixedenemy.s
+
+# target to generate assembly for a file
+src/private/Fixedenemy.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.s
+.PHONY : src/private/Fixedenemy.cpp.s
+
+src/private/Movingenemy.o: src/private/Movingenemy.cpp.o
+
+.PHONY : src/private/Movingenemy.o
+
+# target to build an object file
+src/private/Movingenemy.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o
+.PHONY : src/private/Movingenemy.cpp.o
+
+src/private/Movingenemy.i: src/private/Movingenemy.cpp.i
+
+.PHONY : src/private/Movingenemy.i
+
+# target to preprocess a source file
+src/private/Movingenemy.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.i
+.PHONY : src/private/Movingenemy.cpp.i
+
+src/private/Movingenemy.s: src/private/Movingenemy.cpp.s
+
+.PHONY : src/private/Movingenemy.s
+
+# target to generate assembly for a file
+src/private/Movingenemy.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.s
+.PHONY : src/private/Movingenemy.cpp.s
+
 src/private/Pawn.o: src/private/Pawn.cpp.o
 
 .PHONY : src/private/Pawn.o
@@ -270,6 +324,33 @@ src/private/Pawn.s: src/private/Pawn.cpp.s
 src/private/Pawn.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Pawn.cpp.s
 .PHONY : src/private/Pawn.cpp.s
+
+src/private/Player.o: src/private/Player.cpp.o
+
+.PHONY : src/private/Player.o
+
+# target to build an object file
+src/private/Player.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Player.cpp.o
+.PHONY : src/private/Player.cpp.o
+
+src/private/Player.i: src/private/Player.cpp.i
+
+.PHONY : src/private/Player.i
+
+# target to preprocess a source file
+src/private/Player.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Player.cpp.i
+.PHONY : src/private/Player.cpp.i
+
+src/private/Player.s: src/private/Player.cpp.s
+
+.PHONY : src/private/Player.s
+
+# target to generate assembly for a file
+src/private/Player.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Player.cpp.s
+.PHONY : src/private/Player.cpp.s
 
 src/private/Projectile.o: src/private/Projectile.cpp.o
 
@@ -347,9 +428,18 @@ help:
 	@echo "... src/private/Engine.o"
 	@echo "... src/private/Engine.i"
 	@echo "... src/private/Engine.s"
+	@echo "... src/private/Fixedenemy.o"
+	@echo "... src/private/Fixedenemy.i"
+	@echo "... src/private/Fixedenemy.s"
+	@echo "... src/private/Movingenemy.o"
+	@echo "... src/private/Movingenemy.i"
+	@echo "... src/private/Movingenemy.s"
 	@echo "... src/private/Pawn.o"
 	@echo "... src/private/Pawn.i"
 	@echo "... src/private/Pawn.s"
+	@echo "... src/private/Player.o"
+	@echo "... src/private/Player.i"
+	@echo "... src/private/Player.s"
 	@echo "... src/private/Projectile.o"
 	@echo "... src/private/Projectile.i"
 	@echo "... src/private/Projectile.s"

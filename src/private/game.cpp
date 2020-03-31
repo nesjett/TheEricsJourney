@@ -35,6 +35,19 @@ void game::run(){
     Pawn *enemyTest = new Pawn();
     actors.push_back(enemyTest);
     //enemyTest->setTargetLocation(Vector2f(500,400));
+    Player *jugador = new Player();
+    actors.push_back(jugador);
+
+    Fixedenemy *enemyfijo = new Fixedenemy();
+    actors.push_back(enemyfijo);
+
+    Movingenemy *enemymove = new Movingenemy();
+    actors.push_back(enemymove);
+    enemymove->setActorLocation(Vector2f(240.0, 520.0));
+
+    Movingenemy *enemymove2 = new Movingenemy();
+    actors.push_back(enemymove2);
+    enemymove2->setActorLocation(Vector2f(240.0, 520.0));
 
     Projectile *projTest = new Projectile();
     actors.push_back(projTest);
@@ -64,16 +77,23 @@ void game::run(){
                 }
 
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-                    enemyTest->direction = Vector2f(1.0,0.0); // MOverse hacia la derecha
+                    jugador->direction = Vector2f(1.0,0.0); // MOverse hacia la derecha
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-                    enemyTest->direction = Vector2f(-1.0,0.0); // Moverse hacia la izquierda
+                    jugador->direction = Vector2f(-1.0,0.0); // Moverse hacia la izquierda
                 }
                 
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
         }
 
+        //Enemy movement
+
+        enemymove->Linealmove_y(220.0,520.0);
+        enemymove2->Linealmove_x(240.0,520.0);
+
+        
+        //enemymove->direction = Vector2f(0.0,-1.0);
         // TODO: This loops should be inside the gamestate.cpp 
         double delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;
 
