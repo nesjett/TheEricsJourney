@@ -18,6 +18,8 @@ CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Actor.h
 CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Enemy.h
 CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Engine.h
 CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Pawn.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Player.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Projectile.h
 CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/private/Fixedenemy.cpp
 CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Fixedenemy.h
 
@@ -41,6 +43,8 @@ CMakeFiles/libModulos.dir/src/private/Player.cpp.o: ../src/public/Player.h
 
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Actor.h
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Pawn.h
+CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Player.h
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/private/Projectile.cpp
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Projectile.h
 

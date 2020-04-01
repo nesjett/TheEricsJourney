@@ -33,6 +33,10 @@ iostream
 ../src/public/Fixedenemy.h
 Enemy.h
 -
+Projectile.h
+-
+Player.h
+-
 
 ../src/public/Movingenemy.h
 Enemy.h
@@ -51,84 +55,92 @@ Pawn.h
 ../src/public/Projectile.h
 Actor.h
 -
+Player.h
+-
 math.h
 -
 Engine.h
 -
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Actor.cpp
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Actor.cpp
 Actor.h
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Actor.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Actor.h
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Enemy.cpp
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Enemy.cpp
 ../public/Enemy.h
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Enemy.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Enemy.h
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Engine.cpp
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Engine.cpp
 ../public/Engine.h
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Engine.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Engine.h
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Fixedenemy.cpp
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Fixedenemy.cpp
 ../public/Fixedenemy.h
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Fixedenemy.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Fixedenemy.h
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Movingenemy.cpp
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Movingenemy.cpp
 ../public/Movingenemy.h
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Movingenemy.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Movingenemy.h
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Pawn.cpp
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Pawn.cpp
 ../public/Pawn.h
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Pawn.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Pawn.h
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Player.cpp
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Player.cpp
 ../public/Player.h
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Player.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Player.h
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Projectile.cpp
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Projectile.cpp
 ../public/Projectile.h
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Projectile.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Projectile.h
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/game.cpp
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/game.cpp
 ../public/game.h
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/game.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/game.h
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Enemy.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Enemy.h
 Pawn.h
 -
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Engine.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Engine.h
 SFML/Graphics.hpp
 -
 iostream
 -
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Fixedenemy.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Fixedenemy.h
+Enemy.h
+-
+Projectile.h
+-
+Player.h
+-
+
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Movingenemy.h
 Enemy.h
 -
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Movingenemy.h
-Enemy.h
--
-
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Pawn.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Pawn.h
 Actor.h
 -
 Engine.h
 -
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Player.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Player.h
 Pawn.h
 -
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/Projectile.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Projectile.h
 Actor.h
+-
+Player.h
 -
 math.h
 -
 Engine.h
 -
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/game.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/game.h
 iostream
 -
 list

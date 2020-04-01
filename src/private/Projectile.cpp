@@ -6,11 +6,12 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
     std::cout << "Projectile spawned..." << std::endl;  
     
     texture_file = "./resources/sprites.png";
-    direction = Vector2f(1.f, 1.f); // Initially It has no direction
+    // Initially It has no direction
     movementSpeed = 0.2;
     damage = 20;
-
+    direction=Vector2f(1.0,1.0);
     oType = projectile; // Set the collision channel
+    
     Init();
 }
 void Projectile::Init(){
@@ -54,5 +55,8 @@ void Projectile::OnActorOverlap(Actor *otherActor){
 Projectile::~Projectile(){
     //delete sprite;
 }
+
+
+
 
 

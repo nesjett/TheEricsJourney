@@ -29,3 +29,20 @@ void Fixedenemy::Init(){
     sprite->setTextureRect(75,75,75,75 );
     std::cout << "Terminamos INIT()" << std::endl;
 }
+
+bool Fixedenemy::Attack(){
+
+    return true;
+}
+
+void Fixedenemy::Shot(Projectile* proj,Player* player){
+   Vector2f pos = getActorLocation();
+   Vector2f pos_player = player->getActorLocation();
+   while(relojMark.getElapsedTime().asSeconds()>2){
+       
+        proj->direction=Vector2f(pos_player);
+        proj->setActorLocation(pos);
+        relojMark.restart();
+   }
+  
+}

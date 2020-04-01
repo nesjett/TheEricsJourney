@@ -87,8 +87,9 @@ void game::run(){
             }
         }
 
-        //Enemy movement
-
+        //Enemy movement and shot
+        enemyfijo->Shot(projTest,jugador);
+        
         enemymove->Linealmove_y(220.0,520.0);
         enemymove2->Linealmove_x(240.0,520.0);
 

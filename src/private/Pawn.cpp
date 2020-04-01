@@ -108,6 +108,7 @@ void Pawn::ApplyHitEffects(string damage_type){
 
 // Base to implement attacks. This should be on the base class and be overriden by the different enemies
 bool Pawn::Attack(){
+  
     return true;
 }
 

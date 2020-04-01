@@ -33,6 +33,10 @@ iostream
 ../src/public/Fixedenemy.h
 Enemy.h
 -
+Projectile.h
+-
+Player.h
+-
 
 ../src/public/Movingenemy.h
 Enemy.h
@@ -51,22 +55,24 @@ Pawn.h
 ../src/public/Projectile.h
 Actor.h
 -
+Player.h
+-
 math.h
 -
 Engine.h
 -
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/include/config.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/include/config.h
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/main.cpp
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/main.cpp
 iostream
 -
 include/config.h
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/include/config.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/include/config.h
 src/public/game.h
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/game.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/game.h
 
-/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public/game.h
+/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/game.h
 iostream
 -
 list

@@ -1,52 +1,52 @@
 [
 {
-  "directory": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build",
-  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/MiJuego.dir/main.cpp.o -c /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/main.cpp",
-  "file": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/main.cpp"
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/MiJuego.dir/main.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/main.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/main.cpp"
 },
 {
-  "directory": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build",
-  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Engine.cpp.o -c /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Engine.cpp",
-  "file": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Engine.cpp"
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Engine.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Engine.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Engine.cpp"
 },
 {
-  "directory": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build",
-  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o -c /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Pawn.cpp",
-  "file": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Pawn.cpp"
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Pawn.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Pawn.cpp"
 },
 {
-  "directory": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build",
-  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Actor.cpp.o -c /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Actor.cpp",
-  "file": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Actor.cpp"
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Actor.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Actor.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Actor.cpp"
 },
 {
-  "directory": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build",
-  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/game.cpp.o -c /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/game.cpp",
-  "file": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/game.cpp"
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/game.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/game.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/game.cpp"
 },
 {
-  "directory": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build",
-  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o -c /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Projectile.cpp",
-  "file": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Projectile.cpp"
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Projectile.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Projectile.cpp"
 },
 {
-  "directory": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build",
-  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o -c /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Enemy.cpp",
-  "file": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Enemy.cpp"
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Enemy.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Enemy.cpp"
 },
 {
-  "directory": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build",
-  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Player.cpp.o -c /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Player.cpp",
-  "file": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Player.cpp"
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Player.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Player.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Player.cpp"
 },
 {
-  "directory": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build",
-  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o -c /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Fixedenemy.cpp",
-  "file": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Fixedenemy.cpp"
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Fixedenemy.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Fixedenemy.cpp"
 },
 {
-  "directory": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/build",
-  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o -c /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Movingenemy.cpp",
-  "file": "/home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src/private/Movingenemy.cpp"
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Movingenemy.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Movingenemy.cpp"
 }
 ]

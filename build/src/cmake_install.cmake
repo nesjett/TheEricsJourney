@@ -1,4 +1,4 @@
-# Install script for directory: /home/marcos/Escritorio/TheEricsJourney-Marcos_Enemies/src
+# Install script for directory: /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
