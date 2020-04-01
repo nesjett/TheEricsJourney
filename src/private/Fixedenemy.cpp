@@ -38,9 +38,13 @@ bool Fixedenemy::Attack(){
 void Fixedenemy::Shot(Projectile* proj,Player* player){
    Vector2f pos = getActorLocation();
    Vector2f pos_player = player->getActorLocation();
+   Vector2f dir = pos_player-pos;
+   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
+   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
+   
    while(relojMark.getElapsedTime().asSeconds()>2){
        
-        proj->direction=Vector2f(pos_player);
+        proj->direction=Vector2f(dir_unit);
         proj->setActorLocation(pos);
         relojMark.restart();
    }
