@@ -20,6 +20,16 @@ vector
 iostream
 -
 
+../src/public/AudioManager.h
+SFML/Graphics.hpp
+-
+SFML/Audio.hpp
+-
+SFML/System.hpp
+-
+iostream
+-
+
 ../src/public/Controller.h
 
 ../src/public/Enemy.h
@@ -30,6 +40,32 @@ Pawn.h
 SFML/Graphics.hpp
 -
 iostream
+-
+
+../src/public/Mapa.h
+tinyxml2.h
+-
+SFML/Graphics.hpp
+-
+iostream
+-
+cstring
+-
+list
+-
+Engine.h
+-
+Tile.h
+-
+
+../src/public/Menu.h
+SFML/Graphics.hpp
+-
+iostream
+-
+cstring
+-
+AudioManager.h
 -
 
 ../src/public/Pawn.h
@@ -58,17 +94,53 @@ math.h
 Engine.h
 -
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
+../src/public/Tile.h
+Actor.h
+-
+Engine.h
+-
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/main.cpp
+../src/public/tinyxml2.h
+ctype.h
+-
+limits.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+stddef.h
+-
+cctype
+-
+climits
+-
+cstdio
+-
+cstdlib
+-
+cstring
+-
+stdint.h
+-
+android/log.h
+-
+assert.h
+-
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/include/config.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/main.cpp
 iostream
 -
 include/config.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/include/config.h
 src/public/game.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/game.h
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/game.h
 iostream
 -
 list
@@ -88,6 +160,10 @@ Pawn.h
 Enemy.h
 -
 Projectile.h
+-
+Menu.h
+-
+Mapa.h
 -
 Player.h
 -

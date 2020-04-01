@@ -20,6 +20,16 @@ vector
 iostream
 -
 
+../src/public/AudioManager.h
+SFML/Graphics.hpp
+-
+SFML/Audio.hpp
+-
+SFML/System.hpp
+-
+iostream
+-
+
 ../src/public/Controller.h
 
 ../src/public/Enemy.h
@@ -30,6 +40,32 @@ Pawn.h
 SFML/Graphics.hpp
 -
 iostream
+-
+
+../src/public/Mapa.h
+tinyxml2.h
+-
+SFML/Graphics.hpp
+-
+iostream
+-
+cstring
+-
+list
+-
+Engine.h
+-
+Tile.h
+-
+
+../src/public/Menu.h
+SFML/Graphics.hpp
+-
+iostream
+-
+cstring
+-
+AudioManager.h
 -
 
 ../src/public/Pawn.h
@@ -58,65 +94,147 @@ math.h
 Engine.h
 -
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Actor.cpp
-Actor.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Actor.h
-
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Controller.cpp
-../public/Controller.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Controller.h
-
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Enemy.cpp
-../public/Enemy.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Enemy.h
-
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Engine.cpp
-../public/Engine.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Engine.h
-
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Pawn.cpp
-../public/Pawn.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Pawn.h
-
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Player.cpp
-../public/Player.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Player.h
-
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/PlayerController.cpp
-../public/PlayerController.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/PlayerController.h
-
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Projectile.cpp
-../public/Projectile.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Projectile.h
-
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/game.cpp
-../public/game.h
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
-
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Controller.h
-
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Enemy.h
-Pawn.h
--
-
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Engine.h
-SFML/Graphics.hpp
--
-iostream
--
-
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Pawn.h
+../src/public/Tile.h
 Actor.h
 -
 Engine.h
 -
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Player.h
+../src/public/tinyxml2.h
+ctype.h
+-
+limits.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+stddef.h
+-
+cctype
+-
+climits
+-
+cstdio
+-
+cstdlib
+-
+cstring
+-
+stdint.h
+-
+android/log.h
+-
+assert.h
+-
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Actor.cpp
+Actor.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Actor.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/AudioManager.cpp
+AudioManager.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/AudioManager.h
+SFML/Audio.hpp
+-
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Controller.cpp
+../public/Controller.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Controller.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Enemy.cpp
+../public/Enemy.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Enemy.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Engine.cpp
+../public/Engine.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Engine.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Mapa.cpp
+Mapa.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Mapa.h
+SFML/Graphics.hpp
+-
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Menu.cpp
+../public/Menu.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Menu.h
+../public/Engine.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Engine.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Pawn.cpp
+../public/Pawn.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Pawn.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Player.cpp
+../public/Player.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Player.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/PlayerController.cpp
+../public/PlayerController.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/PlayerController.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Projectile.cpp
+../public/Projectile.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Projectile.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Tile.cpp
+../public/Tile.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Tile.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/game.cpp
+../public/game.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/game.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/tinyxml2.cpp
+../public/tinyxml2.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/tinyxml2.h
+new
+-
+stddef.h
+-
+stdarg.h
+-
+cstddef
+-
+cstdarg
+-
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Controller.h
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Enemy.h
 Pawn.h
 -
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/PlayerController.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Engine.h
+SFML/Graphics.hpp
+-
+iostream
+-
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Menu.h
+SFML/Graphics.hpp
+-
+iostream
+-
+cstring
+-
+AudioManager.h
+-
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Pawn.h
+Actor.h
+-
+Engine.h
+-
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Player.h
+Pawn.h
+-
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/PlayerController.h
 Controller.h
 -
 Player.h
@@ -124,7 +242,7 @@ Player.h
 SFML/Graphics.hpp
 -
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Projectile.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Projectile.h
 Actor.h
 -
 math.h
@@ -132,7 +250,13 @@ math.h
 Engine.h
 -
 
-/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Tile.h
+Actor.h
+-
+Engine.h
+-
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/game.h
 iostream
 -
 list
@@ -153,8 +277,42 @@ Enemy.h
 -
 Projectile.h
 -
+Menu.h
+-
+Mapa.h
+-
 Player.h
 -
 PlayerController.h
+-
+
+/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/tinyxml2.h
+ctype.h
+-
+limits.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+stddef.h
+-
+cctype
+-
+climits
+-
+cstdio
+-
+cstdlib
+-
+cstring
+-
+stdint.h
+-
+android/log.h
+-
+assert.h
 -
 

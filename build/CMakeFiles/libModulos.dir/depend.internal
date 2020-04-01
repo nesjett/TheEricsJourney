@@ -4,51 +4,79 @@
 CMakeFiles/libModulos.dir/src/private/Actor.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Actor.cpp
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Actor.cpp
+CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o
+ ../src/public/AudioManager.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/AudioManager.cpp
 CMakeFiles/libModulos.dir/src/private/Controller.cpp.o
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Controller.cpp
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Controller.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Controller.cpp
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Controller.h
 CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
  ../src/public/Pawn.h
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Enemy.cpp
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Enemy.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Enemy.cpp
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Enemy.h
 CMakeFiles/libModulos.dir/src/private/Engine.cpp.o
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Engine.cpp
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Engine.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Engine.cpp
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o
+ ../src/public/Actor.h
+ ../src/public/Engine.h
+ ../src/public/Mapa.h
+ ../src/public/Tile.h
+ ../src/public/tinyxml2.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Mapa.cpp
+CMakeFiles/libModulos.dir/src/private/Menu.cpp.o
+ ../src/public/AudioManager.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Menu.cpp
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Engine.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Menu.h
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Pawn.cpp
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Pawn.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Pawn.cpp
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Pawn.h
 CMakeFiles/libModulos.dir/src/private/Player.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
  ../src/public/Pawn.h
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Player.cpp
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Player.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Player.cpp
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Player.h
 CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o
  ../src/public/Actor.h
  ../src/public/Controller.h
  ../src/public/Engine.h
  ../src/public/Pawn.h
  ../src/public/Player.h
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/PlayerController.cpp
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/PlayerController.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/PlayerController.cpp
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/PlayerController.h
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Projectile.cpp
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Projectile.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Projectile.cpp
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Projectile.h
+CMakeFiles/libModulos.dir/src/private/Tile.cpp.o
+ ../src/public/Actor.h
+ ../src/public/Engine.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Tile.cpp
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/Tile.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o
  ../src/public/Actor.h
+ ../src/public/AudioManager.h
  ../src/public/Controller.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
+ ../src/public/Mapa.h
+ ../src/public/Menu.h
  ../src/public/Pawn.h
  ../src/public/Player.h
  ../src/public/PlayerController.h
  ../src/public/Projectile.h
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/game.cpp
- /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
+ ../src/public/Tile.h
+ ../src/public/tinyxml2.h
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/game.cpp
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/game.h
+CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/tinyxml2.cpp
+ /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/tinyxml2.h

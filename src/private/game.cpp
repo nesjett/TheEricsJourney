@@ -19,7 +19,11 @@ void game::init(/*char* nombre, int AuxMapa*/){
     eng = Engine::Instance();
     eng->CreateApp(sf::VideoMode(largo, alto), "The Eric's Journey");
     //app = eng->getApp(); // NOT WORKING FOR SOME REASON
-    soltada = false;
+
+    estadoJuego = false;
+    menu = Menu::getInstance();
+    mapaActual = 0;
+    vMapas.push_back(new Mapa("MapaNivel1.tmx"));
 }
 
 
@@ -33,16 +37,21 @@ void game::run(){
     /***********************************
      * TEST Actors, pawns and projectiles
      ***********************************/
+    list<Tile*> mapColisionables = vMapas[mapaActual]->getActors();
+    for (Tile *tile : mapColisionables)
+    {
+        actors.push_back(tile);
+    }
     Pawn *enemyTest = new Pawn();
     actors.push_back(enemyTest);
     //enemyTest->setTargetLocation(Vector2f(500,400));
     Player *jugador = new Player();
     actors.push_back(jugador);
 
+
     Projectile *projTest = new Projectile();
     actors.push_back(projTest);
     std::cout << "Actors length: " << actors.size() << std::endl;
-
     //enemyTest->setAsleep(true);
     ControladorJugador = new PlayerController(jugador);
 
@@ -61,34 +70,32 @@ void game::run(){
                 eng->getApp().close();
             }
             if (tecla.type == sf::Event::KeyPressed){
+                //Escape
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+                    eng->getApp().close();
+                }
+
+                /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+                    enemyTest->direction = Vector2f(1.0,0.0); // MOverse hacia la derecha
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+                    enemyTest->direction = Vector2f(-1.0,0.0); // Moverse hacia la izquierda
+                }*/
                 soltada = false;
                 ControladorJugador->Update(tecla.key.code, soltada);
+                
+                std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
             if (tecla.type == sf::Event::KeyReleased){
+                enemyTest->direction = Vector2f(0.0, 0.0);
                 soltada = true;
                 ControladorJugador->Update(tecla.key.code, soltada);
-            }
-            
-            //Escape
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-                eng->getApp().close();
-            }
-            //los movimientos siempre al final
-            /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
                 
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-
+            if(estadoJuego == false) //Estamos en el menu
+            {
+                estadoJuego = menu->update(tecla);
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-
-            }
-            else{
-
-            }*/
         }
 
         // TODO: This loops should be inside the gamestate.cpp 
@@ -101,38 +108,52 @@ void game::run(){
         //std::cout << "Percent: " << percentTick << std::endl;
         //std::cout << "tup: " << tup << " delta: " << delta << " update_interval: " << UPDATE_INTERVAL << std::endl;
 
-        eng->getApp().clear(); // CLear last frame drawings
+        // eng->getApp().clear(); // CLear last frame drawings
 
-        for (Actor *actor : actors) {
-            actor->Draw(percentTick, delta);
-        }
-        eng->getApp().display();
+        // for (Actor *actor : actors) {
+        //     actor->Draw(percentTick, delta);
+        // }
+        // eng->getApp().display();
 
 
         // UPDATE LOOP
         if(delta > UPDATE_INTERVAL){
             //std::cout << "GameUpdate() " << std::endl;
-            
-            for (Actor *actor : actors) {
-                if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
-                    actor->Update(delta);
-                }
+            if(estadoJuego == true){ //Estamos jugando! ;-)
+                for (Actor *actor : actors) {
+                    if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
+                        actor->Update(delta);
+                    }
 
-                // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
-                // Can be improved by not checking the pairs that were already checked
-                for (Actor *test : actors) {
-                    if(actor != test){
-                        //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
-                        bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
-                        if(overlaps){
-                            //std::cout << "--------------------------------- OVERLAPS! ----------------------------" << std::endl;
-                            test->OnActorOverlap(actor);
+                    // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
+                    // Can be improved by not checking the pairs that were already checked
+                    for (Actor *test : actors) {
+                        if(actor != test){
+                            //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
+                            bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
+                            if(overlaps){
+                                //std::cout << "--------------------------------- OVERLAPS! ----------------------------" << std::endl;
+                                test->OnActorOverlap(actor);
+                            }
                         }
                     }
                 }
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
         }
+        //RENDER
+        eng->getApp().clear(); 
+        if(estadoJuego == false)
+        {
+            menu->draw();
+        }
+        else{
+            vMapas[mapaActual]->render();
+            for (Actor *actor : actors) {
+                actor->Draw(percentTick, delta);
+            }
+        }
+        eng->getApp().display();
     }
 }
 

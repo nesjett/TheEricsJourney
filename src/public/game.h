@@ -13,6 +13,8 @@
 #include <Pawn.h>
 #include <Enemy.h>
 #include <Projectile.h>
+#include <Menu.h>
+#include <Mapa.h>
 #include <Player.h>
 #include <PlayerController.h>
 
@@ -53,9 +55,13 @@ class game
         int largo = 1080;
         int alto = 720;
         list<Actor*> actors;
-        PlayerController* ControladorJugador;
+
         sf::Event tecla;
-        
+        bool estadoJuego;
+        Menu* menu;
+        vector<Mapa*> vMapas;
+        int mapaActual;
+        PlayerController* ControladorJugador;
 };
 
 #endif // GAME_H

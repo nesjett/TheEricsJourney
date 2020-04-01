@@ -10,8 +10,7 @@ PlayerController::PlayerController(Player* jugador){
 void PlayerController::Update(sf::Keyboard::Key tecla, bool soltada){
     if(tecla==sf::Keyboard::Up || tecla==sf::Keyboard::W){
         if(soltada == true){
-            miJugador->setDirection(miJugador->getDirection().x, 0.f);
-            miJugador->setActorLocation(miJugador->getActorLastLocation());
+            miJugador->setDirection(0.f, 0.f);
         }
         else{
             miJugador->setDirection(miJugador->getDirection().x, (-0.05));
@@ -19,8 +18,7 @@ void PlayerController::Update(sf::Keyboard::Key tecla, bool soltada){
     }
     if(tecla==sf::Keyboard::Down || tecla==sf::Keyboard::S){
         if(soltada == true){
-            miJugador->setDirection(miJugador->getDirection().x, 0.f);
-            miJugador->setActorLocation(miJugador->getActorLastLocation());
+            miJugador->setDirection(0.f, 0.f);
         }
         else{
             miJugador->setDirection(miJugador->getDirection().x, 0.05);
@@ -28,8 +26,7 @@ void PlayerController::Update(sf::Keyboard::Key tecla, bool soltada){
     }
     if(tecla==sf::Keyboard::Left || tecla==sf::Keyboard::A){
         if(soltada == true){
-            miJugador->setDirection(0.f, miJugador->getDirection().y);
-            miJugador->setActorLocation(miJugador->getActorLastLocation());
+            miJugador->setDirection(0.f, 0.f);
         }
         else{
             miJugador->setDirection((-0.05), miJugador->getDirection().y);
@@ -37,8 +34,7 @@ void PlayerController::Update(sf::Keyboard::Key tecla, bool soltada){
     }
     if(tecla==sf::Keyboard::Right || tecla==sf::Keyboard::D){
         if(soltada == true){
-            miJugador->setDirection(0.f, miJugador->getDirection().y);
-            miJugador->setActorLocation(miJugador->getActorLastLocation());
+            miJugador->setDirection(0.f, 0.f);
         }
         else{
             miJugador->setDirection(0.05, miJugador->getDirection().y);

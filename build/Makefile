@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fv/Escritorio/Workspace/TheEricsJourney
+CMAKE_SOURCE_DIR = "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fv/Escritorio/Workspace/TheEricsJourney/build
+CMAKE_BINARY_DIR = "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles /home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -190,6 +190,33 @@ src/private/Actor.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Actor.cpp.s
 .PHONY : src/private/Actor.cpp.s
 
+src/private/AudioManager.o: src/private/AudioManager.cpp.o
+
+.PHONY : src/private/AudioManager.o
+
+# target to build an object file
+src/private/AudioManager.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o
+.PHONY : src/private/AudioManager.cpp.o
+
+src/private/AudioManager.i: src/private/AudioManager.cpp.i
+
+.PHONY : src/private/AudioManager.i
+
+# target to preprocess a source file
+src/private/AudioManager.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.i
+.PHONY : src/private/AudioManager.cpp.i
+
+src/private/AudioManager.s: src/private/AudioManager.cpp.s
+
+.PHONY : src/private/AudioManager.s
+
+# target to generate assembly for a file
+src/private/AudioManager.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.s
+.PHONY : src/private/AudioManager.cpp.s
+
 src/private/Controller.o: src/private/Controller.cpp.o
 
 .PHONY : src/private/Controller.o
@@ -270,6 +297,60 @@ src/private/Engine.s: src/private/Engine.cpp.s
 src/private/Engine.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Engine.cpp.s
 .PHONY : src/private/Engine.cpp.s
+
+src/private/Mapa.o: src/private/Mapa.cpp.o
+
+.PHONY : src/private/Mapa.o
+
+# target to build an object file
+src/private/Mapa.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o
+.PHONY : src/private/Mapa.cpp.o
+
+src/private/Mapa.i: src/private/Mapa.cpp.i
+
+.PHONY : src/private/Mapa.i
+
+# target to preprocess a source file
+src/private/Mapa.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Mapa.cpp.i
+.PHONY : src/private/Mapa.cpp.i
+
+src/private/Mapa.s: src/private/Mapa.cpp.s
+
+.PHONY : src/private/Mapa.s
+
+# target to generate assembly for a file
+src/private/Mapa.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Mapa.cpp.s
+.PHONY : src/private/Mapa.cpp.s
+
+src/private/Menu.o: src/private/Menu.cpp.o
+
+.PHONY : src/private/Menu.o
+
+# target to build an object file
+src/private/Menu.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Menu.cpp.o
+.PHONY : src/private/Menu.cpp.o
+
+src/private/Menu.i: src/private/Menu.cpp.i
+
+.PHONY : src/private/Menu.i
+
+# target to preprocess a source file
+src/private/Menu.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Menu.cpp.i
+.PHONY : src/private/Menu.cpp.i
+
+src/private/Menu.s: src/private/Menu.cpp.s
+
+.PHONY : src/private/Menu.s
+
+# target to generate assembly for a file
+src/private/Menu.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Menu.cpp.s
+.PHONY : src/private/Menu.cpp.s
 
 src/private/Pawn.o: src/private/Pawn.cpp.o
 
@@ -379,6 +460,33 @@ src/private/Projectile.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Projectile.cpp.s
 .PHONY : src/private/Projectile.cpp.s
 
+src/private/Tile.o: src/private/Tile.cpp.o
+
+.PHONY : src/private/Tile.o
+
+# target to build an object file
+src/private/Tile.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Tile.cpp.o
+.PHONY : src/private/Tile.cpp.o
+
+src/private/Tile.i: src/private/Tile.cpp.i
+
+.PHONY : src/private/Tile.i
+
+# target to preprocess a source file
+src/private/Tile.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Tile.cpp.i
+.PHONY : src/private/Tile.cpp.i
+
+src/private/Tile.s: src/private/Tile.cpp.s
+
+.PHONY : src/private/Tile.s
+
+# target to generate assembly for a file
+src/private/Tile.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Tile.cpp.s
+.PHONY : src/private/Tile.cpp.s
+
 src/private/game.o: src/private/game.cpp.o
 
 .PHONY : src/private/game.o
@@ -406,6 +514,33 @@ src/private/game.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/game.cpp.s
 .PHONY : src/private/game.cpp.s
 
+src/private/tinyxml2.o: src/private/tinyxml2.cpp.o
+
+.PHONY : src/private/tinyxml2.o
+
+# target to build an object file
+src/private/tinyxml2.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o
+.PHONY : src/private/tinyxml2.cpp.o
+
+src/private/tinyxml2.i: src/private/tinyxml2.cpp.i
+
+.PHONY : src/private/tinyxml2.i
+
+# target to preprocess a source file
+src/private/tinyxml2.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.i
+.PHONY : src/private/tinyxml2.cpp.i
+
+src/private/tinyxml2.s: src/private/tinyxml2.cpp.s
+
+.PHONY : src/private/tinyxml2.s
+
+# target to generate assembly for a file
+src/private/tinyxml2.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.s
+.PHONY : src/private/tinyxml2.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -422,6 +557,9 @@ help:
 	@echo "... src/private/Actor.o"
 	@echo "... src/private/Actor.i"
 	@echo "... src/private/Actor.s"
+	@echo "... src/private/AudioManager.o"
+	@echo "... src/private/AudioManager.i"
+	@echo "... src/private/AudioManager.s"
 	@echo "... src/private/Controller.o"
 	@echo "... src/private/Controller.i"
 	@echo "... src/private/Controller.s"
@@ -431,6 +569,12 @@ help:
 	@echo "... src/private/Engine.o"
 	@echo "... src/private/Engine.i"
 	@echo "... src/private/Engine.s"
+	@echo "... src/private/Mapa.o"
+	@echo "... src/private/Mapa.i"
+	@echo "... src/private/Mapa.s"
+	@echo "... src/private/Menu.o"
+	@echo "... src/private/Menu.i"
+	@echo "... src/private/Menu.s"
 	@echo "... src/private/Pawn.o"
 	@echo "... src/private/Pawn.i"
 	@echo "... src/private/Pawn.s"
@@ -443,9 +587,15 @@ help:
 	@echo "... src/private/Projectile.o"
 	@echo "... src/private/Projectile.i"
 	@echo "... src/private/Projectile.s"
+	@echo "... src/private/Tile.o"
+	@echo "... src/private/Tile.i"
+	@echo "... src/private/Tile.s"
 	@echo "... src/private/game.o"
 	@echo "... src/private/game.i"
 	@echo "... src/private/game.s"
+	@echo "... src/private/tinyxml2.o"
+	@echo "... src/private/tinyxml2.i"
+	@echo "... src/private/tinyxml2.s"
 .PHONY : help
 
 

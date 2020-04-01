@@ -5,6 +5,9 @@ CMakeFiles/libModulos.dir/src/private/Actor.cpp.o: ../src/public/Actor.h
 CMakeFiles/libModulos.dir/src/private/Actor.cpp.o: ../src/public/Engine.h
 CMakeFiles/libModulos.dir/src/private/Actor.cpp.o: ../src/private/Actor.cpp
 
+CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o: ../src/public/AudioManager.h
+CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o: ../src/private/AudioManager.cpp
+
 CMakeFiles/libModulos.dir/src/private/Controller.cpp.o: ../src/private/Controller.cpp
 CMakeFiles/libModulos.dir/src/private/Controller.cpp.o: ../src/public/Controller.h
 
@@ -16,6 +19,18 @@ CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o: ../src/public/Enemy.h
 
 CMakeFiles/libModulos.dir/src/private/Engine.cpp.o: ../src/private/Engine.cpp
 CMakeFiles/libModulos.dir/src/private/Engine.cpp.o: ../src/public/Engine.h
+
+CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o: ../src/public/Actor.h
+CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o: ../src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o: ../src/public/Mapa.h
+CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o: ../src/public/Tile.h
+CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o: ../src/public/tinyxml2.h
+CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o: ../src/private/Mapa.cpp
+
+CMakeFiles/libModulos.dir/src/private/Menu.cpp.o: ../src/public/AudioManager.h
+CMakeFiles/libModulos.dir/src/private/Menu.cpp.o: ../src/private/Menu.cpp
+CMakeFiles/libModulos.dir/src/private/Menu.cpp.o: ../src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/Menu.cpp.o: ../src/public/Menu.h
 
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o: ../src/public/Actor.h
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o: ../src/public/Engine.h
@@ -41,14 +56,27 @@ CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Engine.h
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/private/Projectile.cpp
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Projectile.h
 
+CMakeFiles/libModulos.dir/src/private/Tile.cpp.o: ../src/public/Actor.h
+CMakeFiles/libModulos.dir/src/private/Tile.cpp.o: ../src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/Tile.cpp.o: ../src/private/Tile.cpp
+CMakeFiles/libModulos.dir/src/private/Tile.cpp.o: ../src/public/Tile.h
+
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Actor.h
+CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/AudioManager.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Controller.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Enemy.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Mapa.h
+CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Menu.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Pawn.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Player.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/PlayerController.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Projectile.h
+CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Tile.h
+CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/tinyxml2.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/private/game.cpp
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/game.h
+
+CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o: ../src/private/tinyxml2.cpp
+CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o: ../src/public/tinyxml2.h
 
