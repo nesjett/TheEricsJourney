@@ -31,6 +31,10 @@ iostream
 -
 
 ../src/public/Controller.h
+Player.h
+-
+SFML/Graphics.hpp
+-
 
 ../src/public/Enemy.h
 Pawn.h
@@ -130,17 +134,17 @@ android/log.h
 assert.h
 -
 
-/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/include/config.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
 
-/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/main.cpp
+/home/fv/Escritorio/Workspace/TheEricsJourney/main.cpp
 iostream
 -
 include/config.h
-/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/include/config.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
 src/public/game.h
-/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/game.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
 
-/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/public/game.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
 iostream
 -
 list

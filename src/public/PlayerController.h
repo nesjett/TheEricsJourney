@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class PlayerController{
+class PlayerController:  public Controller{
 
     public:
         PlayerController(Player*);

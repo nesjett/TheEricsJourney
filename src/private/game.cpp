@@ -75,12 +75,12 @@ void game::run(){
                     eng->getApp().close();
                 }
 
-                /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
                     enemyTest->direction = Vector2f(1.0,0.0); // MOverse hacia la derecha
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
                     enemyTest->direction = Vector2f(-1.0,0.0); // Moverse hacia la izquierda
-                }*/
+                }
                 soltada = false;
                 ControladorJugador->Update(tecla.key.code, soltada);
                 

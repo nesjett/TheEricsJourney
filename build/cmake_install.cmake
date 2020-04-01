@@ -1,4 +1,4 @@
-# Install script for directory: /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master
+# Install script for directory: /home/fv/Escritorio/Workspace/TheEricsJourney
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/src/cmake_install.cmake")
+  include("/home/fv/Escritorio/Workspace/TheEricsJourney/build/src/cmake_install.cmake")
 
 endif()
 
@@ -46,5 +46,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/fv/Escritorio/Workspace/TheEricsJourney/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,4 +1,4 @@
-# Install script for directory: /home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src
+# Install script for directory: /home/fv/Escritorio/Workspace/TheEricsJourney/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

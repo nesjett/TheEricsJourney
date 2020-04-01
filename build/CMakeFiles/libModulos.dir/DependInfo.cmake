@@ -4,20 +4,20 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Actor.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/Actor.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/AudioManager.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Controller.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/Controller.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Enemy.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Engine.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/Engine.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Mapa.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Menu.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/Menu.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Pawn.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Player.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/Player.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/PlayerController.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Projectile.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/Tile.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/Tile.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/game.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/game.cpp.o"
-  "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/src/private/tinyxml2.cpp" "/home/fv/Escritorio/Néstor 4 Def/TheEricsJourney-master/build/CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Actor.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Actor.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/AudioManager.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Controller.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Controller.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Enemy.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Engine.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Engine.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Mapa.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Menu.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Menu.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Pawn.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Player.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Player.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/PlayerController.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Projectile.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Tile.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/Tile.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/game.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/game.cpp.o"
+  "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/tinyxml2.cpp" "/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

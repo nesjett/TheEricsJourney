@@ -8,6 +8,10 @@ CMakeFiles/libModulos.dir/src/private/Actor.cpp.o: ../src/private/Actor.cpp
 CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o: ../src/public/AudioManager.h
 CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o: ../src/private/AudioManager.cpp
 
+CMakeFiles/libModulos.dir/src/private/Controller.cpp.o: ../src/public/Actor.h
+CMakeFiles/libModulos.dir/src/private/Controller.cpp.o: ../src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/Controller.cpp.o: ../src/public/Pawn.h
+CMakeFiles/libModulos.dir/src/private/Controller.cpp.o: ../src/public/Player.h
 CMakeFiles/libModulos.dir/src/private/Controller.cpp.o: ../src/private/Controller.cpp
 CMakeFiles/libModulos.dir/src/private/Controller.cpp.o: ../src/public/Controller.h
 
