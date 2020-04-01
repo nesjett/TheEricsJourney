@@ -37,12 +37,12 @@ class game
         list<Enemy*> getAllEnemies();
         /// Returns all projectiles spawned in the world
         list<Projectile*> getAllProjectiles();
+        bool soltada;
 
     protected:
         game();
         game(const game &);
         game &operator= (const game &);
-        bool soltada;
         virtual ~game();
 
     private:
