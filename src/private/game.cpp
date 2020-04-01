@@ -37,6 +37,11 @@ void game::run(){
     /***********************************
      * TEST Actors, pawns and projectiles
      ***********************************/
+    list<Tile*> mapColisionables = vMapas[mapaActual]->getActors();
+    for (Tile *tile : mapColisionables)
+    {
+        actors.push_back(tile);
+    }
     Pawn *enemyTest = new Pawn();
     actors.push_back(enemyTest);
     //enemyTest->setTargetLocation(Vector2f(500,400));
@@ -44,7 +49,6 @@ void game::run(){
     Projectile *projTest = new Projectile();
     actors.push_back(projTest);
     std::cout << "Actors length: " << actors.size() << std::endl;
-
     //enemyTest->setAsleep(true);
 
 

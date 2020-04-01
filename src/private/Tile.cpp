@@ -8,33 +8,20 @@ Tile::Tile(string nombreSprite, float x, float y, float widthSprite, float heigh
 
 
     faction = neutral; //Por ahora pongo neutral pero si fuese danyino deberia ser otro tipo
-
-    setActorLocation(Vector2f(y,x)); //las posiciones en sfml primer y luego x
+    oType = worlddynamic;
+    setActorLocation(Vector2f(y+(width/2),x+(height/2))); //las posiciones en sfml primer y luego x
 
     PrepareSprite();
 }
 
 void Tile::PrepareSprite(){
-    // float scale = 0.4;
-    //float sizeX = 430.0, sizeY = 519.0;
     float sizeX = width, sizeY = height;
     float offsetX = sizeX / 2.0;
     float offsetY = sizeY / 2.0;
 
     sprite = new SSprite(texture_file);
-    //sprite->setOrigin(offsetX, offsetY);
-    //sprite->setTextureRect( 0, 0, sizeX*scale, sizeY*scale );
+    sprite->setOrigin(offsetX, offsetY);
 
-    //sprite->setScale(scale,scale);
-    //sprite->setPosition(getActorLocation().x, getActorLocation().y);
-    
-    double playrate = 5000.0;
-    
-
-    //Rect<int> t = sprite->getSprite().getTextureRect();
-    Rect<float> bb = sprite->getSprite().getLocalBounds();
-    //bb.left = bb.left-offsetX;
-    //bb.top = bb.top-offsetY;
 
     //setBoundingBox( Rect<float>( getActorLocation().x-offsetX, getActorLocation().y-offsetY, bb.width, bb.height ) ); // make the actor bounds be the same as the sprite used here.
 
@@ -58,7 +45,6 @@ void Tile::PrepareSprite(){
 
 
 void Tile::Update(float delta){
-    std::cout << "Iniciamos UPDATE() de Tile" << std::endl;
 }
 
 void Tile::Draw(double percent, double delta){
