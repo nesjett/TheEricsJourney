@@ -5,7 +5,8 @@ using namespace std;
 Mapa::Mapa(string nombre)
 {   
     nombreMapa = nombre;
-    nombreCapaColisiones = "Pared";
+    nombreCapaColisiones = "colisiones";
+    nombreCapaObjetos = "objetos";
     // ventanaMapa = new sf::RenderWindow(sf::VideoMode(1280, 1920), "Mapa");
     // ventanaMapa->setFramerateLimit(60);
     eng = Engine::Instance();
@@ -94,6 +95,10 @@ void Mapa::cargaMapa()
                     {
                         vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY));
                     }
+                    if(strcmp(layer->Attribute("name"), nombreCapaObjetos.c_str()) == 0) //Objetos (falta cambiarle el oType)
+                    {
+                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY));
+                    }
                     else{
                         vectorPintar2.push_back(*vectorSprite[valor-1]);
                         vPosX.push_back(posX);
@@ -124,6 +129,11 @@ void Mapa::cargaMapa()
     }
 }
 
+list<Tile*> Mapa::getActors()
+{
+    list<Tile*> listaTiles(vTiles.begin(),vTiles.end());
+    return listaTiles;
+}
 
 void Mapa::update()
 {
@@ -136,11 +146,11 @@ void Mapa::render()
     {
         eng->getApp().draw(*i);
     }
-    vector<Tile*>::iterator j;
-    for(j = vTiles.begin(); j != vTiles.end(); j++)
-    {
-        (*j)->Draw(5000.0,0.0);
-    }
+    // vector<Tile*>::iterator j;
+    // for(j = vTiles.begin(); j != vTiles.end(); j++)
+    // {
+    //     (*j)->Draw(5000.0,0.0);
+    // }
 }
 
 

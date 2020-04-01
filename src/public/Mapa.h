@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cstring>
+#include <list>
 #include <Engine.h>
 #include <Tile.h>
 
@@ -16,6 +17,7 @@ class Mapa
         virtual ~Mapa();
         void update();
         void render();
+        list<Tile*> getActors();
 
     protected:
 
@@ -28,6 +30,7 @@ class Mapa
         vector<int> vPosY;
         vector<Tile*> vTiles;
         string nombreCapaColisiones;
+        string nombreCapaObjetos;
         int num_layers;
         int tamMapaX, tamMapaY, tamTileX, tamTileY;
         sf::Event* evento;
