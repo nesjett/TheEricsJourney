@@ -42,6 +42,9 @@ class Actor {
 		virtual void Draw(double percent, double delta );
 		virtual void Init();
     virtual void TakeDamage(float damage, string damage_type);
+
+    bool debug;
+    bool debug_coords;
   
   /*/////////////////////////////////////////////////////////
   \brief Fires when the actor is overlapped by another actor
@@ -57,7 +60,6 @@ class Actor {
   /////////////////////////////////////////////////////////*/
     virtual void OnActorOverlap(Actor *otherActor);
   private:
-    bool debug;
     Vector2f location_prev;
     Vector2f location;
     //IntRect boundingBox;

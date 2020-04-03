@@ -5,6 +5,7 @@ Tile::Tile(string nombreSprite, float x, float y, float widthSprite, float heigh
     width = widthSprite;
     height = heightSprite;
     texture_file = nombreSprite;
+    debug_coords = false;
 
 
     faction = neutral; //Por ahora pongo neutral pero si fuese danyino deberia ser otro tipo
