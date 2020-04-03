@@ -20,7 +20,7 @@ Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
 
     oType = pawn; // Set the collision channel
 
-    setActorLocation(Vector2f(250.0, 120.0)); // PLace actor somewhere in the map
+    setActorLocation(Vector2f(250.0, 320.0)); // PLace actor somewhere in the map
 
     PrepareSprite();
 }
@@ -75,6 +75,9 @@ void Pawn::Draw(double percent, double delta ){
 void Pawn::OnActorOverlap(Actor *otherActor){
     Engine *eng = Engine::Instance();
     std::cout << "Soy " << eng->getObjectType(getObjectType()) << " y me ha tocado un objeto tipo: " << eng->getObjectType(otherActor->getObjectType()) << std::endl;
+    if(otherActor->getObjectType() == worldstatic) {
+        direction = Vector2f(0.f,0.f);
+    }
 }
 
 
