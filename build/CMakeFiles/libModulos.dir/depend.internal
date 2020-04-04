@@ -18,16 +18,22 @@ CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o
  ../src/public/Actor.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
+ ../src/public/Explosionenemy.h
+ ../src/public/Fixedenemy.h
+ ../src/public/Movingenemy.h
  ../src/public/Pawn.h
  ../src/public/Player.h
  ../src/public/Projectile.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Fixedenemy.cpp
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Fixedenemy.h
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/game.h
 CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o
  ../src/public/Actor.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
  ../src/public/Pawn.h
+ ../src/public/Player.h
+ ../src/public/Projectile.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Movingenemy.cpp
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Movingenemy.h
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
@@ -52,10 +58,12 @@ CMakeFiles/libModulos.dir/src/private/game.cpp.o
  ../src/public/Actor.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
+ ../src/public/Explosionenemy.h
  ../src/public/Fixedenemy.h
  ../src/public/Movingenemy.h
  ../src/public/Pawn.h
  ../src/public/Player.h
  ../src/public/Projectile.h
+ ../src/public/game.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/game.cpp
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/game.h

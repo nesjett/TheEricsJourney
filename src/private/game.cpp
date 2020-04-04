@@ -40,7 +40,7 @@ void game::run(){
 
     Fixedenemy *enemyfijo = new Fixedenemy();
     actors.push_back(enemyfijo);
-
+/*
     Movingenemy *enemymove = new Movingenemy();
     actors.push_back(enemymove);
     enemymove->setActorLocation(Vector2f(240.0, 520.0));
@@ -48,10 +48,8 @@ void game::run(){
     Movingenemy *enemymove2 = new Movingenemy();
     actors.push_back(enemymove2);
     enemymove2->setActorLocation(Vector2f(240.0, 520.0));
+*/
 
-    Projectile *projTest = new Projectile();
-    actors.push_back(projTest);
-    std::cout << "Actors length: " << actors.size() << std::endl;
 
     //enemyTest->setAsleep(true);
 
@@ -88,11 +86,7 @@ void game::run(){
         }
 
         //Enemy movement and shot
-        enemyfijo->Shot(projTest,jugador);
         
-        enemymove->Linealmove_y(220.0,520.0);
-        enemymove2->Linealmove_x(240.0,520.0);
-
         
         //enemymove->direction = Vector2f(0.0,-1.0);
         // TODO: This loops should be inside the gamestate.cpp 
@@ -111,7 +105,6 @@ void game::run(){
             actor->Draw(percentTick, delta);
         }
         eng->getApp().display();
-
 
         // UPDATE LOOP
         if(delta > UPDATE_INTERVAL){
@@ -162,6 +155,21 @@ list<Projectile*> game::getAllProjectiles(){
         }
     }
     return tmp;
+}
+
+Player* game::getPlayerCharacter(){
+    Player* tmp;
+    for (Actor *actor : actors) {
+        if ( dynamic_cast<Player*>( actor ) ) {
+            tmp = dynamic_cast<Player*>(actor);
+            break;
+       }
+    }
+    return tmp;
+}
+
+void game::Almacenaenemy(Projectile* proj){
+    actors.push_back(proj); 
 }
 
 

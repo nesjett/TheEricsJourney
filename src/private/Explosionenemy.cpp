@@ -1,6 +1,6 @@
-#include "../public/Fixedenemy.h"
+#include "../public/Explosionenemy.h"
 
-Fixedenemy::Fixedenemy(){ // Use this to call to parent's contructor first
+Explosionenemy::Explosionenemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
     texture_file = "./resources/sprites.png";
@@ -18,40 +18,35 @@ Fixedenemy::Fixedenemy(){ // Use this to call to parent's contructor first
 
     setActorLocation(Vector2f(340.0, 520.0));
 
+
     Init();
 
 }
 
-void Fixedenemy::Init(){
+void Explosionenemy::Init(){
     sprite = new SSprite(texture_file);
     sprite->setOrigin(75/2, 75/2);
     sprite->setTextureRect(75,75,75,75 );
     std::cout << "Terminamos INIT()" << std::endl;
 }
 
-void Fixedenemy::Update(float delta){
-    Pawn::Update(delta);
-    Attack();
+bool Explosionenemy::Attack(){
+
+    return true;
 }
 
-bool Fixedenemy::Attack(){
-    Projectile *projTest = new Projectile();
- 
-    Vector2f pos = getActorLocation();
-    game *eng = game::Instance();
-    Player* miJugador = eng->getPlayerCharacter();
-    eng->Almacenaenemy(projTest);
-
-   Vector2f pos_player = miJugador->getActorLocation();
+void Explosionenemy::Shot(Projectile* proj,Player* player){
+   Vector2f pos = getActorLocation();
+   Vector2f pos_player = player->getActorLocation();
    Vector2f dir = pos_player-pos;
    float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
    Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
    
-   while(relojMark.getElapsedTime().asSeconds()>1){
+   while(relojMark.getElapsedTime().asSeconds()>2){
        
-        projTest->direction=Vector2f(dir_unit);
-        projTest->setActorLocation(pos);
+        proj->direction=Vector2f(dir_unit);
+        proj->setActorLocation(pos);
         relojMark.restart();
    }
-    return true;
+  
 }

@@ -1,4 +1,6 @@
 #include <Enemy.h>
+#include <Projectile.h>
+#include <Player.h>
 
 using namespace std;
 using namespace sf;
@@ -14,7 +16,8 @@ class Movingenemy: public Enemy{
 
         void Update(float delta);
         void Draw(double percent, double delta );
-
+        void Shot(Projectile* proj,Player* player);
+        sf::Clock relojMark;
  
     private:
         string texture_file;

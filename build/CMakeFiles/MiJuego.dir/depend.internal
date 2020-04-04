@@ -5,11 +5,13 @@ CMakeFiles/MiJuego.dir/main.cpp.o
  ../src/public/Actor.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
+ ../src/public/Explosionenemy.h
  ../src/public/Fixedenemy.h
  ../src/public/Movingenemy.h
  ../src/public/Pawn.h
  ../src/public/Player.h
  ../src/public/Projectile.h
+ ../src/public/game.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/include/config.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/main.cpp
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/game.h

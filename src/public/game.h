@@ -16,6 +16,8 @@
 #include <Player.h>
 #include <Fixedenemy.h>
 #include <Movingenemy.h>
+#include <Explosionenemy.h>
+
 
 using namespace std;
 
@@ -38,6 +40,10 @@ class game
         list<Enemy*> getAllEnemies();
         /// Returns all projectiles spawned in the world
         list<Projectile*> getAllProjectiles();
+
+        Player* getPlayerCharacter();
+
+        void Almacenaenemy(Projectile* proj);
 
     protected:
         game();

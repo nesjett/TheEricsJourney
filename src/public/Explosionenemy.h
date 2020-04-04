@@ -1,20 +1,16 @@
-#pragma once
 #include <Enemy.h>
 #include <Projectile.h>
 #include <Player.h>
-#include "game.h"
 
 using namespace std;
 using namespace sf;
 
-class Fixedenemy: public Enemy{
+class Explosionenemy: public Enemy{
     public:
-        Fixedenemy();
+        Explosionenemy();
         void Init();
         bool Attack();
-
-        void Update(float delta);
-
+        void Shot(Projectile* proj,Player* player);
         sf::Clock relojMark;
 
     private:

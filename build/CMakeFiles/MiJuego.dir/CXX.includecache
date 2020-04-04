@@ -30,7 +30,7 @@ SFML/Graphics.hpp
 iostream
 -
 
-../src/public/Fixedenemy.h
+../src/public/Explosionenemy.h
 Enemy.h
 -
 Projectile.h
@@ -38,8 +38,22 @@ Projectile.h
 Player.h
 -
 
+../src/public/Fixedenemy.h
+Enemy.h
+-
+Projectile.h
+-
+Player.h
+-
+game.h
+../src/public/game.h
+
 ../src/public/Movingenemy.h
 Enemy.h
+-
+Projectile.h
+-
+Player.h
 -
 
 ../src/public/Pawn.h
@@ -60,6 +74,36 @@ Player.h
 math.h
 -
 Engine.h
+-
+
+../src/public/game.h
+iostream
+-
+list
+-
+iterator
+-
+SFML/Graphics.hpp
+-
+algorithm
+-
+Engine.h
+-
+Actor.h
+-
+Pawn.h
+-
+Enemy.h
+-
+Projectile.h
+-
+Player.h
+-
+Fixedenemy.h
+-
+Movingenemy.h
+-
+Explosionenemy.h
 -
 
 /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/include/config.h
@@ -98,5 +142,7 @@ Player.h
 Fixedenemy.h
 -
 Movingenemy.h
+-
+Explosionenemy.h
 -
 

@@ -91,3 +91,19 @@ void Movingenemy::Linealmove_x(float pos1, float pos2){
 
     direction = Vector2f(enemydirection_x,0.0);
 }
+
+void Movingenemy::Shot(Projectile* proj,Player* player){
+   Vector2f pos = getActorLocation();
+   Vector2f pos_player = player->getActorLocation();
+   Vector2f dir = pos_player-pos;
+   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
+   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
+   
+   while(relojMark.getElapsedTime().asSeconds()>2){
+       
+        proj->direction=Vector2f(dir_unit);
+        proj->setActorLocation(pos);
+        relojMark.restart();
+   }
+  
+}
