@@ -45,7 +45,16 @@ void game::run(){
     Pawn *enemyTest = new Pawn();
     actors.push_back(enemyTest);
     //enemyTest->setTargetLocation(Vector2f(500,400));
+    // Zombie *enemyTest = new Zombie();
+    // actors.push_back(enemyTest);
+    //enemyTest->setTargetLocation(Vector2f(500,400));
 
+    Skeleton *enemyTest2 = new Skeleton();
+    actors.push_back(enemyTest2);
+
+    Zombie *enemyTest3 = new Zombie();
+    actors.push_back(enemyTest3);
+    enemyTest3->setActorLocation(Vector2f(310,180));
     Projectile *projTest = new Projectile();
     actors.push_back(projTest);
     std::cout << "Actors length: " << actors.size() << std::endl;
