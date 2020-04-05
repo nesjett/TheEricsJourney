@@ -34,7 +34,7 @@ void Pawn::PrepareSprite(){
 
     sprite = new SSprite(texture_file);
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
-    IntRect rectangle = IntRect(0, 0, sizeX*scale, sizeY*scale);
+    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
     sprite->setScale(scale,scale); // Set the scale of the sprite.
     
@@ -107,9 +107,9 @@ void Pawn::OnActorOverlap(Actor *otherActor){
 
 Actor* Pawn::DirectionPrecheck(Vector2f loc, ObjectType type) {
     game *gi = game::Instance();
-    double traceX = loc.x-getBoundingBox().width/2; // Offset box to make it fit the center location.
-    double traceY = loc.y-getBoundingBox().height/2;
-    FloatRect trace = FloatRect(Vector2f(traceX, traceY), Vector2f(getBoundingBox().width,getBoundingBox().height));
+    double traceX = loc.x-getBoundingBox().width/2+5; // Offset box to make it fit the center location.
+    double traceY = loc.y-getBoundingBox().height/2+5;
+    FloatRect trace = FloatRect(Vector2f(traceX, traceY), Vector2f(getBoundingBox().width-10,getBoundingBox().height-10));
     Actor* collide = gi->boxTraceByObjectType( trace, type );
 
     if(debug) {
