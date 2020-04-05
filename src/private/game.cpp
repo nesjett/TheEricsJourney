@@ -57,6 +57,10 @@ void game::run(){
     Movingenemy *enemymove2 = new Movingenemy();
     actors.push_back(enemymove2);
     enemymove2->setActorLocation(Vector2f(500.0,100.0));
+
+    Explosionenemy *enemyexp = new Explosionenemy();
+    actors.push_back(enemyexp);
+    enemyexp->setActorLocation(Vector2f(400.0,400.0));
     
 
     /*Projectile *projTest = new Projectile();
@@ -113,6 +117,7 @@ void game::run(){
 
         enemymove->Linealmove_y(200.0,500.0);
         enemymove2->Linealmove_x(500.0,300.0);
+        enemyexp->Followplayer();
 
         // TODO: This loops should be inside the gamestate.cpp 
         double delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;

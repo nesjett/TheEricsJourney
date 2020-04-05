@@ -26,13 +26,24 @@ CMakeFiles/libModulos.dir/src/private/Engine.cpp.o
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Engine.h
 CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o
  ../src/public/Actor.h
+ ../src/public/AudioManager.h
+ ../src/public/Controller.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
+ ../src/public/Explosionenemy.h
+ ../src/public/Fixedenemy.h
+ ../src/public/Mapa.h
+ ../src/public/Menu.h
+ ../src/public/Movingenemy.h
  ../src/public/Pawn.h
  ../src/public/Player.h
+ ../src/public/PlayerController.h
  ../src/public/Projectile.h
+ ../src/public/Tile.h
+ ../src/public/tinyxml2.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Explosionenemy.cpp
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Explosionenemy.h
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/game.h
 CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o
  ../src/public/Actor.h
  ../src/public/AudioManager.h

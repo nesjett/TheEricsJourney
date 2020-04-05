@@ -53,6 +53,8 @@ Projectile.h
 -
 Player.h
 -
+game.h
+../src/public/game.h
 
 ../src/public/Fixedenemy.h
 Enemy.h
