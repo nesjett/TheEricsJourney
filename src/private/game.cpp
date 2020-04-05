@@ -100,6 +100,9 @@ void game::run(){
                 //enemyTest->direction = Vector2f(0.0, 0.0);
                 soltada = true;
                 ControladorJugador->Update(tecla.key.code, soltada);
+                ControladorJugador->setPlayer(jugador);
+                listaEnemigos = getAllEnemies();
+                ControladorJugador->setLista(listaEnemigos);
                 
             }
             if(estadoJuego == false) //Estamos en el menu
