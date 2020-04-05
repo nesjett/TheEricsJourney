@@ -36,7 +36,6 @@ void Movingenemy::Update(float delta){
 }
 
 void Movingenemy::Draw(double percent, double delta ){
-    animation->update(delta);
     Actor::Draw(percent, delta); // Use this to debug draw bounding box
 }
 

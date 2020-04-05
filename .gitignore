@@ -1,13 +1,3 @@
-build/CMakeCache.txt
-build/liblibModulos.a
-build/CMakeFiles/MiJuego.dir/CXX.includecache
-build/CMakeFiles/MiJuego.dir/depend.internal
-build/CMakeFiles/MiJuego.dir/depend.make
-build/CMakeFiles/MiJuego.dir/main.cpp.o
-build/CMakeFiles/libModulos.dir/CXX.includecache
-build/CMakeFiles/libModulos.dir/depend.internal
-build/CMakeFiles/libModulos.dir/depend.make
-build/CMakeFiles/libModulos.dir/src/private/Actor.cpp.o
-build/CMakeFiles/libModulos.dir/src/private/game.cpp.o
-build/CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
-build/CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o
+build/
+MiJuego
+

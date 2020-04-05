@@ -36,7 +36,7 @@ void Explosionenemy::Update(float delta){
 }
 
 void Explosionenemy::Draw(double percent, double delta ){
-    animation->update(delta);
+    
     Actor::Draw(percent, delta); // Use this to debug draw bounding box
 }
 

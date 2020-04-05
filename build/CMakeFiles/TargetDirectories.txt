@@ -1,6 +1,0 @@
-/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build/CMakeFiles/rebuild_cache.dir
-/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build/CMakeFiles/edit_cache.dir
-/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build/CMakeFiles/MiJuego.dir
-/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build/CMakeFiles/libModulos.dir
-/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build/src/CMakeFiles/edit_cache.dir
-/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build/src/CMakeFiles/rebuild_cache.dir
