@@ -2,7 +2,7 @@
 
 
 
-Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor first
+/*Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor first
     std::cout << "Projectile spawned..." << std::endl;  
     
     texture_file = "./resources/sprites.png";
@@ -12,7 +12,7 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
 
     oType = projectile; // Set the collision channel
     Init();
-}
+}*/
 Projectile::Projectile(sf::Vector2f dir, sf::Vector2f pos){
     std::cout << "Projectile spawned..." << std::endl;  
     

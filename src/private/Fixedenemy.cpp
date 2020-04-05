@@ -46,16 +46,18 @@ bool Fixedenemy::Attack(){
    Vector2f dir = pos_player-pos;
    float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
    Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
-   
-   while(relojMark.getElapsedTime().asSeconds()>3){
+   /*while(relojMark.getElapsedTime().asSeconds()>3){
        
         //projTest->direction=Vector2f(dir_unit);
         //projTest->setActorLocation(pos);
         Projectile *projTest = new Projectile(dir_unit, pos);
         eng->Almacenaenemy(projTest);
-        projTest = nullptr;
-        delete projTest;
         relojMark.restart();
+   }*/
+   if(relojMark.getElapsedTime().asSeconds() > 3.0){
+       Projectile *projTest = new Projectile(dir_unit, pos);
+       eng->Almacenaenemy(projTest);
+       relojMark.restart();
    }
     return true;
 }

@@ -42,14 +42,17 @@ void game::run(){
     {
         actors.push_back(tile);
     }
-    Pawn *enemyTest = new Pawn();
-    actors.push_back(enemyTest);
+    /*Pawn *enemyTest = new Pawn();
+    actors.push_back(enemyTest);*/
     //enemyTest->setTargetLocation(Vector2f(500,400));
     Player *jugador = new Player();
     actors.push_back(jugador);
 
     Fixedenemy *enemyfijo = new Fixedenemy();
     actors.push_back(enemyfijo);
+
+    /*Movingenemy *enemymovido = new Movingenemy();
+    actors.push_back(enemymovido);*/
 
     /*Projectile *projTest = new Projectile();
     actors.push_back(projTest);*/
@@ -78,19 +81,19 @@ void game::run(){
                     eng->getApp().close();
                 }
 
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+                /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
                     enemyTest->direction = Vector2f(1.0,0.0); // MOverse hacia la derecha
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
                     enemyTest->direction = Vector2f(-1.0,0.0); // Moverse hacia la izquierda
-                }
+                }*/
                 soltada = false;
                 ControladorJugador->Update(tecla.key.code, soltada);
                 
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
             if (tecla.type == sf::Event::KeyReleased){
-                enemyTest->direction = Vector2f(0.0, 0.0);
+                //enemyTest->direction = Vector2f(0.0, 0.0);
                 soltada = true;
                 ControladorJugador->Update(tecla.key.code, soltada);
                 
