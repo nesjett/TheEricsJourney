@@ -38,11 +38,15 @@ class game
         /// Returns all projectiles spawned in the world
         list<Projectile*> getAllProjectiles();
 
+        long getTime() { return gameClock.getElapsedTime().asMilliseconds(); }
+
     protected:
         game();
         game(const game &);
         game &operator= (const game &);
         virtual ~game();
+        
+        sf::Clock gameClock;
 
     private:
         static game* pInstance;

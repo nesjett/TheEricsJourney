@@ -59,6 +59,10 @@ class Actor {
 
   /////////////////////////////////////////////////////////*/
     virtual void OnActorOverlap(Actor *otherActor);
+
+    void setLifespan(float secs);
+    bool pendingDelete = false;
+
   private:
     Vector2f location_prev;
     Vector2f location;
@@ -69,6 +73,7 @@ class Actor {
     bool asleep;
     SSprite *sprite;
     ObjectType oType; // Object type for collision channel
+    long lifeSpan = 0;
 };
 
 #endif

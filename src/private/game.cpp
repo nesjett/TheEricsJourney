@@ -94,18 +94,15 @@ void game::run(){
         // DRAW LOOP 
         double tup = delta / UPDATE_INTERVAL; // Parenthesis very important for a proper calculation! DON'T REMOVE
         double percentTick = min(1.0, tup);
-        //std::cout << "Percent: " << percentTick << std::endl;
-        //std::cout << "tup: " << tup << " delta: " << delta << " update_interval: " << UPDATE_INTERVAL << std::endl;
+        
 
-        // eng->getApp().clear(); // CLear last frame drawings
+        /*////////////////////////////
+            
+            RENDER LOOP
 
-        // for (Actor *actor : actors) {
-        //     actor->Draw(percentTick, delta);
-        // }
-        // eng->getApp().display();
-
-        //RENDER
+        ////////////////////////////*/
         eng->getApp().clear(); 
+        
         if(estadoJuego == false)
         {
             menu->draw();
@@ -117,7 +114,14 @@ void game::run(){
             }
         }
 
-        // UPDATE LOOP
+        eng->getApp().display();
+
+
+        /*////////////////////////////
+            
+            UPDATE LOOP
+
+        ////////////////////////////*/
         if(delta > UPDATE_INTERVAL){
             //std::cout << "GameUpdate() " << std::endl;
             if(estadoJuego == true){ //Estamos jugando! ;-)
@@ -142,9 +146,21 @@ void game::run(){
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
         }
-
         
-        eng->getApp().display();
+
+        /*////////////////////////////
+            
+            DELETE PENDING DELETE ACTORS
+
+        ////////////////////////////*/
+        actors.erase(
+            std::remove_if(
+                actors.begin(), 
+                actors.end(),
+                [](Actor const * p) { return p->pendingDelete == true; }
+            ), 
+            actors.end()
+        ); 
     }
 }
 

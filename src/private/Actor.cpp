@@ -1,5 +1,6 @@
 #include "Actor.h"
 
+#include <game.h>
 
 Actor::Actor() {
   std::cout << "New actor created" << std::endl;
@@ -20,6 +21,12 @@ void Actor::Init(){
 
 void Actor::Update(float delta){
   // Check for collisions here in the parent?
+
+  game *gi = game::Instance();
+  // CHECK PENDING DESTROY
+  if(lifeSpan > 0 && gi->getTime() >= lifeSpan) {
+    pendingDelete = true;
+  }
 }
 
 void Actor::Draw(double percent, double delta ){
