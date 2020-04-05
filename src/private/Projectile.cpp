@@ -39,11 +39,12 @@ void Projectile::Update(float delta){
     float y = movementSpeed*direction.y*delta;
     x = getActorLocation().x + x;
     y = getActorLocation().y + y;
-    if( x > 700) { // reset position for testing
+    UpdateMovement(Vector2f(x,y));
+    /*if( x > 700) { // reset position for testing
         setActorLocation(Vector2f(0,0));
     } else {
         UpdateMovement(Vector2f(x,y));
-    }
+    }*/
 
     // std::atan2 uses y, x signs' for quadrant signification, unlike std::atan
     // SFML's y-axis is flipped: flip our y-component

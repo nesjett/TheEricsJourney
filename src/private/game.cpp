@@ -42,8 +42,8 @@ void game::run(){
     {
         actors.push_back(tile);
     }
-    /*Pawn *enemyTest = new Pawn();
-    actors.push_back(enemyTest);*/
+    Pawn *enemyTest = new Pawn();
+    actors.push_back(enemyTest);
     //enemyTest->setTargetLocation(Vector2f(500,400));
     Player *jugador = new Player();
     actors.push_back(jugador);
@@ -51,11 +51,8 @@ void game::run(){
     Fixedenemy *enemyfijo = new Fixedenemy();
     actors.push_back(enemyfijo);
 
-    /*Movingenemy *enemymovido = new Movingenemy();
-    actors.push_back(enemymovido);*/
-
-    /*Projectile *projTest = new Projectile();
-    actors.push_back(projTest);*/
+    Movingenemy *enemymovido = new Movingenemy();
+    actors.push_back(enemymovido);
 
     std::cout << "Actors length: " << actors.size() << std::endl;
     //enemyTest->setAsleep(true);
