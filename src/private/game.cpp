@@ -2,7 +2,7 @@
 
 
 
-#define UPDATE_INTERVAL (1000/3.0)
+#define UPDATE_INTERVAL (1000/15.0)
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -103,7 +103,7 @@ void game::run(){
         // DRAW LOOP 
         double tup = delta / UPDATE_INTERVAL; // Parenthesis very important for a proper calculation! DON'T REMOVE
         double percentTick = min(1.0, tup);
-        
+
 
         /*////////////////////////////
             
