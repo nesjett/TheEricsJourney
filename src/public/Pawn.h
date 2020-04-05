@@ -42,7 +42,8 @@ class Pawn: public Actor {
         void Die();
         // Apply hit effects on takeDamage()
         void ApplyHitEffects(string effect); // TODO: effect should be a class of type damage_type, not  astring
-        Animation* animation;
+        Animation* activeAnim = NULL;
+        std::map<std::string, Animation*> Animations;
     private:
         string texture_file;
         Faction faction;

@@ -89,10 +89,13 @@ class Animation {
 
     public:
         Animation(sf::Sprite &target);
+        Animation(sf::Sprite &target, bool looping);
         virtual ~Animation();
         void addFrame(AnimFrame&& frame); // TODO: Could forget about this if we add a standard size for the rect in the constructor, and a default rate.
         void update(double elapsed); 
         const double getLength() const { return totalLength; }
+    protected:
+        bool loop = false;
 };
 
 
