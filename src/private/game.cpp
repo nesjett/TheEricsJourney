@@ -154,22 +154,23 @@ void game::run(){
                 }
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
+
+            /*////////////////////////////
+            
+                DELETE PENDING DELETE ACTORS
+
+            ////////////////////////////*/
+            actors.erase(
+                std::remove_if(
+                    actors.begin(), 
+                    actors.end(),
+                    [](Actor const * p) { return p->pendingDelete == true; }
+                ), 
+                actors.end()
+            ); 
         }
         
 
-        /*////////////////////////////
-            
-            DELETE PENDING DELETE ACTORS
-
-        ////////////////////////////*/
-        actors.erase(
-            std::remove_if(
-                actors.begin(), 
-                actors.end(),
-                [](Actor const * p) { return p->pendingDelete == true; }
-            ), 
-            actors.end()
-        ); 
     }
 }
 
