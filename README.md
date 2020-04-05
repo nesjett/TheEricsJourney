@@ -1,10 +1,13 @@
-Class hierarchy:  
-GameInstance (SIngleton)
-Sprite (interface for smfl)
-Actor  (Base class for everything that has a visible representation in the world, like enemies, traps, walls...)
-- Pawn  (Base class for characters)
--- Enemy  (Enemy characters)
--- Player 
+# Project sctructure
+* **Main**: Main software container. "Application"
+* **GameInstance**: High-level manager object for an instance of the running game
+* **Engine**: Interface for SFML abstraction
+* **Actor**: An Actor is any object that can be placed into a level. Actors are a generic Class that support 3D transformations such as translation, rotation, and scale. Actors can be created (spawned) and destroyed through gameplay code.
+    * **Tile**
+        * **Pushable**
+    * **Pawn**: The Pawn class is the base class of all Actors that can be controlled by players or AI. A Pawn is the physical representation of a player or AI entity within the world. This not only means that the Pawn determines what the player or AI entity looks like visually, but also how it interacts with the world in terms of collisions and other physical
+        * **Player**
+        * **Enemy**
 
 
 
