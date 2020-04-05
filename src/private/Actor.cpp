@@ -24,7 +24,7 @@ void Actor::Update(float delta){
 
   game *gi = game::Instance();
   // CHECK PENDING DESTROY
-  if(lifeSpan > 0 && gi->getTime() >= lifeSpan) {
+  if(lifeSpan >= 0.0 && gi->getTime() >= lifeSpan) {
     pendingDelete = true;
   }
 }
