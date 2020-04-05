@@ -32,6 +32,13 @@ void PlayerController::Update(sf::Keyboard::Key tecla, bool soltada){
     }
 }
 
+void PlayerController::setPlayer(Player* jugador){
+    miJugador = jugador;
+}
+void PlayerController::setLista(list<Enemy*> listaEnemigos){
+    enemyList = listaEnemigos;
+}
+
 PlayerController::~PlayerController() // Destructor
 {
  

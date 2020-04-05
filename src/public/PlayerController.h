@@ -11,6 +11,8 @@ class PlayerController:  public Controller{
         PlayerController(Player*, list<Enemy*>);
         //void Update(sf::Vector2f, bool, Player*);
         void Update(sf::Keyboard::Key, bool);
+        void setPlayer(Player*);
+        void setLista(list<Enemy*>);
 
     protected:
         virtual ~PlayerController(); 
