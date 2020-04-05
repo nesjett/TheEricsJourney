@@ -40,7 +40,8 @@ class game
         /// Returns all projectiles spawned in the world
         list<Projectile*> getAllProjectiles();
 
-        long getTime() { return gameClock.getElapsedTime().asMilliseconds(); }
+        long getTime() { return gameClock.getElapsedTime().asMilliseconds(); };
+        Actor* boxTraceByObjectType(FloatRect rect, ObjectType type);
 
     protected:
         game();
