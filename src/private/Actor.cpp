@@ -1,5 +1,6 @@
 #include "Actor.h"
 
+#include <game.h>
 
 Actor::Actor() {
   std::cout << "New actor created" << std::endl;
@@ -20,6 +21,12 @@ void Actor::Init(){
 
 void Actor::Update(float delta){
   // Check for collisions here in the parent?
+
+  game *gi = game::Instance();
+  // CHECK PENDING DESTROY
+  if(lifeSpan >= 0.0 && gi->getTime() >= lifeSpan) {
+    pendingDelete = true;
+  }
 }
 
 void Actor::Draw(double percent, double delta ){
@@ -48,7 +55,7 @@ void Actor::Draw(double percent, double delta ){
 
   // Show actor location
   sf::CircleShape circ( 6.0, 10.0 );
-  circ.setPosition(currentLoc.x-3,currentLoc.y-3);
+  circ.setPosition(currentLoc.x-6,currentLoc.y-6);
   circ.setFillColor(sf::Color(0,250,0));
   circ.setOutlineColor(sf::Color(0, 250, 0));
 
@@ -90,10 +97,12 @@ void Actor::Draw(double percent, double delta ){
   Engine *eng = Engine::Instance();
   eng->getApp().draw(rect); // bounding box
   eng->getApp().draw(circ); // actor location
-  eng->getApp().draw(text); // actor location
-  eng->getApp().draw(text_bounding); // actor bounding box data
-  eng->getApp().draw(text_bounding_corner); // actor bounding box corner location
-  eng->getApp().draw(circ_bounding); // actor bounding box corner location point
+  if(debug_coords) {
+    eng->getApp().draw(text); // actor location
+    eng->getApp().draw(text_bounding); // actor bounding box data
+    eng->getApp().draw(text_bounding_corner); // actor bounding box corner location
+    eng->getApp().draw(circ_bounding); // actor bounding box corner location point
+  }
 }
 
 void Actor::TakeDamage(float damage, string damage_type){

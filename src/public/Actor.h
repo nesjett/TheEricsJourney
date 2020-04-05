@@ -42,6 +42,9 @@ class Actor {
 		virtual void Draw(double percent, double delta );
 		virtual void Init();
     virtual void TakeDamage(float damage, string damage_type);
+
+    bool debug;
+    bool debug_coords;
   
   /*/////////////////////////////////////////////////////////
   \brief Fires when the actor is overlapped by another actor
@@ -56,8 +59,11 @@ class Actor {
 
   /////////////////////////////////////////////////////////*/
     virtual void OnActorOverlap(Actor *otherActor);
+
+    void setLifespan(float secs);
+    bool pendingDelete = false;
+
   private:
-    bool debug;
     Vector2f location_prev;
     Vector2f location;
     //IntRect boundingBox;
@@ -67,6 +73,7 @@ class Actor {
     bool asleep;
     SSprite *sprite;
     ObjectType oType; // Object type for collision channel
+    long lifeSpan = -1;
 };
 
 #endif
