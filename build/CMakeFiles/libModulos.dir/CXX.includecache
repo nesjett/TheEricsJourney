@@ -46,6 +46,24 @@ SFML/Graphics.hpp
 iostream
 -
 
+../src/public/Explosionenemy.h
+Enemy.h
+-
+Projectile.h
+-
+Player.h
+-
+
+../src/public/Fixedenemy.h
+Enemy.h
+-
+Projectile.h
+-
+Player.h
+-
+game.h
+../src/public/game.h
+
 ../src/public/Mapa.h
 tinyxml2.h
 -
@@ -72,6 +90,14 @@ cstring
 AudioManager.h
 -
 
+../src/public/Movingenemy.h
+Enemy.h
+-
+Projectile.h
+-
+Player.h
+-
+
 ../src/public/Pawn.h
 Actor.h
 -
@@ -93,6 +119,8 @@ SFML/Graphics.hpp
 ../src/public/Projectile.h
 Actor.h
 -
+Player.h
+-
 math.h
 -
 Engine.h
@@ -102,6 +130,42 @@ Engine.h
 Actor.h
 -
 Engine.h
+-
+
+../src/public/game.h
+iostream
+-
+list
+-
+iterator
+-
+SFML/Graphics.hpp
+-
+algorithm
+-
+Engine.h
+-
+Actor.h
+-
+Pawn.h
+-
+Enemy.h
+-
+Projectile.h
+-
+Menu.h
+-
+Mapa.h
+-
+Player.h
+-
+PlayerController.h
+-
+Fixedenemy.h
+-
+Movingenemy.h
+-
+Explosionenemy.h
 -
 
 ../src/public/tinyxml2.h
@@ -156,6 +220,14 @@ SFML/Audio.hpp
 ../public/Engine.h
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Engine.h
 
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Explosionenemy.cpp
+../public/Explosionenemy.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Explosionenemy.h
+
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Fixedenemy.cpp
+../public/Fixedenemy.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Fixedenemy.h
+
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Mapa.cpp
 Mapa.h
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Mapa.h
@@ -167,6 +239,10 @@ SFML/Graphics.hpp
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Menu.h
 ../public/Engine.h
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Engine.h
+
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Movingenemy.cpp
+../public/Movingenemy.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Movingenemy.h
 
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Pawn.cpp
 ../public/Pawn.h
@@ -222,6 +298,24 @@ SFML/Graphics.hpp
 iostream
 -
 
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Explosionenemy.h
+Enemy.h
+-
+Projectile.h
+-
+Player.h
+-
+
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Fixedenemy.h
+Enemy.h
+-
+Projectile.h
+-
+Player.h
+-
+game.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
+
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Menu.h
 SFML/Graphics.hpp
 -
@@ -230,6 +324,14 @@ iostream
 cstring
 -
 AudioManager.h
+-
+
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Movingenemy.h
+Enemy.h
+-
+Projectile.h
+-
+Player.h
 -
 
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Pawn.h
@@ -252,6 +354,8 @@ SFML/Graphics.hpp
 
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Projectile.h
 Actor.h
+-
+Player.h
 -
 math.h
 -
@@ -292,6 +396,12 @@ Mapa.h
 Player.h
 -
 PlayerController.h
+-
+Fixedenemy.h
+-
+Movingenemy.h
+-
+Explosionenemy.h
 -
 
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/tinyxml2.h

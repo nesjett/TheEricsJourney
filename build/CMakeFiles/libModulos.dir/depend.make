@@ -24,6 +24,35 @@ CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o: ../src/public/Enemy.h
 CMakeFiles/libModulos.dir/src/private/Engine.cpp.o: ../src/private/Engine.cpp
 CMakeFiles/libModulos.dir/src/private/Engine.cpp.o: ../src/public/Engine.h
 
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o: ../src/public/Actor.h
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o: ../src/public/Enemy.h
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o: ../src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o: ../src/public/Pawn.h
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o: ../src/public/Player.h
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o: ../src/public/Projectile.h
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o: ../src/private/Explosionenemy.cpp
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o: ../src/public/Explosionenemy.h
+
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Actor.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/AudioManager.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Controller.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Enemy.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Explosionenemy.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Fixedenemy.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Mapa.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Menu.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Movingenemy.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Pawn.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Player.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/PlayerController.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Projectile.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Tile.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/tinyxml2.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/private/Fixedenemy.cpp
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/Fixedenemy.h
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/public/game.h
+
 CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o: ../src/public/Actor.h
 CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o: ../src/public/Engine.h
 CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o: ../src/public/Mapa.h
@@ -35,6 +64,15 @@ CMakeFiles/libModulos.dir/src/private/Menu.cpp.o: ../src/public/AudioManager.h
 CMakeFiles/libModulos.dir/src/private/Menu.cpp.o: ../src/private/Menu.cpp
 CMakeFiles/libModulos.dir/src/private/Menu.cpp.o: ../src/public/Engine.h
 CMakeFiles/libModulos.dir/src/private/Menu.cpp.o: ../src/public/Menu.h
+
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o: ../src/public/Actor.h
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o: ../src/public/Enemy.h
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o: ../src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o: ../src/public/Pawn.h
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o: ../src/public/Player.h
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o: ../src/public/Projectile.h
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o: ../src/private/Movingenemy.cpp
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o: ../src/public/Movingenemy.h
 
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o: ../src/public/Actor.h
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o: ../src/public/Engine.h
@@ -57,6 +95,8 @@ CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/Play
 
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Actor.h
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Pawn.h
+CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Player.h
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/private/Projectile.cpp
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o: ../src/public/Projectile.h
 
@@ -70,13 +110,17 @@ CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/AudioManager.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Controller.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Enemy.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Explosionenemy.h
+CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Fixedenemy.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Mapa.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Menu.h
+CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Movingenemy.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Pawn.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Player.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/PlayerController.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Projectile.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/Tile.h
+CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/game.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/tinyxml2.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/private/game.cpp
 CMakeFiles/libModulos.dir/src/private/game.cpp.o: ../src/public/game.h

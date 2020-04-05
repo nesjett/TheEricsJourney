@@ -6,13 +6,17 @@ CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/AudioManager.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/Controller.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/Enemy.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/Engine.h
+CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/Explosionenemy.h
+CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/Fixedenemy.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/Mapa.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/Menu.h
+CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/Movingenemy.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/Pawn.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/Player.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/PlayerController.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/Projectile.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/Tile.h
+CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/game.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../src/public/tinyxml2.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../include/config.h
 CMakeFiles/MiJuego.dir/main.cpp.o: ../main.cpp

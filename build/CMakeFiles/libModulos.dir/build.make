@@ -393,6 +393,78 @@ CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o.provides: CMakeFile
 CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o.provides.build: CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o
 
 
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o: CMakeFiles/libModulos.dir/flags.make
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o: ../src/private/Explosionenemy.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o -c /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Explosionenemy.cpp
+
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Explosionenemy.cpp > CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.i
+
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Explosionenemy.cpp -o CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.s
+
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o.requires:
+
+.PHONY : CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o.requires
+
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o.provides: CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o.requires
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o.provides.build
+.PHONY : CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o.provides
+
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o.provides.build: CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o
+
+
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: CMakeFiles/libModulos.dir/flags.make
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o: ../src/private/Fixedenemy.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o -c /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Fixedenemy.cpp
+
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Fixedenemy.cpp > CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.i
+
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Fixedenemy.cpp -o CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.s
+
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o.requires:
+
+.PHONY : CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o.requires
+
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o.provides: CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o.requires
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o.provides.build
+.PHONY : CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o.provides
+
+CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o.provides.build: CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o
+
+
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o: CMakeFiles/libModulos.dir/flags.make
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o: ../src/private/Movingenemy.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o -c /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Movingenemy.cpp
+
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Movingenemy.cpp > CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.i
+
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Movingenemy.cpp -o CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.s
+
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o.requires:
+
+.PHONY : CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o.requires
+
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o.provides: CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o.requires
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o.provides.build
+.PHONY : CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o.provides
+
+CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o.provides.build: CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o
+
+
 # Object files for target libModulos
 libModulos_OBJECTS = \
 "CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o" \
@@ -408,7 +480,10 @@ libModulos_OBJECTS = \
 "CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o" \
 "CMakeFiles/libModulos.dir/src/private/Player.cpp.o" \
 "CMakeFiles/libModulos.dir/src/private/Controller.cpp.o" \
-"CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o"
+"CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o" \
+"CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o" \
+"CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o" \
+"CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o"
 
 # External object files for target libModulos
 libModulos_EXTERNAL_OBJECTS =
@@ -427,9 +502,12 @@ liblibModulos.a: CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o
 liblibModulos.a: CMakeFiles/libModulos.dir/src/private/Player.cpp.o
 liblibModulos.a: CMakeFiles/libModulos.dir/src/private/Controller.cpp.o
 liblibModulos.a: CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o
+liblibModulos.a: CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o
+liblibModulos.a: CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o
+liblibModulos.a: CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o
 liblibModulos.a: CMakeFiles/libModulos.dir/build.make
 liblibModulos.a: CMakeFiles/libModulos.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX static library liblibModulos.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fv/Escritorio/Workspace/TheEricsJourney/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX static library liblibModulos.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/libModulos.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/libModulos.dir/link.txt --verbose=$(VERBOSE)
 
@@ -452,6 +530,9 @@ CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/Enemy.
 CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/Player.cpp.o.requires
 CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/Controller.cpp.o.requires
 CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o.requires
+CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o.requires
+CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o.requires
+CMakeFiles/libModulos.dir/requires: CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o.requires
 
 .PHONY : CMakeFiles/libModulos.dir/requires
 

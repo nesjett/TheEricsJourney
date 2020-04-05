@@ -73,5 +73,20 @@
   "directory": "/home/fv/Escritorio/Workspace/TheEricsJourney/build",
   "command": "/usr/bin/c++    -I/home/fv/Escritorio/Workspace/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o -c /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/PlayerController.cpp",
   "file": "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/PlayerController.cpp"
+},
+{
+  "directory": "/home/fv/Escritorio/Workspace/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/fv/Escritorio/Workspace/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o -c /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Explosionenemy.cpp",
+  "file": "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Explosionenemy.cpp"
+},
+{
+  "directory": "/home/fv/Escritorio/Workspace/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/fv/Escritorio/Workspace/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o -c /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Fixedenemy.cpp",
+  "file": "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Fixedenemy.cpp"
+},
+{
+  "directory": "/home/fv/Escritorio/Workspace/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/fv/Escritorio/Workspace/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o -c /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Movingenemy.cpp",
+  "file": "/home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Movingenemy.cpp"
 }
 ]

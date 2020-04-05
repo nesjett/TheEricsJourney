@@ -7,13 +7,17 @@ CMakeFiles/MiJuego.dir/main.cpp.o
  ../src/public/Controller.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
+ ../src/public/Explosionenemy.h
+ ../src/public/Fixedenemy.h
  ../src/public/Mapa.h
  ../src/public/Menu.h
+ ../src/public/Movingenemy.h
  ../src/public/Pawn.h
  ../src/public/Player.h
  ../src/public/PlayerController.h
  ../src/public/Projectile.h
  ../src/public/Tile.h
+ ../src/public/game.h
  ../src/public/tinyxml2.h
  /home/fv/Escritorio/Workspace/TheEricsJourney/include/config.h
  /home/fv/Escritorio/Workspace/TheEricsJourney/main.cpp

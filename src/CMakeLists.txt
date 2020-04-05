@@ -14,6 +14,9 @@ target_sources(libModulos PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Player.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Controller.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/PlayerController.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Explosionenemy.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Fixedenemy.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Movingenemy.cpp"
 
 )
 

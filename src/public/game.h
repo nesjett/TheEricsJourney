@@ -17,6 +17,9 @@
 #include <Mapa.h>
 #include <Player.h>
 #include <PlayerController.h>
+#include <Fixedenemy.h>
+#include <Movingenemy.h>
+#include <Explosionenemy.h>
 
 using namespace std;
 
@@ -28,9 +31,6 @@ class game
         void run();
         void Actualizar();
         void Renderizado(float, float);
-        void aMoverse();
-        void auxiliarMov(bool, sf::Keyboard::Key);
-        void plantaAbajo();
         int getTest() {
             return test;
         }
@@ -40,6 +40,9 @@ class game
         /// Returns all projectiles spawned in the world
         list<Projectile*> getAllProjectiles();
         bool soltada;
+        Player* getPlayerCharacter();
+
+        void Almacenaenemy(Projectile* proj);
 
     protected:
         game();
@@ -50,7 +53,6 @@ class game
     private:
         static game* pInstance;
         Engine* eng;
-        //sf::RenderWindow &app;
         int test = 1;
         int largo = 1080;
         int alto = 720;

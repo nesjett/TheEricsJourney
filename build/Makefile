@@ -298,6 +298,60 @@ src/private/Engine.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Engine.cpp.s
 .PHONY : src/private/Engine.cpp.s
 
+src/private/Explosionenemy.o: src/private/Explosionenemy.cpp.o
+
+.PHONY : src/private/Explosionenemy.o
+
+# target to build an object file
+src/private/Explosionenemy.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o
+.PHONY : src/private/Explosionenemy.cpp.o
+
+src/private/Explosionenemy.i: src/private/Explosionenemy.cpp.i
+
+.PHONY : src/private/Explosionenemy.i
+
+# target to preprocess a source file
+src/private/Explosionenemy.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.i
+.PHONY : src/private/Explosionenemy.cpp.i
+
+src/private/Explosionenemy.s: src/private/Explosionenemy.cpp.s
+
+.PHONY : src/private/Explosionenemy.s
+
+# target to generate assembly for a file
+src/private/Explosionenemy.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.s
+.PHONY : src/private/Explosionenemy.cpp.s
+
+src/private/Fixedenemy.o: src/private/Fixedenemy.cpp.o
+
+.PHONY : src/private/Fixedenemy.o
+
+# target to build an object file
+src/private/Fixedenemy.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o
+.PHONY : src/private/Fixedenemy.cpp.o
+
+src/private/Fixedenemy.i: src/private/Fixedenemy.cpp.i
+
+.PHONY : src/private/Fixedenemy.i
+
+# target to preprocess a source file
+src/private/Fixedenemy.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.i
+.PHONY : src/private/Fixedenemy.cpp.i
+
+src/private/Fixedenemy.s: src/private/Fixedenemy.cpp.s
+
+.PHONY : src/private/Fixedenemy.s
+
+# target to generate assembly for a file
+src/private/Fixedenemy.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.s
+.PHONY : src/private/Fixedenemy.cpp.s
+
 src/private/Mapa.o: src/private/Mapa.cpp.o
 
 .PHONY : src/private/Mapa.o
@@ -351,6 +405,33 @@ src/private/Menu.s: src/private/Menu.cpp.s
 src/private/Menu.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Menu.cpp.s
 .PHONY : src/private/Menu.cpp.s
+
+src/private/Movingenemy.o: src/private/Movingenemy.cpp.o
+
+.PHONY : src/private/Movingenemy.o
+
+# target to build an object file
+src/private/Movingenemy.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o
+.PHONY : src/private/Movingenemy.cpp.o
+
+src/private/Movingenemy.i: src/private/Movingenemy.cpp.i
+
+.PHONY : src/private/Movingenemy.i
+
+# target to preprocess a source file
+src/private/Movingenemy.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.i
+.PHONY : src/private/Movingenemy.cpp.i
+
+src/private/Movingenemy.s: src/private/Movingenemy.cpp.s
+
+.PHONY : src/private/Movingenemy.s
+
+# target to generate assembly for a file
+src/private/Movingenemy.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.s
+.PHONY : src/private/Movingenemy.cpp.s
 
 src/private/Pawn.o: src/private/Pawn.cpp.o
 
@@ -569,12 +650,21 @@ help:
 	@echo "... src/private/Engine.o"
 	@echo "... src/private/Engine.i"
 	@echo "... src/private/Engine.s"
+	@echo "... src/private/Explosionenemy.o"
+	@echo "... src/private/Explosionenemy.i"
+	@echo "... src/private/Explosionenemy.s"
+	@echo "... src/private/Fixedenemy.o"
+	@echo "... src/private/Fixedenemy.i"
+	@echo "... src/private/Fixedenemy.s"
 	@echo "... src/private/Mapa.o"
 	@echo "... src/private/Mapa.i"
 	@echo "... src/private/Mapa.s"
 	@echo "... src/private/Menu.o"
 	@echo "... src/private/Menu.i"
 	@echo "... src/private/Menu.s"
+	@echo "... src/private/Movingenemy.o"
+	@echo "... src/private/Movingenemy.i"
+	@echo "... src/private/Movingenemy.s"
 	@echo "... src/private/Pawn.o"
 	@echo "... src/private/Pawn.i"
 	@echo "... src/private/Pawn.s"

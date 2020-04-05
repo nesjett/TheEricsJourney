@@ -48,9 +48,12 @@ void game::run(){
     Player *jugador = new Player();
     actors.push_back(jugador);
 
+    Fixedenemy *enemyfijo = new Fixedenemy();
+    actors.push_back(enemyfijo);
 
-    Projectile *projTest = new Projectile();
-    actors.push_back(projTest);
+    /*Projectile *projTest = new Projectile();
+    actors.push_back(projTest);*/
+
     std::cout << "Actors length: " << actors.size() << std::endl;
     //enemyTest->setAsleep(true);
     ControladorJugador = new PlayerController(jugador);
@@ -181,6 +184,21 @@ list<Projectile*> game::getAllProjectiles(){
     return tmp;
 }
 
+Player* game::getPlayerCharacter(){
+    Player* tmp;
+    for (Actor *actor : actors) {
+        if ( dynamic_cast<Player*>( actor ) ) {
+            tmp = dynamic_cast<Player*>(actor);
+            break;
+       }
+    }
+    return tmp;
+}
+
+void game::Almacenaenemy(Projectile* proj){
+    actors.push_back(proj); 
+    
+}
 
 game::~game() // Destructor
 {
