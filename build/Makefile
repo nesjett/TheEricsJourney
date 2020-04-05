@@ -190,6 +190,60 @@ src/private/Actor.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Actor.cpp.s
 .PHONY : src/private/Actor.cpp.s
 
+src/private/AudioManager.o: src/private/AudioManager.cpp.o
+
+.PHONY : src/private/AudioManager.o
+
+# target to build an object file
+src/private/AudioManager.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o
+.PHONY : src/private/AudioManager.cpp.o
+
+src/private/AudioManager.i: src/private/AudioManager.cpp.i
+
+.PHONY : src/private/AudioManager.i
+
+# target to preprocess a source file
+src/private/AudioManager.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.i
+.PHONY : src/private/AudioManager.cpp.i
+
+src/private/AudioManager.s: src/private/AudioManager.cpp.s
+
+.PHONY : src/private/AudioManager.s
+
+# target to generate assembly for a file
+src/private/AudioManager.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.s
+.PHONY : src/private/AudioManager.cpp.s
+
+src/private/Controller.o: src/private/Controller.cpp.o
+
+.PHONY : src/private/Controller.o
+
+# target to build an object file
+src/private/Controller.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Controller.cpp.o
+.PHONY : src/private/Controller.cpp.o
+
+src/private/Controller.i: src/private/Controller.cpp.i
+
+.PHONY : src/private/Controller.i
+
+# target to preprocess a source file
+src/private/Controller.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Controller.cpp.i
+.PHONY : src/private/Controller.cpp.i
+
+src/private/Controller.s: src/private/Controller.cpp.s
+
+.PHONY : src/private/Controller.s
+
+# target to generate assembly for a file
+src/private/Controller.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Controller.cpp.s
+.PHONY : src/private/Controller.cpp.s
+
 src/private/Enemy.o: src/private/Enemy.cpp.o
 
 .PHONY : src/private/Enemy.o
@@ -244,6 +298,33 @@ src/private/Engine.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Engine.cpp.s
 .PHONY : src/private/Engine.cpp.s
 
+src/private/Explosionenemy.o: src/private/Explosionenemy.cpp.o
+
+.PHONY : src/private/Explosionenemy.o
+
+# target to build an object file
+src/private/Explosionenemy.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o
+.PHONY : src/private/Explosionenemy.cpp.o
+
+src/private/Explosionenemy.i: src/private/Explosionenemy.cpp.i
+
+.PHONY : src/private/Explosionenemy.i
+
+# target to preprocess a source file
+src/private/Explosionenemy.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.i
+.PHONY : src/private/Explosionenemy.cpp.i
+
+src/private/Explosionenemy.s: src/private/Explosionenemy.cpp.s
+
+.PHONY : src/private/Explosionenemy.s
+
+# target to generate assembly for a file
+src/private/Explosionenemy.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.s
+.PHONY : src/private/Explosionenemy.cpp.s
+
 src/private/Fixedenemy.o: src/private/Fixedenemy.cpp.o
 
 .PHONY : src/private/Fixedenemy.o
@@ -270,6 +351,60 @@ src/private/Fixedenemy.s: src/private/Fixedenemy.cpp.s
 src/private/Fixedenemy.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.s
 .PHONY : src/private/Fixedenemy.cpp.s
+
+src/private/Mapa.o: src/private/Mapa.cpp.o
+
+.PHONY : src/private/Mapa.o
+
+# target to build an object file
+src/private/Mapa.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o
+.PHONY : src/private/Mapa.cpp.o
+
+src/private/Mapa.i: src/private/Mapa.cpp.i
+
+.PHONY : src/private/Mapa.i
+
+# target to preprocess a source file
+src/private/Mapa.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Mapa.cpp.i
+.PHONY : src/private/Mapa.cpp.i
+
+src/private/Mapa.s: src/private/Mapa.cpp.s
+
+.PHONY : src/private/Mapa.s
+
+# target to generate assembly for a file
+src/private/Mapa.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Mapa.cpp.s
+.PHONY : src/private/Mapa.cpp.s
+
+src/private/Menu.o: src/private/Menu.cpp.o
+
+.PHONY : src/private/Menu.o
+
+# target to build an object file
+src/private/Menu.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Menu.cpp.o
+.PHONY : src/private/Menu.cpp.o
+
+src/private/Menu.i: src/private/Menu.cpp.i
+
+.PHONY : src/private/Menu.i
+
+# target to preprocess a source file
+src/private/Menu.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Menu.cpp.i
+.PHONY : src/private/Menu.cpp.i
+
+src/private/Menu.s: src/private/Menu.cpp.s
+
+.PHONY : src/private/Menu.s
+
+# target to generate assembly for a file
+src/private/Menu.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Menu.cpp.s
+.PHONY : src/private/Menu.cpp.s
 
 src/private/Movingenemy.o: src/private/Movingenemy.cpp.o
 
@@ -352,6 +487,33 @@ src/private/Player.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Player.cpp.s
 .PHONY : src/private/Player.cpp.s
 
+src/private/PlayerController.o: src/private/PlayerController.cpp.o
+
+.PHONY : src/private/PlayerController.o
+
+# target to build an object file
+src/private/PlayerController.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o
+.PHONY : src/private/PlayerController.cpp.o
+
+src/private/PlayerController.i: src/private/PlayerController.cpp.i
+
+.PHONY : src/private/PlayerController.i
+
+# target to preprocess a source file
+src/private/PlayerController.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.i
+.PHONY : src/private/PlayerController.cpp.i
+
+src/private/PlayerController.s: src/private/PlayerController.cpp.s
+
+.PHONY : src/private/PlayerController.s
+
+# target to generate assembly for a file
+src/private/PlayerController.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.s
+.PHONY : src/private/PlayerController.cpp.s
+
 src/private/Projectile.o: src/private/Projectile.cpp.o
 
 .PHONY : src/private/Projectile.o
@@ -378,6 +540,33 @@ src/private/Projectile.s: src/private/Projectile.cpp.s
 src/private/Projectile.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Projectile.cpp.s
 .PHONY : src/private/Projectile.cpp.s
+
+src/private/Tile.o: src/private/Tile.cpp.o
+
+.PHONY : src/private/Tile.o
+
+# target to build an object file
+src/private/Tile.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Tile.cpp.o
+.PHONY : src/private/Tile.cpp.o
+
+src/private/Tile.i: src/private/Tile.cpp.i
+
+.PHONY : src/private/Tile.i
+
+# target to preprocess a source file
+src/private/Tile.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Tile.cpp.i
+.PHONY : src/private/Tile.cpp.i
+
+src/private/Tile.s: src/private/Tile.cpp.s
+
+.PHONY : src/private/Tile.s
+
+# target to generate assembly for a file
+src/private/Tile.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/Tile.cpp.s
+.PHONY : src/private/Tile.cpp.s
 
 src/private/game.o: src/private/game.cpp.o
 
@@ -406,6 +595,33 @@ src/private/game.cpp.s:
 	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/game.cpp.s
 .PHONY : src/private/game.cpp.s
 
+src/private/tinyxml2.o: src/private/tinyxml2.cpp.o
+
+.PHONY : src/private/tinyxml2.o
+
+# target to build an object file
+src/private/tinyxml2.cpp.o:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o
+.PHONY : src/private/tinyxml2.cpp.o
+
+src/private/tinyxml2.i: src/private/tinyxml2.cpp.i
+
+.PHONY : src/private/tinyxml2.i
+
+# target to preprocess a source file
+src/private/tinyxml2.cpp.i:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.i
+.PHONY : src/private/tinyxml2.cpp.i
+
+src/private/tinyxml2.s: src/private/tinyxml2.cpp.s
+
+.PHONY : src/private/tinyxml2.s
+
+# target to generate assembly for a file
+src/private/tinyxml2.cpp.s:
+	$(MAKE) -f CMakeFiles/libModulos.dir/build.make CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.s
+.PHONY : src/private/tinyxml2.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -422,15 +638,30 @@ help:
 	@echo "... src/private/Actor.o"
 	@echo "... src/private/Actor.i"
 	@echo "... src/private/Actor.s"
+	@echo "... src/private/AudioManager.o"
+	@echo "... src/private/AudioManager.i"
+	@echo "... src/private/AudioManager.s"
+	@echo "... src/private/Controller.o"
+	@echo "... src/private/Controller.i"
+	@echo "... src/private/Controller.s"
 	@echo "... src/private/Enemy.o"
 	@echo "... src/private/Enemy.i"
 	@echo "... src/private/Enemy.s"
 	@echo "... src/private/Engine.o"
 	@echo "... src/private/Engine.i"
 	@echo "... src/private/Engine.s"
+	@echo "... src/private/Explosionenemy.o"
+	@echo "... src/private/Explosionenemy.i"
+	@echo "... src/private/Explosionenemy.s"
 	@echo "... src/private/Fixedenemy.o"
 	@echo "... src/private/Fixedenemy.i"
 	@echo "... src/private/Fixedenemy.s"
+	@echo "... src/private/Mapa.o"
+	@echo "... src/private/Mapa.i"
+	@echo "... src/private/Mapa.s"
+	@echo "... src/private/Menu.o"
+	@echo "... src/private/Menu.i"
+	@echo "... src/private/Menu.s"
 	@echo "... src/private/Movingenemy.o"
 	@echo "... src/private/Movingenemy.i"
 	@echo "... src/private/Movingenemy.s"
@@ -440,12 +671,21 @@ help:
 	@echo "... src/private/Player.o"
 	@echo "... src/private/Player.i"
 	@echo "... src/private/Player.s"
+	@echo "... src/private/PlayerController.o"
+	@echo "... src/private/PlayerController.i"
+	@echo "... src/private/PlayerController.s"
 	@echo "... src/private/Projectile.o"
 	@echo "... src/private/Projectile.i"
 	@echo "... src/private/Projectile.s"
+	@echo "... src/private/Tile.o"
+	@echo "... src/private/Tile.i"
+	@echo "... src/private/Tile.s"
 	@echo "... src/private/game.o"
 	@echo "... src/private/game.i"
 	@echo "... src/private/game.s"
+	@echo "... src/private/tinyxml2.o"
+	@echo "... src/private/tinyxml2.i"
+	@echo "... src/private/tinyxml2.s"
 .PHONY : help
 
 

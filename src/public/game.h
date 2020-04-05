@@ -13,11 +13,13 @@
 #include <Pawn.h>
 #include <Enemy.h>
 #include <Projectile.h>
+#include <Menu.h>
+#include <Mapa.h>
 #include <Player.h>
+#include <PlayerController.h>
 #include <Fixedenemy.h>
 #include <Movingenemy.h>
 #include <Explosionenemy.h>
-
 
 using namespace std;
 
@@ -29,9 +31,6 @@ class game
         void run();
         void Actualizar();
         void Renderizado(float, float);
-        void aMoverse();
-        void auxiliarMov(bool, sf::Keyboard::Key);
-        void plantaAbajo();
         int getTest() {
             return test;
         }
@@ -40,7 +39,7 @@ class game
         list<Enemy*> getAllEnemies();
         /// Returns all projectiles spawned in the world
         list<Projectile*> getAllProjectiles();
-
+        bool soltada;
         Player* getPlayerCharacter();
 
         void Almacenaenemy(Projectile* proj);
@@ -54,13 +53,17 @@ class game
     private:
         static game* pInstance;
         Engine* eng;
-        //sf::RenderWindow &app;
         int test = 1;
         int largo = 1080;
         int alto = 720;
         list<Actor*> actors;
 
         sf::Event tecla;
+        bool estadoJuego;
+        Menu* menu;
+        vector<Mapa*> vMapas;
+        int mapaActual;
+        PlayerController* ControladorJugador;
 };
 
 #endif // GAME_H

@@ -29,6 +29,9 @@ void Actor::Draw(double percent, double delta ){
   } else {
     currentLoc = sprite->Draw(getActorLocation(), getActorLastLocation(), percent); // Location of sprite during interpolation
   }
+  if(currentLoc.x == location.x && currentLoc.y == location.y) {
+    setActorLocation(location);
+  }
 
   if(!debug){ 
     return;

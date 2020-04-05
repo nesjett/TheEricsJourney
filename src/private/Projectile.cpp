@@ -6,6 +6,17 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
     std::cout << "Projectile spawned..." << std::endl;  
     
     texture_file = "./resources/sprites.png";
+    direction = Vector2f(1.f, 1.f); // Initially It has no direction
+    movementSpeed = 0.2;
+    damage = 20;
+
+    oType = projectile; // Set the collision channel
+    Init();
+}
+Projectile::Projectile(sf::Vector2f dir, sf::Vector2f pos){
+    std::cout << "Projectile spawned..." << std::endl;  
+    
+    texture_file = "./resources/sprites.png";
     // Initially It has no direction
     movementSpeed = 0.2;
     damage = 20;
@@ -13,6 +24,8 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
     oType = projectile; // Set the collision channel
     
     Init();
+    direction = dir;
+    setActorLocation(pos); 
 }
 void Projectile::Init(){
     sprite = new SSprite(texture_file);
@@ -26,11 +39,9 @@ void Projectile::Update(float delta){
     float y = movementSpeed*direction.y*delta;
     x = getActorLocation().x + x;
     y = getActorLocation().y + y;
-    if( x > 700) { // reset position for testing
-        setActorLocation(Vector2f(0,0));
-    } else {
-        UpdateMovement(Vector2f(x,y));
-    }
+    
+    UpdateMovement(Vector2f(x,y));
+    
 
     // std::atan2 uses y, x signs' for quadrant signification, unlike std::atan
     // SFML's y-axis is flipped: flip our y-component
@@ -55,8 +66,5 @@ void Projectile::OnActorOverlap(Actor *otherActor){
 Projectile::~Projectile(){
     //delete sprite;
 }
-
-
-
 
 

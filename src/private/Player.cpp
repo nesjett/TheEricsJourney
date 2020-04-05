@@ -14,7 +14,7 @@ Player::Player(){ // Use this to call to parent's contructor first
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
 
-    movementSpeed = 0.1f;
+    movementSpeed = 4.0f;
 
     Init();
 
@@ -26,7 +26,13 @@ void Player::Init(){
     sprite->setTextureRect( 0, 0 ,75,75 );
     std::cout << "Terminamos INIT()" << std::endl;
 }
+void Player::Draw(double percent, double delta ){
+   Actor::Draw(percent, delta); 
+}
 
+void Player::Update(float delta){
+    Pawn::Update( delta);
+}
 void Player::TakeDamage(float damage, string damage_type){
     std::cout << "Damage taken!" << std::endl; 
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
@@ -47,8 +53,15 @@ bool Player::IsAlive(){
     }
 }
 
-void Player::Movimiento(){
-    
+void Player::Movimiento(sf::Vector2f pos){
+    direction = pos;
+}
+void Player::setDirection(float x, float y){
+    direction.x = x;
+    direction.y = y;
+}
+sf::Vector2f Player::getDirection(){
+    return direction;
 }
 
 

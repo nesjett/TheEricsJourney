@@ -5,6 +5,16 @@ CMakeFiles/libModulos.dir/src/private/Actor.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Actor.cpp
+CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o
+ ../src/public/AudioManager.h
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/AudioManager.cpp
+CMakeFiles/libModulos.dir/src/private/Controller.cpp.o
+ ../src/public/Actor.h
+ ../src/public/Engine.h
+ ../src/public/Pawn.h
+ ../src/public/Player.h
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Controller.cpp
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Controller.h
 CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
@@ -14,28 +24,67 @@ CMakeFiles/libModulos.dir/src/private/Enemy.cpp.o
 CMakeFiles/libModulos.dir/src/private/Engine.cpp.o
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Engine.cpp
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Engine.h
+CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o
+ ../src/public/Actor.h
+ ../src/public/Enemy.h
+ ../src/public/Engine.h
+ ../src/public/Pawn.h
+ ../src/public/Player.h
+ ../src/public/Projectile.h
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Explosionenemy.cpp
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Explosionenemy.h
 CMakeFiles/libModulos.dir/src/private/Fixedenemy.cpp.o
  ../src/public/Actor.h
+ ../src/public/AudioManager.h
+ ../src/public/Controller.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
  ../src/public/Explosionenemy.h
  ../src/public/Fixedenemy.h
+ ../src/public/Mapa.h
+ ../src/public/Menu.h
  ../src/public/Movingenemy.h
  ../src/public/Pawn.h
  ../src/public/Player.h
+ ../src/public/PlayerController.h
  ../src/public/Projectile.h
+ ../src/public/Tile.h
+ ../src/public/tinyxml2.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Fixedenemy.cpp
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Fixedenemy.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/game.h
+CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o
+ ../src/public/Actor.h
+ ../src/public/Engine.h
+ ../src/public/Mapa.h
+ ../src/public/Tile.h
+ ../src/public/tinyxml2.h
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Mapa.cpp
+CMakeFiles/libModulos.dir/src/private/Menu.cpp.o
+ ../src/public/AudioManager.h
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Menu.cpp
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Engine.h
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Menu.h
 CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o
  ../src/public/Actor.h
+ ../src/public/AudioManager.h
+ ../src/public/Controller.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
+ ../src/public/Explosionenemy.h
+ ../src/public/Fixedenemy.h
+ ../src/public/Mapa.h
+ ../src/public/Menu.h
+ ../src/public/Movingenemy.h
  ../src/public/Pawn.h
  ../src/public/Player.h
+ ../src/public/PlayerController.h
  ../src/public/Projectile.h
+ ../src/public/Tile.h
+ ../src/public/tinyxml2.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Movingenemy.cpp
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Movingenemy.h
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/game.h
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
@@ -47,6 +96,14 @@ CMakeFiles/libModulos.dir/src/private/Player.cpp.o
  ../src/public/Pawn.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Player.cpp
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Player.h
+CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o
+ ../src/public/Actor.h
+ ../src/public/Controller.h
+ ../src/public/Engine.h
+ ../src/public/Pawn.h
+ ../src/public/Player.h
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/PlayerController.cpp
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/PlayerController.h
 CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h
@@ -54,16 +111,31 @@ CMakeFiles/libModulos.dir/src/private/Projectile.cpp.o
  ../src/public/Player.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Projectile.cpp
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Projectile.h
+CMakeFiles/libModulos.dir/src/private/Tile.cpp.o
+ ../src/public/Actor.h
+ ../src/public/Engine.h
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Tile.cpp
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/Tile.h
 CMakeFiles/libModulos.dir/src/private/game.cpp.o
  ../src/public/Actor.h
+ ../src/public/AudioManager.h
+ ../src/public/Controller.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
  ../src/public/Explosionenemy.h
  ../src/public/Fixedenemy.h
+ ../src/public/Mapa.h
+ ../src/public/Menu.h
  ../src/public/Movingenemy.h
  ../src/public/Pawn.h
  ../src/public/Player.h
+ ../src/public/PlayerController.h
  ../src/public/Projectile.h
+ ../src/public/Tile.h
  ../src/public/game.h
+ ../src/public/tinyxml2.h
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/game.cpp
  /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/game.h
+CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/tinyxml2.cpp
+ /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public/tinyxml2.h

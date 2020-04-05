@@ -31,14 +31,8 @@ void Movingenemy::Init(){
 }
 
 void Movingenemy::Update(float delta){
-    //std::cout << "Iniciamos UPDATE()" << std::endl;
-    float x = movementSpeed*direction.x*delta;
-    float y = movementSpeed*direction.y*delta;
-    x = getActorLocation().x + x;
-    y = getActorLocation().y + y;
-    if(direction.x != 0.f || direction.y != 0.f) {
-        UpdateMovement( Vector2f (x,y) );
-    }
+    Pawn::Update(delta);
+    Attack();
 }
 
 void Movingenemy::Draw(double percent, double delta ){
@@ -92,18 +86,27 @@ void Movingenemy::Linealmove_x(float pos1, float pos2){
     direction = Vector2f(enemydirection_x,0.0);
 }
 
-void Movingenemy::Shot(Projectile* proj,Player* player){
-   Vector2f pos = getActorLocation();
-   Vector2f pos_player = player->getActorLocation();
+
+bool Movingenemy::Attack(){
+    //Projectile *projTest = new Projectile();
+ 
+    Vector2f pos = getActorLocation();
+    game *eng = game::Instance();
+    Player* miJugador = eng->getPlayerCharacter();
+    //eng->Almacenaenemy(projTest);
+
+   Vector2f pos_player = miJugador->getActorLocation();
    Vector2f dir = pos_player-pos;
    float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
    Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
    
-   while(relojMark.getElapsedTime().asSeconds()>2){
+   if(relojMark.getElapsedTime().asSeconds()>5.0){
        
-        proj->direction=Vector2f(dir_unit);
-        proj->setActorLocation(pos);
+        //projTest->direction=Vector2f(dir_unit);
+        //projTest->setActorLocation(pos);
+        Projectile *projTest = new Projectile(dir_unit, pos);
+        eng->Almacenaenemy(projTest);
         relojMark.restart();
    }
-  
+    return true;
 }

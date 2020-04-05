@@ -6,6 +6,16 @@
 },
 {
   "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/tinyxml2.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/tinyxml2.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/tinyxml2.cpp"
+},
+{
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Menu.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Menu.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Menu.cpp"
+},
+{
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
   "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Engine.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Engine.cpp",
   "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Engine.cpp"
 },
@@ -18,6 +28,21 @@
   "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
   "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Actor.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Actor.cpp",
   "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Actor.cpp"
+},
+{
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Tile.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Tile.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Tile.cpp"
+},
+{
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Mapa.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Mapa.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Mapa.cpp"
+},
+{
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/AudioManager.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/AudioManager.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/AudioManager.cpp"
 },
 {
   "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
@@ -38,6 +63,21 @@
   "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
   "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Player.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Player.cpp",
   "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Player.cpp"
+},
+{
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Controller.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Controller.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Controller.cpp"
+},
+{
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/PlayerController.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/PlayerController.cpp"
+},
+{
+  "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
+  "command": "/usr/bin/c++    -I/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/public   -std=c++1y -Wall -Wextra -g   -o CMakeFiles/libModulos.dir/src/private/Explosionenemy.cpp.o -c /home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Explosionenemy.cpp",
+  "file": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/src/private/Explosionenemy.cpp"
 },
 {
   "directory": "/home/marcos/Escritorio/MarcosEnemies/TheEricsJourney/build",
