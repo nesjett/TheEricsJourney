@@ -11,6 +11,8 @@
 #include <Engine.h>
 #include <Actor.h>
 #include <Pawn.h>
+#include <Zombie.h>
+#include <Skeleton.h>
 #include <Enemy.h>
 #include <Projectile.h>
 #include <Menu.h>

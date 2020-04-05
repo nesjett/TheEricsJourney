@@ -11,6 +11,8 @@ target_sources(libModulos PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/private/game.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Projectile.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Enemy.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Zombie.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Skeleton.cpp"
 
 )
 
