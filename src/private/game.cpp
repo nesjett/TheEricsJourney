@@ -197,6 +197,24 @@ list<Projectile*> game::getAllProjectiles(){
     return tmp;
 }
 
+/*/////////////////////////
+    \brief Traces a box on the desired location to check for collisions.
+
+    \param rect FLoatRect rectangle for collision check
+
+/////////////////////////*/
+Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type) {
+    for (Actor *act : actors) {
+        if(act->getObjectType() == type) {
+            bool overlaps = act->getBoundingBox().intersects( rect );
+            if(overlaps){
+                return act;
+            }
+        }
+    }
+    return NULL;
+}
+
 
 game::~game() // Destructor
 {

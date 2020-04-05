@@ -1,5 +1,6 @@
 #include "../public/Pawn.h"
 
+#include <game.h>
 
 Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
@@ -33,7 +34,7 @@ void Pawn::PrepareSprite(){
 
     sprite = new SSprite(texture_file);
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
-    IntRect rectangle = IntRect(0, 0, sizeX*scale, sizeY*scale);
+    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
     sprite->setScale(scale,scale); // Set the scale of the sprite.
     
@@ -75,8 +76,12 @@ void Pawn::Update(float delta){
     float y = movementSpeed*direction.y*delta;
     x = getActorLocation().x + x;
     y = getActorLocation().y + y;
-    if(direction.x != 0.f || direction.y != 0.f) {
-        UpdateMovement( Vector2f (x,y) );
+
+    if( (direction.x != 0.f || direction.y != 0.f)) {
+        Actor *collide = DirectionPrecheck(Vector2f(x,y), worldstatic);
+        if(!collide) {
+            UpdateMovement( Vector2f (x,y) );
+        }
     }
 }
 
@@ -85,14 +90,38 @@ void Pawn::Draw(double percent, double delta ){
         activeAnim->update(delta);
     }
     Actor::Draw(percent, delta); // Use this to debug draw bounding box
+
+    if(debug) {
+        Engine *eng = Engine::Instance();
+        eng->getApp().draw(movementTraceDebug);
+    }
 }
 
 void Pawn::OnActorOverlap(Actor *otherActor){
     Engine *eng = Engine::Instance();
     std::cout << "Soy " << eng->getObjectType(getObjectType()) << " y me ha tocado un objeto tipo: " << eng->getObjectType(otherActor->getObjectType()) << std::endl;
-    if(otherActor->getObjectType() == worldstatic) {
+    /*if(otherActor->getObjectType() == worldstatic) {
         direction = Vector2f(0.f,0.f);
+    }*/
+}
+
+Actor* Pawn::DirectionPrecheck(Vector2f loc, ObjectType type) {
+    game *gi = game::Instance();
+    double traceX = loc.x-getBoundingBox().width/2+5; // Offset box to make it fit the center location.
+    double traceY = loc.y-getBoundingBox().height/2+5;
+    FloatRect trace = FloatRect(Vector2f(traceX, traceY), Vector2f(getBoundingBox().width-10,getBoundingBox().height-10));
+    Actor* collide = gi->boxTraceByObjectType( trace, type );
+
+    if(debug) {
+        movementTraceDebug = sf::RectangleShape( Vector2f(trace.width,trace.height) );
+        // Show actor pre-movement trace box
+        movementTraceDebug.setPosition(trace.left,trace.top);
+        movementTraceDebug.setFillColor(sf::Color(0,0,0,0));
+        movementTraceDebug.setOutlineThickness(2.f);
+        movementTraceDebug.setOutlineColor(sf::Color(0, 200, 200));
     }
+
+    return collide;
 }
 
 

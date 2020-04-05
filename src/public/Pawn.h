@@ -44,6 +44,8 @@ class Pawn: public Actor {
         void ApplyHitEffects(string effect); // TODO: effect should be a class of type damage_type, not  astring
         Animation* activeAnim = NULL;
         std::map<std::string, Animation*> Animations;
+        Actor* DirectionPrecheck(Vector2f loc, ObjectType type);
+        sf::RectangleShape movementTraceDebug;
     private:
         string texture_file;
         Faction faction;
