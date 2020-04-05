@@ -2,7 +2,7 @@
 
 
 
-#define UPDATE_INTERVAL (1000/15.0)
+#define UPDATE_INTERVAL (1000/3.0)
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -104,6 +104,18 @@ void game::run(){
         // }
         // eng->getApp().display();
 
+        //RENDER
+        eng->getApp().clear(); 
+        if(estadoJuego == false)
+        {
+            menu->draw();
+        }
+        else{
+            vMapas[mapaActual]->render();
+            for (Actor *actor : actors) {
+                actor->Draw(percentTick, delta);
+            }
+        }
 
         // UPDATE LOOP
         if(delta > UPDATE_INTERVAL){
@@ -130,18 +142,8 @@ void game::run(){
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
         }
-        //RENDER
-        eng->getApp().clear(); 
-        if(estadoJuego == false)
-        {
-            menu->draw();
-        }
-        else{
-            vMapas[mapaActual]->render();
-            for (Actor *actor : actors) {
-                actor->Draw(percentTick, delta);
-            }
-        }
+
+        
         eng->getApp().display();
     }
 }
