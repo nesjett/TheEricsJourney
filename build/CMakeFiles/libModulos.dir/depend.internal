@@ -67,13 +67,24 @@ CMakeFiles/libModulos.dir/src/private/Menu.cpp.o
  /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Menu.h
 CMakeFiles/libModulos.dir/src/private/Movingenemy.cpp.o
  ../src/public/Actor.h
+ ../src/public/AudioManager.h
+ ../src/public/Controller.h
  ../src/public/Enemy.h
  ../src/public/Engine.h
+ ../src/public/Explosionenemy.h
+ ../src/public/Fixedenemy.h
+ ../src/public/Mapa.h
+ ../src/public/Menu.h
+ ../src/public/Movingenemy.h
  ../src/public/Pawn.h
  ../src/public/Player.h
+ ../src/public/PlayerController.h
  ../src/public/Projectile.h
+ ../src/public/Tile.h
+ ../src/public/tinyxml2.h
  /home/fv/Escritorio/Workspace/TheEricsJourney/src/private/Movingenemy.cpp
  /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Movingenemy.h
+ /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
 CMakeFiles/libModulos.dir/src/private/Pawn.cpp.o
  ../src/public/Actor.h
  ../src/public/Engine.h

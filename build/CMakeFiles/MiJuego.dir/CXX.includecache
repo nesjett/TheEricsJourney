@@ -97,6 +97,8 @@ Projectile.h
 -
 Player.h
 -
+game.h
+../src/public/game.h
 
 ../src/public/Pawn.h
 Actor.h

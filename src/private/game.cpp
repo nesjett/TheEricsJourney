@@ -42,17 +42,23 @@ void game::run(){
     {
         actors.push_back(tile);
     }
-    Pawn *enemyTest = new Pawn();
-    actors.push_back(enemyTest);
+    /*Pawn *enemyTest = new Pawn();
+    actors.push_back(enemyTest);*/
     //enemyTest->setTargetLocation(Vector2f(500,400));
     Player *jugador = new Player();
     actors.push_back(jugador);
 
     Fixedenemy *enemyfijo = new Fixedenemy();
     actors.push_back(enemyfijo);
+    enemyfijo->setActorLocation(sf::Vector2f(600.f,550.f));
 
-    Movingenemy *enemymovido = new Movingenemy();
-    actors.push_back(enemymovido);
+    Movingenemy *enemymove = new Movingenemy();
+    actors.push_back(enemymove);
+    enemymove->setActorLocation(Vector2f(200.f,200.f));
+    
+    Movingenemy *enemymove2 = new Movingenemy();
+    actors.push_back(enemymove2);
+    enemymove2->setActorLocation(Vector2f(500.f,100.f));
 
     std::cout << "Actors length: " << actors.size() << std::endl;
     //enemyTest->setAsleep(true);
@@ -100,6 +106,8 @@ void game::run(){
                 estadoJuego = menu->update(tecla);
             }
         }
+        enemymove->Linealmove_y(200.f, 500.f);
+        enemymove2->Linealmove_x(500.f, 300.f);
 
         // TODO: This loops should be inside the gamestate.cpp 
         double delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;

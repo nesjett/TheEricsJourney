@@ -97,6 +97,8 @@ Projectile.h
 -
 Player.h
 -
+game.h
+../src/public/game.h
 
 ../src/public/Pawn.h
 Actor.h
@@ -333,6 +335,8 @@ Projectile.h
 -
 Player.h
 -
+game.h
+/home/fv/Escritorio/Workspace/TheEricsJourney/src/public/game.h
 
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Pawn.h
 Actor.h

@@ -14,7 +14,7 @@ Player::Player(){ // Use this to call to parent's contructor first
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
 
-    movementSpeed = 2.0f;
+    movementSpeed = 5.f;
 
     Init();
 
