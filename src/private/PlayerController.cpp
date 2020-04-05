@@ -51,7 +51,10 @@ void PlayerController::Attacks(){
         posEnemy = enemigo->getActorLocation();
         dirBala = posEnemy-posPlayer;
         float aux=sqrt(pow(dirBala.x, 2)+pow(dirBala.y, 2)); //Esto es la longitud del vector
-        if(posAnterior == 0.f || aux < posAnterior){
+        if(posAnterior == 0.f){
+            posAnterior = aux;
+        }
+        if(aux < posAnterior){
             posAnterior = aux;
         }
     }
