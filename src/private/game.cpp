@@ -42,11 +42,10 @@ void game::run(){
     {
         actors.push_back(tile);
     }
-    /*Pawn *enemyTest = new Pawn();
-    actors.push_back(enemyTest);*/
     //enemyTest->setTargetLocation(Vector2f(500,400));
     Player *jugador = new Player();
     actors.push_back(jugador);
+    jugador->setActorLocation(Vector2f(350.0,500.0));
 
     Fixedenemy *enemyfijo = new Fixedenemy();
     actors.push_back(enemyfijo);
@@ -60,10 +59,22 @@ void game::run(){
     actors.push_back(enemymove2);
     enemymove2->setActorLocation(Vector2f(500.f,100.f));
 
-    std::cout << "Actors length: " << actors.size() << std::endl;
-    //enemyTest->setAsleep(true);
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
+
+    Pawn *enemyTest = new Pawn();
+    actors.push_back(enemyTest);
+
+    Skeleton *enemyTest2 = new Skeleton();
+    actors.push_back(enemyTest2);
+
+    Zombie *enemyTest3 = new Zombie();
+    actors.push_back(enemyTest3);
+    enemyTest3->setActorLocation(Vector2f(310,180));
+    
+    std::cout << "Actors length: " << actors.size() << std::endl;
+    //enemyTest->setAsleep(true);
+
 
     /***********************************
      * Game loop
@@ -121,44 +132,15 @@ void game::run(){
         // DRAW LOOP 
         double tup = delta / UPDATE_INTERVAL; // Parenthesis very important for a proper calculation! DON'T REMOVE
         double percentTick = min(1.0, tup);
-        //std::cout << "Percent: " << percentTick << std::endl;
-        //std::cout << "tup: " << tup << " delta: " << delta << " update_interval: " << UPDATE_INTERVAL << std::endl;
-
-        // eng->getApp().clear(); // CLear last frame drawings
-
-        // for (Actor *actor : actors) {
-        //     actor->Draw(percentTick, delta);
-        // }
-        // eng->getApp().display();
 
 
-        // UPDATE LOOP
-        if(delta > UPDATE_INTERVAL){
-            //std::cout << "GameUpdate() " << std::endl;
-            if(estadoJuego == true){ //Estamos jugando! ;-)
-                for (Actor *actor : actors) {
-                    if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
-                        actor->Update(delta);
-                    }
+        /*////////////////////////////
+            
+            RENDER LOOP
 
-                    // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
-                    // Can be improved by not checking the pairs that were already checked
-                    for (Actor *test : actors) {
-                        if(actor != test){
-                            //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
-                            bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
-                            if(overlaps){
-                                //std::cout << "--------------------------------- OVERLAPS! ----------------------------" << std::endl;
-                                test->OnActorOverlap(actor);
-                            }
-                        }
-                    }
-                }
-            }
-            lastUpdate = clock.getElapsedTime().asMilliseconds();
-        }
-        //RENDER
+        ////////////////////////////*/
         eng->getApp().clear(); 
+        
         if(estadoJuego == false)
         {
             menu->draw();
@@ -169,7 +151,55 @@ void game::run(){
                 actor->Draw(percentTick, delta);
             }
         }
+
         eng->getApp().display();
+
+
+        /*////////////////////////////
+            
+            UPDATE LOOP
+
+        ////////////////////////////*/
+        if(delta > UPDATE_INTERVAL){
+            //std::cout << "GameUpdate() " << std::endl;
+            if(estadoJuego == true){ //Estamos jugando! ;-)
+                for (Actor *actor : actors) {
+                    // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
+                    // Can be improved by not checking the pairs that were already checked
+                    for (Actor *test : actors) { // TODO: Add bool to stop updating player movement if collided? prevents input event firing between collision event setting dir to 0 and the update event
+                        if(actor != test){
+                            //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
+                            bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
+                            if(overlaps){
+                                //std::cout << "--------------------------------- OVERLAPS! ----------------------------" << std::endl;
+                                test->OnActorOverlap(actor);
+                            }
+                        }
+                    }
+
+                    if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
+                        actor->Update(delta);
+                    }
+                }
+            }
+            lastUpdate = clock.getElapsedTime().asMilliseconds();
+
+            /*////////////////////////////
+            
+                DELETE PENDING DELETE ACTORS
+
+            ////////////////////////////*/
+            actors.erase(
+                std::remove_if(
+                    actors.begin(), 
+                    actors.end(),
+                    [](Actor const * p) { return p->pendingDelete == true; }
+                ), 
+                actors.end()
+            ); 
+        }
+        
+
     }
 }
 
@@ -212,6 +242,24 @@ void game::Almacenaenemy(Projectile* proj){
     actors.push_back(proj); 
     
 }
+/*/////////////////////////
+    \brief Traces a box on the desired location to check for collisions.
+
+    \param rect FLoatRect rectangle for collision check
+
+/////////////////////////*/
+Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type) {
+    for (Actor *act : actors) {
+        if(act->getObjectType() == type) {
+            bool overlaps = act->getBoundingBox().intersects( rect );
+            if(overlaps){
+                return act;
+            }
+        }
+    }
+    return NULL;
+}
+
 
 game::~game() // Destructor
 {

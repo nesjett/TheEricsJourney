@@ -11,6 +11,8 @@
 #include <Engine.h>
 #include <Actor.h>
 #include <Pawn.h>
+#include <Zombie.h>
+#include <Skeleton.h>
 #include <Enemy.h>
 #include <Projectile.h>
 #include <Menu.h>
@@ -45,11 +47,16 @@ class game
 
         void Almacenaenemy(Projectile* proj);
 
+        long getTime() { return gameClock.getElapsedTime().asMilliseconds(); };
+        Actor* boxTraceByObjectType(FloatRect rect, ObjectType type);
+
     protected:
         game();
         game(const game &);
         game &operator= (const game &);
         virtual ~game();
+        
+        sf::Clock gameClock;
 
     private:
         static game* pInstance;

@@ -5,10 +5,11 @@ Tile::Tile(string nombreSprite, float x, float y, float widthSprite, float heigh
     width = widthSprite;
     height = heightSprite;
     texture_file = nombreSprite;
+    debug_coords = false;
 
 
     faction = neutral; //Por ahora pongo neutral pero si fuese danyino deberia ser otro tipo
-    oType = worlddynamic;
+    oType = worldstatic;
     setActorLocation(Vector2f(y+(width/2),x+(height/2))); //las posiciones en sfml primer y luego x
 
     PrepareSprite();
