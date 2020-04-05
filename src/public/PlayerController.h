@@ -1,6 +1,8 @@
+#pragma once
 #include <Controller.h>
 #include <Player.h>
 #include <Enemy.h>
+#include <Projectile.h>
 
 #include <SFML/Graphics.hpp>
 #include <list>
@@ -13,6 +15,7 @@ class PlayerController:  public Controller{
         void Update(sf::Keyboard::Key, bool);
         void setPlayer(Player*);
         void setLista(list<Enemy*>);
+        void Attacks();
 
     protected:
         virtual ~PlayerController(); 

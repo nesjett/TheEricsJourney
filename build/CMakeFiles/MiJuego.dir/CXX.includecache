@@ -117,6 +117,8 @@ Player.h
 -
 Enemy.h
 -
+Projectile.h
+-
 SFML/Graphics.hpp
 -
 list
