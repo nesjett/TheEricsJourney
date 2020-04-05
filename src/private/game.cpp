@@ -103,7 +103,8 @@ void game::run(){
                 ControladorJugador->setPlayer(jugador);
                 listaEnemigos = getAllEnemies();
                 ControladorJugador->setLista(listaEnemigos);
-                
+                ControladorJugador->Attacks();
+
             }
             if(estadoJuego == false) //Estamos en el menu
             {

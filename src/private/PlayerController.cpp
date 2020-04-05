@@ -45,10 +45,11 @@ void PlayerController::Attacks(){
     sf::Vector2f posPlayer = miJugador->getActorLocation();
     float posAnterior = 0.f;
     sf::Vector2f dirBala = sf::Vector2f(0.f, 0.f);
+    sf::Vector2f posEnemy = sf::Vector2f(0.f, 0.f);
     game *eng = game::Instance();
     for (Enemy *enemigo : enemyList){
-        sf::Vector2f posEnemy = enemigo->getActorLocation();
-        sf::Vector2f dirBala = posEnemy-posPlayer;
+        posEnemy = enemigo->getActorLocation();
+        dirBala = posEnemy-posPlayer;
         float aux=sqrt(pow(dirBala.x, 2)+pow(dirBala.y, 2)); //Esto es la longitud del vector
         if(posAnterior == 0.f || aux < posAnterior){
             posAnterior = aux;
