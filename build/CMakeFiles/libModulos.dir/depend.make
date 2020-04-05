@@ -98,6 +98,7 @@ CMakeFiles/libModulos.dir/src/private/Player.cpp.o: ../src/public/Player.h
 
 CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/Actor.h
 CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/Controller.h
+CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/Enemy.h
 CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/Engine.h
 CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/Pawn.h
 CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o: ../src/public/Player.h

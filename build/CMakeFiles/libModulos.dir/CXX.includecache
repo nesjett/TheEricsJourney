@@ -115,7 +115,11 @@ Controller.h
 -
 Player.h
 -
+Enemy.h
+-
 SFML/Graphics.hpp
+-
+list
 -
 
 ../src/public/Projectile.h
@@ -353,7 +357,11 @@ Controller.h
 -
 Player.h
 -
+Enemy.h
+-
 SFML/Graphics.hpp
+-
+list
 -
 
 /home/fv/Escritorio/Workspace/TheEricsJourney/src/public/Projectile.h

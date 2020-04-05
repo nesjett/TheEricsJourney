@@ -99,6 +99,7 @@ CMakeFiles/libModulos.dir/src/private/Player.cpp.o
 CMakeFiles/libModulos.dir/src/private/PlayerController.cpp.o
  ../src/public/Actor.h
  ../src/public/Controller.h
+ ../src/public/Enemy.h
  ../src/public/Engine.h
  ../src/public/Pawn.h
  ../src/public/Player.h

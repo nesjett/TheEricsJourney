@@ -1,8 +1,9 @@
 #include "../public/PlayerController.h"
 
 
-PlayerController::PlayerController(Player* jugador){
+PlayerController::PlayerController(Player* jugador, list<Enemy*> listaEnemigos){
     miJugador = jugador;
+    enemyList = listaEnemigos;
 }
 
 void PlayerController::Update(sf::Keyboard::Key tecla, bool soltada){

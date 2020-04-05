@@ -62,7 +62,8 @@ void game::run(){
 
     std::cout << "Actors length: " << actors.size() << std::endl;
     //enemyTest->setAsleep(true);
-    ControladorJugador = new PlayerController(jugador);
+    listaEnemigos = getAllEnemies();
+    ControladorJugador = new PlayerController(jugador, listaEnemigos);
 
     /***********************************
      * Game loop
