@@ -11,12 +11,6 @@ target_sources(libModulos PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/private/game.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Projectile.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Enemy.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/private/Player.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/private/Controller.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/private/PlayerController.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/private/Explosionenemy.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/private/Fixedenemy.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/private/Movingenemy.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Zombie.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Skeleton.cpp"
 
