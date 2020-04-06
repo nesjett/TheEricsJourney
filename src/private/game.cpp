@@ -111,10 +111,7 @@ void game::run(){
                 //enemyTest->direction = Vector2f(0.0, 0.0);
                 soltada = true;
                 ControladorJugador->Update(tecla.key.code, soltada);
-                ControladorJugador->setPlayer(jugador);
-                listaEnemigos = getAllEnemies();
-                ControladorJugador->setLista(listaEnemigos);
-                ControladorJugador->Attacks();
+                
 
             }
             if(estadoJuego == false) //Estamos en el menu
@@ -124,7 +121,12 @@ void game::run(){
         }
         enemymove->Linealmove_y(200.f, 500.f);
         enemymove2->Linealmove_x(500.f, 300.f);
-
+        if(jugador->getDirection().x == 0.f && jugador->getDirection().y == 0.f){
+            ControladorJugador->setPlayer(jugador);
+            listaEnemigos = getAllEnemies();
+            ControladorJugador->setLista(listaEnemigos);
+            ControladorJugador->Attacks();
+        }
         // TODO: This loops should be inside the gamestate.cpp 
         double delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;
 
