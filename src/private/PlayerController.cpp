@@ -32,6 +32,20 @@ void PlayerController::Update(sf::Keyboard::Key tecla, bool soltada){
         //Move(0.f, 0.f);
     }
 }
+void PlayerController::Frenar(sf::Keyboard::Key tecla){
+    if(tecla==sf::Keyboard::Up || tecla==sf::Keyboard::W){
+        miJugador->setDirection(miJugador->getDirection().x, 0.f);
+    }
+    if(tecla==sf::Keyboard::Down || tecla==sf::Keyboard::S){
+        miJugador->setDirection(miJugador->getDirection().x, 0.f);
+    }
+    if(tecla==sf::Keyboard::Left || tecla==sf::Keyboard::A){
+        miJugador->setDirection(0.f, miJugador->getDirection().y);
+    }
+    if(tecla==sf::Keyboard::Right || tecla==sf::Keyboard::D){
+        miJugador->setDirection(0.f, miJugador->getDirection().y);
+    }
+}
 
 void PlayerController::setPlayer(Player* jugador){
     miJugador = jugador;

@@ -104,15 +104,44 @@ void game::run(){
                 }*/
                 soltada = false;
                 ControladorJugador->Update(tecla.key.code, soltada);
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+                    _arriba = true;
+                }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+                    _abajo = true;
+                }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+                    _derecha = true;
+                }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+                    _izquierda = true;
+                }
                 
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
             if (tecla.type == sf::Event::KeyReleased){
                 //enemyTest->direction = Vector2f(0.0, 0.0);
-                soltada = true;
-                ControladorJugador->Update(tecla.key.code, soltada);
+                if(tecla.key.code==sf::Keyboard::Up || tecla.key.code == sf::Keyboard::W){
+                    _arriba=false;
+                    ControladorJugador->Frenar(tecla.key.code);
+                }
+                if(tecla.key.code==sf::Keyboard::Down || tecla.key.code == sf::Keyboard::S){
+                    _abajo=false;
+                    ControladorJugador->Frenar(tecla.key.code);
+                }
+                if(tecla.key.code==sf::Keyboard::Left || tecla.key.code == sf::Keyboard::A){
+                    _izquierda=false;
+                    ControladorJugador->Frenar(tecla.key.code);
+                }
+                if(tecla.key.code==sf::Keyboard::Right || tecla.key.code == sf::Keyboard::D){
+                    _derecha=false;
+                    ControladorJugador->Frenar(tecla.key.code);
+                }
+                if(_abajo==false&&_arriba==false&&_derecha==false&&_izquierda==false){
+                    soltada = true;
+                    ControladorJugador->Update(tecla.key.code, soltada);
+                }
                 
-
             }
             if(estadoJuego == false) //Estamos en el menu
             {
