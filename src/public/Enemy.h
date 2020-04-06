@@ -1,3 +1,6 @@
+#pragma once
+#ifndef ENEMY_H
+#define ENEMY_H
 #include <Pawn.h>
 
 using namespace std;
@@ -13,3 +16,5 @@ class Enemy: public Pawn {
         void Update(float delta);
         void OnActorOverlap(Actor *otherActor);
 };
+
+#endif
