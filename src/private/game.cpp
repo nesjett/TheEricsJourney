@@ -42,28 +42,12 @@ void game::run(){
     {
         actors.push_back(tile);
     }
-    //enemyTest->setTargetLocation(Vector2f(500,400));
-    Player *jugador = new Player();
-    actors.push_back(jugador);
-    jugador->setActorLocation(Vector2f(350.0,500.0));
-
-    Fixedenemy *enemyfijo = new Fixedenemy();
-    actors.push_back(enemyfijo);
-    enemyfijo->setActorLocation(sf::Vector2f(600.f,550.f));
-
-    Movingenemy *enemymove = new Movingenemy();
-    actors.push_back(enemymove);
-    enemymove->setActorLocation(Vector2f(200.f,200.f));
-    
-    Movingenemy *enemymove2 = new Movingenemy();
-    actors.push_back(enemymove2);
-    enemymove2->setActorLocation(Vector2f(500.f,100.f));
-
-    listaEnemigos = getAllEnemies();
-    ControladorJugador = new PlayerController(jugador, listaEnemigos);
-
     Pawn *enemyTest = new Pawn();
     actors.push_back(enemyTest);
+    //enemyTest->setTargetLocation(Vector2f(500,400));
+    // Zombie *enemyTest = new Zombie();
+    // actors.push_back(enemyTest);
+    //enemyTest->setTargetLocation(Vector2f(500,400));
 
     Skeleton *enemyTest2 = new Skeleton();
     actors.push_back(enemyTest2);
@@ -71,7 +55,8 @@ void game::run(){
     Zombie *enemyTest3 = new Zombie();
     actors.push_back(enemyTest3);
     enemyTest3->setActorLocation(Vector2f(310,180));
-    
+    Projectile *projTest = new Projectile();
+    actors.push_back(projTest);
     std::cout << "Actors length: " << actors.size() << std::endl;
     //enemyTest->setAsleep(true);
 
@@ -96,34 +81,20 @@ void game::run(){
                     eng->getApp().close();
                 }
 
-                /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
                     enemyTest->direction = Vector2f(1.0,0.0); // MOverse hacia la derecha
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
                     enemyTest->direction = Vector2f(-1.0,0.0); // Moverse hacia la izquierda
-                }*/
-                soltada = false;
-                ControladorJugador->Update(tecla.key.code, soltada);
+                }
                 
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
-            }
-            if (tecla.type == sf::Event::KeyReleased){
-                //enemyTest->direction = Vector2f(0.0, 0.0);
-                soltada = true;
-                ControladorJugador->Update(tecla.key.code, soltada);
-                ControladorJugador->setPlayer(jugador);
-                listaEnemigos = getAllEnemies();
-                ControladorJugador->setLista(listaEnemigos);
-                ControladorJugador->Attacks();
-
             }
             if(estadoJuego == false) //Estamos en el menu
             {
                 estadoJuego = menu->update(tecla);
             }
         }
-        enemymove->Linealmove_y(200.f, 500.f);
-        enemymove2->Linealmove_x(500.f, 300.f);
 
         // TODO: This loops should be inside the gamestate.cpp 
         double delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;
@@ -227,21 +198,6 @@ list<Projectile*> game::getAllProjectiles(){
     return tmp;
 }
 
-Player* game::getPlayerCharacter(){
-    Player* tmp;
-    for (Actor *actor : actors) {
-        if ( dynamic_cast<Player*>( actor ) ) {
-            tmp = dynamic_cast<Player*>(actor);
-            break;
-       }
-    }
-    return tmp;
-}
-
-void game::Almacenaenemy(Projectile* proj){
-    actors.push_back(proj); 
-    
-}
 /*/////////////////////////
     \brief Traces a box on the desired location to check for collisions.
 
