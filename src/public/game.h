@@ -71,6 +71,7 @@ class game
         vector<Mapa*> vMapas;
         int mapaActual;
         PlayerController* ControladorJugador;
+        bool _arriba = false, _abajo = false, _izquierda = false, _derecha = false;
 };
 
 #endif // GAME_H

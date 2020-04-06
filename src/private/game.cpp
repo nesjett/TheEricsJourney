@@ -99,13 +99,45 @@ void game::run(){
                 }
                 soltada = false;
                 ControladorJugador->Update(tecla.key.code, soltada);
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+                    _arriba = true;
+                }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+                    _abajo = true;
+                }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+                    _derecha = true;
+                }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+                    _izquierda = true;
+                }
                 
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
             if (tecla.type == sf::Event::KeyReleased){
-                
-                soltada = true;
-                ControladorJugador->Update(tecla.key.code, soltada);
+
+                //enemyTest->direction = Vector2f(0.0, 0.0);
+                if(tecla.key.code==sf::Keyboard::Up || tecla.key.code == sf::Keyboard::W){
+                    _arriba=false;
+                    ControladorJugador->Frenar(tecla.key.code);
+                }
+                if(tecla.key.code==sf::Keyboard::Down || tecla.key.code == sf::Keyboard::S){
+                    _abajo=false;
+                    ControladorJugador->Frenar(tecla.key.code);
+                }
+                if(tecla.key.code==sf::Keyboard::Left || tecla.key.code == sf::Keyboard::A){
+                    _izquierda=false;
+                    ControladorJugador->Frenar(tecla.key.code);
+                }
+                if(tecla.key.code==sf::Keyboard::Right || tecla.key.code == sf::Keyboard::D){
+                    _derecha=false;
+                    ControladorJugador->Frenar(tecla.key.code);
+                }
+                if(_abajo==false&&_arriba==false&&_derecha==false&&_izquierda==false){
+                    soltada = true;
+                    ControladorJugador->Update(tecla.key.code, soltada);
+                }
+
                 
             }
             if(estadoJuego == false) //Estamos en el menu
@@ -114,11 +146,14 @@ void game::run(){
             }
         }
 
-        //ENEMY MOVE
-
-        enemymove->Linealmove_y(200.0,500.0);
-        enemymove2->Linealmove_x(500.0,300.0);
-        enemyexp->Followplayer();
+        enemymove->Linealmove_y(200.f, 500.f);
+        enemymove2->Linealmove_x(500.f, 300.f);
+        if(jugador->getDirection().x == 0.f && jugador->getDirection().y == 0.f){
+            ControladorJugador->setPlayer(jugador);
+            listaEnemigos = getAllEnemies();
+            ControladorJugador->setLista(listaEnemigos);
+            ControladorJugador->Attacks();
+        }
 
         // TODO: This loops should be inside the gamestate.cpp 
         double delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;
@@ -202,8 +237,8 @@ list<Enemy*> game::getAllEnemies(){
     list<Enemy*> tmp;
     Enemy* tmpE = NULL;
     for (Actor *actor : actors) {
-        if ( static_cast<Enemy*>( actor ) ) {
-            tmpE = static_cast<Enemy*>(actor);
+        if ( dynamic_cast<Enemy*>( actor ) ) {
+            tmpE = dynamic_cast<Enemy*>(actor);
             tmp.push_back(tmpE);
         }
     }
@@ -214,8 +249,8 @@ list<Projectile*> game::getAllProjectiles(){
     list<Projectile*> tmp;
     Projectile* tmpE = NULL;
     for (Actor *actor : actors) {
-        if ( static_cast<Projectile*>( actor ) ) {
-            tmpE = static_cast<Projectile*>(actor);
+        if ( dynamic_cast<Projectile*>( actor ) ) {
+            tmpE = dynamic_cast<Projectile*>(actor);
             tmp.push_back(tmpE);
         }
     }
