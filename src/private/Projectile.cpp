@@ -12,9 +12,7 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
     oType = projectile; // Set the collision channel
     Init();
 }
-
 Projectile::Projectile(sf::Vector2f dir, sf::Vector2f pos) : Actor(){
-
     
     texture_file = "./resources/sprites.png";
     movementSpeed = 0.2;
@@ -36,9 +34,12 @@ void Projectile::Update(float delta){
     float y = movementSpeed*direction.y*delta;
     x = getActorLocation().x + x;
     y = getActorLocation().y + y;
-    
     UpdateMovement(Vector2f(x,y));
-    
+    /*if( x > 700) { // reset position for testing
+        setActorLocation(Vector2f(0,0));
+    } else {
+        UpdateMovement(Vector2f(x,y));
+    }*/
 
     // std::atan2 uses y, x signs' for quadrant signification, unlike std::atan
     // SFML's y-axis is flipped: flip our y-component
@@ -52,15 +53,12 @@ void Projectile::Draw(double percent, double delta ){
    //sprite->Draw(getActorLocation(), getActorLastLocation(), percent);
 }
 
-void Projectile::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
+void Projectile::TakeDamage(float damage, string damage_type){
 
 }
 
 void Projectile::OnActorOverlap(Actor *otherActor){
     //otherActor.TakeDamage(damage, "default");
-    if ( dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == allie ) { // allie = player related things
-        otherActor->TakeDamage(damage, this, "PROJECTILE_X");
-    }
 }
 
 Projectile::~Projectile(){

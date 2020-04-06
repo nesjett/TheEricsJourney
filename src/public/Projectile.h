@@ -24,7 +24,7 @@ class Projectile: public Actor {
         void Init();
         void Draw(double percent, double delta );
         void OnActorOverlap(Actor *otherActor);
-        void TakeDamage(float damage, Actor* dmgCauser, string damage_type);
+        void TakeDamage(float damage, string damage_type);
 
     protected:
     private:

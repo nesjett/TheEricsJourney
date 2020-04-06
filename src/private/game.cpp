@@ -42,34 +42,39 @@ void game::run(){
     {
         actors.push_back(tile);
     }
-    
+    //enemyTest->setTargetLocation(Vector2f(500,400));
     Player *jugador = new Player();
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
 
     Fixedenemy *enemyfijo = new Fixedenemy();
     actors.push_back(enemyfijo);
-    enemyfijo->setActorLocation(Vector2f(600.0,550.0));
+    enemyfijo->setActorLocation(sf::Vector2f(600.f,550.f));
 
     Movingenemy *enemymove = new Movingenemy();
     actors.push_back(enemymove);
-    enemymove->setActorLocation(Vector2f(200.0,200.0));
+    enemymove->setActorLocation(Vector2f(200.f,200.f));
     
     Movingenemy *enemymove2 = new Movingenemy();
     actors.push_back(enemymove2);
-    enemymove2->setActorLocation(Vector2f(500.0,250.0));
+    enemymove2->setActorLocation(Vector2f(500.f,100.f));
 
-    Explosionenemy *enemyexp = new Explosionenemy();
-    actors.push_back(enemyexp);
-    enemyexp->setActorLocation(Vector2f(400.0,400.0));
+    listaEnemigos = getAllEnemies();
+    ControladorJugador = new PlayerController(jugador, listaEnemigos);
+
+    Pawn *enemyTest = new Pawn();
+    actors.push_back(enemyTest);
+
+    Skeleton *enemyTest2 = new Skeleton();
+    actors.push_back(enemyTest2);
+
+    Zombie *enemyTest3 = new Zombie();
+    actors.push_back(enemyTest3);
+    enemyTest3->setActorLocation(Vector2f(310,180));
     
-
-    /*Projectile *projTest = new Projectile();
-    actors.push_back(projTest);*/
-
     std::cout << "Actors length: " << actors.size() << std::endl;
     //enemyTest->setAsleep(true);
-    ControladorJugador = new PlayerController(jugador);
+
 
     /***********************************
      * Game loop
@@ -91,12 +96,12 @@ void game::run(){
                     eng->getApp().close();
                 }
 
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-                    
+                /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+                    enemyTest->direction = Vector2f(1.0,0.0); // MOverse hacia la derecha
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-                    
-                }
+                    enemyTest->direction = Vector2f(-1.0,0.0); // Moverse hacia la izquierda
+                }*/
                 soltada = false;
                 ControladorJugador->Update(tecla.key.code, soltada);
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
@@ -115,7 +120,6 @@ void game::run(){
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
             if (tecla.type == sf::Event::KeyReleased){
-
                 //enemyTest->direction = Vector2f(0.0, 0.0);
                 if(tecla.key.code==sf::Keyboard::Up || tecla.key.code == sf::Keyboard::W){
                     _arriba=false;
@@ -137,7 +141,6 @@ void game::run(){
                     soltada = true;
                     ControladorJugador->Update(tecla.key.code, soltada);
                 }
-
                 
             }
             if(estadoJuego == false) //Estamos en el menu
@@ -145,7 +148,6 @@ void game::run(){
                 estadoJuego = menu->update(tecla);
             }
         }
-
         enemymove->Linealmove_y(200.f, 500.f);
         enemymove2->Linealmove_x(500.f, 300.f);
         if(jugador->getDirection().x == 0.f && jugador->getDirection().y == 0.f){
@@ -154,7 +156,6 @@ void game::run(){
             ControladorJugador->setLista(listaEnemigos);
             ControladorJugador->Attacks();
         }
-
         // TODO: This loops should be inside the gamestate.cpp 
         double delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;
 

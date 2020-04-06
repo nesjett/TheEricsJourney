@@ -25,7 +25,7 @@ class Pawn: public Actor {
         float damage_Multiplier; 
 
 
-        void TakeDamage(float damage, Actor* dmgCauser, string damage_type);
+        void TakeDamage(float damage, string damage_type);
         bool IsAlive(); // This should go to an interface or to parent PAWN class
 
         bool Attack();
@@ -46,9 +46,9 @@ class Pawn: public Actor {
         std::map<std::string, Animation*> Animations;
         Actor* DirectionPrecheck(Vector2f loc, ObjectType type);
         sf::RectangleShape movementTraceDebug;
-        Faction faction;
     private:
         string texture_file;
+        Faction faction;
 };
 
 #endif
