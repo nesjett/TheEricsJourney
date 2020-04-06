@@ -14,7 +14,7 @@ Player::Player(){ // Use this to call to parent's contructor first
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
 
-    movementSpeed = 5.f;
+    movementSpeed = 5.0f;
 
     Init();
 
@@ -33,7 +33,7 @@ void Player::Draw(double percent, double delta ){
 void Player::Update(float delta){
     Pawn::Update( delta);
 }
-void Player::TakeDamage(float damage, string damage_type){
+void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     std::cout << "Damage taken!" << std::endl; 
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
         health_Current-=damage;

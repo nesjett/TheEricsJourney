@@ -7,7 +7,7 @@ using namespace sf;
 class Player:  public Pawn{
     public:
         Player();
-        void TakeDamage(float damage, string damage_type);
+        void TakeDamage(float damage, Actor* dmgCauser, string damage_type);
         bool IsAlive(); // This should go to an interface or to parent PAWN class
         void Init();
         // Adds movement to the desired direction

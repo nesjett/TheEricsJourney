@@ -1,10 +1,8 @@
 #include "../public/PlayerController.h"
-#include "../public/game.h"
 
 
-PlayerController::PlayerController(Player* jugador, list<Enemy*> listaEnemigos){
+PlayerController::PlayerController(Player* jugador){
     miJugador = jugador;
-    enemyList = listaEnemigos;
 }
 
 void PlayerController::Update(sf::Keyboard::Key tecla, bool soltada){
@@ -46,6 +44,7 @@ void PlayerController::Frenar(sf::Keyboard::Key tecla){
         miJugador->setDirection(0.f, miJugador->getDirection().y);
     }
 }
+
 
 void PlayerController::setPlayer(Player* jugador){
     miJugador = jugador;

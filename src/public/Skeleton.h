@@ -9,7 +9,8 @@ class Skeleton: public Pawn {
         void Draw(double percent, double delta );
     protected:
         void PrepareSprite();
-        Animation* animation;
+        Animation* activeAnim = NULL;
+        std::map<std::string, Animation*> Animations;
     private:
         string texture_file;
 };

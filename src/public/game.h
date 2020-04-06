@@ -42,7 +42,6 @@ class game
         /// Returns all projectiles spawned in the world
         list<Projectile*> getAllProjectiles();
         bool soltada;
-        list<Enemy*> listaEnemigos;
         Player* getPlayerCharacter();
 
         void Almacenaenemy(Projectile* proj);
