@@ -42,24 +42,29 @@ void PlayerController::setLista(list<Enemy*> listaEnemigos){
 
 void PlayerController::Attacks(){
     //Primero -> Calcular la distancia mas corta de entre todos los enemigos.
-    sf::Vector2f posPlayer = miJugador->getActorLocation();
-    float posAnterior = 0.f;
-    sf::Vector2f dirBala = sf::Vector2f(0.f, 0.f);
-    sf::Vector2f posEnemy = sf::Vector2f(0.f, 0.f);
-    game *eng = game::Instance();
-    for (Enemy *enemigo : enemyList){
-        posEnemy = enemigo->getActorLocation();
-        dirBala = posEnemy-posPlayer;
-        float aux=sqrt(pow(dirBala.x, 2)+pow(dirBala.y, 2)); //Esto es la longitud del vector
-        if(posAnterior == 0.f){
-            posAnterior = aux;
-        }
-        if(aux < posAnterior){
-            posAnterior = aux;
-        }
-    }
-    sf::Vector2f dir_unit=Vector2f(dirBala.x/posAnterior,dirBala.y/posAnterior);
+    
     if(relojAtaque.getElapsedTime().asSeconds()>2.f){
+        sf::Vector2f posPlayer = miJugador->getActorLocation();
+        float minDist = 0.f;
+        sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
+        sf::Vector2f dirToEnemy = sf::Vector2f(0.f, 0.f);
+        sf::Vector2f posEnemy = sf::Vector2f(0.f, 0.f);
+        
+        for (Enemy *enemigo : enemyList){
+            posEnemy = enemigo->getActorLocation();
+            dirToEnemy_tmp = posEnemy-posPlayer;
+            float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector
+            if(minDist == 0.f){
+                minDist = aux;
+                dirToEnemy = dirToEnemy_tmp;
+            } else if(aux < minDist){
+                minDist = aux;
+                dirToEnemy = dirToEnemy_tmp;
+            }
+        }
+        sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
+
+        game *eng = game::Instance();
         Projectile *projTest = new Projectile(dir_unit, posPlayer);
         eng->Almacenaenemy(projTest);
         relojAtaque.restart();
