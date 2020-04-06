@@ -229,6 +229,5 @@ void Animation::update(double elapsed) {
             }
             break; // we found our frame
         }
-
     }
 }

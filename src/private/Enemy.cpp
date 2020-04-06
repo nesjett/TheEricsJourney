@@ -1,5 +1,9 @@
 #include "../public/Enemy.h"
 
+Enemy::Enemy() : Pawn(){ // Use this to call to parent's contructor first
+
+}
+
 void Enemy::Update(float delta){
     //std::cout << "Iniciamos UPDATE()" << std::endl;
 
