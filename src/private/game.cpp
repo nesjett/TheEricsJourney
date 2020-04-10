@@ -42,23 +42,27 @@ void game::run(){
     {
         actors.push_back(tile);
     }
-    //enemyTest->setTargetLocation(Vector2f(500,400));
+    
     Player *jugador = new Player();
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
 
     Fixedenemy *enemyfijo = new Fixedenemy();
     actors.push_back(enemyfijo);
-    enemyfijo->setActorLocation(sf::Vector2f(600.f,550.f));
+    enemyfijo->setActorLocation(Vector2f(600.0,550.0));
 
     Movingenemy *enemymove = new Movingenemy();
     actors.push_back(enemymove);
-    enemymove->setActorLocation(Vector2f(200.f,200.f));
+    enemymove->setActorLocation(Vector2f(200.0,200.0));
     
     Movingenemy *enemymove2 = new Movingenemy();
     actors.push_back(enemymove2);
-    enemymove2->setActorLocation(Vector2f(500.f,100.f));
+    enemymove2->setActorLocation(Vector2f(500.0,250.0));
 
+    Explosionenemy *enemyexp = new Explosionenemy();
+    actors.push_back(enemyexp);
+    enemyexp->setActorLocation(Vector2f(400.0,400.0));
+    
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
 
@@ -74,7 +78,6 @@ void game::run(){
     
     std::cout << "Actors length: " << actors.size() << std::endl;
     //enemyTest->setAsleep(true);
-
 
     /***********************************
      * Game loop
@@ -95,13 +98,6 @@ void game::run(){
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 }
-
-                /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-                    enemyTest->direction = Vector2f(1.0,0.0); // MOverse hacia la derecha
-                }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-                    enemyTest->direction = Vector2f(-1.0,0.0); // Moverse hacia la izquierda
-                }*/
                 soltada = false;
                 ControladorJugador->Update(tecla.key.code, soltada);
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
@@ -116,11 +112,10 @@ void game::run(){
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
                     _izquierda = true;
                 }
-                
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
             if (tecla.type == sf::Event::KeyReleased){
-                //enemyTest->direction = Vector2f(0.0, 0.0);
+                
                 if(tecla.key.code==sf::Keyboard::Up || tecla.key.code == sf::Keyboard::W){
                     _arriba=false;
                     ControladorJugador->Frenar(tecla.key.code);
@@ -148,14 +143,18 @@ void game::run(){
                 estadoJuego = menu->update(tecla);
             }
         }
-        enemymove->Linealmove_y(200.f, 500.f);
-        enemymove2->Linealmove_x(500.f, 300.f);
         if(jugador->getDirection().x == 0.f && jugador->getDirection().y == 0.f){
             ControladorJugador->setPlayer(jugador);
             listaEnemigos = getAllEnemies();
             ControladorJugador->setLista(listaEnemigos);
             ControladorJugador->Attacks();
         }
+        //ENEMY MOVE
+
+        enemymove->Linealmove_y(200.0,500.0);
+        enemymove2->Linealmove_x(500.0,300.0);
+        enemyexp->Followplayer();
+
         // TODO: This loops should be inside the gamestate.cpp 
         double delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;
 
@@ -238,8 +237,8 @@ list<Enemy*> game::getAllEnemies(){
     list<Enemy*> tmp;
     Enemy* tmpE = NULL;
     for (Actor *actor : actors) {
-        if ( dynamic_cast<Enemy*>( actor ) ) {
-            tmpE = dynamic_cast<Enemy*>(actor);
+        if ( static_cast<Enemy*>( actor ) ) {
+            tmpE = static_cast<Enemy*>(actor);
             tmp.push_back(tmpE);
         }
     }
@@ -250,8 +249,8 @@ list<Projectile*> game::getAllProjectiles(){
     list<Projectile*> tmp;
     Projectile* tmpE = NULL;
     for (Actor *actor : actors) {
-        if ( dynamic_cast<Projectile*>( actor ) ) {
-            tmpE = dynamic_cast<Projectile*>(actor);
+        if ( static_cast<Projectile*>( actor ) ) {
+            tmpE = static_cast<Projectile*>(actor);
             tmp.push_back(tmpE);
         }
     }

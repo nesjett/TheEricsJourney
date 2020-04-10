@@ -1,5 +1,7 @@
 #pragma once
 #include <Pawn.h>
+#include <Enemy.h>
+#include <list>
 
 using namespace std;
 using namespace sf;
@@ -7,7 +9,7 @@ using namespace sf;
 class Player:  public Pawn{
     public:
         Player();
-        void TakeDamage(float damage, string damage_type);
+        void TakeDamage(float damage, Actor* dmgCauser, string damage_type);
         bool IsAlive(); // This should go to an interface or to parent PAWN class
         void Init();
         // Adds movement to the desired direction
@@ -15,7 +17,7 @@ class Player:  public Pawn{
         void setDirection(float, float);
         sf::Vector2f getDirection();
         void UpdateMovement(); 
-        bool Attack();
+        void Attack(list<Enemy*>);
         void Update(float delta);
         void ActorOverlap(Actor otherActor);
         void Draw(double percent, double delta);

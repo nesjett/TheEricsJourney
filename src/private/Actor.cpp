@@ -105,7 +105,7 @@ void Actor::Draw(double percent, double delta ){
   }
 }
 
-void Actor::TakeDamage(float damage, string damage_type){
+void Actor::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
 
 }
 

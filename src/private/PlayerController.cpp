@@ -55,10 +55,9 @@ void PlayerController::setLista(list<Enemy*> listaEnemigos){
 }
 
 void PlayerController::Attacks(){
-    //Primero -> Calcular la distancia mas corta de entre todos los enemigos.
     
     if(relojAtaque.getElapsedTime().asSeconds()>2.f){
-        sf::Vector2f posPlayer = miJugador->getActorLocation();
+        /*sf::Vector2f posPlayer = miJugador->getActorLocation();
         float minDist = 0.f;
         sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
         sf::Vector2f dirToEnemy = sf::Vector2f(0.f, 0.f);
@@ -80,7 +79,8 @@ void PlayerController::Attacks(){
 
         game *eng = game::Instance();
         Projectile *projTest = new Projectile(dir_unit, posPlayer);
-        eng->Almacenaenemy(projTest);
+        eng->Almacenaenemy(projTest);*/
+        miJugador->Attack(enemyList);
         relojAtaque.restart();
     }
 }

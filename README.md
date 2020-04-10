@@ -1,10 +1,3 @@
-Class hierarchy:  
-GameInstance (SIngleton)
-Sprite (interface for smfl)
-Actor  (Base class for everything that has a visible representation in the world, like enemies, traps, walls...)
-- Pawn  (Base class for characters)
--- Enemy  (Enemy characters)
--- Player 
 # Project sctructure
 * **Main**: Main software container. "Application"
 * **GameInstance**: High-level manager object for an instance of the running game

@@ -1,4 +1,5 @@
 #include "../public/Player.h"
+#include "../public/game.h"
 
 Player::Player(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
@@ -14,7 +15,7 @@ Player::Player(){ // Use this to call to parent's contructor first
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
 
-    movementSpeed = 5.f;
+    movementSpeed = 5.0f;
 
     Init();
 
@@ -33,7 +34,7 @@ void Player::Draw(double percent, double delta ){
 void Player::Update(float delta){
     Pawn::Update( delta);
 }
-void Player::TakeDamage(float damage, string damage_type){
+void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     std::cout << "Damage taken!" << std::endl; 
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
         health_Current-=damage;
@@ -75,6 +76,29 @@ void Player::ActorOverlap(Actor otherActor){
 
 
 // Base to implement attacks. This should be on the base class and be overriden by the different enemies
-bool Player::Attack(){
-    return true;
+void Player::Attack(list<Enemy*> enemyList){
+    
+    float minDist = 0.f;
+    sf::Vector2f posPlayer = getActorLocation();
+    sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
+    sf::Vector2f dirToEnemy = sf::Vector2f(0.f, 0.f);
+    sf::Vector2f posEnemy = sf::Vector2f(0.f, 0.f);
+    
+    for (Enemy *enemigo : enemyList){
+        posEnemy = enemigo->getActorLocation();
+        dirToEnemy_tmp = posEnemy-posPlayer;
+        float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector
+        if(minDist == 0.f){
+            minDist = aux;
+            dirToEnemy = dirToEnemy_tmp;
+        } else if(aux < minDist){
+            minDist = aux;
+            dirToEnemy = dirToEnemy_tmp;
+        }
+    }
+    sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
+
+    game *eng = game::Instance();
+    Projectile *projTest = new Projectile(dir_unit, posPlayer);
+    eng->Almacenaenemy(projTest);
 }
