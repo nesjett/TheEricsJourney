@@ -41,7 +41,6 @@ class game
         list<Enemy*> getAllEnemies();
         /// Returns all projectiles spawned in the world
         list<Projectile*> getAllProjectiles();
-        bool soltada;
         list<Enemy*> listaEnemigos;
         Player* getPlayerCharacter();
 
@@ -72,7 +71,6 @@ class game
         vector<Mapa*> vMapas;
         int mapaActual;
         PlayerController* ControladorJugador;
-        bool _arriba = false, _abajo = false, _izquierda = false, _derecha = false;
 };
 
 #endif // GAME_H
