@@ -23,7 +23,31 @@ void game::init(/*char* nombre, int AuxMapa*/){
     estadoJuego = false;
     menu = Menu::getInstance();
     mapaActual = 0;
-    vMapas.push_back(new Mapa("MapaNivel1.tmx"));
+    InicializaNivel();
+}
+
+void game::InicializaNivel()
+{
+    //Limpiamos los datos del mapa anterior
+    // for (Actor *actor : actors) { 
+    //     delete actor;
+    // }
+    // actors.clear();
+    //Cargamos el nivel
+    string nombreMapa = "MapaNivel"+to_string(mapaActual+1)+".tmx";
+    vMapas.push_back(new Mapa(nombreMapa));
+
+    //Cargamos las colisiones del nivel
+    list<Tile*> mapColisionables = vMapas[mapaActual]->getActors();
+    for (Tile *tile : mapColisionables)
+    {
+        actors.push_back(tile);
+    }
+
+    //Protagonista set location al inicio del mapa
+
+    //Set vista a la primera parte del mapa
+    //eng->ChangeAppView(0);
 }
 
 
@@ -175,6 +199,14 @@ void game::run(){
                     if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
                         actor->Update(delta);
                     }
+                }
+
+                //Comprobamos si pasamos de nivel
+                Tile* puerta = vMapas[mapaActual]->getPuerta();
+                if(getAllEnemies().size() == 0 && (jugador->getBoundingBox().intersects(puerta->getBoundingBox())) )
+                {
+                    mapaActual++;  
+                    InicializaNivel();
                 }
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();

@@ -18,6 +18,7 @@ class Mapa
         void update();
         void render();
         list<Tile*> getActors();
+        Tile* getPuerta();
 
     protected:
 
@@ -29,8 +30,10 @@ class Mapa
         vector<int> vPosX;
         vector<int> vPosY;
         vector<Tile*> vTiles;
+        vector<Tile*> vPuertas;
         string nombreCapaColisiones;
         string nombreCapaObjetos;
+        string nombreCapaPuertas;
         int num_layers;
         int tamMapaX, tamMapaY, tamTileX, tamTileY;
         sf::Event* evento;

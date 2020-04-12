@@ -71,6 +71,7 @@ class game
         vector<Mapa*> vMapas;
         int mapaActual;
         PlayerController* ControladorJugador;
+        void InicializaNivel();
 };
 
 #endif // GAME_H

@@ -1,4 +1,4 @@
-#include "Mapa.h"
+#include "../public/Mapa.h"
 #include <SFML/Graphics.hpp>
 using namespace std;
 
@@ -7,6 +7,7 @@ Mapa::Mapa(string nombre)
     nombreMapa = nombre;
     nombreCapaColisiones = "colisiones";
     nombreCapaObjetos = "objetos";
+    nombreCapaPuertas = "puerta";
     // ventanaMapa = new sf::RenderWindow(sf::VideoMode(1280, 1920), "Mapa");
     // ventanaMapa->setFramerateLimit(60);
     eng = Engine::Instance();
@@ -93,11 +94,16 @@ void Mapa::cargaMapa()
                     int valor = atoi(tile->Attribute("gid"));
                     if(strcmp(layer->Attribute("name"), nombreCapaColisiones.c_str()) == 0) //Elementos Colisionables
                     {
-                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY));
+                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,worldstatic));
                     }
-                    if(strcmp(layer->Attribute("name"), nombreCapaObjetos.c_str()) == 0) //Objetos (falta cambiarle el oType)
+                    if(strcmp(layer->Attribute("name"), nombreCapaObjetos.c_str()) == 0) //Objetos o trampas
                     {
-                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY));
+                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,trap));
+                    }
+                    if(strcmp(layer->Attribute("name"), nombreCapaPuertas.c_str()) == 0) //Puertas (falta cambiarle el oType)
+                    {
+                        vPuertas.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX*2,tamTileY,worldstatic));
+                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX*2,tamTileY,worldstatic));
                     }
                     else{
                         vectorPintar2.push_back(*vectorSprite[valor-1]);
@@ -134,7 +140,10 @@ list<Tile*> Mapa::getActors()
     list<Tile*> listaTiles(vTiles.begin(),vTiles.end());
     return listaTiles;
 }
-
+Tile* Mapa::getPuerta()
+{
+    return vPuertas[0];
+}
 void Mapa::update()
 {
 
@@ -146,6 +155,11 @@ void Mapa::render()
     {
         eng->getApp().draw(*i);
     }
+    // vector<Tile*>::iterator j;
+    // for(j = vPuertas.begin(); j != vPuertas.end(); j++)
+    // {
+    //     (*j)->Draw(5000.0,0.0);
+    // }
     // vector<Tile*>::iterator j;
     // for(j = vTiles.begin(); j != vTiles.end(); j++)
     // {
