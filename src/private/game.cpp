@@ -23,31 +23,37 @@ void game::init(/*char* nombre, int AuxMapa*/){
     estadoJuego = false;
     menu = Menu::getInstance();
     mapaActual = 0;
+    jugador = new Player();
     InicializaNivel();
 }
 
 void game::InicializaNivel()
 {
-    //Limpiamos los datos del mapa anterior
-    // for (Actor *actor : actors) { 
-    //     delete actor;
-    // }
-    // actors.clear();
-    //Cargamos el nivel
-    string nombreMapa = "MapaNivel"+to_string(mapaActual+1)+".tmx";
-    vMapas.push_back(new Mapa(nombreMapa));
-
-    //Cargamos las colisiones del nivel
-    list<Tile*> mapColisionables = vMapas[mapaActual]->getActors();
-    for (Tile *tile : mapColisionables)
-    {
-        actors.push_back(tile);
+    //Limpiamos los datos de los colisionables del mapa anterior
+    for (Actor *actor : actors) { 
+        if(actor->getObjectType() == worldstatic)
+            actor->setLifespan(0.0);
     }
 
-    //Protagonista set location al inicio del mapa
+    if(mapaActual < 3) //HARDCODED: numero maximo de niveles es 3
+    {
+        //Cargamos el nivel
+        string nombreMapa = "MapaNivel"+to_string(mapaActual+1)+".tmx";
+        vMapas.push_back(new Mapa(nombreMapa));
 
-    //Set vista a la primera parte del mapa
-    //eng->ChangeAppView(0);
+        //Cargamos las colisiones del nivel
+        list<Tile*> mapColisionables = vMapas[mapaActual]->getActors();
+        for (Tile *tile : mapColisionables)
+        {
+            actors.push_back(tile);
+        }
+
+        //Protagonista set location al inicio del mapa
+        jugador->setActorLocation(Vector2f(350.0,200.0));
+        
+        //Set vista a la primera parte del mapa
+        //eng->ChangeAppView(0);
+    }
 }
 
 
@@ -61,13 +67,6 @@ void game::run(){
     /***********************************
      * TEST Actors, pawns and projectiles
      ***********************************/
-    list<Tile*> mapColisionables = vMapas[mapaActual]->getActors();
-    for (Tile *tile : mapColisionables)
-    {
-        actors.push_back(tile);
-    }
-    
-    Player *jugador = new Player();
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
 
@@ -200,10 +199,20 @@ void game::run(){
                         actor->Update(delta);
                     }
                 }
-
                 //Comprobamos si pasamos de nivel
                 Tile* puerta = vMapas[mapaActual]->getPuerta();
-                if(getAllEnemies().size() == 0 && (jugador->getBoundingBox().intersects(puerta->getBoundingBox())) )
+                // FloatRect lol = enemyexp->getBoundingBox();
+                // FloatRect lol2 = puerta->getBoundingBox();
+                // if(lol.intersects(lol2))
+                // {
+                //     cout << "LOOOOL" << endl;
+                // }
+                // if(/*getAllEnemies().size() == 0 &&*/ (jugador->getBoundingBox().intersects(puerta->getBoundingBox())) )
+                // {
+                //     mapaActual++;  
+                //     InicializaNivel();
+                // }
+                if(jugador->getActorLocation().y<100.0)
                 {
                     mapaActual++;  
                     InicializaNivel();

@@ -102,7 +102,7 @@ void Mapa::cargaMapa()
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaPuertas.c_str()) == 0) //Puertas (falta cambiarle el oType)
                     {
-                        vPuertas.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX*2,tamTileY,worldstatic));
+                        vPuertas.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX*2,tamTileY,trap));
                         vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX*2,tamTileY,worldstatic));
                     }
                     else{

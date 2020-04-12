@@ -46,6 +46,7 @@ void Tile::PrepareSprite(){
 
 
 void Tile::Update(float delta){
+    Actor::Update(delta);
 }
 
 void Tile::Draw(double percent, double delta){
