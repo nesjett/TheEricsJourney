@@ -45,10 +45,13 @@ void PlayerController::setPlayer(Player* jugador){
 void PlayerController::setLista(list<Enemy*> listaEnemigos){
     enemyList = listaEnemigos;
 }
+void PlayerController::Mejorar(float mej){
+    mejora*=mej;
+}
 
 void PlayerController::Attacks(){
     
-    if(relojAtaque.getElapsedTime().asSeconds()>2.f){
+    if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora)){
         miJugador->Attack(enemyList);
         relojAtaque.restart();
     }

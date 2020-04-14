@@ -16,6 +16,7 @@ class PlayerController:  public Controller{
         void setLista(list<Enemy*>);
         void Attacks();
         void Frenar(sf::Keyboard::Key);
+        void Mejorar(float);
 
     protected:
         virtual ~PlayerController(); 
@@ -25,4 +26,5 @@ class PlayerController:  public Controller{
         list<Enemy*> enemyList;
         float distancia;
         sf::Clock relojAtaque;
+        float mejora = 1.f;
 };

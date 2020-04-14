@@ -98,6 +98,9 @@ void game::run(){
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
+                    ControladorJugador->Mejorar(0.9);
+                }
                 ControladorJugador->Update(tecla.key.code);
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
