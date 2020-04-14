@@ -45,8 +45,11 @@ void PlayerController::setPlayer(Player* jugador){
 void PlayerController::setLista(list<Enemy*> listaEnemigos){
     enemyList = listaEnemigos;
 }
-void PlayerController::Mejorar(float mej){
+void PlayerController::MejorarCadencia(float mej){
     mejora*=mej;
+}
+void PlayerController::MejorarMovimiento(float mejMov){
+    miJugador->movementSpeed*=mejMov;
 }
 
 void PlayerController::Attacks(){

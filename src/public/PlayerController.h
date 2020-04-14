@@ -16,7 +16,8 @@ class PlayerController:  public Controller{
         void setLista(list<Enemy*>);
         void Attacks();
         void Frenar(sf::Keyboard::Key);
-        void Mejorar(float);
+        void MejorarCadencia(float);
+        void MejorarMovimiento(float);
 
     protected:
         virtual ~PlayerController(); 
