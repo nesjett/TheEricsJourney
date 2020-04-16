@@ -116,3 +116,9 @@ void Actor::OnActorOverlap(Actor *otherActor){
 Actor::~Actor(){
 
 }
+
+void Actor::setLifespan(float secs) {
+  sf::Time InSec = sf::seconds(secs);
+  game *gi = game::Instance();
+  lifeSpan = (gi->gameClock).getElapsedTime().asMilliseconds() + InSec.asMilliseconds();
+}
