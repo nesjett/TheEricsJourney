@@ -72,6 +72,9 @@ class game
         Player *jugador;
         PlayerController* ControladorJugador;
         void InicializaNivel();
+        Clock levelClock;
+        list<float> pointsPerLevel;
+        float lastUpdateLevelClock;
 };
 
 #endif // GAME_H

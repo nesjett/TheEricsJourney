@@ -35,6 +35,15 @@ void game::InicializaNivel()
             actor->setLifespan(0.0);
     }
 
+    //Guardamos la puntuacion del nivel anterior
+    if(estadoJuego == true) //Nos aseguramos de que lastUpdateLevelClock este inicializado
+    {
+        float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/600); //1 - minutos_transcrridos/100
+        float points = porcentaje*1000000; //Puntuacion max es de 1.000.000
+        pointsPerLevel.push_back(points);
+    }
+
+
     if(mapaActual < 3) //HARDCODED: numero maximo de niveles es 3
     {
         //Cargamos el nivel
@@ -53,6 +62,14 @@ void game::InicializaNivel()
         
         //Set vista a la primera parte del mapa
         //eng->ChangeAppView(0);
+
+        //Epmpezamos a correr el tiempo del nivel
+        lastUpdateLevelClock = levelClock.getElapsedTime().asSeconds();
+    }
+    else{
+        //Cargamos la pantalla de puntuaciones
+        estadoJuego = false;
+        menu->cambiarAPantallaFinal(pointsPerLevel);
     }
 }
 
@@ -131,9 +148,9 @@ void game::run(){
                 ControladorJugador->Update(tecla.key.code, soltada);
                 
             }
-            if(estadoJuego == false) //Estamos en el menu
+            if(estadoJuego == false) //Estamos en el menu o en la pantalla final
             {
-                estadoJuego = menu->update(tecla);
+                    estadoJuego = menu->update(tecla);
             }
         }
 

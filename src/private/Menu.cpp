@@ -8,7 +8,7 @@ Menu* Menu::menuInstance = 0;
 Menu::Menu()
 {
     //Prop menu
-    mostrarMenu = 0;
+    mostrarMenu = true;
     numItems = 2;
     
     //Propiedades de los items del menu
@@ -48,6 +48,17 @@ void Menu::cambiaColorItems()
             menuInicial[i]->setColor(colorItemBase);
         }
     }
+    if(mostrarMenu == false)
+    {
+        for(int i=0;i<4;i++){
+            if(i == actual){
+                menuFinal[actual]->setColor(colorItemHover);
+            }else{
+                menuFinal[i]->setColor(colorItemBase);
+            }
+        }
+    }
+
 }
 
 void Menu::cargarLogo()
@@ -81,18 +92,55 @@ void Menu::cargarMenu()
 
     }
 }
+void Menu::cargarMenuFinal()
+{
+    //cargarLogo();
+    itemsMenuFinal[0] = "Score 1: ";
+    itemsMenuFinal[1] = "Score 2: ";
+    itemsMenuFinal[2] = "Score 3: ";
+    itemsMenuFinal[3] = "Salir";
+    int j = 0;
+    for (float puntuacion : puntos) {
+        itemsMenuFinal[j] = itemsMenuFinal[j] + to_string((long)puntuacion);
+        j++;
+    }
+    Engine *eng = Engine::Instance();
+    for(int i = 0; i < 4; i++)
+    {
+        menuFinal[i] = new sf::Text();
+        menuFinal[i]->setFont(*fuente);
+        menuFinal[i]->setString(itemsMenuFinal[i]);
+        menuFinal[i]->setOrigin(menuFinal[i]->getGlobalBounds().width / 2.0, menuFinal[i]->getGlobalBounds().height / 2.0);
+        //menuFinal[i]->setPosition(eng->getApp().getSize().x / 2.0,  eng->getApp().getSize().y / 1.4 + separacion * i);
+        menuFinal[i]->setPosition(eng->getApp().getSize().x / 2.0,  logo->getOrigin().y + (logo->getGlobalBounds().height/2) + (separacion/2) * i);
+        menuFinal[i]->setColor(colorItemBase);
 
+    }
+}
+void Menu::cambiarAPantallaFinal(list<float> puntuaciones)
+{
+    puntos = puntuaciones;
+    mostrarMenu = false;
+    cargarMenuFinal();
+}
 
 void Menu::draw()
 {
-    //ventanaMenu->clear();
     Engine *eng = Engine::Instance();
     eng->getApp().draw(*logo);
-    for(int i=0;i<numItems;i++)
+    if(mostrarMenu == true)
     {
-        eng->getApp().draw(*menuInicial[i]);
+        for(int i=0;i<numItems;i++)
+        {
+            eng->getApp().draw(*menuInicial[i]);
+        }
     }
-    //ventanaMenu->display();
+    else{
+        for(int i=0;i<4;i++)
+        {
+            eng->getApp().draw(*menuFinal[i]);
+        }
+    }
 }
    
 bool Menu::update(sf::Event tecla)
@@ -112,15 +160,20 @@ bool Menu::update(sf::Event tecla)
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
-        if(actual>0)
-            actual--;
+        if(mostrarMenu == true)
+            if(actual>0)
+                actual--;
 
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
-        if(actual<(numItems-1))
-            actual++;
+        if(mostrarMenu == true)
+            if(actual<(numItems-1))
+                actual++;
     }
+
+    if(mostrarMenu == false)
+        actual = 3;
     cambiaColorItems();
     return false;
 }
