@@ -59,6 +59,18 @@ void PlayerController::Attacks(){
         relojAtaque.restart();
     }
 }
+void PlayerController::IncreaseHealth(){
+    //In this method, you can set an increase of 25 HP in Player's health
+    miJugador->setHealthMax(25.f);
+    miJugador->setCurrentH(25.f);
+}
+float PlayerController::getCurrentHealth(){
+    //This method returns the current health 
+    return miJugador->getCurrentHealth();
+}
+float PlayerController::getMaxHealth(){
+    return miJugador->getMaxHealth();
+}
 
 PlayerController::~PlayerController() // Destructor
 {

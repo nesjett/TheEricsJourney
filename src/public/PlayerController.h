@@ -18,6 +18,9 @@ class PlayerController:  public Controller{
         void Frenar(sf::Keyboard::Key);
         void MejorarCadencia(float);
         void MejorarMovimiento(float);
+        void IncreaseHealth();
+        float getCurrentHealth();
+        float getMaxHealth();
 
     protected:
         virtual ~PlayerController(); 

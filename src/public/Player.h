@@ -21,6 +21,10 @@ class Player:  public Pawn{
         void Update(float delta);
         void ActorOverlap(Actor otherActor);
         void Draw(double percent, double delta);
+        void setHealthMax(float);
+        void setCurrentH(float);
+        float getCurrentHealth();
+        float getMaxHealth();
 
     protected:
         void PrepareSprite2();

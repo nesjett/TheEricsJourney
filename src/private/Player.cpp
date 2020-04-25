@@ -16,6 +16,7 @@ Player::Player(){ // Use this to call to parent's contructor first
     damage_Multiplier = 0.0f; 
 
     movementSpeed = 5.0f;
+    faction = allie;
 
     Init();
 
@@ -101,4 +102,25 @@ void Player::Attack(list<Enemy*> enemyList){
     game *eng = game::Instance();
     Projectile *projTest = new Projectile(dir_unit, posPlayer);
     eng->Almacenaenemy(projTest);
+}
+
+void Player::setHealthMax(float increase){
+    //In this method, you can set an increase of Player's maximum health
+    health_MAX+=increase;
+}
+void Player::setCurrentH(float increase){
+    //In this method, you can set an increse of Player's current health
+    //This is made to increase a little bit Player's current health when Player gets a Health Improve.
+    health_Current+=increase;
+}
+float Player::getCurrentHealth(){
+    //This method returns the current healt of the player.
+    return health_Current;
+
+}
+float Player::getMaxHealth(){
+    //This method returns the current maximum health of the player. 
+    //This is to check if the player has any health improve.
+    return health_MAX;
+
 }

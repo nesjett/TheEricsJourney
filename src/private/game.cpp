@@ -104,6 +104,10 @@ void game::run(){
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::V)){
                     ControladorJugador->MejorarMovimiento(1.08);
                 }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
+                    ControladorJugador->IncreaseHealth();
+                    std::cout<<"Vida total: "<<ControladorJugador->getMaxHealth()<<std::endl;
+                }
                 ControladorJugador->Update(tecla.key.code);
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
