@@ -46,24 +46,24 @@ void game::run(){
     Player *jugador = new Player();
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
-
+    /*
     Fixedenemy *enemyfijo = new Fixedenemy();
     actors.push_back(enemyfijo);
     enemyfijo->setActorLocation(Vector2f(600.0,550.0));
 
     Movingenemy *enemymove = new Movingenemy();
     actors.push_back(enemymove);
-    enemymove->setActorLocation(Vector2f(200.0,200.0));
-    
-    Movingenemy *enemymove2 = new Movingenemy();
-    actors.push_back(enemymove2);
-    enemymove2->setActorLocation(Vector2f(500.0,250.0));
-
+    enemymove->Prepara(Vector2f(500.0,300.0),Vector2f(300.0,400.0));
+    */
     Explosionenemy *enemyexp = new Explosionenemy();
     actors.push_back(enemyexp);
     enemyexp->setActorLocation(Vector2f(400.0,400.0));
     
-
+    Stalker *stalker = new Stalker();
+    actors.push_back(stalker);
+    stalker->setActorLocation(Vector2f(400.0,400.0));
+    
+    
     /*Projectile *projTest = new Projectile();
     actors.push_back(projTest);*/
 
@@ -116,9 +116,7 @@ void game::run(){
 
         //ENEMY MOVE
 
-        enemymove->Linealmove_y(200.0,500.0);
-        enemymove2->Linealmove_x(500.0,300.0);
-        enemyexp->Followplayer();
+        
 
         // TODO: This loops should be inside the gamestate.cpp 
         double delta = clock.getElapsedTime().asMilliseconds() - lastUpdate;

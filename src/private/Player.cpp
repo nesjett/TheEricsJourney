@@ -31,7 +31,11 @@ void Player::Draw(double percent, double delta ){
 }
 
 void Player::Update(float delta){
-    Pawn::Update( delta);
+    bool estado=Pawn::IsAlive();
+    if(estado==true){
+        Pawn::Update( delta);
+    }
+    
 }
 void Player::TakeDamage(float damage, string damage_type){
     std::cout << "Damage taken!" << std::endl; 
