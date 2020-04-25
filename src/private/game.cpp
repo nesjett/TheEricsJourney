@@ -185,6 +185,8 @@ void game::run(){
             for (Actor *actor : actors) {
                 actor->Draw(percentTick, delta);
             }
+            Hud* hud = Hud::Instance();
+            hud->Draw();
         }
 
         eng->getApp().display();
