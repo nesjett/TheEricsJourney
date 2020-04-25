@@ -103,13 +103,21 @@ void game::run(){
     actors.push_back(enemyexp);
     enemyexp->setActorLocation(Vector2f(400.0,400.0));
     
+    listaEnemigos = getAllEnemies();
+    ControladorJugador = new PlayerController(jugador, listaEnemigos);
 
-    /*Projectile *projTest = new Projectile();
-    actors.push_back(projTest);*/
+    Pawn *enemyTest = new Pawn();
+    actors.push_back(enemyTest);
 
+    Skeleton *enemyTest2 = new Skeleton();
+    actors.push_back(enemyTest2);
+
+    Zombie *enemyTest3 = new Zombie();
+    actors.push_back(enemyTest3);
+    enemyTest3->setActorLocation(Vector2f(310,180));
+    
     std::cout << "Actors length: " << actors.size() << std::endl;
     //enemyTest->setAsleep(true);
-    ControladorJugador = new PlayerController(jugador);
 
     /***********************************
      * Game loop
@@ -130,30 +138,33 @@ void game::run(){
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 }
-
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-                    
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
+                    ControladorJugador->MejorarCadencia(0.9);
                 }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-                    
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::V)){
+                    ControladorJugador->MejorarMovimiento(1.08);
                 }
-                soltada = false;
-                ControladorJugador->Update(tecla.key.code, soltada);
-                
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
+                    ControladorJugador->IncreaseHealth();
+                    std::cout<<"Vida total: "<<ControladorJugador->getMaxHealth()<<std::endl;
+                }
+                ControladorJugador->Update(tecla.key.code);
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
             if (tecla.type == sf::Event::KeyReleased){
-                
-                soltada = true;
-                ControladorJugador->Update(tecla.key.code, soltada);
-                
+                ControladorJugador->Frenar(tecla.key.code);
             }
             if(estadoJuego == false) //Estamos en el menu o en la pantalla final
             {
                     estadoJuego = menu->update(tecla);
             }
         }
-
+        if(jugador->getDirection().x == 0.f && jugador->getDirection().y == 0.f){
+            ControladorJugador->setPlayer(jugador);
+            listaEnemigos = getAllEnemies();
+            ControladorJugador->setLista(listaEnemigos);
+            ControladorJugador->Attacks();
+        }
         //ENEMY MOVE
 
         enemymove->Linealmove_y(200.0,500.0);

@@ -1,5 +1,7 @@
 #pragma once
 #include <Pawn.h>
+#include <Enemy.h>
+#include <list>
 #include <Hud.h>
 
 using namespace std;
@@ -16,10 +18,14 @@ class Player:  public Pawn{
         void setDirection(float, float);
         sf::Vector2f getDirection();
         void UpdateMovement(); 
-        bool Attack();
+        void Attack(list<Enemy*>);
         void Update(float delta);
         void ActorOverlap(Actor otherActor);
         void Draw(double percent, double delta);
+        void setHealthMax(float);
+        void setCurrentH(float);
+        float getCurrentHealth();
+        float getMaxHealth();
 
     protected:
         void PrepareSprite2();
