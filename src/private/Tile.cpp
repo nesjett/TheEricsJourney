@@ -1,7 +1,7 @@
 #include "../public/Tile.h"
 
 
-Tile::Tile(string nombreSprite, float x, float y, float widthSprite, float heightSprite) : Actor(){ 
+Tile::Tile(string nombreSprite, float x, float y, float widthSprite, float heightSprite, ObjectType tipo) : Actor(){ 
     width = widthSprite;
     height = heightSprite;
     texture_file = nombreSprite;
@@ -9,7 +9,7 @@ Tile::Tile(string nombreSprite, float x, float y, float widthSprite, float heigh
 
 
     faction = neutral; //Por ahora pongo neutral pero si fuese danyino deberia ser otro tipo
-    oType = worldstatic;
+    oType = tipo;
     setActorLocation(Vector2f(y+(width/2),x+(height/2))); //las posiciones en sfml primer y luego x
 
     PrepareSprite();
@@ -46,6 +46,7 @@ void Tile::PrepareSprite(){
 
 
 void Tile::Update(float delta){
+    Actor::Update(delta);
 }
 
 void Tile::Draw(double percent, double delta){

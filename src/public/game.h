@@ -22,6 +22,7 @@
 #include <Fixedenemy.h>
 #include <Movingenemy.h>
 #include <Explosionenemy.h>
+#include <Hud.h>
 
 using namespace std;
 
@@ -48,14 +49,13 @@ class game
 
         long getTime() { return gameClock.getElapsedTime().asMilliseconds(); };
         Actor* boxTraceByObjectType(FloatRect rect, ObjectType type);
+        sf::Clock gameClock;
 
     protected:
         game();
         game(const game &);
         game &operator= (const game &);
         virtual ~game();
-        
-        sf::Clock gameClock;
 
     private:
         static game* pInstance;
@@ -70,7 +70,12 @@ class game
         Menu* menu;
         vector<Mapa*> vMapas;
         int mapaActual;
+        Player *jugador;
         PlayerController* ControladorJugador;
+        void InicializaNivel();
+        Clock levelClock;
+        list<float> pointsPerLevel;
+        float lastUpdateLevelClock;
 };
 
 #endif // GAME_H

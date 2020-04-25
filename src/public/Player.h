@@ -2,6 +2,7 @@
 #include <Pawn.h>
 #include <Enemy.h>
 #include <list>
+#include <Hud.h>
 
 using namespace std;
 using namespace sf;
