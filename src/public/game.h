@@ -22,6 +22,7 @@
 #include <Fixedenemy.h>
 #include <Movingenemy.h>
 #include <Explosionenemy.h>
+#include <Hud.h>
 
 using namespace std;
 

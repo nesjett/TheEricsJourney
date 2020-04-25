@@ -1,5 +1,6 @@
 #pragma once
 #include <Pawn.h>
+#include <Hud.h>
 
 using namespace std;
 using namespace sf;
