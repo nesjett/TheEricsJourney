@@ -90,7 +90,6 @@ void Pawn::Draw(double percent, double delta ){
         activeAnim->update(delta);
     }
     Actor::Draw(percent, delta); // Use this to debug draw bounding box
-
     if(debug) {
         Engine *eng = Engine::Instance();
         eng->getApp().draw(movementTraceDebug);

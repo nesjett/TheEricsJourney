@@ -148,6 +148,7 @@ bool Menu::update(sf::Event tecla)
     //No necesitamos delta
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
     {
+        audioManager->play_menu_ok();
         if(actual == 0)
         {
             audioManager->menu();
@@ -161,15 +162,27 @@ bool Menu::update(sf::Event tecla)
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
         if(mostrarMenu == true)
+        {
             if(actual>0)
+            {
                 actual--;
+                audioManager->play_menu_move();
+            }
+        }
+
 
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
         if(mostrarMenu == true)
+        {
             if(actual<(numItems-1))
+            {
                 actual++;
+                audioManager->play_menu_move();
+            }
+
+        }
     }
 
     if(mostrarMenu == false)
