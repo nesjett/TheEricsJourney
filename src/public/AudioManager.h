@@ -1,3 +1,4 @@
+#pragma once
 #ifndef AUDIOMANAGER_H
 #define AUDIOMANAGER_H
 #include <SFML/Graphics.hpp>

@@ -9,10 +9,16 @@ AudioManager* AudioManager::unicaInstancia = 0;
 AudioManager::AudioManager()
 {
     //Cargamos todos los sonidos
+    //Menu
     menu_music.openFromFile("./resources/audio/menutheme.ogg");
     menu_music.setLoop(true);
     menu_move.openFromFile("./resources/audio/cursor_move.ogg");
     menu_ok.openFromFile("./resources/audio/cursor_ok.ogg");
+    menu_ok.setPitch(2);
+    menu_move.setPitch(2);
+
+    //Jugador
+    player_shot.openFromFile("./resources/audio/player_shot.ogg");
 }
 
 AudioManager::~AudioManager()
@@ -36,10 +42,11 @@ void AudioManager::play_menu_move()
 void AudioManager::play_menu_ok()
 {
     menu_ok.play();
+    while(menu_ok.getStatus() == SoundSource::Playing){} //Hasta que no se reproduzca por completo no se sigue
 }
 
 //Audio del juego
 void AudioManager::play_player_shot()
 {
-
+    player_shot.play();
 }
