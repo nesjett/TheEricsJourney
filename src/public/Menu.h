@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstring>
 #include <AudioManager.h>
+#include <list>
 using namespace std;
 
 class Menu
@@ -16,6 +17,7 @@ class Menu
         void render(sf::RenderWindow *gameWindow);
         bool update(sf::Event tecla);
         void draw();
+        void cambiarAPantallaFinal(list<float> puntuaciones);
     protected:
 
     private:
@@ -23,12 +25,14 @@ class Menu
 
         sf::Font* fuente;
         sf::Text* menuInicial [2];
+        sf::Text* menuFinal [4];
         sf::Texture* texturaLogo;
         sf::Sprite* logo;
         string itemsMenu [4];
+        string itemsMenuFinal [4];
         sf::Color colorItemHover;
         sf::Color colorItemBase;
-        int mostrarMenu;
+        bool mostrarMenu;
         int separacion;
         int actual;
         int presionado;
@@ -39,8 +43,9 @@ class Menu
         virtual ~Menu();
         void cargarFuente();
         void cargarMenu();
+        void cargarMenuFinal();
         void cambiaColorItems();
         void cargarLogo();
-
+        list<float> puntos;
         AudioManager* audioManager;
 };

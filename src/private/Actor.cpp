@@ -30,7 +30,6 @@ void Actor::Update(float delta){
 }
 
 void Actor::Draw(double percent, double delta ){
-  Vector2f currentLoc;
   if(asleep) {
     currentLoc = getActorLocation(); // we have to draw the collision debuggin, but without moving
   } else {
@@ -115,4 +114,10 @@ void Actor::OnActorOverlap(Actor *otherActor){
 
 Actor::~Actor(){
 
+}
+
+void Actor::setLifespan(float secs) {
+  sf::Time InSec = sf::seconds(secs);
+  game *gi = game::Instance();
+  lifeSpan = (gi->gameClock).getElapsedTime().asMilliseconds() + InSec.asMilliseconds();
 }
