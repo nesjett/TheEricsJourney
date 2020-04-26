@@ -31,7 +31,7 @@ void Player::Draw(double percent, double delta ){
 }
 
 void Player::Update(float delta){
-    bool estado=Pawn::IsAlive();
+    bool estado=IsAlive();
     if(estado==true){
         Pawn::Update( delta);
     }
