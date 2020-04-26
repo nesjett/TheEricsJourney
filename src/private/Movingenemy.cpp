@@ -5,8 +5,6 @@ Movingenemy::Movingenemy(){ // Use this to call to parent's contructor first
 
     texture_file = "./resources/sprites.png";
 
-    
-    
 
     health_MAX = 100.0f;
     health_Current = health_MAX; // Init health
@@ -16,7 +14,7 @@ Movingenemy::Movingenemy(){ // Use this to call to parent's contructor first
 
     movementSpeed = 0.1f;
 
-    
+    setActorLocation(x);
 
 
     Init();
@@ -32,6 +30,9 @@ void Movingenemy::Init(){
 
 void Movingenemy::Update(float delta){
     Pawn::Update(delta);
+
+    Linealmove(x,y);
+    
     Attack();
 }
 
@@ -39,50 +40,39 @@ void Movingenemy::Draw(double percent, double delta ){
     Actor::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
-void Movingenemy::Linealmove_y(float pos1, float pos2){
-
-    if(pos1!=pos2){
-        if(pos1<pos2){
-            float aux=pos2;
-            pos2=pos1;
-            pos1=aux;    
-        }
-
-        if(getActorLocation().y>=pos1){
-            enemydirection_y=-1.0;
-        }
-        if(getActorLocation().y<=pos2){
-            enemydirection_y=1.0;
-        }
-    }
-    else{
-        enemydirection_y=0.0;
-    }
-
-    direction = Vector2f(0.0,enemydirection_y);
+void Movingenemy::Prepara(Vector2f inicio, Vector2f final){
+    setActorLocation(inicio);
+    x=inicio;
+    y=final;
 }
 
-void Movingenemy::Linealmove_x(float pos1, float pos2){
+void Movingenemy::Linealmove(Vector2f pos1, Vector2f pos2){
 
-    if(pos1!=pos2){
-        if(pos1<pos2){
-            float aux=pos2;
-            pos2=pos1;
-            pos1=aux;    
-        }
+    Vector2f actor=getActorLocation();
+    
+    Vector2f dir = pos2-pos1;
+    float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
+    Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
 
-        if(getActorLocation().x>=pos1){
-            enemydirection_x=-1.0;
-        }
-        if(getActorLocation().x<=pos2){
-            enemydirection_x=1.0;
-        }
+    Vector2f dir2 = pos2-actor;
+    float aux2=sqrt(pow(dir2.x, 2)+pow(dir2.y, 2));
+    
+    Vector2f dir3 = pos1-actor;
+    float aux3=sqrt(pow(dir3.x, 2)+pow(dir3.y, 2));
+
+    if(pos1.x==actor.x && pos1.y==actor.y){
+        direction = dir_unit;
     }
     else{
-        enemydirection_x=0.0;
+        if(aux2<10){
+        direction = -dir_unit;
+        }
+        if(aux3<10){
+        direction = dir_unit;
+        }
     }
-
-    direction = Vector2f(enemydirection_x,0.0);
+    
+    
 }
 
 

@@ -15,8 +15,11 @@ class Explosionenemy: public Enemy{
         void Followplayer();
         void Update(float delta);
         void Draw(double percent, double delta );
+        Vector2f RandomNewDir();
         //Vector2f Direccionunitaria(Vector2f pos_player,Vector2f pos);
         sf::Clock relojMark;
+        sf::Clock relojdireccion;
+        
 
 
     private:
