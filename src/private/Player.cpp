@@ -31,7 +31,12 @@ void Player::Init(){
     std::cout << "Terminamos INIT()" << std::endl;
 }
 void Player::Draw(double percent, double delta ){
-   Actor::Draw(percent, delta); 
+   Actor::Draw(percent, delta);
+    if(faction == allie)
+    {
+        Engine* eng = Engine::Instance();
+        eng->setView(currentLoc.y);
+    } 
 }
 
 void Player::Update(float delta){
