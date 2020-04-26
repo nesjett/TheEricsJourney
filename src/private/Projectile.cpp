@@ -55,12 +55,15 @@ void Projectile::Draw(double percent, double delta ){
    //sprite->Draw(getActorLocation(), getActorLastLocation(), percent);
 }
 
-void Projectile::TakeDamage(float damage, string damage_type){
+void Projectile::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
 
 }
 
 void Projectile::OnActorOverlap(Actor *otherActor){
     //otherActor.TakeDamage(damage, "default");
+    if ( dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == allie ) { // allie = player related things
+        otherActor->TakeDamage(damage, this, "PROJECTILE_X");
+    }
 }
 
 Projectile::~Projectile(){

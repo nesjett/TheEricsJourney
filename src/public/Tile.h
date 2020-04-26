@@ -9,7 +9,7 @@ using namespace sf;
 
 class Tile: public Actor {
     public:
-        Tile(string nombreSprite, float x, float y, float widthSprite, float heightSprite);
+        Tile(string nombreSprite, float x, float y, float widthSprite, float heightSprite, ObjectType tipo);
         float width, height;
         void Update(float delta);
         void Draw(double percent, double delta );

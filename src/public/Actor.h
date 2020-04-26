@@ -41,7 +41,7 @@ class Actor {
     virtual void Update(float delta);
 		virtual void Draw(double percent, double delta );
 		virtual void Init();
-    virtual void TakeDamage(float damage, string damage_type);
+    virtual void TakeDamage(float damage, Actor* dmgCauser, string damage_type);
 
     bool debug;
     bool debug_coords;

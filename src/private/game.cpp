@@ -23,7 +23,54 @@ void game::init(/*char* nombre, int AuxMapa*/){
     estadoJuego = false;
     menu = Menu::getInstance();
     mapaActual = 0;
-    vMapas.push_back(new Mapa("MapaNivel1.tmx"));
+    jugador = new Player();
+    InicializaNivel();
+}
+
+void game::InicializaNivel()
+{
+    //Limpiamos los datos de los colisionables del mapa anterior
+    for (Actor *actor : actors) { 
+        if(actor->getObjectType() == worldstatic)
+            actor->setLifespan(0.0);
+    }
+
+    //Guardamos la puntuacion del nivel anterior
+    if(estadoJuego == true) //Nos aseguramos de que lastUpdateLevelClock este inicializado
+    {
+        float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/600); //1 - minutos_transcrridos/100
+        float points = porcentaje*1000000; //Puntuacion max es de 1.000.000
+        pointsPerLevel.push_back(points);
+    }
+
+
+    if(mapaActual < 3) //HARDCODED: numero maximo de niveles es 3
+    {
+        //Cargamos el nivel
+        string nombreMapa = "MapaNivel"+to_string(mapaActual+1)+".tmx";
+        vMapas.push_back(new Mapa(nombreMapa));
+
+        //Cargamos las colisiones del nivel
+        list<Tile*> mapColisionables = vMapas[mapaActual]->getActors();
+        for (Tile *tile : mapColisionables)
+        {
+            actors.push_back(tile);
+        }
+
+        //Protagonista set location al inicio del mapa
+        jugador->setActorLocation(Vector2f(350.0,200.0));
+        
+        //Set vista a la primera parte del mapa
+        //eng->ChangeAppView(0);
+
+        //Epmpezamos a correr el tiempo del nivel
+        lastUpdateLevelClock = levelClock.getElapsedTime().asSeconds();
+    }
+    else{
+        //Cargamos la pantalla de puntuaciones
+        estadoJuego = false;
+        menu->cambiarAPantallaFinal(pointsPerLevel);
+    }
 }
 
 
@@ -37,13 +84,6 @@ void game::run(){
     /***********************************
      * TEST Actors, pawns and projectiles
      ***********************************/
-    list<Tile*> mapColisionables = vMapas[mapaActual]->getActors();
-    for (Tile *tile : mapColisionables)
-    {
-        actors.push_back(tile);
-    }
-    
-    Player *jugador = new Player();
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
     /*
@@ -66,10 +106,21 @@ void game::run(){
     
     /*Projectile *projTest = new Projectile();
     actors.push_back(projTest);*/
+    listaEnemigos = getAllEnemies();
+    ControladorJugador = new PlayerController(jugador, listaEnemigos);
 
+    Pawn *enemyTest = new Pawn();
+    actors.push_back(enemyTest);
+
+    Skeleton *enemyTest2 = new Skeleton();
+    actors.push_back(enemyTest2);
+
+    Zombie *enemyTest3 = new Zombie();
+    actors.push_back(enemyTest3);
+    enemyTest3->setActorLocation(Vector2f(310,180));
+    
     std::cout << "Actors length: " << actors.size() << std::endl;
     //enemyTest->setAsleep(true);
-    ControladorJugador = new PlayerController(jugador);
 
     /***********************************
      * Game loop
@@ -90,30 +141,33 @@ void game::run(){
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 }
-
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-                    
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
+                    ControladorJugador->MejorarCadencia(0.9);
                 }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-                    
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::V)){
+                    ControladorJugador->MejorarMovimiento(1.08);
                 }
-                soltada = false;
-                ControladorJugador->Update(tecla.key.code, soltada);
-                
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
+                    ControladorJugador->IncreaseHealth();
+                    std::cout<<"Vida total: "<<ControladorJugador->getMaxHealth()<<std::endl;
+                }
+                ControladorJugador->Update(tecla.key.code);
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
             if (tecla.type == sf::Event::KeyReleased){
-                
-                soltada = true;
-                ControladorJugador->Update(tecla.key.code, soltada);
-                
+                ControladorJugador->Frenar(tecla.key.code);
             }
-            if(estadoJuego == false) //Estamos en el menu
+            if(estadoJuego == false) //Estamos en el menu o en la pantalla final
             {
-                estadoJuego = menu->update(tecla);
+                    estadoJuego = menu->update(tecla);
             }
         }
-
+        if(jugador->getDirection().x == 0.f && jugador->getDirection().y == 0.f){
+            ControladorJugador->setPlayer(jugador);
+            listaEnemigos = getAllEnemies();
+            ControladorJugador->setLista(listaEnemigos);
+            ControladorJugador->Attacks();
+        }
         //ENEMY MOVE
 
         
@@ -143,6 +197,8 @@ void game::run(){
             for (Actor *actor : actors) {
                 actor->Draw(percentTick, delta);
             }
+            Hud* hud = Hud::Instance();
+            hud->Draw();
         }
 
         eng->getApp().display();
@@ -173,6 +229,24 @@ void game::run(){
                     if(actor->isAsleep() == false) { // Avoid updating actors that should not update right now (ex: out of window bounds,...)
                         actor->Update(delta);
                     }
+                }
+                //Comprobamos si pasamos de nivel
+                Tile* puerta = vMapas[mapaActual]->getPuerta();
+                // FloatRect lol = enemyexp->getBoundingBox();
+                // FloatRect lol2 = puerta->getBoundingBox();
+                // if(lol.intersects(lol2))
+                // {
+                //     cout << "LOOOOL" << endl;
+                // }
+                // if(/*getAllEnemies().size() == 0 &&*/ (jugador->getBoundingBox().intersects(puerta->getBoundingBox())) )
+                // {
+                //     mapaActual++;  
+                //     InicializaNivel();
+                // }
+                if(jugador->getActorLocation().y<100.0)
+                {
+                    mapaActual++;  
+                    InicializaNivel();
                 }
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();

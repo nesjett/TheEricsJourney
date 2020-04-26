@@ -9,7 +9,7 @@ void Enemy::Update(float delta){
 
 }
 
-void Enemy::TakeDamage(float damage, string damage_type){
+void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     std::cout << "Damage taken!" << std::endl; 
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
         health_Current-=damage;

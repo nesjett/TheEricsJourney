@@ -9,7 +9,7 @@ using namespace sf;
 class Enemy: public Pawn {
     public:
         Enemy();
-        void TakeDamage(float damage, string damage_type);
+        void TakeDamage(float damage, Actor* dmgCauser, string damage_type);
         bool IsAlive(); // This should go to an interface or to parent PAWN class
 
         bool Attack();

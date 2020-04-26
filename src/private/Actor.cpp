@@ -105,7 +105,7 @@ void Actor::Draw(double percent, double delta ){
   }
 }
 
-void Actor::TakeDamage(float damage, string damage_type){
+void Actor::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
 
 }
 
@@ -115,4 +115,10 @@ void Actor::OnActorOverlap(Actor *otherActor){
 
 Actor::~Actor(){
 
+}
+
+void Actor::setLifespan(float secs) {
+  sf::Time InSec = sf::seconds(secs);
+  game *gi = game::Instance();
+  lifeSpan = (gi->gameClock).getElapsedTime().asMilliseconds() + InSec.asMilliseconds();
 }
