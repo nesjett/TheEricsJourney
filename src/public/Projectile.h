@@ -24,12 +24,14 @@ class Projectile: public Actor {
         Faction targetFaction; // allie = player faction, enemy = AI faction
 
         void Update(float delta);
-        void Init();
+        virtual void Init();
         void Draw(double percent, double delta );
         void OnActorOverlap(Actor *otherActor);
         void TakeDamage(float damage, Actor* dmgCauser, string damage_type);
 
     protected:
+        Animation* activeAnim = NULL;
+        std::map<std::string, Animation*> Animations;
     private:
 
 };

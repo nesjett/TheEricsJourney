@@ -1,21 +1,21 @@
-#include "../../public/projectiles/FireBall.h"
+#include "../../public/projectiles/Arrow.h"
 
 
 
-FireBall::FireBall() : Projectile(){ // Use this to call to parent's contructor first
+Arrow::Arrow() : Projectile(){ // Use this to call to parent's contructor first
     Init();
 }
-FireBall::FireBall(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
+Arrow::Arrow(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
     Init();
     direction = dir;
     setActorLocation(pos); 
     activeAnim = Animations.find("IDLE")->second;
 }
-void FireBall::Init(){
+void Arrow::Init(){
     movementSpeed = 0.1;
     damage = 20;
 
-    texture_file = "./resources/projectiles/fireball-512.png";
+    texture_file = "./resources/projectiles/Arrow-512.png";
     if(sprite){
         delete sprite;
     }
@@ -39,7 +39,7 @@ void FireBall::Init(){
     
 }
 
-void FireBall::Update(float delta){
+void Arrow::Update(float delta){
     float x = movementSpeed*direction.x*delta;
     float y = movementSpeed*direction.y*delta;
     x = getActorLocation().x + x;
@@ -56,14 +56,14 @@ void FireBall::Update(float delta){
 }
 
 
-void FireBall::OnActorOverlap(Actor *otherActor){
+void Arrow::OnActorOverlap(Actor *otherActor){
     //otherActor.TakeDamage(damage, "default");
     if ( dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == allie ) { // allie = player related things
         otherActor->TakeDamage(damage, this, "PROJECTILE_X");
     }
 }
 
-FireBall::~FireBall(){
+Arrow::~Arrow(){
     //delete sprite;
 }
 

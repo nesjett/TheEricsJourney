@@ -16,7 +16,7 @@ class Actor {
     Actor();
     virtual ~Actor();
     Vector2f getActorLocation() {return location;}
-	  FloatRect getBoundingBox() {return sprite->getSprite().getGlobalBounds();}
+	  FloatRect getBoundingBox() {return sprite->getGlobalBounds();}
 
     /*/////////////////////////////////////////////////////////
     \brief Updates de current and old locations

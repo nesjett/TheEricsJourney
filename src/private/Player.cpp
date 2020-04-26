@@ -48,7 +48,7 @@ void Player::Update(float delta){
 }
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     std::cout << "Damage taken!" << std::endl; 
-    if(health_Current > 0){ // Only apply damage if the enemy is alive.
+    /*if(health_Current > 0){ // Only apply damage if the enemy is alive.
         health_Current-=damage;
         //Actualizamos la HUD
         Hud* hud = Hud::Instance();
@@ -58,7 +58,7 @@ void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
         } else {
             ApplyHitEffects(damage_type); // Apply hit effects
         }
-    }
+    }*/
 }
 
 bool Player::IsAlive(){

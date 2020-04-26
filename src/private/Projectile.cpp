@@ -21,7 +21,6 @@ Projectile::Projectile(sf::Vector2f dir, sf::Vector2f pos){
     // Initially It has no direction
     movementSpeed = 0.2;
     damage = 20;
-    direction=Vector2f(1.0,1.0);
     oType = projectile; // Set the collision channel
     
     Init();
@@ -48,11 +47,14 @@ void Projectile::Update(float delta){
     // SFML's y-axis is flipped: flip our y-component
     auto angleRads = std::atan2(direction.y, -direction.x);
     auto angleDegs = angleRads * 180.0 / M_PI;
-    sprite->setRotation(angleDegs);
+    //sprite->setRotation(angleDegs);
 }
 
 void Projectile::Draw(double percent, double delta ){
    Actor::Draw(percent, delta); // Debugging
+   if(activeAnim){
+       activeAnim->update(delta);
+   }
    //sprite->Draw(getActorLocation(), getActorLastLocation(), percent);
 }
 
