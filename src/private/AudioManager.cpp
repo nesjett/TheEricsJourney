@@ -6,24 +6,21 @@ using namespace sf;
 
 AudioManager* AudioManager::unicaInstancia = 0;
 
-/*Para utilizarlo:
-
-    AudioManager *audio = AudioManager::getInstance();
-    AudioManager::getInstance()->respirar();
-
-*/
 AudioManager::AudioManager()
 {
+    //Cargamos todos los sonidos
     menu_music.openFromFile("./resources/audio/menutheme.ogg");
     menu_music.setLoop(true);
-    // nivel1_music.openFromFile("sounds/nivel1.ogg");
-    // nivel1_music.setLoop(true);
+    menu_move.openFromFile("./resources/audio/cursor_move.ogg");
+    menu_ok.openFromFile("./resources/audio/cursor_ok.ogg");
 }
 
 AudioManager::~AudioManager()
 {
     //dtor
 }
+
+//Audio del menu
 void AudioManager::menu()
 {
     if (menu_music.getStatus() == SoundSource::Stopped)
@@ -32,11 +29,17 @@ void AudioManager::menu()
         menu_music.stop();
     }
 }
-void AudioManager::play_music_menu()
+void AudioManager::play_menu_move()
 {
-    menu_music.play();
+    menu_move.play();
 }
-void AudioManager::stop_music_menu()
+void AudioManager::play_menu_ok()
 {
-    menu_music.stop();
+    menu_ok.play();
+}
+
+//Audio del juego
+void AudioManager::play_player_shot()
+{
+
 }
