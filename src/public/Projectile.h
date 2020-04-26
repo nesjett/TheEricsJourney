@@ -20,6 +20,9 @@ class Projectile: public Actor {
         float movementSpeed;
         float damage;
 
+        // Determine the faction that this projectile will apply effect to
+        Faction targetFaction; // allie = player faction, enemy = AI faction
+
         void Update(float delta);
         void Init();
         void Draw(double percent, double delta );
