@@ -7,32 +7,19 @@ PlayerController::PlayerController(Player* jugador, list<Enemy*> listaEnemigos){
     enemyList = listaEnemigos;
 }
 
-void PlayerController::Update(sf::Keyboard::Key tecla, sf::RenderWindow app){
-    //game *eng = game::Instance();
-    if (tecla == sf::Event::Closed){
-        app.close();
+void PlayerController::Update(sf::Keyboard::Key tecla){
+    if (tecla == sf::Keyboard::N){
+        MejorarCadencia(0.9);
     }
-    if (tecla == sf::Event::KeyPressed){
-        //Escape
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-            app.close();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
-            MejorarCadencia(0.9);
-        }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::V)){
-            MejorarMovimiento(1.08);
-        }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
-            IncreaseHealth();
-            std::cout<<"Vida total: "<<getMaxHealth()<<std::endl;
-        }
-        Mover(tecla);
-        std::cout << "Tecla pulsada: " << tecla << std::endl;
+    if(tecla == sf::Keyboard::V){
+        MejorarMovimiento(1.08);
     }
-    if (tecla == sf::Event::KeyReleased){
-        Frenar(tecla);
+    if(tecla == sf::Keyboard::P){
+        IncreaseHealth();
+        std::cout<<"Vida total: "<<getMaxHealth()<<std::endl;
     }
+    Mover(tecla);
+    std::cout << "Tecla pulsada: " << tecla << std::endl;
     
 }
 void PlayerController::Mover(sf::Keyboard::Key tecla){
