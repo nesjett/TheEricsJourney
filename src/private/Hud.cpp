@@ -1,4 +1,5 @@
 #include "../public/Hud.h"
+#include "../public/game.h"
 
 Hud* Hud::pInstance = NULL;
 Hud* Hud::Instance() {
@@ -29,7 +30,7 @@ Hud::Hud()
 }
 Hud::~Hud()
 {
-    
+    enemyHealthBars.erase(enemyHealthBars.begin(), enemyHealthBars.end());
 }
 
 void Hud::setMaxHealth(float health)
@@ -65,35 +66,58 @@ void Hud::setPlayer(Player* player)
     setCurrentHealth(jugador->getCurrentHealth());
 }
 
-void Hud::addEnemy(Enemy* enemy)
-{
-    enemigos.push_back(enemy);
-    RectangleShape vidaEnemigo;
-    vidaEnemigo.setSize(sf::Vector2f(width, height));
-    vidaEnemigo.setOrigin(width/2, height/2);
-    vidaEnemigo.setFillColor(colorHealth100);
-    enemyHealthBars.push_back(vidaEnemigo);
-}
+// void Hud::addEnemy(Enemy* enemy)
+// {
+//     enemigos.push_back(enemy);
+//     RectangleShape vidaEnemigo;
+//     vidaEnemigo.setSize(sf::Vector2f(width, height));
+//     vidaEnemigo.setOrigin(width/2, height/2);
+//     vidaEnemigo.setFillColor(colorHealth100);
+//     enemyHealthBars.push_back(vidaEnemigo);
+// }
  void Hud::Update()
  {
     setCurrentHealth(jugador->getCurrentHealth());
-    for(int i = 0; i < enemyHealthBars.size(); i++)
-    {
-        if(enemigos[i]->health_Current >= 0.f)
+    list<Enemy*> enemigos = game::Instance()->getAllEnemies();
+    enemyHealthBars.erase(enemyHealthBars.begin(), enemyHealthBars.end());
+    enemyHealthBars.clear();
+    int i = 0;
+    for (Enemy *enemigo : enemigos) {
+        if(enemigo->health_Current >= 0.f)
         {
-            percent = enemigos[i]->health_Current / enemigos[i]->health_MAX;
-            enemyHealthBars[i].setSize(sf::Vector2f(percent*width, height));
-            enemyHealthBars[i].setFillColor(colorHealth100);
+            percent = enemigo->health_Current / enemigo->health_MAX;
+            enemyHealthBars.push_back(new RectangleShape);
+            enemyHealthBars[i]->setSize(sf::Vector2f(percent*width, height));
+            enemyHealthBars[i]->setFillColor(colorHealth100);
+            enemyHealthBars[i]->setOrigin(width/2, height/2);
             if(percent <= 0.5f && percent > 0.25f)
             {
-                enemyHealthBars[i].setFillColor(colorHealthLess50);
+                enemyHealthBars[i]->setFillColor(colorHealthLess50);
             }
             if(percent <= 0.25f)
             {
-                enemyHealthBars[i].setFillColor(colorHealthLess25);
+                enemyHealthBars[i]->setFillColor(colorHealthLess25);
             }
-        }
+            i++;
+        }       
     }
+    // for(int i = 0; i < enemyHealthBars.size(); i++)
+    // {
+    //     if(enemigos[i]->health_Current >= 0.f)
+    //     {
+    //         percent = enemigos[i]->health_Current / enemigos[i]->health_MAX;
+    //         enemyHealthBars[i].setSize(sf::Vector2f(percent*width, height));
+    //         enemyHealthBars[i].setFillColor(colorHealth100);
+    //         if(percent <= 0.5f && percent > 0.25f)
+    //         {
+    //             enemyHealthBars[i].setFillColor(colorHealthLess50);
+    //         }
+    //         if(percent <= 0.25f)
+    //         {
+    //             enemyHealthBars[i].setFillColor(colorHealthLess25);
+    //         }
+    //     }
+    // }
  }
 
 void Hud::Draw()
@@ -111,14 +135,23 @@ void Hud::Draw()
     eng->getApp().draw(playerHealth);
 
     //Barras de vida de los enemigos con borde
-    for(int i = 0; i < enemyHealthBars.size(); i++)
-    {
-        if(enemigos[i]->health_Current >= 0.f)
+    // for(int i = 0; i < enemigos.size(); i++)
+    // {
+    //     enemyHealthBars[i].setPosition(enemigos[i]->getInterpolatedPos().x, enemigos[i]->getInterpolatedPos().y - 50);
+    //     borde.setPosition(enemigos[i]->getInterpolatedPos().x, enemigos[i]->getInterpolatedPos().y - 50);
+    //     eng->getApp().draw(borde);
+    //     eng->getApp().draw(enemyHealthBars[i]);
+    // }
+    list<Enemy*> enemigos = game::Instance()->getAllEnemies();
+    int i = 0;
+    for (Enemy *enemigo : enemigos) {
+        if(enemyHealthBars.size() > 0)
         {
-            enemyHealthBars[i].setPosition(enemigos[i]->getInterpolatedPos().x, enemigos[i]->getInterpolatedPos().y - 50);
-            borde.setPosition(enemigos[i]->getInterpolatedPos().x, enemigos[i]->getInterpolatedPos().y - 50);
+            enemyHealthBars[i]->setPosition(enemigo->getInterpolatedPos().x, enemigo->getInterpolatedPos().y - 50);
+            borde.setPosition(enemigo->getInterpolatedPos().x, enemigo->getInterpolatedPos().y - 50);
             eng->getApp().draw(borde);
-            eng->getApp().draw(enemyHealthBars[i]);
+            eng->getApp().draw(*enemyHealthBars[i]);
+            i++;       
         }
     }
 }

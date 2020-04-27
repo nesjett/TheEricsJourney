@@ -104,12 +104,6 @@ void game::run(){
     Explosionenemy *enemyexp = new Explosionenemy();
     actors.push_back(enemyexp);
     enemyexp->setActorLocation(Vector2f(400.0,400.0));
-
-    Hud* hud = Hud::Instance();
-    hud->addEnemy(enemyfijo);
-    hud->addEnemy(enemymove);
-    hud->addEnemy(enemymove2);
-    hud->addEnemy(enemyexp);
     
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
@@ -255,8 +249,6 @@ void game::run(){
                     mapaActual++;  
                     InicializaNivel();
                 }
-                Hud* hud = Hud::Instance();
-                hud->Update();
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
 
@@ -273,6 +265,8 @@ void game::run(){
                 ), 
                 actors.end()
             ); 
+            Hud* hud = Hud::Instance();
+            hud->Update();
         }
         
 
@@ -283,8 +277,8 @@ list<Enemy*> game::getAllEnemies(){
     list<Enemy*> tmp;
     Enemy* tmpE = NULL;
     for (Actor *actor : actors) {
-        if ( static_cast<Enemy*>( actor ) ) {
-            tmpE = static_cast<Enemy*>(actor);
+        if ( dynamic_cast<Enemy*>( actor ) ) {
+            tmpE = dynamic_cast<Enemy*>(actor);
             tmp.push_back(tmpE);
         }
     }
@@ -295,8 +289,8 @@ list<Projectile*> game::getAllProjectiles(){
     list<Projectile*> tmp;
     Projectile* tmpE = NULL;
     for (Actor *actor : actors) {
-        if ( static_cast<Projectile*>( actor ) ) {
-            tmpE = static_cast<Projectile*>(actor);
+        if ( dynamic_cast<Projectile*>( actor ) ) {
+            tmpE = dynamic_cast<Projectile*>(actor);
             tmp.push_back(tmpE);
         }
     }
