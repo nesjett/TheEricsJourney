@@ -109,9 +109,6 @@ void game::run(){
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
 
-    Pawn *enemyTest = new Pawn();
-    actors.push_back(enemyTest);
-
     Skeleton *enemyTest2 = new Skeleton();
     actors.push_back(enemyTest2);
 

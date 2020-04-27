@@ -3,10 +3,10 @@
 Explosionenemy::Explosionenemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/sprites.png";
+    texture_file = "./resources/Zombies.png";
 
     setActorLocation(Vector2f(100.f, 100.f));
-    direction = Vector2f(-0.5, -0.5);
+    direction = Vector2f(0.0, -1.0);
 
     health_MAX = 100.0f;
     health_Current = health_MAX; // Init health
@@ -20,6 +20,7 @@ Explosionenemy::Explosionenemy(){ // Use this to call to parent's contructor fir
 
 
     Init();
+    PrepareSprite();
 
 }
 
@@ -37,11 +38,102 @@ void Explosionenemy::Update(float delta){
     Followplayer();
     Attack();
     
+    
+}
+
+void Explosionenemy::PrepareSprite(){
+    float sizeX = 32.0, sizeY = 64.0;
+    float offsetX = sizeX / 2.0;
+    float offsetY = sizeY / 2.0;
+
+    sprite = new SSprite(texture_file);
+    sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
+    sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    
+    double playrate = 1000.0;
+    Animation *tmpA;
+
+    //DOWN
+    tmpA = new Animation(sprite->getSpriteR(), true);
+    Animations.insert({"up", tmpA});
+    tmpA->addFrame({sf::IntRect(0,192, sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(32,192,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(65,192,sizeX,sizeY), playrate});
+
+    //LEFT
+    tmpA = new Animation(sprite->getSpriteR(), true);
+    Animations.insert({"right", tmpA});
+    tmpA->addFrame({sf::IntRect(0,128,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(32,128,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(65,128,sizeX,sizeY), playrate});
+
+
+    //RIGHT
+    tmpA = new Animation(sprite->getSpriteR(), true);
+    Animations.insert({"left", tmpA});
+    tmpA->addFrame({sf::IntRect(0,64,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(32,64,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(65,64,sizeX,sizeY), playrate});
+
+
+    //UP
+    tmpA = new Animation(sprite->getSpriteR(), true);
+    Animations.insert({"down", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(32,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(64,0,sizeX,sizeY), playrate});
+}
+
+void Explosionenemy::SetAnimation(){ //selecciona la animacion del mapa de animaciones dependiendo de la direccion del actor
+    
+    auto angleRads = std::atan2(-direction.y, direction.x);
+    auto angleDegs = angleRads * 180.0 / M_PI;
+    
+    if((angleDegs<22.5 && angleDegs>=0) || (angleDegs>=337.5 && angleDegs<=0)){
+        activeAnim=Animations.find("right")->second;
+    }
+    if(angleDegs<67.5 && angleDegs>=22.5){
+        activeAnim=Animations.find("right")->second;
+    }
+    if(angleDegs<112.5 && angleDegs>=67.5){
+        activeAnim=Animations.find("up")->second;
+    }
+    if(angleDegs<157.5 && angleDegs>=112.5){
+        activeAnim=Animations.find("left")->second;
+    }
+    if(angleDegs<202.5 && angleDegs>=157.5){
+        activeAnim=Animations.find("left")->second;
+    }
+    if(angleDegs<247.5 && angleDegs>=202.5){
+        activeAnim=Animations.find("left")->second;
+    }
+    if(angleDegs<292.5 && angleDegs>=247.5){
+        activeAnim=Animations.find("down")->second;
+    }
+    if(angleDegs<337.5 && angleDegs>=292.5){
+        activeAnim=Animations.find("right")->second;
+    }
+
+    /*if(direction==Vector2f(0.0,-1.0)){
+        activeAnim=Animations.find("up")->second;
+    }
+    if(direction==Vector2f(0.0,1.0)){
+        activeAnim=Animations.find("down")->second;
+    }
+    if(direction==Vector2f(-1.0,0.0)){
+        activeAnim=Animations.find("left")->second;
+    }
+    if(direction==Vector2f(1.0,0.0)){
+        activeAnim=Animations.find("right")->second;
+    }
+    */
+    
 }
 
 void Explosionenemy::Draw(double percent, double delta ){
-    
-    Actor::Draw(percent, delta); // Use this to debug draw bounding box
+    SetAnimation();
+    Pawn::Draw(percent, delta);
 }
 
 
