@@ -138,6 +138,21 @@ void game::run(){
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 }
+                /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
+                    ControladorJugador->MejorarCadencia(0.9);
+                }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::V)){
+                    ControladorJugador->MejorarMovimiento(1.08);
+                }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
+                    ControladorJugador->IncreaseHealth();
+                    std::cout<<"Vida total: "<<ControladorJugador->getMaxHealth()<<std::endl;
+                }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::O)){
+                    ControladorJugador->ImprovesAttack();
+                }
+                ControladorJugador->Mover(tecla.key.code);
+                std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;*/
                 ControladorJugador->Update(tecla.key.code);
             }
             if (tecla.type == sf::Event::KeyReleased){
