@@ -19,7 +19,7 @@ Player::Player(){ // Use this to call to parent's contructor first
 
     movementSpeed = 5.0f;
     faction = allie;
-
+    AttackImprovement = 0;
     Init();
 
 }
@@ -107,8 +107,23 @@ void Player::Attack(list<Enemy*> enemyList){
     game *eng = game::Instance();
     Projectile *projTest = new Projectile(dir_unit, posPlayer);
     eng->Almacenaenemy(projTest);
+    if(AttackImprovement >= 1){
+        Projectile *projTest1 = new Projectile(-dir_unit, posPlayer);
+        eng->Almacenaenemy(projTest1);
+        if(AttackImprovement >= 2/* && relojMejora.getElapsedTime().asSeconds()>2*/){
+            Projectile *projTest2 = new Projectile(dir_unit, posPlayer);
+            eng->Almacenaenemy(projTest2);
+            //relojMejora.restart();
+            if(AttackImprovement >= 3){
+                Projectile *projTest3 = new Projectile(-dir_unit, posPlayer);
+                eng->Almacenaenemy(projTest3);
+            }
+        }
+    }
 }
-
+void Player::improvesAttack(){
+    AttackImprovement++;
+}
 void Player::setHealthMax(float increase){
     //In this method, you can set an increase of Player's maximum health
     health_MAX+=increase;

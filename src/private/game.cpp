@@ -92,16 +92,16 @@ void game::run(){
     enemyfijo->setActorLocation(Vector2f(600.0,550.0));
 
     Movingenemy *enemymove = new Movingenemy();
-    actors.push_back(enemymove);
-    enemymove->setActorLocation(Vector2f(200.0,200.0));
+    //actors.push_back(enemymove);
+    //enemymove->setActorLocation(Vector2f(200.0,200.0));
     
     Movingenemy *enemymove2 = new Movingenemy();
-    actors.push_back(enemymove2);
-    enemymove2->setActorLocation(Vector2f(500.0,250.0));
+    //actors.push_back(enemymove2);
+    //enemymove2->setActorLocation(Vector2f(500.0,250.0));
 
     Explosionenemy *enemyexp = new Explosionenemy();
-    actors.push_back(enemyexp);
-    enemyexp->setActorLocation(Vector2f(400.0,400.0));
+    //actors.push_back(enemyexp);
+    //enemyexp->setActorLocation(Vector2f(400.0,400.0));
     
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
@@ -148,12 +148,16 @@ void game::run(){
                     ControladorJugador->IncreaseHealth();
                     std::cout<<"Vida total: "<<ControladorJugador->getMaxHealth()<<std::endl;
                 }
-                ControladorJugador->Update(tecla.key.code);
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::O)){
+                    ControladorJugador->ImprovesAttack();
+                }
+                ControladorJugador->Mover(tecla.key.code);
                 std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
             if (tecla.type == sf::Event::KeyReleased){
                 ControladorJugador->Frenar(tecla.key.code);
             }
+            //ControladorJugador->Update(tecla.key.code, eng->getApp());
             if(estadoJuego == false) //Estamos en el menu o en la pantalla final
             {
                     estadoJuego = menu->update(tecla);
