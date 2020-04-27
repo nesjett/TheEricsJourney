@@ -9,6 +9,8 @@
 #include <algorithm>
 
 #include <Engine.h>
+#include <Player.h>
+#include <Enemy.h>
 
 using namespace std;
 using namespace sf;
@@ -19,6 +21,11 @@ class Hud
         static Hud* Instance();
         void setMaxHealth(float health);
         void setCurrentHealth(float health);
+
+
+        void setPlayer(Player* player);
+        void addEnemy(Enemy* enemy);
+        void Update();
         void Draw();
 
 
@@ -28,10 +35,10 @@ class Hud
         virtual ~Hud();
         static Hud* pInstance;
         Engine* eng;
-
         Font fontHud;
 
         //Barra de vida del jugador
+        Player* jugador;
         Text txtHealth;
         RectangleShape playerHealth;
         float currentHealth;
@@ -44,6 +51,10 @@ class Hud
         Text txtPowerUpInfo;
         vector<Sprite> spritePowerUps;
         vector<Text> txtPowerUps;
+
+        //Barras de vida de los enemigos
+        vector<Enemy*> enemigos;
+        vector<RectangleShape> enemyHealthBars;
 };
 
 #endif // Hud_H

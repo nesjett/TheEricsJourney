@@ -61,6 +61,7 @@ class Actor {
     virtual void OnActorOverlap(Actor *otherActor);
 
     void setLifespan(float secs);
+    Vector2f getInterpolatedPos();
     bool pendingDelete = false;
 
   private:
@@ -74,6 +75,7 @@ class Actor {
     SSprite *sprite;
     ObjectType oType; // Object type for collision channel
     long lifeSpan = -1;
+    Vector2f currentLoc;
 };
 
 #endif

@@ -12,12 +12,16 @@ class Movingenemy: public Enemy{
         void Init();
         float enemydirection_y;
         float enemydirection_x;
-        void Linealmove_y(float pos1, float pos2);
-        void Linealmove_x(float pos1, float pos2);
+        void Linealmove(Vector2f pos1, Vector2f pos2);
+
         bool Attack();
         void Update(float delta);
         void Draw(double percent, double delta );
-        
+        void Prepara(Vector2f inicio, Vector2f final);
+
+        Vector2f x;
+        Vector2f y;
+
         sf::Clock relojMark;
  
     private:

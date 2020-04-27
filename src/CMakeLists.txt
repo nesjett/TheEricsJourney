@@ -19,13 +19,16 @@ target_sources(libModulos PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Movingenemy.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Zombie.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Skeleton.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Stalker.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Hud.cpp"
 
 
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/FireBall.cpp"
 )
 
 #Y donde se encuentran los .h
 target_include_directories(libModulos PUBLIC 
 "${CMAKE_CURRENT_SOURCE_DIR}/public"
+"${CMAKE_CURRENT_SOURCE_DIR}/public/projectiles"
 )
 

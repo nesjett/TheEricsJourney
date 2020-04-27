@@ -6,7 +6,7 @@ Explosionenemy::Explosionenemy(){ // Use this to call to parent's contructor fir
     texture_file = "./resources/sprites.png";
 
     setActorLocation(Vector2f(100.f, 100.f));
-    direction = Vector2f(0.f, 0.f);
+    direction = Vector2f(-0.5, -0.5);
 
     health_MAX = 100.0f;
     health_Current = health_MAX; // Init health
@@ -31,8 +31,12 @@ void Explosionenemy::Init(){
 }
 
 void Explosionenemy::Update(float delta){
+    
+    
     Pawn::Update(delta);
+    Followplayer();
     Attack();
+    
 }
 
 void Explosionenemy::Draw(double percent, double delta ){
@@ -42,16 +46,19 @@ void Explosionenemy::Draw(double percent, double delta ){
 
 
 void Explosionenemy::Followplayer(){
-    Vector2f pos = getActorLocation();
-    game *eng = game::Instance();
-    Player* miJugador = eng->getPlayerCharacter();
-    //eng->Almacenaenemy(projTest);
+    
+    if(relojdireccion.getElapsedTime().asSeconds()>4.0){
+        direction=RandomNewDir();
+        relojdireccion.restart(); 
+    }
+   
+}
 
-   Vector2f pos_player = miJugador->getActorLocation();
-   Vector2f dir = pos_player-pos;
-   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
-   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
-   direction = dir_unit;
+Vector2f Explosionenemy::RandomNewDir() {
+    std::vector<Vector2f> possibleDir = {Vector2f(0.0, -1.0), Vector2f(0.0, 1.0), Vector2f(-1.0, 0.0), Vector2f(1.0, 0.0), Vector2f(1.0, 1.0), Vector2f(-1.0, 1.0), Vector2f(-1.0, -1.0), Vector2f(1.0, -1.0)};
+    std::random_shuffle ( possibleDir.begin(), possibleDir.end() );
+    return possibleDir.front();
+    //return Vector2f(0.f, 0.f);
 }
 
 bool Explosionenemy::Attack(){

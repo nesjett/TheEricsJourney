@@ -30,6 +30,18 @@ sf::RenderWindow &Engine::CreateApp(sf::VideoMode vm, string wn){
     return app;
 }
 
+void Engine::setView(float posy)
+{
+    //vista = new sf::View(sf::FloatRect(0.f, 600.f, vm.width, vm.height));
+    float posArriba = posy - (app.getSize().y / 2);
+    if(posArriba < 0.f)
+        posArriba = 0.f;
+    if(posArriba > 480.f)
+        posArriba = 480.f;
+    vista.reset(sf::FloatRect(0.f, posArriba, app.getSize().x, app.getSize().y));
+    app.setView(vista);
+}
+
 
 
 
