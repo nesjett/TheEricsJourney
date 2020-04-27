@@ -138,33 +138,17 @@ void game::run(){
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 }
-                /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
-                    ControladorJugador->MejorarCadencia(0.9);
-                }
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::V)){
-                    ControladorJugador->MejorarMovimiento(1.08);
-                }
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
-                    ControladorJugador->IncreaseHealth();
-                    std::cout<<"Vida total: "<<ControladorJugador->getMaxHealth()<<std::endl;
-                }
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::O)){
-                    ControladorJugador->ImprovesAttack();
-                }
-                ControladorJugador->Mover(tecla.key.code);
-                std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;*/
                 ControladorJugador->Update(tecla.key.code);
             }
             if (tecla.type == sf::Event::KeyReleased){
                 ControladorJugador->Frenar(tecla.key.code);
             }
-            //ControladorJugador->Update(tecla.key.code, eng->getApp());
             if(estadoJuego == false) //Estamos en el menu o en la pantalla final
             {
                     estadoJuego = menu->update(tecla);
             }
         }
-        if(jugador->getDirection().x == 0.f && jugador->getDirection().y == 0.f){
+        if(jugador->getDirection().x == 0.f && jugador->getDirection().y == 0.f && jugador->IsAlive()==true){
             ControladorJugador->setPlayer(jugador);
             listaEnemigos = getAllEnemies();
             ControladorJugador->setLista(listaEnemigos);
