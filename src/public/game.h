@@ -65,6 +65,7 @@ class game
         int largo = 1080;
         int alto = 720;
         list<Actor*> actors;
+        list<Actor*> actorsPendingDelete;
 
         sf::Event tecla;
         bool estadoJuego;

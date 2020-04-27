@@ -256,14 +256,29 @@ void game::run(){
                 DELETE PENDING DELETE ACTORS
 
             ////////////////////////////*/
-            actors.erase(
-                std::remove_if(
-                    actors.begin(), 
-                    actors.end(),
-                    [](Actor const * p) { return p->pendingDelete == true; }
-                ), 
-                actors.end()
-            ); 
+            // DELETE Pending delete actors
+                // TODO: COuld be done one by one in the above loop so we dont make two loops for almost the same thin
+
+                for (Actor *actor : actors) {
+                    if(actor->pendingDelete == true) { 
+                        actorsPendingDelete.push_back(actor);
+                    }
+                }
+                actors.erase(
+                    std::remove_if(
+                        actors.begin(), 
+                        actors.end(),
+                        [](Actor const * p) { return p->pendingDelete == true; }
+                    ), 
+                    actors.end()
+                );
+                for (Actor *actor : actorsPendingDelete) {
+                    if(dynamic_cast<Enemy*>(actor)) {
+                        //EnemyDied(); // If we are deleting an enemy, try to spawn another
+                    }
+                    delete actor;
+                }
+                actorsPendingDelete.clear();
         }
         
 

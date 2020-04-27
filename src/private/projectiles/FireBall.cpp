@@ -55,14 +55,6 @@ void FireBall::Update(float delta){
     sprite->setRotation(angleDegs);
 }
 
-
-void FireBall::OnActorOverlap(Actor *otherActor){
-    //otherActor.TakeDamage(damage, "default");
-    if ( dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == allie ) { // allie = player related things
-        otherActor->TakeDamage(damage, this, "PROJECTILE_X");
-    }
-}
-
 FireBall::~FireBall(){
     //delete sprite;
 }

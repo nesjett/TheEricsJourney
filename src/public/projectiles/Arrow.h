@@ -11,7 +11,6 @@ class Arrow: public Projectile {
 
         void Update(float delta);
         void Init();
-        void OnActorOverlap(Actor *otherActor);
 
     protected:
     private:

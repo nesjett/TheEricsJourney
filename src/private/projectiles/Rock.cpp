@@ -56,13 +56,6 @@ void Rock::Update(float delta){
 }
 
 
-void Rock::OnActorOverlap(Actor *otherActor){
-    //otherActor.TakeDamage(damage, "default");
-    if ( dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == allie ) { // allie = player related things
-        otherActor->TakeDamage(damage, this, "PROJECTILE_X");
-    }
-}
-
 Rock::~Rock(){
     //delete sprite;
 }

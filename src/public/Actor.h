@@ -60,7 +60,21 @@ class Actor {
   /////////////////////////////////////////////////////////*/
     virtual void OnActorOverlap(Actor *otherActor);
 
+
+  /*///////////////////////////
+    \brief Sets the remaining life time for the object
+
+    The method calculates the time in millesconds at which the object
+    must be destroyed, adding the desired seconds to the time elapsed
+    since the game begin.
+
+    \param secs Float with the time in seconds reamining to die
+
+  ///////////////////////////*/
     void setLifespan(float secs);
+
+    // Returns whether the actor is pending delete or not
+    bool IsValid() { return pendingDelete; };
     bool pendingDelete = false;
 
   private:

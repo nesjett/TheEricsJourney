@@ -3,9 +3,11 @@
 
 
 Arrow::Arrow() : Projectile(){ // Use this to call to parent's contructor first
+    targetFaction = enemy;
     Init();
 }
 Arrow::Arrow(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
+    targetFaction = enemy;
     Init();
     direction = dir;
     setActorLocation(pos); 
@@ -15,7 +17,7 @@ void Arrow::Init(){
     movementSpeed = 0.1;
     damage = 20;
 
-    texture_file = "./resources/projectiles/Arrow-512.png";
+    texture_file = "./resources/projectiles/fireball-512.png";
     if(sprite){
         delete sprite;
     }
@@ -56,12 +58,6 @@ void Arrow::Update(float delta){
 }
 
 
-void Arrow::OnActorOverlap(Actor *otherActor){
-    //otherActor.TakeDamage(damage, "default");
-    if ( dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == allie ) { // allie = player related things
-        otherActor->TakeDamage(damage, this, "PROJECTILE_X");
-    }
-}
 
 Arrow::~Arrow(){
     //delete sprite;

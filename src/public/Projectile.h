@@ -32,6 +32,8 @@ class Projectile: public Actor {
     protected:
         Animation* activeAnim = NULL;
         std::map<std::string, Animation*> Animations;
+        std::string ProjectileName;
+        bool DmgApplied = false;
     private:
 
 };
