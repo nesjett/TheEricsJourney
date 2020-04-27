@@ -66,9 +66,13 @@ void PlayerController::MejorarCadencia(float mej){
 void PlayerController::MejorarMovimiento(float mejMov){
     miJugador->movementSpeed*=mejMov;
 }
-
+void PlayerController::setAttack(list<Enemy*> listaEnemigos){
+    if(miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f && miJugador->IsAlive()==true){
+        setLista(listaEnemigos);
+        Attacks();
+    }
+}
 void PlayerController::Attacks(){
-    
     if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora)){
         miJugador->Attack(enemyList);
         relojAtaque.restart();

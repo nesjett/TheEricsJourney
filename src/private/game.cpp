@@ -159,12 +159,8 @@ void game::run(){
                     estadoJuego = menu->update(tecla);
             }
         }
-        if(jugador->getDirection().x == 0.f && jugador->getDirection().y == 0.f && jugador->IsAlive()==true){
-            ControladorJugador->setPlayer(jugador);
-            listaEnemigos = getAllEnemies();
-            ControladorJugador->setLista(listaEnemigos);
-            ControladorJugador->Attacks();
-        }
+        listaEnemigos = getAllEnemies();
+        ControladorJugador->setAttack(listaEnemigos);
         //ENEMY MOVE
 
         

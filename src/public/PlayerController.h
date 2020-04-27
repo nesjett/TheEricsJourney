@@ -16,6 +16,7 @@ class PlayerController:  public Controller{
         void setPlayer(Player*);
         void setLista(list<Enemy*>);
         void Attacks();
+        void setAttack(list<Enemy*>);
         void ImprovesAttack();
         void Frenar(sf::Keyboard::Key);
         void MejorarCadencia(float);
