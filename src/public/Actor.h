@@ -61,6 +61,7 @@ class Actor {
     virtual void OnActorOverlap(Actor *otherActor);
 
     void setLifespan(float secs);
+    Vector2f getInterpolatedPos();
     bool pendingDelete = false;
 
   private:

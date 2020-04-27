@@ -115,7 +115,10 @@ void Actor::OnActorOverlap(Actor *otherActor){
 Actor::~Actor(){
 
 }
-
+Vector2f Actor::getInterpolatedPos()
+{
+  return currentLoc;
+}
 void Actor::setLifespan(float secs) {
   sf::Time InSec = sf::seconds(secs);
   game *gi = game::Instance();
