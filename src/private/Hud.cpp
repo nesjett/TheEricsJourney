@@ -11,8 +11,8 @@ Hud::Hud()
 {
     eng = Engine::Instance();
     percent = 1;
-    width = 200.0;
-    height = 25.0;
+    width = 80.0;
+    height = 5.f;
     colorHealth100 = sf::Color(0, 204, 102);
     colorHealthLess50 = sf::Color(255, 255, 102);
     colorHealthLess25 = sf::Color(255, 0, 0);
@@ -46,6 +46,7 @@ void Hud::setCurrentHealth(float health)
     //Update de las variables que dependen de la vida
     percent = currentHealth / maxHealth;
     playerHealth.setSize(sf::Vector2f(percent*width, height));
+    playerHealth.setOrigin(width/2, height/2);
     playerHealth.setFillColor(colorHealth100);
     if(percent <= 0.5f && percent > 0.25f)
     {
@@ -57,13 +58,69 @@ void Hud::setCurrentHealth(float health)
     }
 }
 
+void Hud::setPlayer(Player* player)
+{
+    jugador = player;
+    setMaxHealth(jugador->getMaxHealth());
+    setCurrentHealth(jugador->getCurrentHealth());
+}
+
+void Hud::addEnemy(Enemy* enemy)
+{
+    enemigos.push_back(enemy);
+    RectangleShape vidaEnemigo;
+    vidaEnemigo.setSize(sf::Vector2f(width, height));
+    vidaEnemigo.setOrigin(width/2, height/2);
+    vidaEnemigo.setFillColor(colorHealth100);
+    enemyHealthBars.push_back(vidaEnemigo);
+}
+ void Hud::Update()
+ {
+    setCurrentHealth(jugador->getCurrentHealth());
+    for(int i = 0; i < enemyHealthBars.size(); i++)
+    {
+        if(enemigos[i]->health_Current >= 0.f)
+        {
+            percent = enemigos[i]->health_Current / enemigos[i]->health_MAX;
+            enemyHealthBars[i].setSize(sf::Vector2f(percent*width, height));
+            enemyHealthBars[i].setFillColor(colorHealth100);
+            if(percent <= 0.5f && percent > 0.25f)
+            {
+                enemyHealthBars[i].setFillColor(colorHealthLess50);
+            }
+            if(percent <= 0.25f)
+            {
+                enemyHealthBars[i].setFillColor(colorHealthLess25);
+            }
+        }
+    }
+ }
+
 void Hud::Draw()
 {
-    //Barra de vida
-    txtHealth.setPosition(Vector2f(850,eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 25));
-    playerHealth.setPosition(Vector2f(850,eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
-    eng->getApp().draw(txtHealth);
+    //Barra de vida del jugador con borde
+    playerHealth.setPosition(Vector2f(jugador->getInterpolatedPos().x, jugador->getInterpolatedPos().y - 50));
+    RectangleShape borde;
+    borde.setSize(sf::Vector2f(width, height));
+    borde.setPosition(Vector2f(jugador->getInterpolatedPos().x, jugador->getInterpolatedPos().y - 50));
+    borde.setOrigin(width/2, height/2);
+    borde.setOutlineColor(sf::Color::Black);
+    borde.setOutlineThickness(1);
+    borde.setFillColor(Color::Transparent);
+    eng->getApp().draw(borde);
     eng->getApp().draw(playerHealth);
+
+    //Barras de vida de los enemigos con borde
+    for(int i = 0; i < enemyHealthBars.size(); i++)
+    {
+        if(enemigos[i]->health_Current >= 0.f)
+        {
+            enemyHealthBars[i].setPosition(enemigos[i]->getInterpolatedPos().x, enemigos[i]->getInterpolatedPos().y - 50);
+            borde.setPosition(enemigos[i]->getInterpolatedPos().x, enemigos[i]->getInterpolatedPos().y - 50);
+            eng->getApp().draw(borde);
+            eng->getApp().draw(enemyHealthBars[i]);
+        }
+    }
 }
 
 

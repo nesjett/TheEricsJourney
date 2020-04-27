@@ -11,8 +11,6 @@ Player::Player(){ // Use this to call to parent's contructor first
 
     health_MAX = 100.0f;
     health_Current = health_MAX; // Init health
-    Hud* hud = Hud::Instance();
-    hud->setMaxHealth(health_MAX);
 
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
@@ -32,11 +30,11 @@ void Player::Init(){
 }
 void Player::Draw(double percent, double delta ){
    Actor::Draw(percent, delta);
-    if(faction == allie)
-    {
-        Engine* eng = Engine::Instance();
-        eng->setView(currentLoc.y);
-    } 
+
+    //Movemos la camara 
+    Engine* eng = Engine::Instance();
+    eng->setView(currentLoc.y);
+ 
 }
 
 void Player::Update(float delta){
@@ -50,9 +48,6 @@ void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     std::cout << "Damage taken!" << std::endl; 
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
         health_Current-=damage;
-        //Actualizamos la HUD
-        Hud* hud = Hud::Instance();
-        hud->setCurrentHealth(health_Current);
         if(IsAlive() == false){
             Die();
         } else {
