@@ -59,9 +59,9 @@ class SSprite
         ~SSprite();
         void setRotation(double angle);
         void setPosition(double x, double y);
-        sf::Sprite getSprite(){
-            return sfsprite;
-        }
+        // Returns a pointer to the SFML sprite
+        sf::Sprite getSprite(){ return sfsprite; }
+        // Returns a ref to the SFML sprite
         sf::Sprite &getSpriteR(){ return sfsprite; }
         sf::Vector2f Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent);
         void setOrigin(double x, double y);

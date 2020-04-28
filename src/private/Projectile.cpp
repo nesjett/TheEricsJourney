@@ -10,6 +10,7 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
     movementSpeed = 0.2;
     damage = 20;
 
+    targetFaction = allie;
     oType = projectile; // Set the collision channel
     Init();
 }
