@@ -101,11 +101,6 @@ void game::run(){
     actors.push_back(enemyexp);
     enemyexp->setActorLocation(Vector2f(400.0,400.0));
 
-    Hud* hud = Hud::Instance();
-    hud->addEnemy(enemyfijo);
-    hud->addEnemy(enemymove);
-    hud->addEnemy(enemymove2);
-    hud->addEnemy(enemyexp);
     
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
@@ -123,9 +118,9 @@ void game::run(){
     Skeleton *enemyTest2 = new Skeleton();
     actors.push_back(enemyTest2);
 
-    Zombie *enemyTest3 = new Zombie();
-    actors.push_back(enemyTest3);
-    enemyTest3->setActorLocation(Vector2f(310,180));
+    Hud* hud = Hud::Instance();
+    hud->addEnemy(enemyexp);
+
     
     std::cout << "Actors length: " << actors.size() << std::endl;
     //enemyTest->setAsleep(true);
@@ -266,6 +261,14 @@ void game::run(){
                 DELETE PENDING DELETE ACTORS
 
             ////////////////////////////*/
+            // DELETE Pending delete actors
+            // TODO: COuld be done one by one in the above loop so we dont make two loops for almost the same thin
+
+            for (Actor *actor : actors) {
+                if(actor->pendingDelete == true) { 
+                    actorsPendingDelete.push_back(actor);
+                }
+            }
             actors.erase(
                 std::remove_if(
                     actors.begin(), 
@@ -273,7 +276,14 @@ void game::run(){
                     [](Actor const * p) { return p->pendingDelete == true; }
                 ), 
                 actors.end()
-            ); 
+            );
+            for (Actor *actor : actorsPendingDelete) {
+                if(dynamic_cast<Enemy*>(actor)) {
+                    //EnemyDied(); // If we are deleting an enemy, try to spawn another
+                }
+                delete actor;
+            }
+            actorsPendingDelete.clear();
         }
         
 

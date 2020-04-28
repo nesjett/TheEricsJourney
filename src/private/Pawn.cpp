@@ -98,7 +98,7 @@ void Pawn::Draw(double percent, double delta ){
 
 void Pawn::OnActorOverlap(Actor *otherActor){
     Engine *eng = Engine::Instance();
-    std::cout << "Soy " << eng->getObjectType(getObjectType()) << " y me ha tocado un objeto tipo: " << eng->getObjectType(otherActor->getObjectType()) << std::endl;
+    //std::cout << "Soy " << eng->getObjectType(getObjectType()) << " y me ha tocado un objeto tipo: " << eng->getObjectType(otherActor->getObjectType()) << std::endl;
     /*if(otherActor->getObjectType() == worldstatic) {
         direction = Vector2f(0.f,0.f);
     }*/
