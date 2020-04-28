@@ -22,6 +22,7 @@ class Tile: public Actor {
     private:
         string texture_file;
         Faction faction;
+        float trapDamage;
 };
 
 #endif
