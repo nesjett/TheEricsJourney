@@ -1,5 +1,6 @@
 #include "../public/Projectile.h"
 
+#include <Tile.h>
 
 
 Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor first
@@ -73,7 +74,11 @@ void Projectile::OnActorOverlap(Actor *otherActor){
         otherActor->TakeDamage(damage, this, "PROJECTILE_X");
         DmgApplied = true;
         setLifespan(0.0);
-        bool valid = IsValid();
+    } else {
+        if(dynamic_cast<Tile*>(otherActor)){
+            DmgApplied = true;
+            setLifespan(0.0);
+        }
     }
 }
 
