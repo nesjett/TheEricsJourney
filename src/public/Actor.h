@@ -75,6 +75,7 @@ class Actor {
 
     // Returns whether the actor is pending delete or not
     bool IsValid() { return pendingDelete; };
+    Vector2f getInterpolatedPos();
     bool pendingDelete = false;
 
   private:

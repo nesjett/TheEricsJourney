@@ -24,6 +24,8 @@ void game::init(/*char* nombre, int AuxMapa*/){
     menu = Menu::getInstance();
     mapaActual = 0;
     jugador = new Player();
+    Hud* hud = Hud::Instance();
+    hud->setPlayer(jugador);
     InicializaNivel();
 }
 
@@ -98,6 +100,12 @@ void game::run(){
     Explosionenemy *enemyexp = new Explosionenemy();
     actors.push_back(enemyexp);
     enemyexp->setActorLocation(Vector2f(400.0,400.0));
+
+    Hud* hud = Hud::Instance();
+    hud->addEnemy(enemyfijo);
+    hud->addEnemy(enemymove);
+    hud->addEnemy(enemymove2);
+    hud->addEnemy(enemyexp);
     
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
@@ -248,6 +256,8 @@ void game::run(){
                     mapaActual++;  
                     InicializaNivel();
                 }
+                Hud* hud = Hud::Instance();
+                hud->Update();
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
 
