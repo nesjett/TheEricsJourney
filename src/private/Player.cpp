@@ -33,7 +33,7 @@ void Player::Draw(double percent, double delta ){
 
     //Movemos la camara 
     Engine* eng = Engine::Instance();
-    eng->setView(currentLoc.y);
+    eng->setView(currentLoc.y, 0.13f);
  
 }
 

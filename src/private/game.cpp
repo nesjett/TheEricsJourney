@@ -72,6 +72,8 @@ void game::InicializaNivel()
         //Cargamos la pantalla de puntuaciones
         estadoJuego = false;
         menu->cambiarAPantallaFinal(pointsPerLevel);
+        Engine* eng = Engine::Instance();
+        eng->setView(0.f, 0.f);
     }
 }
 
@@ -233,23 +235,7 @@ void game::run(){
                     }
                 }
                 //Comprobamos si pasamos de nivel
-                Tile* puerta = vMapas[mapaActual]->getPuerta();
-                // FloatRect lol = enemyexp->getBoundingBox();
-                // FloatRect lol2 = puerta->getBoundingBox();
-                // if(lol.intersects(lol2))
-                // {
-                //     cout << "LOOOOL" << endl;
-                // }
-                // if(/*getAllEnemies().size() == 0 &&*/ (jugador->getBoundingBox().intersects(puerta->getBoundingBox())) )
-                // {
-                //     mapaActual++;  
-                //     InicializaNivel();
-                // }
-                if(jugador->getActorLocation().y<100.0)
-                {
-                    mapaActual++;  
-                    InicializaNivel();
-                }
+                CondicionVictoria();
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
 
@@ -329,6 +315,27 @@ Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type) {
         }
     }
     return NULL;
+}
+
+void game::CondicionVictoria()
+{
+    //Pasar al siguiente nivel: el jugador pasa por la puerta y no hay enemigos vivos
+    if((jugador->getActorLocation().y < 100.0 && getAllEnemies().size() == 0))
+    {
+        mapaActual++;  
+        InicializaNivel();
+    }
+    //Acabar partida porque has muerto
+    if(jugador->getCurrentHealth() == 0.f)
+    {
+        float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/600); //1 - minutos_transcrridos/100
+        float points = porcentaje*1000000; //Puntuacion max es de 1.000.000
+        pointsPerLevel.push_back(points);
+        estadoJuego = false;
+        menu->cambiarAPantallaFinal(pointsPerLevel);
+        Engine* eng = Engine::Instance();
+        eng->setView(0.f, 0.f);
+    }
 }
 
 

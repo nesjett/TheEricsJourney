@@ -77,6 +77,7 @@ class game
         Clock levelClock;
         list<float> pointsPerLevel;
         float lastUpdateLevelClock;
+        void CondicionVictoria();
 };
 
 #endif // GAME_H
