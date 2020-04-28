@@ -116,6 +116,11 @@ Actor::~Actor(){
   delete sprite;
 }
 
+Vector2f Actor::getInterpolatedPos()
+{
+  return currentLoc;
+}
+
 void Actor::setLifespan(float secs) { 
     sf::Time t1 = sf::seconds(secs);
     game *gi = game::Instance();

@@ -73,11 +73,11 @@ class Actor {
   ///////////////////////////*/
     void setLifespan(float secs);
 
+    bool pendingDelete = false;
     // Returns whether the actor is pending delete or not
     bool IsValid() { return pendingDelete; };
     Vector2f getInterpolatedPos();
-    bool pendingDelete = false;
-
+    
   private:
     Vector2f location_prev;
     Vector2f location;

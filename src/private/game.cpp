@@ -101,11 +101,6 @@ void game::run(){
     actors.push_back(enemyexp);
     enemyexp->setActorLocation(Vector2f(400.0,400.0));
 
-    Hud* hud = Hud::Instance();
-    hud->addEnemy(enemyfijo);
-    hud->addEnemy(enemymove);
-    hud->addEnemy(enemymove2);
-    hud->addEnemy(enemyexp);
     
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
@@ -123,9 +118,9 @@ void game::run(){
     Skeleton *enemyTest2 = new Skeleton();
     actors.push_back(enemyTest2);
 
-    Zombie *enemyTest3 = new Zombie();
-    actors.push_back(enemyTest3);
-    enemyTest3->setActorLocation(Vector2f(310,180));
+    Hud* hud = Hud::Instance();
+    hud->addEnemy(enemyexp);
+
     
     std::cout << "Actors length: " << actors.size() << std::endl;
     //enemyTest->setAsleep(true);
