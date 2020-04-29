@@ -30,13 +30,7 @@ class Engine
         sf::RenderWindow &getApp(){ return app; }
         sf::RenderWindow &CreateApp(sf::VideoMode vm, string wn);
         std::string getObjectType(ObjectType type) { if(type <= sizeof(oTypeNames)) { return oTypeNames[type]; } };
-        void setView(float posy);
-
-        // Returns a texture ref if exists
-        //sf::Texture getTexture(string File);
-        
-        // Creates a new texture or returns an existing one if same file used for it
-        //sf::Texture createTexture(string File);
+        void setView(float centerY, float borderX);
     protected:
         Engine();
         Engine(const Engine &);

@@ -34,7 +34,7 @@ void Player::Draw(double percent, double delta ){
 
     //Movemos la camara 
     Engine* eng = Engine::Instance();
-    eng->setView(currentLoc.y);
+    eng->setView(currentLoc.y, 0.13f);
  
 }
 
@@ -112,6 +112,8 @@ void Player::Attack(list<Enemy*> enemyList){
     game *eng = game::Instance();
     Arrow *projTest = new Arrow(dir_unit, posPlayer);
     eng->Almacenaenemy(projTest);
+    AudioManager* am = AudioManager::getInstance();
+    am->play_player_shot();
     if(AttackImprovement >= 1){
         Arrow *projTest1 = new Arrow(-dir_unit, posPlayer);
         eng->Almacenaenemy(projTest1);

@@ -70,8 +70,7 @@ void game::InicializaNivel()
     }
     else{
         //Cargamos la pantalla de puntuaciones
-        estadoJuego = false;
-        menu->cambiarAPantallaFinal(pointsPerLevel);
+        EndGame();
     }
 }
 
@@ -100,7 +99,6 @@ void game::run(){
     Explosionenemy *enemyexp = new Explosionenemy();
     actors.push_back(enemyexp);
     enemyexp->setActorLocation(Vector2f(400.0,400.0));
-
     
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
@@ -117,9 +115,6 @@ void game::run(){
 
     Skeleton *enemyTest2 = new Skeleton();
     actors.push_back(enemyTest2);
-
-    Hud* hud = Hud::Instance();
-    hud->addEnemy(enemyexp);
 
     
     std::cout << "Actors length: " << actors.size() << std::endl;
@@ -219,23 +214,7 @@ void game::run(){
                     }
                 }
                 //Comprobamos si pasamos de nivel
-                Tile* puerta = vMapas[mapaActual]->getPuerta();
-                // FloatRect lol = enemyexp->getBoundingBox();
-                // FloatRect lol2 = puerta->getBoundingBox();
-                // if(lol.intersects(lol2))
-                // {
-                //     cout << "LOOOOL" << endl;
-                // }
-                // if(/*getAllEnemies().size() == 0 &&*/ (jugador->getBoundingBox().intersects(puerta->getBoundingBox())) )
-                // {
-                //     mapaActual++;  
-                //     InicializaNivel();
-                // }
-                if(jugador->getActorLocation().y<100.0)
-                {
-                    mapaActual++;  
-                    InicializaNivel();
-                }
+                CondicionVictoria();
                 Hud* hud = Hud::Instance();
                 hud->Update();
             }
@@ -291,8 +270,8 @@ list<Projectile*> game::getAllProjectiles(){
     list<Projectile*> tmp;
     Projectile* tmpE = NULL;
     for (Actor *actor : actors) {
-        if ( static_cast<Projectile*>( actor ) ) {
-            tmpE = static_cast<Projectile*>(actor);
+        if ( dynamic_cast<Projectile*>( actor ) ) {
+            tmpE = dynamic_cast<Projectile*>(actor);
             tmp.push_back(tmpE);
         }
     }
@@ -332,6 +311,38 @@ Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type) {
     return NULL;
 }
 
+void game::CondicionVictoria()
+{
+    //Pasar al siguiente nivel: el jugador pasa por la puerta y no hay enemigos vivos
+    if((jugador->getActorLocation().y < 100.0 && getAllEnemies().size() == 0))
+    {
+        mapaActual++;  
+        InicializaNivel();
+    }
+    //Acabar partida porque has muerto
+    if(jugador->getCurrentHealth() == 0.f)
+    {
+        //Calculamos las puntuaciones por nivel
+        float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/600); //1 - minutos_transcrridos/100
+        float points = porcentaje*1000000; //Puntuacion max es de 1.000.000
+        pointsPerLevel.push_back(points);
+
+        EndGame();
+    }
+}
+
+//Terminar el juego
+void game::EndGame()
+{
+    //Cambiamos a pantalla final
+    estadoJuego = false;
+    menu->cambiarAPantallaFinal(pointsPerLevel);
+    Engine* eng = Engine::Instance();
+    eng->setView(0.f, 0.f);
+
+    //Eliminamos los enemigos, si es el caso es que el jugador ha muerto
+
+}
 
 game::~game() // Destructor
 {
