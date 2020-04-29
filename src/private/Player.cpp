@@ -18,7 +18,7 @@ Player::Player(){ // Use this to call to parent's contructor first
 
     movementSpeed = 5.0f;
     faction = allie;
-
+    AttackImprovement = 0;
     Init();
 
 }
@@ -114,8 +114,24 @@ void Player::Attack(list<Enemy*> enemyList){
     eng->Almacenaenemy(projTest);
     AudioManager* am = AudioManager::getInstance();
     am->play_player_shot();
+    if(AttackImprovement >= 1){
+        Arrow *projTest1 = new Arrow(-dir_unit, posPlayer);
+        eng->Almacenaenemy(projTest1);
+        if(AttackImprovement >= 2/* && relojMejora.getElapsedTime().asSeconds()>2*/){
+            sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x, (getActorLocation().y-30));
+            Arrow *projTest2 = new Arrow(dir_unit, dobleFlecha);
+            eng->Almacenaenemy(projTest2);
+            //relojMejora.restart();
+            if(AttackImprovement >= 3){
+                Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha);
+                eng->Almacenaenemy(projTest3);
+            }
+        }
+    }
 }
-
+void Player::improvesAttack(){
+    AttackImprovement++;
+}
 void Player::setHealthMax(float increase){
     //In this method, you can set an increase of Player's maximum health
     health_MAX+=increase;

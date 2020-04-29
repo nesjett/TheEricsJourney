@@ -87,7 +87,7 @@ void game::run(){
      ***********************************/
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
-    /*
+    
     Fixedenemy *enemyfijo = new Fixedenemy();
     actors.push_back(enemyfijo);
     enemyfijo->setActorLocation(Vector2f(600.0,550.0));
@@ -95,7 +95,7 @@ void game::run(){
     Movingenemy *enemymove = new Movingenemy();
     actors.push_back(enemymove);
     enemymove->Prepara(Vector2f(500.0,300.0),Vector2f(300.0,400.0));
-    */
+    
     Explosionenemy *enemyexp = new Explosionenemy();
     actors.push_back(enemyexp);
     enemyexp->setActorLocation(Vector2f(400.0,400.0));
@@ -139,18 +139,7 @@ void game::run(){
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
-                    ControladorJugador->MejorarCadencia(0.9);
-                }
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::V)){
-                    ControladorJugador->MejorarMovimiento(1.08);
-                }
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
-                    ControladorJugador->IncreaseHealth();
-                    std::cout<<"Vida total: "<<ControladorJugador->getMaxHealth()<<std::endl;
-                }
                 ControladorJugador->Update(tecla.key.code);
-                std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
             if (tecla.type == sf::Event::KeyReleased){
                 ControladorJugador->Frenar(tecla.key.code);
@@ -160,12 +149,8 @@ void game::run(){
                     estadoJuego = menu->update(tecla);
             }
         }
-        if(jugador->getDirection().x == 0.f && jugador->getDirection().y == 0.f){
-            ControladorJugador->setPlayer(jugador);
-            listaEnemigos = getAllEnemies();
-            ControladorJugador->setLista(listaEnemigos);
-            ControladorJugador->Attacks();
-        }
+        listaEnemigos = getAllEnemies();
+        ControladorJugador->setAttack(listaEnemigos);
         //ENEMY MOVE
 
         
