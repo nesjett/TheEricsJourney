@@ -309,7 +309,7 @@ void game::CondicionVictoria()
         InicializaNivel();
     }
     //Acabar partida porque has muerto
-    if(jugador->getCurrentHealth() == 0.f)
+    if(!jugador->IsAlive())
     {
         //Calculamos las puntuaciones por nivel
         float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/600); //1 - minutos_transcrridos/100
