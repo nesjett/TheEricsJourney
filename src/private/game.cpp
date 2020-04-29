@@ -2,7 +2,7 @@
 
 
 
-#define UPDATE_INTERVAL (1000/15.0)
+#define UPDATE_INTERVAL (1000/35.0)
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -105,20 +105,9 @@ void game::run(){
     stalker->setActorLocation(Vector2f(400.0,400.0));
     
     
-    /*Projectile *projTest = new Projectile();
-    actors.push_back(projTest);*/
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
 
-    Pawn *enemyTest = new Pawn();
-    actors.push_back(enemyTest);
-
-    Skeleton *enemyTest2 = new Skeleton();
-    actors.push_back(enemyTest2);
-
-    
-    std::cout << "Actors length: " << actors.size() << std::endl;
-    //enemyTest->setAsleep(true);
 
     /***********************************
      * Game loop

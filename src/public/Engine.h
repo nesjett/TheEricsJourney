@@ -70,12 +70,15 @@ class SSprite
         void setTextureRect(sf::IntRect rect);
         void setScale(double x, double y);
         sf::FloatRect getGlobalBounds();
+        sf::FloatRect getBounds();
+        sf::FloatRect setBounds(float newScale);
     protected:
         sf::Texture texture;
         sf::Sprite sfsprite;
     private:
         Engine *eng;
         sf::FloatRect GlobalBounds;
+        std::string TextPath; // Used for debug, to check whther we are loading a specific texture file
 
 };
 
@@ -86,7 +89,7 @@ class SSprite
  * CLASS: ANIMATION
  * 
  * **********************/
-// Source: https://github.com/SFML/SFML/wiki/Easy-Animations-With-Spritesheets
+// Bsed on source: https://github.com/SFML/SFML/wiki/Easy-Animations-With-Spritesheets
 class Animation {
     std::vector<AnimFrame> frames;
     double totalLength;
@@ -107,6 +110,23 @@ class Animation {
         bool loop = false;
 };
 
+
+
+/***********************
+ * 
+ * CLASS: CASCADE. Very Basic particle system
+ * This class spawns a animated ssprite with some specific parameters.
+ * Determined lifespan since creation.
+ * 
+ * **********************/
+/*class Cascade : public SSprite {
+    public:
+        Cascade(sf::Sprite &target, int length);
+        Cascade(sf::Sprite &target, int length, bool looping);
+        virtual ~Cascade();
+
+    private:
+};*/
 
 
 
