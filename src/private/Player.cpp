@@ -113,15 +113,15 @@ void Player::Attack(list<Enemy*> enemyList){
     Arrow *projTest = new Arrow(dir_unit, posPlayer);
     eng->Almacenaenemy(projTest);
     if(AttackImprovement >= 1){
-        Projectile *projTest1 = new Projectile(-dir_unit, posPlayer);
+        Arrow *projTest1 = new Arrow(-dir_unit, posPlayer);
         eng->Almacenaenemy(projTest1);
         if(AttackImprovement >= 2/* && relojMejora.getElapsedTime().asSeconds()>2*/){
             sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x, (getActorLocation().y-30));
-            Projectile *projTest2 = new Projectile(dir_unit, dobleFlecha);
+            Arrow *projTest2 = new Arrow(dir_unit, dobleFlecha);
             eng->Almacenaenemy(projTest2);
             //relojMejora.restart();
             if(AttackImprovement >= 3){
-                Projectile *projTest3 = new Projectile(-dir_unit, dobleFlecha);
+                Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha);
                 eng->Almacenaenemy(projTest3);
             }
         }
