@@ -30,6 +30,8 @@ public:
 
     //Audio del juego
     void play_player_shot();
+    void play_enemy1_takedamage();
+    void play_enemy1_death();
 
 protected:
 private:
@@ -41,6 +43,9 @@ private:
 
     //Audio del jugador
     Music player_shot;
+
+    //Audio de los enemigos
+    Music enemy1_takedamage, enemy1_death;
 };
 
 #endif // AUDIOMANAGER_H
