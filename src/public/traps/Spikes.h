@@ -11,8 +11,6 @@ class Spikes: public Trap {
     public:
         Spikes();
 
-        float damage_Base;
-
         void Update(float delta);
         void Draw(double percent, double delta );
         void OnActorOverlap(Actor *otherActor);

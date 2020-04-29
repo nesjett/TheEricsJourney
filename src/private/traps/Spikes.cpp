@@ -5,7 +5,7 @@
 Spikes::Spikes() : Trap(){ // Use this to call to parent's contructor first
     texture_file = "./resources/traps/spikes.png";
 
-    damage_Base = 15.0f;
+    damage_factor = 15.f;
     oType = worlddynamic;
     setActorLocation(Vector2f(0.f, 0.f)); // PLace actor somewhere in the map
 
@@ -45,7 +45,7 @@ void Spikes::Draw(double percent, double delta ){
 
 void Spikes::OnActorOverlap(Actor *otherActor){
     if ( dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == allie ) { // allie = player related things
-        otherActor->TakeDamage(damage_Base, this, "TRAP_X");
+        target = otherActor;
     }
 }
 

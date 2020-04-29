@@ -11,14 +11,15 @@ class Trap: public Actor {
     public:
         Trap();
 
-        float damage_Base;
-
         void Update(float delta);
         void Draw(double percent, double delta );
         void OnActorOverlap(Actor *otherActor);
     protected:
         virtual void PrepareSprite();
 
+        float damage_factor;
+        
+        Actor *target;
         Animation* activeAnim = NULL;
         std::map<std::string, Animation*> Animations;
     private:
