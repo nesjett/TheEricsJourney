@@ -25,6 +25,7 @@ void Arrow::Init(){
     
     sprite->setOrigin(85.33/2, 28/2);
     sprite->setTextureRect( 0, 5 , 85.33, 28 );
+    sprite->setBounds(0.5);
 
 
     Animation *tmpA;

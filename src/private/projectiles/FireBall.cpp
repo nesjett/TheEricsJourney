@@ -25,6 +25,8 @@ void FireBall::Init(){
     sprite->setTextureRect( 0, 5 , 220, 124 );
     sprite->setScale(0.35, 0.35);
 
+    sprite->setBounds(0.5);
+
 
     Animation *tmpA;
 

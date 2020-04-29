@@ -60,8 +60,9 @@ SSprite::SSprite(string path){
         std::cerr << "Error cargando la imagen" << path << std::endl;
         exit(0);
     }
+    TextPath = path;
     sfsprite.setTexture(texture);
-    GlobalBounds = sfsprite.getGlobalBounds();
+    GlobalBounds = sf::FloatRect();
 }
 
 SSprite::SSprite(){
@@ -86,8 +87,28 @@ sf::Vector2f SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, do
 }
 
 sf::FloatRect SSprite::getGlobalBounds() {
-    float rot = sfsprite.getRotation();
+    
     return sfsprite.getGlobalBounds();
+}
+
+sf::FloatRect SSprite::getBounds() {
+    sf::FloatRect current = sfsprite.getGlobalBounds();
+    if(GlobalBounds.width == 0.f) {
+        return current;
+    }
+    /*if(TextPath == "./resources/projectiles/fireball-short.png") {
+        int i = 0;
+    }*/
+    //GlobalBounds.width = current.width;
+    //GlobalBounds.height = current.height;
+    float top = (current.height * (GlobalBounds.height/current.height) ) /2;
+    float left = (current.width *  (GlobalBounds.width/current.width) ) / 2;
+
+    current.top = current.top + top + GlobalBounds.height/2; // TODO: For some reason seems not to properly center vertically
+    current.left = current.left + left;
+    current.width = GlobalBounds.width;
+    current.height = GlobalBounds.height;
+    return current;
 }
 
 
@@ -193,6 +214,16 @@ The default scale of a transformable object is (1, 1).
 /////////////////////////////////////////////////////////*/
 void SSprite::setScale(double x, double y){
     sfsprite.setScale(x, y);
+}
+
+// Based on the sprite global bounds, readjust the bounding box to a custom one, relative to the global ones.
+sf::FloatRect SSprite::setBounds(float newScale) {
+    sf::FloatRect current = sfsprite.getGlobalBounds();
+    GlobalBounds.height = current.height * newScale;
+    GlobalBounds.width = current.width * newScale;
+    GlobalBounds.top = 0.f; // Set to 0 because this changes over time. DInamically calculated in getBOunds()
+    GlobalBounds.left = 0.f; // Set to 0 because this changes over time.  DInamically calculated in getBOunds()
+    return GlobalBounds;
 }
 
 SSprite::~SSprite(){

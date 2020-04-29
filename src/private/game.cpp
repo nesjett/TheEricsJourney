@@ -2,7 +2,7 @@
 
 
 
-#define UPDATE_INTERVAL (1000/15.0)
+#define UPDATE_INTERVAL (1000/35.0)
 
 game* game::pInstance = NULL;
 game* game::Instance() {
