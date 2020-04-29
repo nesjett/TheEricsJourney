@@ -116,9 +116,6 @@ void game::run(){
     Skeleton *enemyTest2 = new Skeleton();
     actors.push_back(enemyTest2);
 
-    Hud* hud = Hud::Instance();
-    hud->addEnemy(enemyexp);
-
     
     std::cout << "Actors length: " << actors.size() << std::endl;
     //enemyTest->setAsleep(true);
