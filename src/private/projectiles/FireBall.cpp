@@ -15,14 +15,15 @@ void FireBall::Init(){
     movementSpeed = 0.1;
     damage = 20;
 
-    texture_file = "./resources/projectiles/fireball-512.png";
+    texture_file = "./resources/projectiles/fireball-short.png";
     if(sprite){
         delete sprite;
     }
     sprite = new SSprite(texture_file);
     
-    sprite->setOrigin(85.33/2, 28/2);
-    sprite->setTextureRect( 0, 5 , 85.33, 28 );
+    sprite->setOrigin(220/2, 124/2);
+    sprite->setTextureRect( 0, 5 , 220, 124 );
+    sprite->setScale(0.35, 0.35);
 
 
     Animation *tmpA;
@@ -30,12 +31,11 @@ void FireBall::Init(){
     //IDLE
     tmpA = new Animation(sprite->getSpriteR(), 1500, true);
     Animations.insert({"IDLE", tmpA});
-    tmpA->addFrame({sf::IntRect(0,0, 85.33,33)});
-    tmpA->addFrame({sf::IntRect(85.33,0,85.33,33)});
-    tmpA->addFrame({sf::IntRect(170.66,0,85.33,33)});
-    tmpA->addFrame({sf::IntRect(0,33, 85.33,33)});
-    tmpA->addFrame({sf::IntRect(85.33,33,85.33,33)});
-    tmpA->addFrame({sf::IntRect(170.66,33,85.33,33)});
+    tmpA->addFrame({sf::IntRect(0,0, 220,124)});
+    tmpA->addFrame({sf::IntRect(220,0, 220,124)});
+    tmpA->addFrame({sf::IntRect(0,124, 220,124)});
+    tmpA->addFrame({sf::IntRect(220,124, 220,124)});
+    tmpA->addFrame({sf::IntRect(0,248, 220,124)});
     
 }
 

@@ -15,14 +15,15 @@ void Rock::Init(){
     movementSpeed = 0.1;
     damage = 20;
 
-    texture_file = "./resources/projectiles/Rock-512.png";
+    texture_file = "./resources/projectiles/rock.png";
     if(sprite){
         delete sprite;
     }
     sprite = new SSprite(texture_file);
     
-    sprite->setOrigin(85.33/2, 28/2);
-    sprite->setTextureRect( 0, 5 , 85.33, 28 );
+    sprite->setOrigin(400/2, 400/2);
+    sprite->setTextureRect( 0, 5 , 400, 400 );
+    sprite->setScale(0.3,0.3);
 
 
     Animation *tmpA;
@@ -30,12 +31,10 @@ void Rock::Init(){
     //IDLE
     tmpA = new Animation(sprite->getSpriteR(), 1500, true);
     Animations.insert({"IDLE", tmpA});
-    tmpA->addFrame({sf::IntRect(0,0, 85.33,33)});
-    tmpA->addFrame({sf::IntRect(85.33,0,85.33,33)});
-    tmpA->addFrame({sf::IntRect(170.66,0,85.33,33)});
-    tmpA->addFrame({sf::IntRect(0,33, 85.33,33)});
-    tmpA->addFrame({sf::IntRect(85.33,33,85.33,33)});
-    tmpA->addFrame({sf::IntRect(170.66,33,85.33,33)});
+    tmpA->addFrame({sf::IntRect(0,0, 400,400)});
+    tmpA->addFrame({sf::IntRect(0,400, 394,394)});
+    tmpA->addFrame({sf::IntRect(0,794, 394,394)});
+    tmpA->addFrame({sf::IntRect(0,1188, 394,394)});
     
 }
 
