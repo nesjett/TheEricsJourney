@@ -1,21 +1,21 @@
-#include "../../public/projectiles/FireBall.h"
+#include "../../public/projectiles/Rock.h"
 
 
 
-FireBall::FireBall() : Projectile(){ // Use this to call to parent's contructor first
+Rock::Rock() : Projectile(){ // Use this to call to parent's contructor first
     Init();
 }
-FireBall::FireBall(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
+Rock::Rock(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
     Init();
     direction = dir;
     setActorLocation(pos); 
     activeAnim = Animations.find("IDLE")->second;
 }
-void FireBall::Init(){
+void Rock::Init(){
     movementSpeed = 0.1;
     damage = 20;
 
-    texture_file = "./resources/projectiles/fireball-512.png";
+    texture_file = "./resources/projectiles/Rock-512.png";
     if(sprite){
         delete sprite;
     }
@@ -39,7 +39,7 @@ void FireBall::Init(){
     
 }
 
-void FireBall::Update(float delta){
+void Rock::Update(float delta){
     float x = movementSpeed*direction.x*delta;
     float y = movementSpeed*direction.y*delta;
     x = getActorLocation().x + x;
@@ -53,11 +53,10 @@ void FireBall::Update(float delta){
     auto angleRads = std::atan2(-direction.y, -direction.x);
     auto angleDegs = angleRads * 180.0 / M_PI;
     sprite->setRotation(angleDegs);
-
-    Actor::Update(delta);
 }
 
-FireBall::~FireBall(){
+
+Rock::~Rock(){
     //delete sprite;
 }
 

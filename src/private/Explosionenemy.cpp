@@ -1,5 +1,7 @@
 #include "../public/Explosionenemy.h"
 
+#include <FireBall.h>
+
 Explosionenemy::Explosionenemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
@@ -76,10 +78,10 @@ bool Explosionenemy::Attack(){
        
         //projTest->direction=Vector2f(dir_unit);
         //projTest->setActorLocation(pos);
-        Projectile *projTest = new Projectile(dir_unit, pos);
-        Projectile *projTest1 = new Projectile(dir_unit1, pos);
-        Projectile *projTest2 = new Projectile(dir_unit2, pos);
-        Projectile *projTest3 = new Projectile(dir_unit3, pos);
+        FireBall *projTest = new FireBall(dir_unit, pos);
+        FireBall *projTest1 = new FireBall(dir_unit1, pos);
+        FireBall *projTest2 = new FireBall(dir_unit2, pos);
+        FireBall *projTest3 = new FireBall(dir_unit3, pos);
 
         eng->Almacenaenemy(projTest);
         eng->Almacenaenemy(projTest1);

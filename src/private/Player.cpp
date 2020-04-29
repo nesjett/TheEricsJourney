@@ -1,6 +1,6 @@
 #include "../public/Player.h"
 #include "../public/game.h"
-#include "../public/AudioManager.h"
+#include "Arrow.h"
 
 Player::Player(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
@@ -46,7 +46,7 @@ void Player::Update(float delta){
     
 }
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
-    std::cout << "Damage taken!" << std::endl; 
+    std::cout << "Player toke damage!" << std::endl; 
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
         health_Current-=damage;
         if(IsAlive() == false){
@@ -110,7 +110,7 @@ void Player::Attack(list<Enemy*> enemyList){
     sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
 
     game *eng = game::Instance();
-    Projectile *projTest = new Projectile(dir_unit, posPlayer);
+    Arrow *projTest = new Arrow(dir_unit, posPlayer);
     eng->Almacenaenemy(projTest);
     AudioManager* am = AudioManager::getInstance();
     am->play_player_shot();

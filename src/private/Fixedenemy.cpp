@@ -1,5 +1,7 @@
 #include "../public/Fixedenemy.h"
 
+#include <FireBall.h>
+
 Fixedenemy::Fixedenemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
@@ -51,7 +53,7 @@ bool Fixedenemy::Attack(){
        
         //projTest->direction=Vector2f(dir_unit);
         //projTest->setActorLocation(pos);
-        Projectile *projTest = new Projectile(dir_unit, pos);
+        FireBall *projTest = new FireBall(dir_unit, pos);
         eng->Almacenaenemy(projTest);
         relojMark.restart();
    }

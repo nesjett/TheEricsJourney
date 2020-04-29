@@ -36,6 +36,7 @@ class Engine
         Engine(const Engine &);
         Engine &operator= (const Engine &);
         virtual ~Engine();
+        //std::map<std::string, sf::Texture> LoadedTextures;
     private:
         static Engine* pInstance;
         sf::RenderWindow app;
@@ -68,13 +69,16 @@ class SSprite
         void setTextureRect(double x, double y, double w, double h);
         void setTextureRect(sf::IntRect rect);
         void setScale(double x, double y);
+        sf::FloatRect getGlobalBounds();
     protected:
         sf::Texture texture;
         sf::Sprite sfsprite;
     private:
         Engine *eng;
+        sf::FloatRect GlobalBounds;
 
 };
+
 
 
 /***********************
@@ -86,17 +90,20 @@ class SSprite
 class Animation {
     std::vector<AnimFrame> frames;
     double totalLength;
-    double progress;
+    int progress;
     sf::Sprite &target;
+    int duration;
+    int currentFrame;
 
     public:
-        Animation(sf::Sprite &target);
-        Animation(sf::Sprite &target, bool looping);
+        Animation(sf::Sprite &target, int length);
+        Animation(sf::Sprite &target, int length, bool looping);
         virtual ~Animation();
+        void Reset();
         void addFrame(AnimFrame&& frame); // TODO: Could forget about this if we add a standard size for the rect in the constructor, and a default rate.
         void update(double elapsed); 
-        const double getLength() const { return totalLength; }
-    protected:
+        double getLength() const { return totalLength; }
+    private:
         bool loop = false;
 };
 

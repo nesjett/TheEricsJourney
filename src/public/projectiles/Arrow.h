@@ -3,11 +3,11 @@
 #include <Projectile.h>
 
 
-class FireBall: public Projectile {
+class Arrow: public Projectile {
     public:
-        FireBall();
-        FireBall(sf::Vector2f, sf::Vector2f);
-        ~FireBall();
+        Arrow();
+        Arrow(sf::Vector2f, sf::Vector2f);
+        ~Arrow();
 
         void Update(float delta);
         void Init();

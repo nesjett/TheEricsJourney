@@ -3,7 +3,7 @@
 #include <game.h>
 
 Actor::Actor() {
-  std::cout << "New actor created" << std::endl;
+  //std::cout << "New actor created" << std::endl;
   setActorLocation(Vector2f(0.f,0.f)); 
   //setBoundingBox( sf::IntRect( 0, 0, 0, 0 ) ); // Init bounding box to 0
   oType = worldstatic;
@@ -24,7 +24,7 @@ void Actor::Update(float delta){
 
   game *gi = game::Instance();
   // CHECK PENDING DESTROY
-  if(lifeSpan >= 0.0 && gi->getTime() >= lifeSpan) {
+  if(lifeSpan >= 0.f && gi->getTime() >= lifeSpan) {
     pendingDelete = true;
   }
 }
@@ -113,14 +113,19 @@ void Actor::OnActorOverlap(Actor *otherActor){
 }
 
 Actor::~Actor(){
-
+  delete sprite;
 }
+
 Vector2f Actor::getInterpolatedPos()
 {
   return currentLoc;
 }
-void Actor::setLifespan(float secs) {
-  sf::Time InSec = sf::seconds(secs);
-  game *gi = game::Instance();
-  lifeSpan = (gi->gameClock).getElapsedTime().asMilliseconds() + InSec.asMilliseconds();
+
+void Actor::setLifespan(float secs) { 
+    sf::Time t1 = sf::seconds(secs);
+    game *gi = game::Instance();
+
+    long gameTime = gi->getTime();
+    lifeSpan = gi->getTime() + t1.asMilliseconds(); // Define exact time at which the actor should be destroyed
+    std::cout << "Game time: " << gameTime << " Destroy time: " << lifeSpan << std::endl;
 }

@@ -58,16 +58,15 @@ void Engine::setView(float centerY, float borderX)
 SSprite::SSprite(string path){
     eng = Engine::Instance();
     if (!texture.loadFromFile(path)) {
-        std::cerr << "Error cargando la imagen sprites.png" << std::endl;
+        std::cerr << "Error cargando la imagen" << path << std::endl;
         exit(0);
     }
-    //Create spriteSheet from texture
     sfsprite.setTexture(texture);
+    GlobalBounds = sfsprite.getGlobalBounds();
 }
 
 SSprite::SSprite(){
     eng = Engine::Instance();
-    std::cout << "SPRITE CREATED -------------" << std::endl;
 }
 
 /// Draw with interpolation
@@ -85,6 +84,11 @@ sf::Vector2f SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, do
     eng->getApp().draw(sfsprite);
 
     return sf::Vector2f(x,y);
+}
+
+sf::FloatRect SSprite::getGlobalBounds() {
+    float rot = sfsprite.getRotation();
+    return sfsprite.getGlobalBounds();
 }
 
 
@@ -200,21 +204,34 @@ SSprite::~SSprite(){
 
 
 
+
 /***********************
  * 
  * CLASS: ANIMATION
  * 
  * **********************/
 
-Animation::Animation(sf::Sprite &target) : target(target) { 
-    progress = totalLength = 0.0;
+Animation::Animation(sf::Sprite &target, int length) : target(target) { 
+    progress = 0;
+    totalLength = 0.0;
+    duration = length;
+    currentFrame = 0;
+    loop = false;
 }
-Animation::Animation(sf::Sprite &target, bool looping) : target(target) { 
-    progress = totalLength = 0.0;
+Animation::Animation(sf::Sprite &target, int length, bool looping) : target(target) { 
+    progress = 0;
+    totalLength = 0.0;
+    duration = length;
+    currentFrame = 0;
     loop = looping;
 }
 Animation::~Animation(){
 
+}
+
+void Animation::Reset() {
+    progress = 0;
+    currentFrame = 0;
 }
 
 /*/////////////////////////////////////////////////////////
@@ -229,19 +246,19 @@ void Animation::addFrame(AnimFrame&& frame) {
 }
 void Animation::update(double elapsed) {
     progress += elapsed;
-    double p = progress;
-    for(size_t i = 0; i < frames.size(); i++) {
-        p -= frames[i].duration;  
+    //double p = progress;
 
-        // if we have progressed OR if we're on the last frame, apply and stop.
-        if(p <= 0.0 || &(frames[i]) == &frames.back()){
-            //progress = 0.0;
-            target.setTextureRect(frames[i].rect);
-            if(loop && &(frames[i]) == &frames.back()){
-                progress = 0.0;
-            }
-            break; // we found our frame
+    if(progress/1.f >= duration/frames.size()) {
+        currentFrame++;
+        if(!loop && currentFrame/1.f >= frames.size()){
+            progress = 0;
+            return;
         }
-
+        if(currentFrame/1.f >= frames.size()){
+            currentFrame = 0;
+        }
+        target.setTextureRect(frames[currentFrame].rect);
+        progress = 0;
     }
+
 }
