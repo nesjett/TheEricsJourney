@@ -4,7 +4,7 @@
 Player::Player(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file2 = "./resources/sprites.png";
+    texture_file = "./resources/Player.png";
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(0.f, 0.f);
@@ -21,17 +21,19 @@ Player::Player(){ // Use this to call to parent's contructor first
     faction = allie;
 
     Init();
+    PrepareSprite();
 
 }
 
 void Player::Init(){
-    sprite = new SSprite(texture_file2);
+    sprite = new SSprite(texture_file);
     sprite->setOrigin(75/2, 75/2);
     sprite->setTextureRect( 0, 0 ,75,75 );
     std::cout << "Terminamos INIT()" << std::endl;
 }
 void Player::Draw(double percent, double delta ){
-   Actor::Draw(percent, delta); 
+    Pawn::SetAnimation();
+   Pawn::Draw(percent, delta); 
 }
 
 void Player::Update(float delta){
@@ -41,6 +43,87 @@ void Player::Update(float delta){
     }
     
 }
+
+void Player::PrepareSprite(){
+    float sizeX = 621.0, sizeY = 569.0;
+    float offsetX = sizeX / 2.0;
+    float offsetY = sizeY / 2.0;
+
+    sprite = new SSprite(texture_file);
+    sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
+    sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    
+    double playrate = 1000.0;
+    Animation *tmpA;
+
+    //DOWN
+    tmpA = new Animation(sprite->getSpriteR(), true);
+    Animations.insert({"up", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY), playrate});
+    
+    
+    //LEFT
+    tmpA = new Animation(sprite->getSpriteR(), true);
+    Animations.insert({"right", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY), playrate});
+
+
+    //RIGHT
+    tmpA = new Animation(sprite->getSpriteR(), true);
+    Animations.insert({"left", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY), playrate});
+
+    //UP
+    tmpA = new Animation(sprite->getSpriteR(), true);
+    Animations.insert({"down", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY), playrate});
+}
+
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     std::cout << "Damage taken!" << std::endl; 
     if(health_Current > 0){ // Only apply damage if the enemy is alive.

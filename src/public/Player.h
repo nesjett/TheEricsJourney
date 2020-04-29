@@ -28,9 +28,9 @@ class Player:  public Pawn{
         float getMaxHealth();
 
     protected:
-        void PrepareSprite2();
+        void PrepareSprite();
 
     private:
-        string texture_file2;
+        string texture_file;
         
 };

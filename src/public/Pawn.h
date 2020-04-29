@@ -35,6 +35,7 @@ class Pawn: public Actor {
         Faction getFaction(){ return faction; };
         void setFaction(Faction f){ faction = f; };
         void OnActorOverlap(Actor *otherActor);
+        void SetAnimation();
     protected:
         void PrepareSprite();
 

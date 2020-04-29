@@ -85,54 +85,10 @@ void Explosionenemy::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(64,0,sizeX,sizeY), playrate});
 }
 
-void Explosionenemy::SetAnimation(){ //selecciona la animacion del mapa de animaciones dependiendo de la direccion del actor
-    
-    auto angleRads = std::atan2(-direction.y, direction.x);
-    auto angleDegs = angleRads * 180.0 / M_PI;
-    
-    if((angleDegs<22.5 && angleDegs>=0) || (angleDegs>=337.5 && angleDegs<=0)){
-        activeAnim=Animations.find("right")->second;
-    }
-    if(angleDegs<67.5 && angleDegs>=22.5){
-        activeAnim=Animations.find("right")->second;
-    }
-    if(angleDegs<112.5 && angleDegs>=67.5){
-        activeAnim=Animations.find("up")->second;
-    }
-    if(angleDegs<157.5 && angleDegs>=112.5){
-        activeAnim=Animations.find("left")->second;
-    }
-    if(angleDegs<202.5 && angleDegs>=157.5){
-        activeAnim=Animations.find("left")->second;
-    }
-    if(angleDegs<247.5 && angleDegs>=202.5){
-        activeAnim=Animations.find("left")->second;
-    }
-    if(angleDegs<292.5 && angleDegs>=247.5){
-        activeAnim=Animations.find("down")->second;
-    }
-    if(angleDegs<337.5 && angleDegs>=292.5){
-        activeAnim=Animations.find("right")->second;
-    }
 
-    /*if(direction==Vector2f(0.0,-1.0)){
-        activeAnim=Animations.find("up")->second;
-    }
-    if(direction==Vector2f(0.0,1.0)){
-        activeAnim=Animations.find("down")->second;
-    }
-    if(direction==Vector2f(-1.0,0.0)){
-        activeAnim=Animations.find("left")->second;
-    }
-    if(direction==Vector2f(1.0,0.0)){
-        activeAnim=Animations.find("right")->second;
-    }
-    */
-    
-}
 
 void Explosionenemy::Draw(double percent, double delta ){
-    SetAnimation();
+    Pawn::SetAnimation();
     Pawn::Draw(percent, delta);
 }
 
