@@ -88,7 +88,7 @@ void game::run(){
      ***********************************/
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
-    /*
+    
     Fixedenemy *enemyfijo = new Fixedenemy();
     actors.push_back(enemyfijo);
     enemyfijo->setActorLocation(Vector2f(600.0,550.0));
@@ -96,34 +96,19 @@ void game::run(){
     Movingenemy *enemymove = new Movingenemy();
     actors.push_back(enemymove);
     enemymove->Prepara(Vector2f(500.0,300.0),Vector2f(300.0,400.0));
-    */
+    
     Explosionenemy *enemyexp = new Explosionenemy();
     actors.push_back(enemyexp);
     enemyexp->setActorLocation(Vector2f(400.0,400.0));
-
     
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
     stalker->setActorLocation(Vector2f(400.0,400.0));
     
     
-    /*Projectile *projTest = new Projectile();
-    actors.push_back(projTest);*/
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
 
-    Pawn *enemyTest = new Pawn();
-    actors.push_back(enemyTest);
-
-    Skeleton *enemyTest2 = new Skeleton();
-    actors.push_back(enemyTest2);
-
-    Hud* hud = Hud::Instance();
-    hud->addEnemy(enemyexp);
-
-    
-    std::cout << "Actors length: " << actors.size() << std::endl;
-    //enemyTest->setAsleep(true);
 
     /***********************************
      * Game loop
