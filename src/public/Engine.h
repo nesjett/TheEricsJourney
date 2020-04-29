@@ -116,17 +116,27 @@ class Animation {
  * 
  * CLASS: CASCADE. Very Basic particle system
  * This class spawns a animated ssprite with some specific parameters.
+ * Does not have movement capabilities.
  * Determined lifespan since creation.
  * 
  * **********************/
-/*class Cascade : public SSprite {
+class Cascade : public SSprite {
     public:
-        Cascade(sf::Sprite &target, int length);
-        Cascade(sf::Sprite &target, int length, bool looping);
+        Cascade();
+        
+        // Total lifetime of the emitter
+        void SetLifetime(int time) { Lifetime = time; };
+        
+        // By default = true. Sets if the particle should loop infinite time
+        void SetAuto(bool Auto) { AutoDestroy = Auto; };
         virtual ~Cascade();
-
+    protected:
+        SSprite Sprite;
+        sf::Clock Remaining;
     private:
-};*/
+        bool AutoDestroy;
+        int Lifetime;
+};
 
 
 

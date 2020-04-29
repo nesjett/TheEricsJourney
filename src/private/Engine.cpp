@@ -293,3 +293,24 @@ void Animation::update(double elapsed) {
     }
 
 }
+
+
+
+
+
+
+
+
+/***********************
+ * 
+ * CLASS: CASCADE
+ * 
+ * **********************/
+
+Cascade::Cascade() { 
+    
+}
+
+Cascade::~Cascade(){
+
+}
