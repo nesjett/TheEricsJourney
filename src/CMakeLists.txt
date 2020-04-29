@@ -21,6 +21,7 @@ target_sources(libModulos PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Skeleton.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Stalker.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Hud.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Mejora.cpp"
 
 
     "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/FireBall.cpp"

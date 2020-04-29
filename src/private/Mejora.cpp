@@ -1,8 +1,8 @@
-#include <Trap.h>
+#include <Mejora.h>
 
 //#include <game.h>
 
-Trap::Trap() : Actor(){ // Use this to call to parent's contructor first
+Mejora::Mejora() : Actor(){ // Use this to call to parent's contructor first
     texture_file = "./resources/Zombies.png";
 
     damage_Base = 15.0f;
@@ -11,7 +11,7 @@ Trap::Trap() : Actor(){ // Use this to call to parent's contructor first
     PrepareSprite();
 }
 
-void Trap::PrepareSprite(){
+void Mejora::PrepareSprite(){
     float scale = 0.4;
     float sizeX = 430.0, sizeY = 519.0;
     float offsetX = sizeX / 2.0;
@@ -34,16 +34,18 @@ void Trap::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(40,59,sizeX,sizeY)});
 }
 
-void Trap::Update(float delta){
+void Mejora::Update(float delta){
    Actor::Update(delta);
 }
 
-void Trap::Draw(double percent, double delta ){
+void Mejora::Draw(double percent, double delta ){
     Actor::Draw(percent, delta);
 }
 
-void Trap::OnActorOverlap(Actor *otherActor){
+void Mejora::OnActorOverlap(Actor *otherActor){
 
 }
-
-
+Mejora::~Mejora() // Destructor
+{
+ 
+}
