@@ -18,7 +18,7 @@ void PlayerController::Update(sf::Keyboard::Key tecla){
         IncreaseHealth();
         std::cout<<"Vida total: "<<getMaxHealth()<<std::endl;
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::O)){
+    if(tecla == sf::Keyboard::O){
         ImprovesAttack();
     }
     Mover(tecla);
