@@ -24,7 +24,6 @@ class Hud
 
 
         void setPlayer(Player* player);
-        void addEnemy(Enemy* enemy);
         void Update();
         void Draw();
 
@@ -53,8 +52,7 @@ class Hud
         vector<Text> txtPowerUps;
 
         //Barras de vida de los enemigos
-        vector<Enemy*> enemigos;
-        vector<RectangleShape> enemyHealthBars;
+        vector<RectangleShape*> enemyHealthBars;
 };
 
 #endif // Hud_H

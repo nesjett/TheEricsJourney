@@ -1,4 +1,5 @@
 #include "../public/Enemy.h"
+#include "../public/AudioManager.h"
 
 Enemy::Enemy() : Pawn(){ // Use this to call to parent's contructor first
 
@@ -15,9 +16,11 @@ void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
         health_Current-=damage;
         if(IsAlive() == false){
             Die();
+            AudioManager::getInstance()->play_enemy1_death();
         } else {
             ApplyHitEffects(damage_type); // Apply hit effects
         }
+        AudioManager::getInstance()->play_enemy1_takedamage();
     }
 }
 
