@@ -1,5 +1,6 @@
 #include "../public/Player.h"
 #include "../public/game.h"
+#include "../public/AudioManager.h"
 
 Player::Player(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
@@ -111,6 +112,8 @@ void Player::Attack(list<Enemy*> enemyList){
     game *eng = game::Instance();
     Projectile *projTest = new Projectile(dir_unit, posPlayer);
     eng->Almacenaenemy(projTest);
+    AudioManager* am = AudioManager::getInstance();
+    am->play_player_shot();
 }
 
 void Player::setHealthMax(float increase){

@@ -70,10 +70,7 @@ void game::InicializaNivel()
     }
     else{
         //Cargamos la pantalla de puntuaciones
-        estadoJuego = false;
-        menu->cambiarAPantallaFinal(pointsPerLevel);
-        Engine* eng = Engine::Instance();
-        eng->setView(0.f, 0.f);
+        EndGame();
     }
 }
 
@@ -328,16 +325,27 @@ void game::CondicionVictoria()
     //Acabar partida porque has muerto
     if(jugador->getCurrentHealth() == 0.f)
     {
+        //Calculamos las puntuaciones por nivel
         float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/600); //1 - minutos_transcrridos/100
         float points = porcentaje*1000000; //Puntuacion max es de 1.000.000
         pointsPerLevel.push_back(points);
-        estadoJuego = false;
-        menu->cambiarAPantallaFinal(pointsPerLevel);
-        Engine* eng = Engine::Instance();
-        eng->setView(0.f, 0.f);
+
+        EndGame();
     }
 }
 
+//Terminar el juego
+void game::EndGame()
+{
+    //Cambiamos a pantalla final
+    estadoJuego = false;
+    menu->cambiarAPantallaFinal(pointsPerLevel);
+    Engine* eng = Engine::Instance();
+    eng->setView(0.f, 0.f);
+
+    //Eliminamos los enemigos, si es el caso es que el jugador ha muerto
+
+}
 
 game::~game() // Destructor
 {
