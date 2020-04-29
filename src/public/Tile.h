@@ -17,7 +17,7 @@ class Tile: public Actor {
         void setFaction(Faction f){ faction = f; };
         void OnActorOverlap(Actor *otherActor);
     protected:
-        void PrepareSprite();
+        virtual void PrepareSprite();
         Animation* animation;
     private:
         string texture_file;

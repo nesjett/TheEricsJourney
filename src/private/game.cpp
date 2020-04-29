@@ -158,7 +158,7 @@ void game::run(){
             RENDER LOOP
 
         ////////////////////////////*/
-        eng->getApp().clear(); 
+        eng->getApp().clear(sf::Color(200,193,219,255)); 
         
         if(estadoJuego == false)
         {
