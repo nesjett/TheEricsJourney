@@ -8,7 +8,24 @@ PlayerController::PlayerController(Player* jugador, list<Enemy*> listaEnemigos){
 }
 
 void PlayerController::Update(sf::Keyboard::Key tecla){
-
+    if (tecla == sf::Keyboard::N){
+        MejorarCadencia(0.9);
+    }
+    if(tecla == sf::Keyboard::V){
+        MejorarMovimiento(1.08);
+    }
+    if(tecla == sf::Keyboard::P){
+        IncreaseHealth();
+        std::cout<<"Vida total: "<<getMaxHealth()<<std::endl;
+    }
+    if(tecla == sf::Keyboard::O){
+        ImprovesAttack();
+    }
+    Mover(tecla);
+    std::cout << "Tecla pulsada: " << tecla << std::endl;
+    
+}
+void PlayerController::Mover(sf::Keyboard::Key tecla){
     if(tecla==sf::Keyboard::Up || tecla==sf::Keyboard::W){
         miJugador->setDirection(miJugador->getDirection().x, (-0.05));
     }
@@ -17,11 +34,9 @@ void PlayerController::Update(sf::Keyboard::Key tecla){
     }
     if(tecla==sf::Keyboard::Left || tecla==sf::Keyboard::A){
         miJugador->setDirection((-0.05), miJugador->getDirection().y);
-        //_izquierda = true;
     }
     if(tecla==sf::Keyboard::Right || tecla==sf::Keyboard::D){
         miJugador->setDirection(0.05, miJugador->getDirection().y);
-        //_derecha = true;
     }
 }
 void PlayerController::Frenar(sf::Keyboard::Key tecla){
@@ -51,13 +66,20 @@ void PlayerController::MejorarCadencia(float mej){
 void PlayerController::MejorarMovimiento(float mejMov){
     miJugador->movementSpeed*=mejMov;
 }
-
+void PlayerController::setAttack(list<Enemy*> listaEnemigos){
+    if(miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f && miJugador->IsAlive()==true){
+        setLista(listaEnemigos);
+        Attacks();
+    }
+}
 void PlayerController::Attacks(){
-    
     if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora)){
         miJugador->Attack(enemyList);
         relojAtaque.restart();
     }
+}
+void PlayerController::ImprovesAttack(){
+    miJugador->improvesAttack();
 }
 void PlayerController::IncreaseHealth(){
     //In this method, you can set an increase of 25 HP in Player's health
@@ -71,7 +93,6 @@ float PlayerController::getCurrentHealth(){
 float PlayerController::getMaxHealth(){
     return miJugador->getMaxHealth();
 }
-
 PlayerController::~PlayerController() // Destructor
 {
  

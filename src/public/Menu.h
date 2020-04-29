@@ -30,6 +30,7 @@ class Menu
         sf::Sprite* logo;
         string itemsMenu [4];
         string itemsMenuFinal [4];
+        vector<Text*> itemsMnuFinal;
         sf::Color colorItemHover;
         sf::Color colorItemBase;
         bool mostrarMenu;
@@ -46,6 +47,7 @@ class Menu
         void cargarMenuFinal();
         void cambiaColorItems();
         void cargarLogo();
+        void cargarLogoFinal();
         list<float> puntos;
         AudioManager* audioManager;
 };
