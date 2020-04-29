@@ -1,8 +1,8 @@
-#include <Trap.h>
+#include "../../public/traps/Spikes.h"
 
 #include <game.h>
 
-Trap::Trap() : Actor(){ // Use this to call to parent's contructor first
+Spikes::Spikes() : Trap(){ // Use this to call to parent's contructor first
     texture_file = "./resources/traps/spikes.png";
 
     damage_Base = 15.0f;
@@ -12,7 +12,7 @@ Trap::Trap() : Actor(){ // Use this to call to parent's contructor first
     PrepareSprite();
 }
 
-void Trap::PrepareSprite(){
+void Spikes::PrepareSprite(){
     float scale = 0.35;
     float sizeX = 164.0, sizeY = 160.0;
     float offsetX = sizeX / 2.0;
@@ -35,16 +35,18 @@ void Trap::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(40,59,sizeX,sizeY)});
 }
 
-void Trap::Update(float delta){
+void Spikes::Update(float delta){
    Actor::Update(delta);
 }
 
-void Trap::Draw(double percent, double delta ){
+void Spikes::Draw(double percent, double delta ){
     Actor::Draw(percent, delta);
 }
 
-void Trap::OnActorOverlap(Actor *otherActor){
-
+void Spikes::OnActorOverlap(Actor *otherActor){
+    if ( dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == allie ) { // allie = player related things
+        otherActor->TakeDamage(damage_Base, this, "TRAP_X");
+    }
 }
 
 

@@ -13,16 +13,12 @@ class Tile: public Actor {
         float width, height;
         void Update(float delta);
         void Draw(double percent, double delta );
-        Faction getFaction(){ return faction; };
-        void setFaction(Faction f){ faction = f; };
         void OnActorOverlap(Actor *otherActor);
     protected:
         virtual void PrepareSprite();
         Animation* animation;
     private:
         string texture_file;
-        Faction faction;
-        float trapDamage;
 };
 
 #endif

@@ -1,15 +1,15 @@
 #pragma once
-#ifndef TRAP_H
-#define TRAP_H
-#include <Actor.h>
+#ifndef SPIKES_H
+#define SPIKES_H
+#include <Trap.h>
 #include <Engine.h>
 
 using namespace std;
 using namespace sf;
 
-class Trap: public Actor {
+class Spikes: public Trap {
     public:
-        Trap();
+        Spikes();
 
         float damage_Base;
 

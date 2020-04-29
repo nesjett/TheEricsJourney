@@ -26,6 +26,7 @@ target_sources(libModulos PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/FireBall.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/Arrow.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Trap.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/traps/Spikes.cpp"
 )
 
 #Y donde se encuentran los .h
