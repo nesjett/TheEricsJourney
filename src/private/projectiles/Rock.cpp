@@ -30,7 +30,7 @@ void Rock::Init(){
     Animation *tmpA;
 
     //IDLE
-    tmpA = new Animation(sprite->getSpriteR(), 650, true);
+    tmpA = new Animation(sprite->getSpriteR(), 1600, true);
     Animations.insert({"IDLE", tmpA});
     tmpA->addFrame({sf::IntRect(0,0, 400,400)});
     tmpA->addFrame({sf::IntRect(0,400, 394,394)});
