@@ -53,8 +53,8 @@ void game::InicializaNivel()
         vMapas.push_back(new Mapa(nombreMapa));
 
         //Cargamos las colisiones del nivel
-        list<Tile*> mapColisionables = vMapas[mapaActual]->getActors();
-        for (Tile *tile : mapColisionables)
+        list<Actor*> mapColisionables = vMapas[mapaActual]->getActors();
+        for (Actor *tile : mapColisionables)
         {
             actors.push_back(tile);
         }

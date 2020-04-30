@@ -1,15 +1,13 @@
 #include "../public/Mapa.h"
-#include <SFML/Graphics.hpp>
+#include "../public/Movingenemy.h"
+#include "../public/Explosionenemy.h"
+#include "../public/Fixedenemy.h"
+
 using namespace std;
 
 Mapa::Mapa(string nombre)
 {   
     nombreMapa = nombre;
-    nombreCapaColisiones = "colisiones";
-    nombreCapaObjetos = "objetos";
-    nombreCapaPuertas = "puerta";
-    // ventanaMapa = new sf::RenderWindow(sf::VideoMode(1280, 1920), "Mapa");
-    // ventanaMapa->setFramerateLimit(60);
     eng = Engine::Instance();
     cargaMapa();
 }
@@ -27,13 +25,13 @@ void Mapa::cargaMapa()
     XMLDocument documento;
     nombreMapa = "./resources/maps/" + nombreMapa;
     if(!documento.LoadFile(nombreMapa.c_str()))
-        cout << "Error leyendo el mapa." << endl;
+        //cout << "Error leyendo el mapa." << endl;
 
     mapa = documento.FirstChildElement("map");
 
     mapa->QueryAttribute("height", &tamMapaX);
     mapa->QueryAttribute("width", &tamMapaY);
-    mapa->QueryAttribute("tilewidth", &tamTileX); //pq son mismo tamanyo
+    mapa->QueryAttribute("tilewidth", &tamTileX);
     mapa->QueryAttribute("tileheight", &tamTileY);
 
     //Cargar los sprites
@@ -79,6 +77,7 @@ void Mapa::cargaMapa()
 
     layer = mapa->FirstChildElement("layer");
     XMLElement* tile;
+    int posVEnemy = 0;
     int posX = 0;
     int posY = 0;
     for(int l = 0; l < num_layers; l++)
@@ -105,7 +104,26 @@ void Mapa::cargaMapa()
                         vPuertas.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX*2,tamTileY,trap));
                         vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX*2,tamTileY,worldstatic));
                     }
-                    else{
+                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos1.c_str()) == 0) //Enemigostipo1
+                    {
+                        vEnemigos.push_back(new Fixedenemy());
+                        vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
+                        posVEnemy++;
+                    }
+                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos2.c_str()) == 0) //Enemigostipo1
+                    {
+                        vEnemigos.push_back(new Movingenemy());
+                        vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
+                        posVEnemy++;
+                    }
+                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos3.c_str()) == 0) //Enemigostipo1
+                    {
+                        vEnemigos.push_back(new Explosionenemy());
+                        vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
+                        posVEnemy++;
+                    }
+                    if(strcmp(layer->Attribute("name"), nombreCapaSuelo.c_str()) == 0)
+                    {
                         vectorPintar2.push_back(*vectorSprite[valor-1]);
                         vPosX.push_back(posX);
                         vPosY.push_back(posY);
@@ -135,10 +153,21 @@ void Mapa::cargaMapa()
     }
 }
 
-list<Tile*> Mapa::getActors()
+list<Actor*> Mapa::getActors()
 {
     list<Tile*> listaTiles(vTiles.begin(),vTiles.end());
-    return listaTiles;
+    list<Enemy*> listaEnemigos(vEnemigos.begin(), vEnemigos.end());
+    list<Actor*> actores;
+    //listaTiles.merge(listaEnemigos);
+    for (Tile *tile : listaTiles)
+    {
+        actores.push_back(tile);
+    }
+    for (Enemy *enemy : listaEnemigos)
+    {
+        actores.push_back(enemy);
+    }
+    return actores;
 }
 Tile* Mapa::getPuerta()
 {
