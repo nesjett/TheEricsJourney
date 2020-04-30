@@ -1,6 +1,6 @@
 #include <Trap.h>
 
-#include <game.h>
+//#include <game.h>
 
 Trap::Trap() : Actor(){ // Use this to call to parent's contructor first
     texture_file = "./resources/traps/spikes.png";
