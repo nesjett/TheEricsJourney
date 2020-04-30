@@ -5,7 +5,7 @@
 Trap::Trap() : Actor(){ // Use this to call to parent's contructor first
     texture_file = "./resources/traps/spikes.png";
 
-    damage_factor = 15.0f;
+    damage_factor = 0.2;
     oType = worlddynamic;
     setActorLocation(Vector2f(0.f, 0.f)); // PLace actor somewhere in the map
     target = nullptr;
@@ -24,7 +24,7 @@ void Trap::PrepareSprite(){
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
     sprite->setScale(scale,scale); // Set the scale of the sprite.
-    
+
     Animation *tmpA;
 
     /////////////////// WALK_LEFT
@@ -39,9 +39,7 @@ void Trap::PrepareSprite(){
 void Trap::Update(float delta){
    Actor::Update(delta);
 
-    if(target && target->IsValid()) {
-        target->TakeDamage(damage_factor*delta, this, "TRAP_X");
-    }
+   
 
 }
 

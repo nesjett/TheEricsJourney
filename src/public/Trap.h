@@ -22,6 +22,7 @@ class Trap: public Actor {
         Actor *target;
         Animation* activeAnim = NULL;
         std::map<std::string, Animation*> Animations;
+        sf::Clock timer;
     private:
         std::string texture_file;
 };
