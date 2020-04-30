@@ -15,7 +15,7 @@ struct AnimFrame {
 };
 
 enum Faction { enemy=2, allie=1, neutral=0 };
-enum ObjectType { worldstatic=0, worlddynamic=1, pawn=2, projectile=3, trap=4 }; // NOTA: Parece que c++ no permite que los nombres de una enum tengan mayusculas!!
+enum ObjectType { worldstatic=0, worlddynamic=1, pawn=2, projectile=3, trap=4, blocker=5 }; // NOTA: Parece que c++ no permite que los nombres de una enum tengan mayusculas!!
 
 /***********************
  * 
@@ -64,6 +64,7 @@ class SSprite
         sf::Sprite getSprite(){ return sfsprite; }
         // Returns a ref to the SFML sprite
         sf::Sprite &getSpriteR(){ return sfsprite; }
+        sf::Vector2f Draw();
         sf::Vector2f Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent);
         void setOrigin(double x, double y);
         void setTextureRect(double x, double y, double w, double h);
@@ -116,17 +117,27 @@ class Animation {
  * 
  * CLASS: CASCADE. Very Basic particle system
  * This class spawns a animated ssprite with some specific parameters.
+ * Does not have movement capabilities.
  * Determined lifespan since creation.
  * 
  * **********************/
-/*class Cascade : public SSprite {
+class Cascade : public SSprite {
     public:
-        Cascade(sf::Sprite &target, int length);
-        Cascade(sf::Sprite &target, int length, bool looping);
+        Cascade();
+        
+        // Total lifetime of the emitter
+        void SetLifetime(int time) { Lifetime = time; };
+        
+        // By default = true. Sets if the particle should loop infinite time
+        void SetAuto(bool Auto) { AutoDestroy = Auto; };
         virtual ~Cascade();
-
+    protected:
+        SSprite Sprite;
+        sf::Clock Remaining;
     private:
-};*/
+        bool AutoDestroy;
+        int Lifetime;
+};
 
 
 

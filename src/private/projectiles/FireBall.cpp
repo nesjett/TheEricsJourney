@@ -31,7 +31,7 @@ void FireBall::Init(){
     Animation *tmpA;
 
     //IDLE
-    tmpA = new Animation(sprite->getSpriteR(), 1500, true);
+    tmpA = new Animation(sprite->getSpriteR(), 1100, true);
     Animations.insert({"IDLE", tmpA});
     tmpA->addFrame({sf::IntRect(0,0, 220,124)});
     tmpA->addFrame({sf::IntRect(220,0, 220,124)});
@@ -41,7 +41,7 @@ void FireBall::Init(){
     
 }
 
-void FireBall::Update(float delta){
+void FireBall::Update(float delta){ // TODO: MOve rotation calculation out of Update(), it only needs to update once for this projectiles.
     float x = movementSpeed*direction.x*delta;
     float y = movementSpeed*direction.y*delta;
     x = getActorLocation().x + x;
@@ -56,7 +56,7 @@ void FireBall::Update(float delta){
     auto angleDegs = angleRads * 180.0 / M_PI;
     sprite->setRotation(angleDegs);
 
-    Actor::Update(delta);
+    Projectile::Update(delta);
 }
 
 FireBall::~FireBall(){

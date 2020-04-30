@@ -1,6 +1,6 @@
 #include "../public/Stalker.h"
 
-Stalker::Stalker(){ // Use this to call to parent's contructor first
+Stalker::Stalker(): Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
     texture_file = "./resources/sprites.png";
@@ -33,7 +33,7 @@ void Stalker::Init(){
 void Stalker::Update(float delta){
     
     
-    Pawn::Update(delta);
+    Enemy::Update(delta);
     Followplayer();
     
     
@@ -41,7 +41,7 @@ void Stalker::Update(float delta){
 
 void Stalker::Draw(double percent, double delta ){
     
-    Actor::Draw(percent, delta); // Use this to debug draw bounding box
+    Enemy::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
 

@@ -2,7 +2,7 @@
 
 #include <FireBall.h>
 
-Fixedenemy::Fixedenemy(){ // Use this to call to parent's contructor first
+Fixedenemy::Fixedenemy(): Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
     texture_file = "./resources/sprites.png";
@@ -32,7 +32,7 @@ void Fixedenemy::Init(){
 }
 
 void Fixedenemy::Update(float delta){
-    Pawn::Update(delta);
+    Enemy::Update(delta);
     Attack();
 }
 
