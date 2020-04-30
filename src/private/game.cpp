@@ -123,16 +123,16 @@ void game::run(){
         //Bucle de obtención de eventos
         //sf::Event event;
         while (eng->getApp().pollEvent(tecla)) {
-
+                
             if (tecla.type == sf::Event::Closed){
                 eng->getApp().close();
             }
-            if (tecla.type == sf::Event::KeyPressed){
+            if (tecla.type == sf::Event::KeyPressed || tecla.type == sf::Event::MouseButtonPressed){
                 //Escape
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 }
-                ControladorJugador->Update(tecla.key.code);
+                ControladorJugador->Update(tecla);
             }
             if (tecla.type == sf::Event::KeyReleased){
                 ControladorJugador->Frenar(tecla.key.code);

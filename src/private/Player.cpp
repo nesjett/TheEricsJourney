@@ -16,7 +16,7 @@ Player::Player(){ // Use this to call to parent's contructor first
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
 
-    movementSpeed = 5.0f;
+    movementSpeed = 0.1f;
     faction = allie;
     AttackImprovement = 0;
 
@@ -77,11 +77,6 @@ void Player::setDirection(float x, float y){
 }
 sf::Vector2f Player::getDirection(){
     return direction;
-}
-
-
-void Player::UpdateMovement(){
-
 }
 
 void Player::ActorOverlap(Actor otherActor){

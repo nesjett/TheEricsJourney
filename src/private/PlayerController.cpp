@@ -7,49 +7,79 @@ PlayerController::PlayerController(Player* jugador, list<Enemy*> listaEnemigos){
     enemyList = listaEnemigos;
 }
 
-void PlayerController::Update(sf::Keyboard::Key tecla){
-    if (tecla == sf::Keyboard::N){
+void PlayerController::Update(sf::Event event){
+    if (event.key.code == sf::Keyboard::N){
         MejorarCadencia(0.9);
     }
-    if(tecla == sf::Keyboard::V){
+    if(event.key.code == sf::Keyboard::V){
         MejorarMovimiento(1.08);
     }
-    if(tecla == sf::Keyboard::P){
+    if(event.key.code == sf::Keyboard::P){
         IncreaseHealth();
         std::cout<<"Vida total: "<<getMaxHealth()<<std::endl;
     }
-    if(tecla == sf::Keyboard::O){
+    if(event.key.code == sf::Keyboard::O){
         ImprovesAttack();
     }
-    Mover(tecla);
-    std::cout << "Tecla pulsada: " << tecla << std::endl;
+    Mover(event.key.code);
+
+    /**
+     * MOUSE IMPLEMENTATION
+     **/
+
+    if (event.type == sf::Event::MouseButtonPressed)
+    {
+
+        if (event.mouseButton.button == sf::Mouse::Left)
+        {
+
+            std::cout << "the left button was pressed" << std::endl;
+            std::cout << "mouse x: " << event.mouseButton.x << std::endl;
+            std::cout << "mouse y: " << event.mouseButton.y << std::endl;
+
+            Engine *eng = Engine::Instance();
+            Vector2i pos = sf::Mouse::getPosition(eng->getApp());
+            Vector2f pos2 = eng->getApp().mapPixelToCoords(pos, eng->getApp().getView());
+
+            Vector2f newDir = Vector2f(pos2.x, pos2.y) - miJugador->getActorLocation();
+            float aux=sqrt(pow(newDir.x, 2)+pow(newDir.y, 2));
+            Vector2f dir_unit=Vector2f(newDir.x/aux,newDir.y/aux);
+            miJugador->setDirection(dir_unit.x, dir_unit.y);
+        }
+    }
     
 }
-void PlayerController::Mover(sf::Keyboard::Key tecla){
-    if(tecla==sf::Keyboard::Up || tecla==sf::Keyboard::W){
-        miJugador->setDirection(miJugador->getDirection().x, (-0.05));
+void PlayerController::Mover(sf::Keyboard::Key event){
+    /*
+    Vector2f dir = pos_player-pos;
+   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
+   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
+   */
+    if(event==sf::Keyboard::Up || event==sf::Keyboard::W){
+        miJugador->setDirection(0.f, -1);
     }
-    if(tecla==sf::Keyboard::Down || tecla==sf::Keyboard::S){
-        miJugador->setDirection(miJugador->getDirection().x, 0.05);
+    if(event==sf::Keyboard::Down || event==sf::Keyboard::S){
+        miJugador->setDirection(0.f, 1);
     }
-    if(tecla==sf::Keyboard::Left || tecla==sf::Keyboard::A){
-        miJugador->setDirection((-0.05), miJugador->getDirection().y);
+    if(event==sf::Keyboard::Left || event==sf::Keyboard::A){
+        miJugador->setDirection(-1.f, 0.f);
     }
-    if(tecla==sf::Keyboard::Right || tecla==sf::Keyboard::D){
-        miJugador->setDirection(0.05, miJugador->getDirection().y);
+    if(event==sf::Keyboard::Right || event==sf::Keyboard::D){
+        miJugador->setDirection(1.f, 0.f);
     }
+
 }
-void PlayerController::Frenar(sf::Keyboard::Key tecla){
-    if(tecla==sf::Keyboard::Up || tecla==sf::Keyboard::W){
+void PlayerController::Frenar(sf::Keyboard::Key event){
+    if(event==sf::Keyboard::Up || event==sf::Keyboard::W){
         miJugador->setDirection(miJugador->getDirection().x, 0.f);
     }
-    if(tecla==sf::Keyboard::Down || tecla==sf::Keyboard::S){
+    if(event==sf::Keyboard::Down || event==sf::Keyboard::S){
         miJugador->setDirection(miJugador->getDirection().x, 0.f);
     }
-    if(tecla==sf::Keyboard::Left || tecla==sf::Keyboard::A){
+    if(event==sf::Keyboard::Left || event==sf::Keyboard::A){
         miJugador->setDirection(0.f, miJugador->getDirection().y);
     }
-    if(tecla==sf::Keyboard::Right || tecla==sf::Keyboard::D){
+    if(event==sf::Keyboard::Right || event==sf::Keyboard::D){
         miJugador->setDirection(0.f, miJugador->getDirection().y);
     }
 }
