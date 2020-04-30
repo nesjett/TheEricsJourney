@@ -71,7 +71,7 @@ void Pawn::PrepareSprite(){
 }
 
 void Pawn::SetAnimation(){ //selecciona la animacion del mapa de animaciones dependiendo de la direccion del actor
-
+/*
     auto angleRads = std::atan2(-direction.y, direction.x);
     auto angleDegs = angleRads * 180.0 / M_PI;
     if(angleDegs<0){
@@ -102,8 +102,8 @@ void Pawn::SetAnimation(){ //selecciona la animacion del mapa de animaciones dep
     if(angleDegs<337.5 && angleDegs>=292.5){
         activeAnim=Animations.find("right")->second;
     }
-
-    /*if(direction==Vector2f(0.0,-1.0)){
+*/
+    if(direction==Vector2f(0.0,-1.0)){
         activeAnim=Animations.find("up")->second;
     }
     if(direction==Vector2f(0.0,1.0)){
@@ -115,7 +115,7 @@ void Pawn::SetAnimation(){ //selecciona la animacion del mapa de animaciones dep
     if(direction==Vector2f(1.0,0.0)){
         activeAnim=Animations.find("right")->second;
     }
-    */  
+      
 }
 
 void Pawn::Update(float delta){

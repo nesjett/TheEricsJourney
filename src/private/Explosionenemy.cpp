@@ -38,22 +38,21 @@ void Explosionenemy::Init(){
     double playrate = 1000.0;
     Animation *tmpA;
 
-    //DOWN
+    
     tmpA = new Animation(sprite->getSpriteR(), true);
     Animations.insert({"up", tmpA});
     tmpA->addFrame({sf::IntRect(0,192, sizeX,sizeY), playrate});
     tmpA->addFrame({sf::IntRect(32,192,sizeX,sizeY), playrate});
     tmpA->addFrame({sf::IntRect(65,192,sizeX,sizeY), playrate});
 
-    //LEFT
+   
     tmpA = new Animation(sprite->getSpriteR(), true);
     Animations.insert({"right", tmpA});
     tmpA->addFrame({sf::IntRect(0,128,sizeX,sizeY), playrate});
     tmpA->addFrame({sf::IntRect(32,128,sizeX,sizeY), playrate});
     tmpA->addFrame({sf::IntRect(65,128,sizeX,sizeY), playrate});
 
-
-    //RIGHT
+ 
     tmpA = new Animation(sprite->getSpriteR(), true);
     Animations.insert({"left", tmpA});
     tmpA->addFrame({sf::IntRect(0,64,sizeX,sizeY), playrate});
@@ -61,7 +60,6 @@ void Explosionenemy::Init(){
     tmpA->addFrame({sf::IntRect(65,64,sizeX,sizeY), playrate});
 
 
-    //UP
     tmpA = new Animation(sprite->getSpriteR(), true);
     Animations.insert({"down", tmpA});
     tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY), playrate});
