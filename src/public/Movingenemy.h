@@ -1,6 +1,7 @@
 #pragma once
 #include <Enemy.h>
 #include <Projectile.h>
+#include <Rock.h>
 #include <Player.h>
 #include "game.h"
 using namespace std;

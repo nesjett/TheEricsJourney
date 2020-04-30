@@ -1,15 +1,15 @@
 #pragma once
-#ifndef TRAP_H
-#define TRAP_H
-#include <Actor.h>
+#ifndef SPIKES_H
+#define SPIKES_H
+#include <Trap.h>
 #include <Engine.h>
 
 using namespace std;
 using namespace sf;
 
-class Trap: public Actor {
+class Spikes: public Trap {
     public:
-        Trap();
+        Spikes();
 
         void Update(float delta);
         void Draw(double percent, double delta );
@@ -17,9 +17,6 @@ class Trap: public Actor {
     protected:
         virtual void PrepareSprite();
 
-        float damage_factor;
-        
-        Actor *target;
         Animation* activeAnim = NULL;
         std::map<std::string, Animation*> Animations;
     private:

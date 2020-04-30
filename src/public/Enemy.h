@@ -14,7 +14,15 @@ class Enemy: public Pawn {
 
         bool Attack();
         void Update(float delta);
+        void Draw(double percent, double delta );
         void OnActorOverlap(Actor *otherActor);
+
+        void ToggleTarget(bool Active);
+
+    private:
+        SSprite* TargetMarker;
+        void PrepareMarker();
+        bool Targetted;
 };
 
 #endif

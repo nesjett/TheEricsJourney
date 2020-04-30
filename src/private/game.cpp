@@ -1,6 +1,6 @@
 #include "../public/game.h"
 
-
+#include "../public/traps/Spikes.h"
 
 #define UPDATE_INTERVAL (1000/35.0)
 
@@ -111,6 +111,10 @@ void game::run(){
     
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
+
+    Spikes *trap = new Spikes();
+    actors.push_back(trap);
+    trap->setActorLocation(Vector2f(150.0,150.0));
 
 
     /***********************************

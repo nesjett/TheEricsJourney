@@ -3,7 +3,7 @@
 Zombie::Zombie() : Pawn(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/Zombies.png";
+    texture_file = "./resources/sprites.png";
 
     setActorLocation(Vector2f(250.0, 120.0));
 
