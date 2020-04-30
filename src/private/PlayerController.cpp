@@ -38,13 +38,13 @@ void PlayerController::Update(sf::Event event){
             std::cout << "mouse y: " << event.mouseButton.y << std::endl;
 
             Engine *eng = Engine::Instance();
-            Vector2i pos = sf::Mouse::getPosition(eng->getApp());
-            Vector2f pos2 = eng->getApp().mapPixelToCoords(pos, eng->getApp().getView());
+            Vector2i pos = sf::Mouse::getPosition(eng->getApp()); // mouse position in window coords
+            Vector2f pos2 = eng->getApp().mapPixelToCoords(pos, eng->getApp().getView()); // convert window coords to world coords
 
-            Vector2f newDir = Vector2f(pos2.x, pos2.y) - miJugador->getActorLocation();
+            Vector2f newDir = Vector2f(pos2.x, pos2.y) - miJugador->getActorLocation(); // Determine direction
             float aux=sqrt(pow(newDir.x, 2)+pow(newDir.y, 2));
-            Vector2f dir_unit=Vector2f(newDir.x/aux,newDir.y/aux);
-            miJugador->setDirection(dir_unit.x, dir_unit.y);
+            Vector2f dir_unit=Vector2f(newDir.x/aux,newDir.y/aux); // convert to unit vector
+            miJugador->setDirection(dir_unit.x, dir_unit.y); // apply direction
         }
     }
     
