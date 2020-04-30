@@ -56,7 +56,7 @@ void FireBall::Update(float delta){ // TODO: MOve rotation calculation out of Up
     auto angleDegs = angleRads * 180.0 / M_PI;
     sprite->setRotation(angleDegs);
 
-    Actor::Update(delta);
+    Projectile::Update(delta);
 }
 
 FireBall::~FireBall(){
