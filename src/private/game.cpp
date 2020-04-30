@@ -53,8 +53,8 @@ void game::InicializaNivel()
         vMapas.push_back(new Mapa(nombreMapa));
 
         //Cargamos las colisiones del nivel
-        list<Tile*> mapColisionables = vMapas[mapaActual]->getActors();
-        for (Tile *tile : mapColisionables)
+        list<Actor*> mapColisionables = vMapas[mapaActual]->getActors();
+        for (Actor *tile : mapColisionables)
         {
             actors.push_back(tile);
         }
@@ -317,7 +317,7 @@ void game::CondicionVictoria()
         InicializaNivel();
     }
     //Acabar partida porque has muerto
-    if(jugador->getCurrentHealth() == 0.f)
+    if(!jugador->IsAlive())
     {
         //Calculamos las puntuaciones por nivel
         float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/600); //1 - minutos_transcrridos/100
