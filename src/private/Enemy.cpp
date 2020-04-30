@@ -2,6 +2,7 @@
 #include "../public/AudioManager.h"
 
 Enemy::Enemy() : Pawn(){ // Use this to call to parent's contructor first
+    Targetted = false;
     PrepareMarker();
 }
 
@@ -17,10 +18,14 @@ void Enemy::Update(float delta){
 }
 
 void Enemy::Draw(double percent, double delta ){
+    if(Targetted) {
+        float offsetx = TargetMarker->getSpriteR().getLocalBounds().width*0.55/2; // 0.4 is the marker texture scale
+        float offsety = 20; // 0.4 is the marker texture scale
+        TargetMarker->setPosition(this->getInterpolatedPos().x-offsetx, this->getInterpolatedPos().y-offsety);
+        TargetMarker->Draw();
+    }
+
     Pawn::Draw(percent, delta);
-    float offset = TargetMarker->getSpriteR().getLocalBounds().width*0.55/2; // 0.4 is the marker texture scale
-    TargetMarker->setPosition(this->getInterpolatedPos().x-offset, this->getInterpolatedPos().y);
-    TargetMarker->Draw();
 }
 
 void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
@@ -55,8 +60,6 @@ bool Enemy::Attack(){
     return true;
 }
 
-void ToggleTarget(bool Active){
-    if(Active) {
-
-    }
+void Enemy::ToggleTarget(bool Active){
+    Targetted = Active;
 }

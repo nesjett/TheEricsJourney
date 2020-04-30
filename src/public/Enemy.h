@@ -22,6 +22,7 @@ class Enemy: public Pawn {
     private:
         SSprite* TargetMarker;
         void PrepareMarker();
+        bool Targetted;
 };
 
 #endif
