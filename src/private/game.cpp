@@ -104,9 +104,9 @@ void game::run(){
     actors.push_back(stalker);
     stalker->setActorLocation(Vector2f(400.0,400.0));
 
-    Mejora *mejora = new Mejora();
+    Mejora *mejora = new Mejora(health);
     actors.push_back(mejora);
-    mejora->setActorLocation(Vector2f(150.f, 150.f));
+    mejora->setActorLocation(Vector2f(0.f, 0.f));
     
     
     listaEnemigos = getAllEnemies();

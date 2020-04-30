@@ -1,6 +1,6 @@
 #pragma once
-#ifndef PAWN_H
-#define PAWN_H
+#ifndef MEJORA_H
+#define MEJORA_H
 #include <Actor.h>
 #include <Engine.h>
 
@@ -9,19 +9,15 @@ using namespace sf;
 
 class Mejora: public Actor {
     public:
-        Mejora();
+        Mejora(PowerUpType tipo);
         ~Mejora();
 
-        float damage_Base;
-
+        string nombre;
+        PowerUpType tipoMejora;
         void Update(float delta);
-        void Draw(double percent, double delta );
         void OnActorOverlap(Actor *otherActor);
     protected:
         virtual void PrepareSprite();
-
-        Animation* activeAnim = NULL;
-        std::map<std::string, Animation*> Animations;
     private:
         std::string texture_file;
 };
