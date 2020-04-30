@@ -23,10 +23,13 @@ target_sources(libModulos PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Hud.cpp"
 
 
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/FireBall.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/Arrow.cpp"
 )
 
 #Y donde se encuentran los .h
 target_include_directories(libModulos PUBLIC 
 "${CMAKE_CURRENT_SOURCE_DIR}/public"
+"${CMAKE_CURRENT_SOURCE_DIR}/public/projectiles"
 )
 

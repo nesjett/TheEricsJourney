@@ -5,7 +5,7 @@
 Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/zombie_male_idle.png";
+    texture_file = "./resources/Zombies.png";
 
     direction = Vector2f(0.f, 0.f); // Initially It has no direction
 
@@ -138,7 +138,6 @@ void Pawn::Draw(double percent, double delta ){
         activeAnim->update(delta);
     }
     Actor::Draw(percent, delta); // Use this to debug draw bounding box
-
     if(debug) {
         Engine *eng = Engine::Instance();
         eng->getApp().draw(movementTraceDebug);
@@ -147,7 +146,7 @@ void Pawn::Draw(double percent, double delta ){
 
 void Pawn::OnActorOverlap(Actor *otherActor){
     Engine *eng = Engine::Instance();
-    std::cout << "Soy " << eng->getObjectType(getObjectType()) << " y me ha tocado un objeto tipo: " << eng->getObjectType(otherActor->getObjectType()) << std::endl;
+    //std::cout << "Soy " << eng->getObjectType(getObjectType()) << " y me ha tocado un objeto tipo: " << eng->getObjectType(otherActor->getObjectType()) << std::endl;
     /*if(otherActor->getObjectType() == worldstatic) {
         direction = Vector2f(0.f,0.f);
     }*/

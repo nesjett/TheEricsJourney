@@ -16,7 +16,7 @@ class Actor {
     Actor();
     virtual ~Actor();
     Vector2f getActorLocation() {return location;}
-	  FloatRect getBoundingBox() {return sprite->getSprite().getGlobalBounds();}
+	  FloatRect getBoundingBox() {return sprite->getBounds();}
 
     /*/////////////////////////////////////////////////////////
     \brief Updates de current and old locations
@@ -60,9 +60,24 @@ class Actor {
   /////////////////////////////////////////////////////////*/
     virtual void OnActorOverlap(Actor *otherActor);
 
-    void setLifespan(float secs);
-    bool pendingDelete = false;
 
+  /*///////////////////////////
+    \brief Sets the remaining life time for the object
+
+    The method calculates the time in millesconds at which the object
+    must be destroyed, adding the desired seconds to the time elapsed
+    since the game begin.
+
+    \param secs Float with the time in seconds reamining to die
+
+  ///////////////////////////*/
+    void setLifespan(float secs);
+
+    bool pendingDelete = false;
+    // Returns whether the actor is pending delete or not
+    bool IsValid() { return pendingDelete; };
+    Vector2f getInterpolatedPos();
+    
   private:
     Vector2f location_prev;
     Vector2f location;
@@ -74,6 +89,7 @@ class Actor {
     SSprite *sprite;
     ObjectType oType; // Object type for collision channel
     long lifeSpan = -1;
+    Vector2f currentLoc;
 };
 
 #endif

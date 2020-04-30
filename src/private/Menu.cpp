@@ -50,13 +50,7 @@ void Menu::cambiaColorItems()
     }
     if(mostrarMenu == false)
     {
-        for(int i=0;i<4;i++){
-            if(i == actual){
-                menuFinal[actual]->setColor(colorItemHover);
-            }else{
-                menuFinal[i]->setColor(colorItemBase);
-            }
-        }
+        itemsMnuFinal[actual]->setColor(colorItemHover);
     }
 
 }
@@ -71,7 +65,12 @@ void Menu::cargarLogo()
     logo->setOrigin(logo->getGlobalBounds().width / 2.0, logo->getGlobalBounds().height / 2.0);
     logo->setPosition(eng->getApp().getSize().x / 2.0, eng->getApp().getSize().y / 2.6);
 }
-
+void Menu::cargarLogoFinal()
+{
+    Engine *eng = Engine::Instance();
+    logo->setScale(0.5,0.5);
+    logo->setPosition(eng->getApp().getSize().x / 2.0, eng->getApp().getSize().y / 2.6);
+}
 void Menu::cargarMenu()
 {
     cargarLogo();
@@ -94,28 +93,46 @@ void Menu::cargarMenu()
 }
 void Menu::cargarMenuFinal()
 {
-    //cargarLogo();
-    itemsMenuFinal[0] = "Score 1: ";
-    itemsMenuFinal[1] = "Score 2: ";
-    itemsMenuFinal[2] = "Score 3: ";
-    itemsMenuFinal[3] = "Salir";
-    int j = 0;
-    for (float puntuacion : puntos) {
-        itemsMenuFinal[j] = itemsMenuFinal[j] + to_string((long)puntuacion);
-        j++;
-    }
     Engine *eng = Engine::Instance();
-    for(int i = 0; i < 4; i++)
+    itemsMnuFinal.push_back(new Text);
+    itemsMnuFinal[0]->setFont(*fuente);
+    itemsMnuFinal[0]->setString("HAS PERDIDO");
+    if(puntos.size() == 3)
     {
-        menuFinal[i] = new sf::Text();
-        menuFinal[i]->setFont(*fuente);
-        menuFinal[i]->setString(itemsMenuFinal[i]);
-        menuFinal[i]->setOrigin(menuFinal[i]->getGlobalBounds().width / 2.0, menuFinal[i]->getGlobalBounds().height / 2.0);
-        //menuFinal[i]->setPosition(eng->getApp().getSize().x / 2.0,  eng->getApp().getSize().y / 1.4 + separacion * i);
-        menuFinal[i]->setPosition(eng->getApp().getSize().x / 2.0,  logo->getOrigin().y + (logo->getGlobalBounds().height/2) + (separacion/2) * i);
-        menuFinal[i]->setColor(colorItemBase);
-
+        itemsMnuFinal[0]->setString("HAS GANADO");
     }
+    itemsMnuFinal[0]->setOrigin(itemsMnuFinal[0]->getGlobalBounds().width / 2.0, itemsMnuFinal[0]->getGlobalBounds().height / 2.0);
+    itemsMnuFinal[0]->setPosition(eng->getApp().getSize().x / 2.0,  eng->getApp().getSize().x / 4.0);
+    itemsMnuFinal[0]->setColor(colorItemBase);
+
+    for (float puntuacion : puntos) {
+        itemsMnuFinal.push_back(new Text);
+    }
+    vector<Text*>::iterator it;
+    int i = 1;
+    for(it = itemsMnuFinal.begin()+1; it != itemsMnuFinal.end(); it++)
+    {
+        (*it)->setFont(*fuente);
+        (*it)->setString("Score " + to_string(i) + " : ");
+        (*it)->setPosition(eng->getApp().getSize().x / 2.0, itemsMnuFinal[0]->getPosition().y + ((separacion) * i));
+        (*it)->setColor(colorItemBase);
+        i++;
+    }
+    i = 1;
+    for (float puntuacion : puntos) {
+        itemsMnuFinal[i]->setString(itemsMnuFinal[i]->getString() + to_string((int)puntuacion));
+        itemsMnuFinal[i]->setOrigin(itemsMnuFinal[i]->getGlobalBounds().width / 2.0, itemsMnuFinal[i]->getGlobalBounds().height / 2.0);
+        i++;
+    }
+
+    itemsMnuFinal.push_back(new Text);
+    itemsMnuFinal[itemsMnuFinal.size()-1]->setFont(*fuente);
+    itemsMnuFinal[itemsMnuFinal.size()-1]->setString("Salir");
+    itemsMnuFinal[itemsMnuFinal.size()-1]->setOrigin(itemsMnuFinal[itemsMnuFinal.size()-1]->getGlobalBounds().width / 2.0, itemsMnuFinal[itemsMnuFinal.size()-1]->getGlobalBounds().height / 2.0);
+    itemsMnuFinal[itemsMnuFinal.size()-1]->setPosition(eng->getApp().getSize().x / 2.0,  itemsMnuFinal[0]->getPosition().y + (separacion*(itemsMnuFinal.size()-1)));
+    itemsMnuFinal[itemsMnuFinal.size()-1]->setColor(colorItemBase);
+    actual = itemsMnuFinal.size()-1;
+    cambiaColorItems();
 }
 void Menu::cambiarAPantallaFinal(list<float> puntuaciones)
 {
@@ -127,18 +144,19 @@ void Menu::cambiarAPantallaFinal(list<float> puntuaciones)
 void Menu::draw()
 {
     Engine *eng = Engine::Instance();
-    eng->getApp().draw(*logo);
     if(mostrarMenu == true)
     {
+        eng->getApp().draw(*logo);
         for(int i=0;i<numItems;i++)
         {
             eng->getApp().draw(*menuInicial[i]);
         }
     }
     else{
-        for(int i=0;i<4;i++)
+        vector<Text*>::iterator it;
+        for(it = itemsMnuFinal.begin(); it != itemsMnuFinal.end(); it++)
         {
-            eng->getApp().draw(*menuFinal[i]);
+            eng->getApp().draw(*(*it));
         }
     }
 }
@@ -148,6 +166,7 @@ bool Menu::update(sf::Event tecla)
     //No necesitamos delta
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
     {
+        audioManager->play_menu_ok();
         if(actual == 0)
         {
             audioManager->menu();
@@ -161,19 +180,31 @@ bool Menu::update(sf::Event tecla)
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
         if(mostrarMenu == true)
+        {
             if(actual>0)
+            {
                 actual--;
+                audioManager->play_menu_move();
+            }
+        }
+
 
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
         if(mostrarMenu == true)
+        {
             if(actual<(numItems-1))
+            {
                 actual++;
+                audioManager->play_menu_move();
+            }
+
+        }
     }
 
     if(mostrarMenu == false)
-        actual = 3;
+        actual = itemsMnuFinal.size()-1;
     cambiaColorItems();
     return false;
 }

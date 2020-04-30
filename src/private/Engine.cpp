@@ -30,6 +30,19 @@ sf::RenderWindow &Engine::CreateApp(sf::VideoMode vm, string wn){
     return app;
 }
 
+void Engine::setView(float centerY, float borderX)
+{
+    //vista = new sf::View(sf::FloatRect(0.f, 600.f, vm.width, vm.height));
+    float posArriba = centerY - (app.getSize().y / 2);
+    if(posArriba < 0.f)
+        posArriba = 0.f;
+    if(posArriba > 480.f)
+        posArriba = 480.f;
+    vista.reset(sf::FloatRect(0.f, posArriba, app.getSize().x, app.getSize().y));
+    vista.setViewport(sf::FloatRect(borderX, 0, 1.f, 1.f));
+    app.setView(vista);
+}
+
 
 
 
@@ -45,16 +58,16 @@ sf::RenderWindow &Engine::CreateApp(sf::VideoMode vm, string wn){
 SSprite::SSprite(string path){
     eng = Engine::Instance();
     if (!texture.loadFromFile(path)) {
-        std::cerr << "Error cargando la imagen sprites.png" << std::endl;
+        std::cerr << "Error cargando la imagen" << path << std::endl;
         exit(0);
     }
-    //Create spriteSheet from texture
+    TextPath = path;
     sfsprite.setTexture(texture);
+    GlobalBounds = sf::FloatRect();
 }
 
 SSprite::SSprite(){
     eng = Engine::Instance();
-    std::cout << "SPRITE CREATED -------------" << std::endl;
 }
 
 /// Draw with interpolation
@@ -72,6 +85,31 @@ sf::Vector2f SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, do
     eng->getApp().draw(sfsprite);
 
     return sf::Vector2f(x,y);
+}
+
+sf::FloatRect SSprite::getGlobalBounds() {
+    
+    return sfsprite.getGlobalBounds();
+}
+
+sf::FloatRect SSprite::getBounds() {
+    sf::FloatRect current = sfsprite.getGlobalBounds();
+    if(GlobalBounds.width == 0.f) {
+        return current;
+    }
+    /*if(TextPath == "./resources/projectiles/fireball-short.png") {
+        int i = 0;
+    }*/
+    //GlobalBounds.width = current.width;
+    //GlobalBounds.height = current.height;
+    float top = (current.height * (GlobalBounds.height/current.height) ) /2;
+    float left = (current.width *  (GlobalBounds.width/current.width) ) / 2;
+
+    current.top = current.top + top + GlobalBounds.height/2; // TODO: For some reason seems not to properly center vertically
+    current.left = current.left + left;
+    current.width = GlobalBounds.width;
+    current.height = GlobalBounds.height;
+    return current;
 }
 
 
@@ -179,9 +217,20 @@ void SSprite::setScale(double x, double y){
     sfsprite.setScale(x, y);
 }
 
+// Based on the sprite global bounds, readjust the bounding box to a custom one, relative to the global ones.
+sf::FloatRect SSprite::setBounds(float newScale) {
+    sf::FloatRect current = sfsprite.getGlobalBounds();
+    GlobalBounds.height = current.height * newScale;
+    GlobalBounds.width = current.width * newScale;
+    GlobalBounds.top = 0.f; // Set to 0 because this changes over time. DInamically calculated in getBOunds()
+    GlobalBounds.left = 0.f; // Set to 0 because this changes over time.  DInamically calculated in getBOunds()
+    return GlobalBounds;
+}
+
 SSprite::~SSprite(){
  
 }
+
 
 
 
@@ -193,15 +242,27 @@ SSprite::~SSprite(){
  * 
  * **********************/
 
-Animation::Animation(sf::Sprite &target) : target(target) { 
-    progress = totalLength = 0.0;
+Animation::Animation(sf::Sprite &target, int length) : target(target) { 
+    progress = 0;
+    totalLength = 0.0;
+    duration = length;
+    currentFrame = 0;
+    loop = false;
 }
-Animation::Animation(sf::Sprite &target, bool looping) : target(target) { 
-    progress = totalLength = 0.0;
+Animation::Animation(sf::Sprite &target, int length, bool looping) : target(target) { 
+    progress = 0;
+    totalLength = 0.0;
+    duration = length;
+    currentFrame = 0;
     loop = looping;
 }
 Animation::~Animation(){
 
+}
+
+void Animation::Reset() {
+    progress = 0;
+    currentFrame = 0;
 }
 
 /*/////////////////////////////////////////////////////////
@@ -216,19 +277,19 @@ void Animation::addFrame(AnimFrame&& frame) {
 }
 void Animation::update(double elapsed) {
     progress += elapsed;
-    double p = progress;
-    for(size_t i = 0; i < frames.size(); i++) {
-        p -= frames[i].duration;  
+    //double p = progress;
 
-        // if we have progressed OR if we're on the last frame, apply and stop.
-        if(p <= 0.0 || &(frames[i]) == &frames.back()){
-            //progress = 0.0;
-            target.setTextureRect(frames[i].rect);
-            if(loop && &(frames[i]) == &frames.back()){
-                progress = 0.0;
-            }
-            break; // we found our frame
+    if(progress/1.f >= duration/frames.size()) {
+        currentFrame++;
+        if(!loop && currentFrame/1.f >= frames.size()){
+            progress = 0;
+            return;
         }
-
+        if(currentFrame/1.f >= frames.size()){
+            currentFrame = 0;
+        }
+        target.setTextureRect(frames[currentFrame].rect);
+        progress = 0;
     }
+
 }

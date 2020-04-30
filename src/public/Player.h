@@ -2,7 +2,6 @@
 #include <Pawn.h>
 #include <Enemy.h>
 #include <list>
-#include <Hud.h>
 
 using namespace std;
 using namespace sf;
@@ -26,11 +25,15 @@ class Player:  public Pawn{
         void setCurrentH(float);
         float getCurrentHealth();
         float getMaxHealth();
+        void improvesAttack();
 
     protected:
         void PrepareSprite();
 
     private:
         string texture_file;
+        
+        int AttackImprovement;
+        sf::Clock relojMejora;
         
 };

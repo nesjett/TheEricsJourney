@@ -2,7 +2,7 @@
 
 
 
-#define UPDATE_INTERVAL (1000/15.0)
+#define UPDATE_INTERVAL (1000/35.0)
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -24,6 +24,8 @@ void game::init(/*char* nombre, int AuxMapa*/){
     menu = Menu::getInstance();
     mapaActual = 0;
     jugador = new Player();
+    Hud* hud = Hud::Instance();
+    hud->setPlayer(jugador);
     InicializaNivel();
 }
 
@@ -68,8 +70,7 @@ void game::InicializaNivel()
     }
     else{
         //Cargamos la pantalla de puntuaciones
-        estadoJuego = false;
-        menu->cambiarAPantallaFinal(pointsPerLevel);
+        EndGame();
     }
 }
 
@@ -86,7 +87,7 @@ void game::run(){
      ***********************************/
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
-    /*
+    
     Fixedenemy *enemyfijo = new Fixedenemy();
     actors.push_back(enemyfijo);
     enemyfijo->setActorLocation(Vector2f(600.0,550.0));
@@ -94,7 +95,7 @@ void game::run(){
     Movingenemy *enemymove = new Movingenemy();
     actors.push_back(enemymove);
     enemymove->Prepara(Vector2f(500.0,300.0),Vector2f(300.0,400.0));
-    */
+    
     Explosionenemy *enemyexp = new Explosionenemy();
     actors.push_back(enemyexp);
     enemyexp->setActorLocation(Vector2f(400.0,400.0));
@@ -104,20 +105,9 @@ void game::run(){
     stalker->setActorLocation(Vector2f(400.0,400.0));
     
     
-    /*Projectile *projTest = new Projectile();
-    actors.push_back(projTest);*/
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
 
-    Skeleton *enemyTest2 = new Skeleton();
-    actors.push_back(enemyTest2);
-
-    Zombie *enemyTest3 = new Zombie();
-    actors.push_back(enemyTest3);
-    enemyTest3->setActorLocation(Vector2f(310,180));
-    
-    std::cout << "Actors length: " << actors.size() << std::endl;
-    //enemyTest->setAsleep(true);
 
     /***********************************
      * Game loop
@@ -138,18 +128,7 @@ void game::run(){
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)){
-                    ControladorJugador->MejorarCadencia(0.9);
-                }
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::V)){
-                    ControladorJugador->MejorarMovimiento(1.08);
-                }
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
-                    ControladorJugador->IncreaseHealth();
-                    std::cout<<"Vida total: "<<ControladorJugador->getMaxHealth()<<std::endl;
-                }
                 ControladorJugador->Update(tecla.key.code);
-                std::cout << "Tecla pulsada: " << tecla.key.code << std::endl;
             }
             if (tecla.type == sf::Event::KeyReleased){
                 ControladorJugador->Frenar(tecla.key.code);
@@ -159,12 +138,8 @@ void game::run(){
                     estadoJuego = menu->update(tecla);
             }
         }
-        if(jugador->getDirection().x == 0.f && jugador->getDirection().y == 0.f){
-            ControladorJugador->setPlayer(jugador);
-            listaEnemigos = getAllEnemies();
-            ControladorJugador->setLista(listaEnemigos);
-            ControladorJugador->Attacks();
-        }
+        listaEnemigos = getAllEnemies();
+        ControladorJugador->setAttack(listaEnemigos);
         //ENEMY MOVE
 
         
@@ -228,23 +203,9 @@ void game::run(){
                     }
                 }
                 //Comprobamos si pasamos de nivel
-                Tile* puerta = vMapas[mapaActual]->getPuerta();
-                // FloatRect lol = enemyexp->getBoundingBox();
-                // FloatRect lol2 = puerta->getBoundingBox();
-                // if(lol.intersects(lol2))
-                // {
-                //     cout << "LOOOOL" << endl;
-                // }
-                // if(/*getAllEnemies().size() == 0 &&*/ (jugador->getBoundingBox().intersects(puerta->getBoundingBox())) )
-                // {
-                //     mapaActual++;  
-                //     InicializaNivel();
-                // }
-                if(jugador->getActorLocation().y<100.0)
-                {
-                    mapaActual++;  
-                    InicializaNivel();
-                }
+                CondicionVictoria();
+                Hud* hud = Hud::Instance();
+                hud->Update();
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
 
@@ -253,6 +214,14 @@ void game::run(){
                 DELETE PENDING DELETE ACTORS
 
             ////////////////////////////*/
+            // DELETE Pending delete actors
+            // TODO: COuld be done one by one in the above loop so we dont make two loops for almost the same thin
+
+            for (Actor *actor : actors) {
+                if(actor->pendingDelete == true) { 
+                    actorsPendingDelete.push_back(actor);
+                }
+            }
             actors.erase(
                 std::remove_if(
                     actors.begin(), 
@@ -260,7 +229,14 @@ void game::run(){
                     [](Actor const * p) { return p->pendingDelete == true; }
                 ), 
                 actors.end()
-            ); 
+            );
+            for (Actor *actor : actorsPendingDelete) {
+                if(dynamic_cast<Enemy*>(actor)) {
+                    //EnemyDied(); // If we are deleting an enemy, try to spawn another
+                }
+                delete actor;
+            }
+            actorsPendingDelete.clear();
         }
         
 
@@ -271,8 +247,8 @@ list<Enemy*> game::getAllEnemies(){
     list<Enemy*> tmp;
     Enemy* tmpE = NULL;
     for (Actor *actor : actors) {
-        if ( static_cast<Enemy*>( actor ) ) {
-            tmpE = static_cast<Enemy*>(actor);
+        if ( dynamic_cast<Enemy*>( actor ) ) {
+            tmpE = dynamic_cast<Enemy*>(actor);
             tmp.push_back(tmpE);
         }
     }
@@ -283,8 +259,8 @@ list<Projectile*> game::getAllProjectiles(){
     list<Projectile*> tmp;
     Projectile* tmpE = NULL;
     for (Actor *actor : actors) {
-        if ( static_cast<Projectile*>( actor ) ) {
-            tmpE = static_cast<Projectile*>(actor);
+        if ( dynamic_cast<Projectile*>( actor ) ) {
+            tmpE = dynamic_cast<Projectile*>(actor);
             tmp.push_back(tmpE);
         }
     }
@@ -324,6 +300,38 @@ Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type) {
     return NULL;
 }
 
+void game::CondicionVictoria()
+{
+    //Pasar al siguiente nivel: el jugador pasa por la puerta y no hay enemigos vivos
+    if((jugador->getActorLocation().y < 100.0 && getAllEnemies().size() == 0))
+    {
+        mapaActual++;  
+        InicializaNivel();
+    }
+    //Acabar partida porque has muerto
+    if(jugador->getCurrentHealth() == 0.f)
+    {
+        //Calculamos las puntuaciones por nivel
+        float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/600); //1 - minutos_transcrridos/100
+        float points = porcentaje*1000000; //Puntuacion max es de 1.000.000
+        pointsPerLevel.push_back(points);
+
+        EndGame();
+    }
+}
+
+//Terminar el juego
+void game::EndGame()
+{
+    //Cambiamos a pantalla final
+    estadoJuego = false;
+    menu->cambiarAPantallaFinal(pointsPerLevel);
+    Engine* eng = Engine::Instance();
+    eng->setView(0.f, 0.f);
+
+    //Eliminamos los enemigos, si es el caso es que el jugador ha muerto
+
+}
 
 game::~game() // Destructor
 {

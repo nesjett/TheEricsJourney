@@ -1,5 +1,7 @@
 #include "../public/Explosionenemy.h"
 
+#include <FireBall.h>
+
 Explosionenemy::Explosionenemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
@@ -20,28 +22,10 @@ Explosionenemy::Explosionenemy(){ // Use this to call to parent's contructor fir
 
 
     Init();
-    PrepareSprite();
 
 }
 
 void Explosionenemy::Init(){
-    sprite = new SSprite(texture_file);
-    sprite->setOrigin(75/2, 75/2);
-    sprite->setTextureRect(75,75,75,75 );
-    std::cout << "Terminamos INIT()" << std::endl;
-}
-
-void Explosionenemy::Update(float delta){
-    
-    
-    Pawn::Update(delta);
-    Followplayer();
-    Attack();
-    
-    
-}
-
-void Explosionenemy::PrepareSprite(){
     float sizeX = 32.0, sizeY = 64.0;
     float offsetX = sizeX / 2.0;
     float offsetY = sizeY / 2.0;
@@ -85,6 +69,20 @@ void Explosionenemy::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(64,0,sizeX,sizeY), playrate});
 }
 
+void Explosionenemy::Update(float delta){
+    
+    
+    Pawn::Update(delta);
+    Followplayer();
+    Attack();
+    
+    
+}
+
+void Explosionenemy::PrepareSprite(){
+    
+}
+
 
 
 void Explosionenemy::Draw(double percent, double delta ){
@@ -124,10 +122,10 @@ bool Explosionenemy::Attack(){
        
         //projTest->direction=Vector2f(dir_unit);
         //projTest->setActorLocation(pos);
-        Projectile *projTest = new Projectile(dir_unit, pos);
-        Projectile *projTest1 = new Projectile(dir_unit1, pos);
-        Projectile *projTest2 = new Projectile(dir_unit2, pos);
-        Projectile *projTest3 = new Projectile(dir_unit3, pos);
+        FireBall *projTest = new FireBall(dir_unit, pos);
+        FireBall *projTest1 = new FireBall(dir_unit1, pos);
+        FireBall *projTest2 = new FireBall(dir_unit2, pos);
+        FireBall *projTest3 = new FireBall(dir_unit3, pos);
 
         eng->Almacenaenemy(projTest);
         eng->Almacenaenemy(projTest1);

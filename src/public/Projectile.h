@@ -20,13 +20,20 @@ class Projectile: public Actor {
         float movementSpeed;
         float damage;
 
+        // Determine the faction that this projectile will apply effect to
+        Faction targetFaction; // allie = player faction, enemy = AI faction
+
         void Update(float delta);
-        void Init();
+        virtual void Init();
         void Draw(double percent, double delta );
         void OnActorOverlap(Actor *otherActor);
         void TakeDamage(float damage, Actor* dmgCauser, string damage_type);
 
     protected:
+        Animation* activeAnim = NULL;
+        std::map<std::string, Animation*> Animations;
+        std::string ProjectileName;
+        bool DmgApplied = false;
     private:
 
 };
