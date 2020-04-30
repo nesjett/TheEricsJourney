@@ -5,10 +5,9 @@
 Rock::Rock() : Projectile(){ // Use this to call to parent's contructor first
     Init();
 }
-Rock::Rock(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
+Rock::Rock(sf::Vector2f dir, sf::Vector2f pos) : Projectile(dir, pos){
     Init();
-    direction = dir;
-    setActorLocation(pos); 
+    
     activeAnim = Animations.find("IDLE")->second;
 }
 void Rock::Init(){
@@ -23,13 +22,15 @@ void Rock::Init(){
     
     sprite->setOrigin(400/2, 400/2);
     sprite->setTextureRect( 0, 5 , 400, 400 );
-    sprite->setScale(0.3,0.3);
+    sprite->setScale(0.1,0.1);
+
+    sprite->setBounds(0.5);
 
 
     Animation *tmpA;
 
     //IDLE
-    tmpA = new Animation(sprite->getSpriteR(), 1500, true);
+    tmpA = new Animation(sprite->getSpriteR(), 650, true);
     Animations.insert({"IDLE", tmpA});
     tmpA->addFrame({sf::IntRect(0,0, 400,400)});
     tmpA->addFrame({sf::IntRect(0,400, 394,394)});

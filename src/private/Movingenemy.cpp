@@ -93,8 +93,8 @@ bool Movingenemy::Attack(){
        
         //projTest->direction=Vector2f(dir_unit);
         //projTest->setActorLocation(pos);
-        Projectile *projTest = new Projectile(dir_unit, pos);
-        eng->Almacenaenemy(projTest);
+        Projectile *proj = new Rock(dir_unit, pos);
+        eng->Almacenaenemy(proj);
         relojMark.restart();
    }
     return true;
