@@ -1,24 +1,26 @@
 #pragma once
-#ifndef TILE_H
-#define TILE_H
-#include <Actor.h>
+#ifndef SPIKES_H
+#define SPIKES_H
+#include <Trap.h>
 #include <Engine.h>
 
 using namespace std;
 using namespace sf;
 
-class Tile: public Actor {
+class Spikes: public Trap {
     public:
-        Tile(string nombreSprite, float x, float y, float widthSprite, float heightSprite, ObjectType tipo);
-        float width, height;
+        Spikes();
+
         void Update(float delta);
         void Draw(double percent, double delta );
         void OnActorOverlap(Actor *otherActor);
     protected:
         virtual void PrepareSprite();
-        Animation* animation;
+
+        Animation* activeAnim = NULL;
+        std::map<std::string, Animation*> Animations;
     private:
-        string texture_file;
+        std::string texture_file;
 };
 
 #endif

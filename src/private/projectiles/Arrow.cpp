@@ -56,6 +56,8 @@ void Arrow::Update(float delta){
     auto angleRads = std::atan2(-direction.y, -direction.x);
     auto angleDegs = angleRads * 180.0 / M_PI;
     sprite->setRotation(angleDegs);
+
+    Projectile::Update(delta);
 }
 
 

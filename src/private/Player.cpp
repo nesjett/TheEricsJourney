@@ -20,6 +20,9 @@ Player::Player(){ // Use this to call to parent's contructor first
     movementSpeed = 5.0f;
     faction = allie;
     AttackImprovement = 0;
+
+    Target = nullptr;
+
     Init();
     PrepareSprite();
 
@@ -204,6 +207,15 @@ void Player::ActorOverlap(Actor otherActor){
 
 }
 
+void Player::SetTarget(Enemy *NewTarget) {
+    if(Target) { // Hide marker from last enemy target
+        Target->ToggleTarget(false);
+    }
+    Target = NewTarget; // Set new target (may be null)
+    if(Target){ // set new target marker visible
+        Target->ToggleTarget(true);
+    }
+}
 
 // Base to implement attacks. This should be on the base class and be overriden by the different enemies
 void Player::Attack(list<Enemy*> enemyList){
@@ -213,6 +225,7 @@ void Player::Attack(list<Enemy*> enemyList){
     sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
     sf::Vector2f dirToEnemy = sf::Vector2f(0.f, 0.f);
     sf::Vector2f posEnemy = sf::Vector2f(0.f, 0.f);
+    Enemy *enemy = nullptr;
     
     for (Enemy *enemigo : enemyList){
         posEnemy = enemigo->getActorLocation();
@@ -221,12 +234,15 @@ void Player::Attack(list<Enemy*> enemyList){
         if(minDist == 0.f){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
+            enemy = enemigo;
         } else if(aux < minDist){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
+            enemy = enemigo;
         }
     }
     sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
+    SetTarget(enemy);
 
     game *eng = game::Instance();
     Arrow *projTest = new Arrow(dir_unit, posPlayer);

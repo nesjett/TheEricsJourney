@@ -29,11 +29,14 @@ class Player:  public Pawn{
 
     protected:
         void PrepareSprite();
+        
+        void SetTarget(Enemy *NewTarget);
 
     private:
         string texture_file;
         
         int AttackImprovement;
         sf::Clock relojMejora;
+        Enemy *Target;
         
 };

@@ -5,7 +5,7 @@
 Pawn::Pawn() : Actor(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/Zombies.png";
+    texture_file = "./resources/sprites.png";
 
     direction = Vector2f(0.f, 0.f); // Initially It has no direction
 

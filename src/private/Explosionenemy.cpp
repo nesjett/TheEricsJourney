@@ -2,7 +2,7 @@
 
 #include <FireBall.h>
 
-Explosionenemy::Explosionenemy(){ // Use this to call to parent's contructor first
+Explosionenemy::Explosionenemy() : Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
     texture_file = "./resources/Zombies.png";
@@ -70,7 +70,7 @@ void Explosionenemy::Init(){
 void Explosionenemy::Update(float delta){
     
     
-    Pawn::Update(delta);
+    Enemy::Update(delta);
     Followplayer();
     Attack();
     
@@ -85,7 +85,7 @@ void Explosionenemy::PrepareSprite(){
 
 void Explosionenemy::Draw(double percent, double delta ){
     Pawn::SetAnimation();
-    Pawn::Draw(percent, delta);
+    Enemy::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
 
