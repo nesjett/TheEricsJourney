@@ -12,6 +12,9 @@ Projectile::Projectile() : Actor(){ // Use this to call to parent's contructor f
     damage = 20;
     ProjectileName = "PROJECTILE_BASE";
 
+    debug = false;
+    debug_coords = false;
+
     targetFaction = allie;
     oType = projectile; // Set the collision channel
     Init();

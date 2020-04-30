@@ -8,7 +8,7 @@ Actor::Actor() {
   //setBoundingBox( sf::IntRect( 0, 0, 0, 0 ) ); // Init bounding box to 0
   oType = worldstatic;
   asleep = false;
-  debug = true;
+  debug = false;
 
   if(debug){
     font.loadFromFile("./resources/arial.ttf");
