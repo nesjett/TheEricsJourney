@@ -64,6 +64,7 @@ class SSprite
         sf::Sprite getSprite(){ return sfsprite; }
         // Returns a ref to the SFML sprite
         sf::Sprite &getSpriteR(){ return sfsprite; }
+        sf::Vector2f Draw();
         sf::Vector2f Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent);
         void setOrigin(double x, double y);
         void setTextureRect(double x, double y, double w, double h);

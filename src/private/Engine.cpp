@@ -70,6 +70,11 @@ SSprite::SSprite(){
     eng = Engine::Instance();
 }
 
+// Draw at current location
+sf::Vector2f SSprite::Draw(){
+    eng->getApp().draw(sfsprite);
+}
+
 /// Draw with interpolation
 sf::Vector2f SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent){
     float cX = location.x; // Current X

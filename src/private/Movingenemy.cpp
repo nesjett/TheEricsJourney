@@ -1,6 +1,6 @@
 #include "../public/Movingenemy.h"
 
-Movingenemy::Movingenemy(){ // Use this to call to parent's contructor first
+Movingenemy::Movingenemy(): Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
     texture_file = "./resources/sprites.png";
@@ -29,7 +29,7 @@ void Movingenemy::Init(){
 }
 
 void Movingenemy::Update(float delta){
-    Pawn::Update(delta);
+    Enemy::Update(delta);
 
     Linealmove(x,y);
     
@@ -37,7 +37,7 @@ void Movingenemy::Update(float delta){
 }
 
 void Movingenemy::Draw(double percent, double delta ){
-    Actor::Draw(percent, delta); // Use this to debug draw bounding box
+    Enemy::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
 void Movingenemy::Prepara(Vector2f inicio, Vector2f final){
