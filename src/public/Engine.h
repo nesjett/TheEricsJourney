@@ -15,7 +15,7 @@ struct AnimFrame {
 };
 
 enum Faction { enemy=2, allie=1, neutral=0 };
-enum ObjectType { worldstatic=0, worlddynamic=1, pawn=2, projectile=3, trap=4 }; // NOTA: Parece que c++ no permite que los nombres de una enum tengan mayusculas!!
+enum ObjectType { worldstatic=0, worlddynamic=1, pawn=2, projectile=3, trap=4, blocker=5 }; // NOTA: Parece que c++ no permite que los nombres de una enum tengan mayusculas!!
 
 /***********************
  * 
