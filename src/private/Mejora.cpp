@@ -6,7 +6,7 @@ Mejora::Mejora() : Actor(){ // Use this to call to parent's contructor first
     texture_file = "./resources/Zombies.png";
 
     damage_Base = 15.0f;
-    setActorLocation(Vector2f(0.f, 0.f)); // PLace actor somewhere in the map
+    setActorLocation(Vector2f(150.f, 150.f)); // PLace actor somewhere in the map
 
     PrepareSprite();
 }
