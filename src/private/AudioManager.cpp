@@ -10,7 +10,7 @@ AudioManager::AudioManager()
 {
     //Cargamos todos los sonidos
     //Menu
-    menu_music.openFromFile("./resources/audio/menutheme.ogg");
+    menu_music.openFromFile("./resources/audio/main_theme.ogg");
     menu_music.setLoop(true);
     menu_move.openFromFile("./resources/audio/cursor_move.ogg");
     menu_ok.openFromFile("./resources/audio/cursor_ok.ogg");
