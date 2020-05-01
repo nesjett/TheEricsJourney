@@ -19,10 +19,10 @@ AudioManager::AudioManager()
 
     //Jugador
     player_shot.openFromFile("./resources/audio/player_shot.ogg");
-    enemy1_takedamage.openFromFile("./resources/audio/enemy1_hurt.ogg");
+    enemy1_takedamage.openFromFile("./resources/audio/hit.ogg");
     enemy1_death.openFromFile("./resources/audio/enemy1_death.ogg");
-    enemy1_takedamage.setPitch(3);
-    enemy1_death.setPitch(-5);
+    enemy1_takedamage.setPitch(1);
+    enemy1_death.setPitch(1);
 }
 
 AudioManager::~AudioManager()
@@ -61,4 +61,11 @@ void AudioManager::play_enemy1_takedamage()
 void AudioManager::play_enemy1_death()
 {
     enemy1_death.play();
+}
+
+void AudioManager::PlaySound2D(string File){
+    sf::Music sound;
+    sound.openFromFile("./resources/audio/player_shot.ogg");
+
+    sound.play();
 }

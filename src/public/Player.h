@@ -35,5 +35,6 @@ class Player:  public Pawn{
         int AttackImprovement;
         sf::Clock relojMejora;
         Enemy *Target;
+        int LastAttack; // Used to select the sound to play for shooting
         
 };
