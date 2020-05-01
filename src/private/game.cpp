@@ -113,7 +113,7 @@ void game::run(){
     actors.push_back(trap);
     trap->setActorLocation(Vector2f(150.0,150.0));
 
-    Saw *saw = new Saw(Vector2f(300.0,250.0), 200.f);
+    Saw *saw = new Saw(Vector2f(300.0,250.0), 300.f);
     actors.push_back(saw);
 
 

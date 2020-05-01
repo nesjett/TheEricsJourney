@@ -14,7 +14,7 @@ Saw::Saw(Vector2f Loc, float Length) : Trap(){ // Use this to call to parent's c
     movementSpeed = 0.1;
     direction = Vector2f(1.f, 0.0); // we always start going right
 
-    debug = true;
+    
 
     PrepareSprite();
 }
@@ -23,7 +23,7 @@ void Saw::PrepareSprite(){
     float scale = 0.25;
     float sizeX = 274.0, sizeY = 144.0;
     float offsetX = sizeX / 2.0;
-    float offsetY = sizeY / 2.0;
+    float offsetY = sizeY;
 
     sprite = new SSprite(texture_file);
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
@@ -44,6 +44,43 @@ void Saw::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(274,288,sizeX,sizeY)});
 
     activeAnim = Animations.find("ROTATING")->second;
+
+    CreateRail();
+}
+
+void Saw::CreateRail() {
+    // rail
+    float scale = 0.25;
+    float sizeX = 74.0, sizeY = 34.0;
+    float offsetX = sizeX / 2.0;
+    float offsetY = sizeY / 2.0;
+
+    int nbrSprites = floor(trapLength / (sizeX *scale));
+
+    trapLength = nbrSprites * (sizeX * scale);
+
+    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
+
+    rail.push_back(make_unique<SSprite>("./resources/traps/saw/left.png"));
+    rail.back()->setPosition(initialLocation.x, initialLocation.y);
+    rail.back()->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+    rail.back()->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    rail.back()->setScale(scale,scale);
+
+    // first and last sprites are the corners so we set them manually, then loop for the body parts
+    for(int i = 1; i < nbrSprites-1; i++) {
+        rail.push_back(make_unique<SSprite>("./resources/traps/saw/body.png"));
+        rail.back()->setPosition(initialLocation.x+(sizeX * scale) * i, initialLocation.y);
+        rail.back()->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+        rail.back()->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+        rail.back()->setScale(scale,scale);
+    }
+
+    rail.push_back(make_unique<SSprite>("./resources/traps/saw/right.png"));
+    rail.back()->setPosition(initialLocation.x+trapLength-(sizeX*scale), initialLocation.y); // we have to deduct the size of the sprite for good positioning
+    rail.back()->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+    rail.back()->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    rail.back()->setScale(scale,scale);
 }
 
 void Saw::Update(float delta){
@@ -51,12 +88,12 @@ void Saw::Update(float delta){
     
     if(direction.x > 0.f) {
         // we go right, check we arrive to the right poing
-        if(getActorLocation().x >= initialLocation.x + trapLength) {
+        if(getActorLocation().x >= initialLocation.x + trapLength - 74.f*0.25 * 2) { // deduct tile size twice, bug on calculations during rail creation...
             direction.x = -1.f;
         }
     } else {
         // we go left, check we arrive to origin. dir.x == 0.f should not happen
-        if(getActorLocation().x <= initialLocation.x) {
+        if(getActorLocation().x <= initialLocation.x + 74.f*0.25) {
             direction.x = 1.f;
         }
     }
@@ -76,7 +113,15 @@ void Saw::Update(float delta){
 }
 
 void Saw::Draw(double percent, double delta ){
+    
+
+    // Draw rail first to be under the saw
+    for (auto&& sp: rail) { 
+        sp->Draw();
+    }
+    
     Trap::Draw(percent, delta);
+
     if(activeAnim){
         activeAnim->update(delta);
     }
