@@ -78,6 +78,7 @@ sf::Texture SSprite::LoadTexture(string path) {
     TextPath = path;
     sfsprite.setTexture(texture);
     GlobalBounds = sf::FloatRect();
+    return texture;
 }
 
 /// Draw with interpolation
