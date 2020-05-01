@@ -26,9 +26,26 @@ Stalker::Stalker(): Enemy(){ // Use this to call to parent's contructor first
 
 void Stalker::Init(){
     sprite = new SSprite(texture_file);
-    sprite->setOrigin(75/2, 75/2);
-    sprite->setTextureRect(75,75,75,75 );
+    sprite->setOrigin(401/2, 249/2);
+    sprite->setTextureRect(0,0,401,249 );
     std::cout << "Terminamos INIT()" << std::endl;
+    
+    sprite->setScale(0.2,0.2);
+
+    Animation *tmpA;
+
+    //IDLE
+    tmpA = new Animation(sprite->getSpriteR(), 1100, true);
+    Animations.insert({"IDLE", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0, 401,249)});
+    tmpA->addFrame({sf::IntRect(401,0, 401,249)});
+    tmpA->addFrame({sf::IntRect(0,249, 401,249)});
+    tmpA->addFrame({sf::IntRect(401,249, 401,249)});
+    tmpA->addFrame({sf::IntRect(0,498, 401,249)});
+    tmpA->addFrame({sf::IntRect(401,498, 401,249)});
+
+    activeAnim = Animations.find("IDLE")->second;
+
 }
 void Stalker::PrepareSprite(){
     float sizeX = 401.0, sizeY = 249.0;
@@ -87,12 +104,8 @@ void Stalker::PrepareSprite(){
 }
 
 void Stalker::Update(float delta){
-    
-    
     Enemy::Update(delta);
     Followplayer();
-    
-    
 }
 
 void Stalker::Draw(double percent, double delta ){

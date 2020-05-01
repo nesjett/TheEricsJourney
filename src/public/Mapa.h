@@ -1,3 +1,5 @@
+#pragma once
+
 #include <tinyxml2.h>
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -5,6 +7,8 @@
 #include <list>
 #include <Engine.h>
 #include <Tile.h>
+#include <Enemy.h>
+#include <Mejora.h>
 
 using namespace std;
 using namespace tinyxml2;
@@ -17,7 +21,7 @@ class Mapa
         virtual ~Mapa();
         void update();
         void render();
-        list<Tile*> getActors();
+        list<Actor*> getActors();
         Tile* getPuerta();
 
     protected:
@@ -31,9 +35,22 @@ class Mapa
         vector<int> vPosY;
         vector<Tile*> vTiles;
         vector<Tile*> vPuertas;
-        string nombreCapaColisiones;
-        string nombreCapaObjetos;
-        string nombreCapaPuertas;
+        vector<Enemy*> vEnemigos;
+        vector<Mejora*> vMejoras;
+
+        //Nombre de las capas en los mapa Tiled
+        string nombreCapaColisiones = "pared";
+        string nombreCapaObjetos = "trampas";
+        string nombreCapaPuertas = "puerta";
+        string nombreCapaEnemigos1 = "enemigos1";
+        string nombreCapaEnemigos2 = "enemigos2";
+        string nombreCapaEnemigos3 = "enemigos3";
+        string nombreCapaSuelo = "suelo";
+        string strCapaPowerVida = "mejoraVida";
+        string strCapaPowerMov = "mejoraMovimiento";
+        string strCapaPowerCadencia = "mejoraCadencia";
+        string strCapaPowerAtaque= "mejoraAtaque";
+
         int num_layers;
         int tamMapaX, tamMapaY, tamTileX, tamTileY;
         sf::Event* evento;

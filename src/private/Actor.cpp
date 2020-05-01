@@ -30,6 +30,10 @@ void Actor::Update(float delta){
 }
 
 void Actor::Draw(double percent, double delta ){
+  if(!sprite) {
+    return;
+  }
+
   if(asleep) {
     currentLoc = getActorLocation(); // we have to draw the collision debuggin, but without moving
   } else {

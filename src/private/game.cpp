@@ -1,6 +1,9 @@
 #include "../public/game.h"
 
 #include "../public/traps/Spikes.h"
+#include "../public/traps/Saw.h"
+#include "../public/particles/PlayerHit.h"
+#include "../public/particles/Fireball_Explosion.h"
 
 #define UPDATE_INTERVAL (1000/35.0)
 
@@ -53,12 +56,11 @@ void game::InicializaNivel()
         vMapas.push_back(new Mapa(nombreMapa));
 
         //Cargamos las colisiones del nivel
-        list<Tile*> mapColisionables = vMapas[mapaActual]->getActors();
-        for (Tile *tile : mapColisionables)
+        list<Actor*> mapColisionables = vMapas[mapaActual]->getActors();
+        for (Actor *tile : mapColisionables)
         {
             actors.push_back(tile);
         }
-
         //Protagonista set location al inicio del mapa
         jugador->setActorLocation(Vector2f(350.0,200.0));
         
@@ -88,17 +90,17 @@ void game::run(){
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
     
-    Fixedenemy *enemyfijo = new Fixedenemy();
-    actors.push_back(enemyfijo);
-    enemyfijo->setActorLocation(Vector2f(600.0,550.0));
+    // Fixedenemy *enemyfijo = new Fixedenemy();
+    // actors.push_back(enemyfijo);
+    // enemyfijo->setActorLocation(Vector2f(600.0,550.0));
 
-    Movingenemy *enemymove = new Movingenemy();
-    actors.push_back(enemymove);
-    enemymove->Prepara(Vector2f(500.0,300.0),Vector2f(300.0,400.0));
+    // Movingenemy *enemymove = new Movingenemy();
+    // actors.push_back(enemymove);
+    // enemymove->Prepara(Vector2f(500.0,300.0),Vector2f(300.0,400.0));
     
-    Explosionenemy *enemyexp = new Explosionenemy();
-    actors.push_back(enemyexp);
-    enemyexp->setActorLocation(Vector2f(400.0,400.0));
+    // Explosionenemy *enemyexp = new Explosionenemy();
+    // actors.push_back(enemyexp);
+    // enemyexp->setActorLocation(Vector2f(400.0,400.0));
     
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
@@ -106,13 +108,15 @@ void game::run(){
 
 
     
-    
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
 
     Spikes *trap = new Spikes();
     actors.push_back(trap);
     trap->setActorLocation(Vector2f(150.0,150.0));
+
+    Saw *saw = new Saw(Vector2f(300.0,250.0), 300.f);
+    actors.push_back(saw);
 
 
     /***********************************
@@ -125,16 +129,16 @@ void game::run(){
         //Bucle de obtención de eventos
         //sf::Event event;
         while (eng->getApp().pollEvent(tecla)) {
-
+                
             if (tecla.type == sf::Event::Closed){
                 eng->getApp().close();
             }
-            if (tecla.type == sf::Event::KeyPressed){
+            if (tecla.type == sf::Event::KeyPressed || tecla.type == sf::Event::MouseButtonPressed){
                 //Escape
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 }
-                ControladorJugador->Update(tecla.key.code);
+                ControladorJugador->Update(tecla);
             }
             if (tecla.type == sf::Event::KeyReleased){
                 ControladorJugador->Frenar(tecla.key.code);
@@ -178,6 +182,23 @@ void game::run(){
             Hud* hud = Hud::Instance();
             hud->Draw();
         }
+
+
+        // Draw particles, should do in another thread..?
+        for (auto&& Emitter: Particles) { 
+            if(Emitter) {
+                if(Emitter->IsPendingDelete()) { // Delete emitters that in last game loop where marked to delete.
+                    Emitter.reset();
+                    continue;
+                }
+            } else {
+                continue;
+            }
+            
+            Emitter->Draw(delta);
+        }
+
+
 
         eng->getApp().display();
 
@@ -284,6 +305,21 @@ Player* game::getPlayerCharacter(){
     return tmp;
 }
 
+PlayerController* game::getPlayerController(){
+    return ControladorJugador;
+}
+
+list<Mejora*> game::getMejoras(){
+    list<Mejora*> tmp;
+    Mejora* tmpE = NULL;
+    for (Actor *actor : actors) {
+        if ( dynamic_cast<Mejora*>( actor ) ) {
+            tmpE = dynamic_cast<Mejora*>(actor);
+            tmp.push_back(tmpE);
+        }
+    }
+    return tmp;
+}
 void game::Almacenaenemy(Projectile* proj){
     actors.push_back(proj); 
     
@@ -309,13 +345,21 @@ Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type) {
 void game::CondicionVictoria()
 {
     //Pasar al siguiente nivel: el jugador pasa por la puerta y no hay enemigos vivos
-    if((jugador->getActorLocation().y < 100.0 && getAllEnemies().size() == 0))
+    if(getAllEnemies().size() == 0)
     {
-        mapaActual++;  
-        InicializaNivel();
+        for(Mejora* mejora : getMejoras())
+        {
+            if(!mejora->pendingDelete)
+                mejora->activada = true;
+        }
+        if(jugador->getActorLocation().y < 100.0)
+        {
+            mapaActual++;  
+            InicializaNivel();
+        }
     }
     //Acabar partida porque has muerto
-    if(jugador->getCurrentHealth() == 0.f)
+    if(!jugador->IsAlive())
     {
         //Calculamos las puntuaciones por nivel
         float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/600); //1 - minutos_transcrridos/100
@@ -337,6 +381,24 @@ void game::EndGame()
 
     //Eliminamos los enemigos, si es el caso es que el jugador ha muerto
 
+}
+
+
+void game::SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot) {
+    switch (Effect)
+    {
+    case 0: // Hit effect
+        //unique_ptr<Cascade> t = make_unique<Cascade>(Location);
+        Particles.push_back(make_unique<PlayerHit>(Location));
+        break;
+    case 1: // Explosion
+        //unique_ptr<Cascade> t = make_unique<Cascade>(Location);
+        Particles.push_back(make_unique<Fireball_Explosion>(Location));
+        break;
+    
+    default:
+        break;
+    }
 }
 
 game::~game() // Destructor
