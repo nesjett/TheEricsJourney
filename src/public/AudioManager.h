@@ -29,10 +29,6 @@ public:
     void play_menu_ok();
     void play_menu_move();
 
-    //Audio del juego
-    void play_player_shot();
-    void play_enemy1_takedamage();
-    void play_enemy1_death();
 
 
     // Fire and forget sound. Keeps track of all in a sound queue.
@@ -45,12 +41,6 @@ private:
 
     //Audio del menu
     Music menu_music, menu_move, menu_ok;
-
-    //Audio del jugador
-    Music player_shot;
-
-    //Audio de los enemigos
-    Music enemy1_takedamage, enemy1_death;
 
     vector<std::shared_ptr<Music>> SoundQueue;
 };
