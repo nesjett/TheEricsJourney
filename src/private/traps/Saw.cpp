@@ -7,9 +7,14 @@ Saw::Saw(Vector2f Loc, float Length) : Trap(){ // Use this to call to parent's c
 
     damage_factor = 2.f;
     oType = worlddynamic;
+    initialLocation = Loc;
+    trapLength = Length;
     setActorLocation(Loc); // PLace actor somewhere in the map
 
+    movementSpeed = 0.1;
+    direction = Vector2f(1.f, 0.0); // we always start going right
 
+    debug = true;
 
     PrepareSprite();
 }
@@ -42,11 +47,31 @@ void Saw::PrepareSprite(){
 }
 
 void Saw::Update(float delta){
-   Trap::Update(delta);
-   bool valid = false;
-   if(target && timer.getElapsedTime().asSeconds() >= 5) {
+
+    
+    if(direction.x > 0.f) {
+        // we go right, check we arrive to the right poing
+        if(getActorLocation().x >= initialLocation.x + trapLength) {
+            direction.x = -1.f;
+        }
+    } else {
+        // we go left, check we arrive to origin. dir.x == 0.f should not happen
+        if(getActorLocation().x <= initialLocation.x) {
+            direction.x = 1.f;
+        }
+    }
+
+    float x = movementSpeed*direction.x*delta;
+    x = getActorLocation().x + x;
+    float y = getActorLocation().y;
+
+    UpdateMovement( Vector2f (x,y) );
+
+    Trap::Update(delta);
+    bool valid = false;
+    if(target && timer.getElapsedTime().asSeconds() >= 5) {
         target = nullptr;
-   }
+    }
 
 }
 

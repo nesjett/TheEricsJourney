@@ -21,6 +21,10 @@ class Saw: public Trap {
         std::map<std::string, Animation*> Animations;
     private:
         std::string texture_file;
+        float movementSpeed;
+        Vector2f direction;
+        Vector2f initialLocation;
+        float trapLength;
 };
 
 #endif
