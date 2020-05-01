@@ -5,7 +5,7 @@
 Explosionenemy::Explosionenemy():Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/Player.png";
+    texture_file = "./resources/Naranja.png";
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(-0.5, -0.5);
@@ -34,7 +34,7 @@ void Explosionenemy::Init(){
 }
 
 void Explosionenemy::PrepareSprite(){
-    float sizeX = 621.0, sizeY = 569.0;
+    float sizeX = 212.0, sizeY = 235.0;
     float offsetX = sizeX / 2.0;
     float offsetY = sizeY / 2.0;
 
@@ -42,75 +42,36 @@ void Explosionenemy::PrepareSprite(){
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    sprite->setScale( 0.15,0.15 );
+    sprite->setScale( 0.25,0.25 );
     
     Animation *tmpA;
 
     tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"up", tmpA});
     tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY)});
-   tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,235,sizeX,sizeY)});
+
     
  
     tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"right", tmpA});
     
-       tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY)});
-   tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(212,0,-sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(212,235,-sizeX,sizeY)});
     
 
     tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"left", tmpA});
     
-    tmpA->addFrame({sf::IntRect(0,2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,569+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,569+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,569+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,1138+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1138+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1138+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,1707+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1707+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1707+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,235,sizeX,sizeY)});
     
 
     
     tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"down", tmpA});
     tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY)});
-   tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,235,sizeX,sizeY)});
 }
 
 void Explosionenemy::Update(float delta){

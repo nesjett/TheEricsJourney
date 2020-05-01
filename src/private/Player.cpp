@@ -5,7 +5,7 @@
 Player::Player(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file2 = "./resources/sprites.png";
+    texture_file = "./resources/Player.png";
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(0.f, 0.f);
@@ -23,17 +23,104 @@ Player::Player(){ // Use this to call to parent's contructor first
     Target = nullptr;
 
     Init();
-
+    PrepareSprite();
 }
 
 void Player::Init(){
-    sprite = new SSprite(texture_file2);
-    sprite->setOrigin(75/2, 75/2);
-    sprite->setTextureRect( 0, 0 ,75,75 );
-    std::cout << "Terminamos INIT()" << std::endl;
+    float sizeX = 621.0, sizeY = 569.0;
+    float offsetX = sizeX / 2.0;
+    float offsetY = sizeY / 2.0;
+
+    sprite = new SSprite(texture_file);
+    sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
+    sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    sprite->setScale( 0.18,0.18 );
 }
+
+void Player::PrepareSprite(){
+    float sizeX = 621.0, sizeY = 569.0;
+    float offsetX = sizeX / 2.0;
+    float offsetY = sizeY / 2.0;
+
+    sprite = new SSprite(texture_file);
+    sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
+    sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    sprite->setScale( 0.15,0.15 );
+    
+    Animation *tmpA;
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"up", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY)});
+   tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY)});
+    
+ 
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"right", tmpA});
+    
+       tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY)});
+   tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY)});
+    
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"left", tmpA});
+    
+    tmpA->addFrame({sf::IntRect(0,2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,569+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,569+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,569+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1138+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1138+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1138+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1707+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1707+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1707+2276,sizeX,sizeY)});
+    
+
+    
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"down", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY)});
+   tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY)});
+}
+
 void Player::Draw(double percent, double delta ){
-   Actor::Draw(percent, delta);
+    Pawn::SetAnimation();
+   Pawn::Draw(percent, delta);
 
     //Movemos la camara 
     Engine* eng = Engine::Instance();

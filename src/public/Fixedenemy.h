@@ -12,8 +12,9 @@ class Fixedenemy: public Enemy{
         Fixedenemy();
         void Init();
         bool Attack();
-
+        void PrepareSprite();
         void Update(float delta);
+        void Draw(double percent, double delta );
 
         sf::Clock relojMark;
 

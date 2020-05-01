@@ -3,7 +3,7 @@
 Movingenemy::Movingenemy(): Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/sprites.png";
+    texture_file = "./resources/Calavera.png";
 
 
     health_MAX = 100.0f;
@@ -17,8 +17,8 @@ Movingenemy::Movingenemy(): Enemy(){ // Use this to call to parent's contructor 
     setActorLocation(x);
 
 
-    Init();
-
+    //Init();
+    PrepareSprite();
 }
 
 void Movingenemy::Init(){
@@ -26,6 +26,45 @@ void Movingenemy::Init(){
     sprite->setOrigin(75/2, 75/2);
     sprite->setTextureRect(75,75,75,75 );
     std::cout << "Terminamos INIT()" << std::endl;
+}
+
+void Movingenemy::PrepareSprite(){
+    float sizeX = 828.0, sizeY = 896.0;
+    float offsetX = sizeX / 2.0;
+    float offsetY = sizeY / 2.0;
+
+    sprite = new SSprite(texture_file);
+    sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
+    sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    sprite->setScale( 0.08,0.08 );
+    
+    Animation *tmpA;
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"up", tmpA});
+    tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
+
+    
+ 
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"right", tmpA});
+    tmpA->addFrame({sf::IntRect(828,1016,-sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(828,1912,-sizeX,sizeY)});
+    
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"left", tmpA});
+    tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
+    
+
+    
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"down", tmpA});
+    tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
 }
 
 void Movingenemy::Update(float delta){
@@ -37,6 +76,7 @@ void Movingenemy::Update(float delta){
 }
 
 void Movingenemy::Draw(double percent, double delta ){
+    Pawn::SetAnimation();
     Enemy::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
