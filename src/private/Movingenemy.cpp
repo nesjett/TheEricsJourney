@@ -1,4 +1,5 @@
 #include "../public/Movingenemy.h"
+#include "../public/AudioManager.h"
 
 Movingenemy::Movingenemy(): Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
@@ -95,6 +96,7 @@ bool Movingenemy::Attack(){
         //projTest->setActorLocation(pos);
         Projectile *proj = new Rock(dir_unit, pos);
         eng->Almacenaenemy(proj);
+        AudioManager::getInstance()->PlaySound2D("./resources/audio/throw.ogg");
         relojMark.restart();
    }
     return true;

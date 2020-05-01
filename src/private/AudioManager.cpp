@@ -56,16 +56,18 @@ void AudioManager::play_player_shot()
 }
 void AudioManager::play_enemy1_takedamage()
 {
-    enemy1_takedamage.play();
+    //enemy1_takedamage.play();
 }
 void AudioManager::play_enemy1_death()
 {
-    enemy1_death.play();
+    //enemy1_death.play();
 }
 
-void AudioManager::PlaySound2D(string File){
-    sf::Music sound;
-    sound.openFromFile("./resources/audio/player_shot.ogg");
-
-    sound.play();
+shared_ptr<Music> AudioManager::PlaySound2D(string File){
+    SoundQueue.push_back(make_shared<Music>());
+    shared_ptr<Music> ref = SoundQueue.back();
+    ref->openFromFile(File);
+    ref->setVolume(100.f);
+    ref->play();
+    return ref;
 }
