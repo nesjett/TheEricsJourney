@@ -60,22 +60,6 @@ void game::InicializaNivel()
         {
             actors.push_back(tile);
         }
-
-        //Creamos las mejoras
-
-        Mejora *mejora1 = new Mejora(attackmore);
-        actors.push_back(mejora1);
-        mejora1->setActorLocation(Vector2f(200.f, 100.f));
-        Mejora *mejora2 = new Mejora(movementspeed);
-        actors.push_back(mejora2);
-        mejora2->setActorLocation(Vector2f(200.f, 150.f));
-        Mejora *mejora3 = new Mejora(attackspeed);
-        actors.push_back(mejora3);
-        mejora3->setActorLocation(Vector2f(200.f, 200.f));
-        Mejora *mejora4 = new Mejora(health);
-        actors.push_back(mejora4);
-        mejora4->setActorLocation(Vector2f(200.f, 300.f));
-
         //Protagonista set location al inicio del mapa
         jugador->setActorLocation(Vector2f(350.0,200.0));
         
@@ -105,17 +89,17 @@ void game::run(){
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
     
-    Fixedenemy *enemyfijo = new Fixedenemy();
-    actors.push_back(enemyfijo);
-    enemyfijo->setActorLocation(Vector2f(600.0,550.0));
+    // Fixedenemy *enemyfijo = new Fixedenemy();
+    // actors.push_back(enemyfijo);
+    // enemyfijo->setActorLocation(Vector2f(600.0,550.0));
 
-    Movingenemy *enemymove = new Movingenemy();
-    actors.push_back(enemymove);
-    enemymove->Prepara(Vector2f(500.0,300.0),Vector2f(300.0,400.0));
+    // Movingenemy *enemymove = new Movingenemy();
+    // actors.push_back(enemymove);
+    // enemymove->Prepara(Vector2f(500.0,300.0),Vector2f(300.0,400.0));
     
-    Explosionenemy *enemyexp = new Explosionenemy();
-    actors.push_back(enemyexp);
-    enemyexp->setActorLocation(Vector2f(400.0,400.0));
+    // Explosionenemy *enemyexp = new Explosionenemy();
+    // actors.push_back(enemyexp);
+    // enemyexp->setActorLocation(Vector2f(400.0,400.0));
     
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);

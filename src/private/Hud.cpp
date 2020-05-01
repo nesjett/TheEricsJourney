@@ -18,13 +18,13 @@ Hud::Hud()
     colorHealth100 = sf::Color(0, 204, 102);
     colorHealthLess50 = sf::Color(255, 255, 102);
     colorHealthLess25 = sf::Color(255, 0, 0);
-    playerHealth.setPosition(Vector2f(875,eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
+    playerHealth.setPosition(Vector2f(775,eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
     playerHealth.setSize(sf::Vector2f(width, height));
     playerHealth.setFillColor(colorHealth100);
     maxHealth = 0.f;
     currentHealth = 0.f;
     fontHud.loadFromFile("./resources/typos/BenguiatBold.ttf");
-    playerHealth.setPosition(Vector2f(875,eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 25));
+    playerHealth.setPosition(Vector2f(775,eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 25));
 
     //Cargamos los textos de las mejoras
     txtHealth.setFont(fontHud);
@@ -210,23 +210,23 @@ void Hud::Draw()
     int cont = 0;
     if(vecesMejora1 > 0)
     {
-        txtHealth.setPosition(Vector2f(825.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
+        txtHealth.setPosition(Vector2f(725.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
         eng->getApp().draw(txtHealth);
-        spritesMejoras[0]->setPosition(Vector2f(875.f + separacion*cont ,eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 60));
+        spritesMejoras[0]->setPosition(Vector2f(775.f + separacion*cont ,eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 60));
         eng->getApp().draw(*spritesMejoras[0]);
         cont++;
     }
     if(vecesMejora2 > 0)
     {
-        txtMovSpeed.setPosition(Vector2f(825.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
+        txtMovSpeed.setPosition(Vector2f(725.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
         eng->getApp().draw(txtMovSpeed);
-        spritesMejoras[1]->setPosition(Vector2f(875.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 60));
+        spritesMejoras[1]->setPosition(Vector2f(775.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 60));
         eng->getApp().draw(*spritesMejoras[1]);
         cont++;
     }
     if(vecesMejora3 > 0)
     {
-        txtAttackSpeed.setPosition(Vector2f(825.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
+        txtAttackSpeed.setPosition(Vector2f(725.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
         eng->getApp().draw(txtAttackSpeed);
         spritesMejoras[2]->setPosition(Vector2f(875.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 60));
         eng->getApp().draw(*spritesMejoras[2]);
@@ -234,9 +234,9 @@ void Hud::Draw()
     }
     if(vecesMejora4 > 0)
     {
-        txtAttackMore.setPosition(Vector2f(825.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
+        txtAttackMore.setPosition(Vector2f(725.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
         eng->getApp().draw(txtAttackMore);
-        spritesMejoras[3]->setPosition(Vector2f(875.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 60));
+        spritesMejoras[3]->setPosition(Vector2f(775.f + separacion*cont, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 60));
         eng->getApp().draw(*spritesMejoras[3]);
         cont++;
     }
