@@ -256,6 +256,7 @@ Animation::Animation(sf::Sprite &target, int length) : target(target) {
     progress = 0;
     totalLength = 0.0;
     duration = length;
+    totalProgress = 0;
     currentFrame = 0;
     loop = false;
 }
@@ -263,6 +264,7 @@ Animation::Animation(sf::Sprite &target, int length, bool looping) : target(targ
     progress = 0;
     totalLength = 0.0;
     duration = length;
+    totalProgress = 0;
     currentFrame = 0;
     loop = looping;
 }
@@ -272,6 +274,7 @@ Animation::~Animation(){
 
 void Animation::Reset() {
     progress = 0;
+    totalProgress = 0;
     currentFrame = 0;
 }
 
@@ -287,13 +290,14 @@ void Animation::addFrame(AnimFrame&& frame) {
 }
 int Animation::update(double elapsed) {
     progress += elapsed;
+    totalProgress += elapsed;
     //double p = progress;
 
     if(progress/1.f >= duration/frames.size()) {
         currentFrame++;
         if(!loop && currentFrame/1.f >= frames.size()){
             progress = 0;
-            return duration - progress;
+            return 0;
         }
         if(currentFrame/1.f >= frames.size()){
             currentFrame = 0;
@@ -302,7 +306,7 @@ int Animation::update(double elapsed) {
         progress = 0;
     }
 
-    return duration - progress;
+    return duration - totalProgress;
 }
 
 

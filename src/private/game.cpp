@@ -181,8 +181,12 @@ void game::run(){
 
         // Draw particles, should do in another thread..?
         for (auto&& Emitter: Particles) { 
-            if(Emitter->IsPendingDelete()) { // Delete emitters that in last game loop where marked to delete.
-                Emitter.reset();
+            if(Emitter) {
+                if(Emitter->IsPendingDelete()) { // Delete emitters that in last game loop where marked to delete.
+                    Emitter.reset();
+                    continue;
+                }
+            } else {
                 continue;
             }
             

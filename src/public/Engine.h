@@ -112,6 +112,7 @@ class Animation {
         double getLength() const { return totalLength; }
     private:
         bool loop = false;
+        int totalProgress;
 };
 
 
