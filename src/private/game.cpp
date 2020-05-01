@@ -1,6 +1,7 @@
 #include "../public/game.h"
 
 #include "../public/traps/Spikes.h"
+#include "../public/traps/Saw.h"
 #include "../public/particles/PlayerHit.h"
 #include "../public/particles/Fireball_Explosion.h"
 
@@ -117,6 +118,9 @@ void game::run(){
     Spikes *trap = new Spikes();
     actors.push_back(trap);
     trap->setActorLocation(Vector2f(150.0,150.0));
+
+    Saw *saw = new Saw(Vector2f(300.0,250.0), 500.f);
+    actors.push_back(saw);
 
 
     /***********************************
