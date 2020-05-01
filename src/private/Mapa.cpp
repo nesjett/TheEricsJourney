@@ -78,6 +78,7 @@ void Mapa::cargaMapa()
     layer = mapa->FirstChildElement("layer");
     XMLElement* tile;
     int posVEnemy = 0;
+    int posVMejora = 0;
     int posX = 0;
     int posY = 0;
     for(int l = 0; l < num_layers; l++)
@@ -122,6 +123,30 @@ void Mapa::cargaMapa()
                         vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
                         posVEnemy++;
                     }
+                    if(strcmp(layer->Attribute("name"), strCapaPowerVida.c_str()) == 0)
+                    {
+                        vMejoras.push_back(new Mejora(health));
+                        vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
+                        posVMejora++;
+                    }
+                    if(strcmp(layer->Attribute("name"), strCapaPowerMov.c_str()) == 0)
+                    {
+                        vMejoras.push_back(new Mejora(movementspeed));
+                        vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
+                        posVMejora++;
+                    }
+                    if(strcmp(layer->Attribute("name"), strCapaPowerCadencia.c_str()) == 0)
+                    {
+                        vMejoras.push_back(new Mejora(attackspeed));
+                        vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
+                        posVMejora++;
+                    }
+                    if(strcmp(layer->Attribute("name"), strCapaPowerAtaque.c_str()) == 0)
+                    {
+                        vMejoras.push_back(new Mejora(attackmore));
+                        vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
+                        posVMejora++;
+                    }
                     if(strcmp(layer->Attribute("name"), nombreCapaSuelo.c_str()) == 0)
                     {
                         vectorPintar2.push_back(*vectorSprite[valor-1]);
@@ -157,6 +182,7 @@ list<Actor*> Mapa::getActors()
 {
     list<Tile*> listaTiles(vTiles.begin(),vTiles.end());
     list<Enemy*> listaEnemigos(vEnemigos.begin(), vEnemigos.end());
+    list<Mejora*> listaMejoras(vMejoras.begin(), vMejoras.end());
     list<Actor*> actores;
     //listaTiles.merge(listaEnemigos);
     for (Tile *tile : listaTiles)
@@ -166,6 +192,10 @@ list<Actor*> Mapa::getActors()
     for (Enemy *enemy : listaEnemigos)
     {
         actores.push_back(enemy);
+    }
+    for (Mejora *mejora : listaMejoras)
+    {
+        actores.push_back(mejora);
     }
     return actores;
 }
