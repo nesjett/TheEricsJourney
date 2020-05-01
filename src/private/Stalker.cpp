@@ -48,12 +48,8 @@ void Stalker::Init(){
 }
 
 void Stalker::Update(float delta){
-    
-    
     Enemy::Update(delta);
     Followplayer();
-    
-    
 }
 
 void Stalker::Draw(double percent, double delta ){
