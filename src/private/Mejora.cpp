@@ -1,18 +1,37 @@
 #include "../public/Mejora.h"
 #include "../public/Pawn.h"
 #include "../public/game.h"
+#include "../public/Hud.h"
 
 
 
 Mejora::Mejora(PowerUpType tipo) : Actor(){ // Use this to call to parent's contructor first
 
     texture_file = "./resources/powerups/"+to_string(tipo)+".png";
+    switch(tipoMejora)
+    {
+        case health:
+            nombre = "Vida max aumentada";
+            break;
+        case movementspeed:
+            nombre = "Mayor movimiento";
+            break;
+        case attackspeed:
+            nombre = "Mayor cadencia";
+            break;
+        case attackmore:
+            nombre = "Ataque mejorado";
+            break;   
+        }
     oType = powerup;
     tipoMejora = tipo;
-    activada = false; //CAMBIAR DESPUES
+    activada = true; //CAMBIAR DESPUES
     PrepareSprite();
 }
-
+Sprite Mejora::getSprite()
+{
+    return sprite->getSprite();
+}
 void Mejora::PrepareSprite(){
     sprite = new SSprite(texture_file);
     sprite->setOrigin(sprite->getSprite().getGlobalBounds().width/2, sprite->getSprite().getGlobalBounds().height/2); 
@@ -47,7 +66,7 @@ void Mejora::OnActorOverlap(Actor *otherActor){
                 break;   
         }
         //Incluimos mejoras en la hud, guardandola ahi directamente o mediante el player
-        
+        Hud::Instance()->addMejora(*this);
         //Desactivamos todas las mejoras de game porque ya se ha aplicado una
         for(Mejora* mejora : listaMejoras)
         {
