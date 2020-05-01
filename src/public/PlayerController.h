@@ -18,7 +18,7 @@ class PlayerController:  public Controller{
         void Attacks();
         void setAttack(list<Enemy*>);
         void ImprovesAttack();
-        void Frenar(sf::Keyboard::Key);
+        void Frenar(/*sf::Keyboard::Key*/);
         void MejorarCadencia(float);
         void MejorarMovimiento(float);
         void IncreaseHealth();
@@ -34,4 +34,6 @@ class PlayerController:  public Controller{
         float distancia;
         sf::Clock relojAtaque;
         float mejora = 1.f;
+        bool Moverse = false;
+        sf::Vector2f puntoRaton;
 };

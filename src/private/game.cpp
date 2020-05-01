@@ -103,10 +103,6 @@ void game::run(){
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
     stalker->setActorLocation(Vector2f(400.0,400.0));
-
-    Mejora *mejora = new Mejora(health);
-    actors.push_back(mejora);
-    mejora->setActorLocation(Vector2f(0.f, 0.f));
     
     
     listaEnemigos = getAllEnemies();
@@ -138,9 +134,9 @@ void game::run(){
                 }
                 ControladorJugador->Update(tecla);
             }
-            if (tecla.type == sf::Event::KeyReleased){
+            /*if (tecla.type == sf::Event::KeyReleased){
                 ControladorJugador->Frenar(tecla.key.code);
-            }
+            }*/
             if(estadoJuego == false) //Estamos en el menu o en la pantalla final
             {
                     estadoJuego = menu->update(tecla);
