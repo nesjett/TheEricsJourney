@@ -34,11 +34,11 @@ void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
         health_Current-=damage;
         if(IsAlive() == false){
             Die();
-            AudioManager::getInstance()->play_enemy1_death();
+            AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_die.ogg");
         } else {
             ApplyHitEffects(damage_type); // Apply hit effects
+            AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_hit.ogg");
         }
-        AudioManager::getInstance()->play_enemy1_takedamage();
     }
 }
 
