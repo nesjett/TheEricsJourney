@@ -33,6 +33,8 @@ public:
     void play_enemy1_takedamage();
     void play_enemy1_death();
 
+    void PlaySound2D(string File);
+
 protected:
 private:
     AudioManager();
