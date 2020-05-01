@@ -14,6 +14,7 @@ Mejora::Mejora(PowerUpType tipo) : Actor(){ // Use this to call to parent's cont
     // }
     //texture_file = "./resources/powerups/"+to_string(tipo)+".png";
     texture_file = "./resources/sprites.png";
+
     
     
 
