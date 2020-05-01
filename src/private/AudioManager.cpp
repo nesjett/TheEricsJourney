@@ -67,6 +67,10 @@ shared_ptr<Music> AudioManager::PlaySound2D(string File){
     SoundQueue.push_back(make_shared<Music>());
     shared_ptr<Music> ref = SoundQueue.back();
     ref->openFromFile(File);
+
+    // Adjust random pitch to be between 0.75 and 1.25
+    float rp = 0.75 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.25-0.75))); // Rnadom pitch in range
+    ref->setPitch(rp);
     ref->setVolume(100.f);
     ref->play();
     return ref;
