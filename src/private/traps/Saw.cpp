@@ -14,8 +14,6 @@ Saw::Saw(Vector2f Loc, float Length) : Trap(){ // Use this to call to parent's c
     movementSpeed = 0.1;
     direction = Vector2f(1.f, 0.0); // we always start going right
 
-    
-
     PrepareSprite();
 }
 

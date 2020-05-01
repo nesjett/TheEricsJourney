@@ -71,13 +71,14 @@ void Pawn::PrepareSprite(){
 }
 
 void Pawn::Update(float delta){
+
     //std::cout << "Iniciamos UPDATE()" << std::endl;
     float x = movementSpeed*direction.x*delta;
     float y = movementSpeed*direction.y*delta;
     x = getActorLocation().x + x;
     y = getActorLocation().y + y;
 
-    if( (direction.x != 0.f || direction.y != 0.f)) {
+    if( (direction.x != 0.f || direction.y != 0.f) && IsAlive()) {
         Actor *collide = DirectionPrecheck(Vector2f(x,y), worldstatic);
         if(!collide) {
             collide = DirectionPrecheck(Vector2f(x,y), blocker);
@@ -86,6 +87,8 @@ void Pawn::Update(float delta){
             }
         }
     }
+
+    Actor::Update(delta);
 }
 
 void Pawn::Draw(double percent, double delta ){
@@ -148,7 +151,8 @@ bool Pawn::IsAlive(){
 }
 
 void Pawn::Die(){
-    std::cout << "Enemy died!" << std::endl; 
+    //std::cout << "Enemy died!" << std::endl; 
+    setLifespan(0.0);
 }
 
 void Pawn::ApplyHitEffects(string damage_type){
