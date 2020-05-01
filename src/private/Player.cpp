@@ -4,8 +4,6 @@
 #include "../public/AudioManager.h"
 
 Player::Player(){ // Use this to call to parent's contructor first
-    std::cout << "Pawn spawned..." << std::endl;  
-
     texture_file2 = "./resources/sprites.png";
 
     setActorLocation(Vector2f(100.f, 100.f));
@@ -17,7 +15,7 @@ Player::Player(){ // Use this to call to parent's contructor first
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
 
-    movementSpeed = 0.1f;
+    movementSpeed = 0.2f;
     faction = allie;
     AttackImprovement = 0;
 
