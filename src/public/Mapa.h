@@ -8,6 +8,7 @@
 #include <Engine.h>
 #include <Tile.h>
 #include <Enemy.h>
+#include <Mejora.h>
 
 using namespace std;
 using namespace tinyxml2;
@@ -35,16 +36,20 @@ class Mapa
         vector<Tile*> vTiles;
         vector<Tile*> vPuertas;
         vector<Enemy*> vEnemigos;
+        vector<Mejora*> vMejoras;
 
         //Nombre de las capas en los mapa Tiled
-        string nombreCapaColisiones = "colisiones";
-        string nombreCapaObjetos = "objetos";
+        string nombreCapaColisiones = "pared";
+        string nombreCapaObjetos = "trampas";
         string nombreCapaPuertas = "puerta";
         string nombreCapaEnemigos1 = "enemigos1";
         string nombreCapaEnemigos2 = "enemigos2";
         string nombreCapaEnemigos3 = "enemigos3";
         string nombreCapaSuelo = "suelo";
-
+        string strCapaPowerVida = "mejoraVida";
+        string strCapaPowerMov = "mejoraMovimiento";
+        string strCapaPowerCadencia = "mejoraCadencia";
+        string strCapaPowerAtaque= "mejoraAtaque";
 
         int num_layers;
         int tamMapaX, tamMapaY, tamTileX, tamTileY;

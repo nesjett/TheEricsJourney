@@ -36,8 +36,8 @@ void Engine::setView(float centerY, float borderX)
     float posArriba = centerY - (app.getSize().y / 2);
     if(posArriba < 0.f)
         posArriba = 0.f;
-    if(posArriba > 480.f)
-        posArriba = 480.f;
+    if(posArriba > 280.f)
+        posArriba = 280.f;
     vista.reset(sf::FloatRect(0.f, posArriba, app.getSize().x, app.getSize().y));
     vista.setViewport(sf::FloatRect(borderX, 0, 1.f, 1.f));
     app.setView(vista);

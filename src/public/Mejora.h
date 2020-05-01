@@ -15,7 +15,10 @@ class Mejora: public Actor {
         string nombre;
         PowerUpType tipoMejora;
         void Update(float delta);
+        void Draw(double percent, double delta);
         void OnActorOverlap(Actor *otherActor);
+        bool activada;
+        Sprite getSprite();
     protected:
         virtual void PrepareSprite();
     private:

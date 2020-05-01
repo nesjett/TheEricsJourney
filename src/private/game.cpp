@@ -60,7 +60,6 @@ void game::InicializaNivel()
         {
             actors.push_back(tile);
         }
-
         //Protagonista set location al inicio del mapa
         jugador->setActorLocation(Vector2f(350.0,200.0));
         
@@ -90,26 +89,21 @@ void game::run(){
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
     
-    Fixedenemy *enemyfijo = new Fixedenemy();
-    actors.push_back(enemyfijo);
-    enemyfijo->setActorLocation(Vector2f(600.0,550.0));
+    // Fixedenemy *enemyfijo = new Fixedenemy();
+    // actors.push_back(enemyfijo);
+    // enemyfijo->setActorLocation(Vector2f(600.0,550.0));
 
-    Movingenemy *enemymove = new Movingenemy();
-    actors.push_back(enemymove);
-    enemymove->Prepara(Vector2f(500.0,300.0),Vector2f(300.0,400.0));
+    // Movingenemy *enemymove = new Movingenemy();
+    // actors.push_back(enemymove);
+    // enemymove->Prepara(Vector2f(500.0,300.0),Vector2f(300.0,400.0));
     
-    Explosionenemy *enemyexp = new Explosionenemy();
-    actors.push_back(enemyexp);
-    enemyexp->setActorLocation(Vector2f(400.0,400.0));
+    // Explosionenemy *enemyexp = new Explosionenemy();
+    // actors.push_back(enemyexp);
+    // enemyexp->setActorLocation(Vector2f(400.0,400.0));
     
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
     stalker->setActorLocation(Vector2f(400.0,400.0));
-
-    Mejora *mejora = new Mejora(health);
-    actors.push_back(mejora);
-    mejora->setActorLocation(Vector2f(0.f, 0.f));
-    
     
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
@@ -305,6 +299,21 @@ Player* game::getPlayerCharacter(){
     return tmp;
 }
 
+PlayerController* game::getPlayerController(){
+    return ControladorJugador;
+}
+
+list<Mejora*> game::getMejoras(){
+    list<Mejora*> tmp;
+    Mejora* tmpE = NULL;
+    for (Actor *actor : actors) {
+        if ( dynamic_cast<Mejora*>( actor ) ) {
+            tmpE = dynamic_cast<Mejora*>(actor);
+            tmp.push_back(tmpE);
+        }
+    }
+    return tmp;
+}
 void game::Almacenaenemy(Projectile* proj){
     actors.push_back(proj); 
     
@@ -330,10 +339,18 @@ Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type) {
 void game::CondicionVictoria()
 {
     //Pasar al siguiente nivel: el jugador pasa por la puerta y no hay enemigos vivos
-    if((jugador->getActorLocation().y < 100.0 && getAllEnemies().size() == 0))
+    if(getAllEnemies().size() == 0)
     {
-        mapaActual++;  
-        InicializaNivel();
+        for(Mejora* mejora : getMejoras())
+        {
+            if(!mejora->pendingDelete)
+                mejora->activada = true;
+        }
+        if(jugador->getActorLocation().y < 100.0)
+        {
+            mapaActual++;  
+            InicializaNivel();
+        }
     }
     //Acabar partida porque has muerto
     if(!jugador->IsAlive())
