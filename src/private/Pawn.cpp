@@ -80,7 +80,10 @@ void Pawn::Update(float delta){
     if( (direction.x != 0.f || direction.y != 0.f)) {
         Actor *collide = DirectionPrecheck(Vector2f(x,y), worldstatic);
         if(!collide) {
-            UpdateMovement( Vector2f (x,y) );
+            collide = DirectionPrecheck(Vector2f(x,y), blocker);
+            if(!collide) {
+                UpdateMovement( Vector2f (x,y) );
+            }
         }
     }
 }
