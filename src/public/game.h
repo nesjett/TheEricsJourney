@@ -46,7 +46,7 @@ class game
 
         void Almacenaenemy(Projectile* proj);
 
-        void SpawnEmitterAtLocation(int Effect, Vector2f Location);
+        void SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot);
 
         long getTime() { return gameClock.getElapsedTime().asMilliseconds(); };
         Actor* boxTraceByObjectType(FloatRect rect, ObjectType type);

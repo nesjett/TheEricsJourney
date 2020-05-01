@@ -57,7 +57,7 @@ void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
         } else {
             ApplyHitEffects(damage_type); // Apply hit effects
             game *gi = game::Instance();
-            gi->SpawnEmitterAtLocation(0, getActorLocation());
+            gi->SpawnEmitterAtLocation(0, getActorLocation(), Vector2f(0.f,0.f));
         }
     }
 }

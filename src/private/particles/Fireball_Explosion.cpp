@@ -10,8 +10,6 @@ Fireball_Explosion::Fireball_Explosion(Vector2f Loc) : Cascade(Loc) {
     this->setTextureRect( 0, 5 , 120, 172 );
     this->setScale(0.35, 0.35);
 
-    this->setBounds(0.5);
-
     //IDLE
     Anim = new Animation(this->getSpriteR(), 2000, true);
     Anim->addFrame({sf::IntRect(0,0, 120,172)});
