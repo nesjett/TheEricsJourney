@@ -1,6 +1,7 @@
 #include "../public/game.h"
 
 #include "../public/traps/Spikes.h"
+#include "../public/particles/Fireball_Explosion.h"
 
 #define UPDATE_INTERVAL (1000/35.0)
 
@@ -177,6 +178,19 @@ void game::run(){
             hud->Draw();
         }
 
+
+        // Draw particles, should do in another thread..?
+        for (auto&& Emitter: Particles) { 
+            if(Emitter->IsPendingDelete()) { // Delete emitters that in last game loop where marked to delete.
+                Emitter.reset();
+                continue;
+            }
+            
+            Emitter->Draw(delta);
+        }
+
+
+
         eng->getApp().display();
 
 
@@ -335,6 +349,20 @@ void game::EndGame()
 
     //Eliminamos los enemigos, si es el caso es que el jugador ha muerto
 
+}
+
+
+void game::SpawnEmitterAtLocation(int Effect, Vector2f Location) {
+    switch (Effect)
+    {
+    case 0: // Hit effect
+        //unique_ptr<Cascade> t = make_unique<Cascade>(Location);
+        Particles.push_back(make_unique<Fireball_Explosion>(Location));
+        break;
+    
+    default:
+        break;
+    }
 }
 
 game::~game() // Destructor

@@ -13,10 +13,9 @@ using namespace sf;
 class Fireball_Explosion : public Cascade{
 
   public:
-    Fireball_Explosion();
+    Fireball_Explosion(Vector2f Loc);
     virtual ~Fireball_Explosion();
 
-	void Init();
 
     
   private:

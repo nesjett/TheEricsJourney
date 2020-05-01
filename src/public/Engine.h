@@ -64,8 +64,8 @@ class SSprite
         sf::Sprite getSprite(){ return sfsprite; }
         // Returns a ref to the SFML sprite
         sf::Sprite &getSpriteR(){ return sfsprite; }
-        sf::Vector2f Draw();
-        sf::Vector2f Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent);
+        virtual sf::Vector2f Draw();
+        virtual sf::Vector2f Draw(sf::Vector2f location, sf::Vector2f location_prev, double percent);
         void setOrigin(double x, double y);
         void setTextureRect(double x, double y, double w, double h);
         void setTextureRect(sf::IntRect rect);
@@ -73,6 +73,7 @@ class SSprite
         sf::FloatRect getGlobalBounds();
         sf::FloatRect getBounds();
         sf::FloatRect setBounds(float newScale);
+        sf::Texture LoadTexture(string path);
     protected:
         sf::Texture texture;
         sf::Sprite sfsprite;
@@ -105,7 +106,9 @@ class Animation {
         virtual ~Animation();
         void Reset();
         void addFrame(AnimFrame&& frame); // TODO: Could forget about this if we add a standard size for the rect in the constructor, and a default rate.
-        void update(double elapsed); 
+        
+        // Returns the remaining animation time in ms
+        int update(double elapsed); 
         double getLength() const { return totalLength; }
     private:
         bool loop = false;
@@ -124,19 +127,27 @@ class Animation {
 class Cascade : public SSprite {
     public:
         Cascade();
+        Cascade(sf::Vector2f loc);
         
         // Total lifetime of the emitter
-        void SetLifetime(int time) { Lifetime = time; };
+        void SetLifetime(int time);
+
+        // Update animation state if any and draw sprite to canvas
+        void Draw(double delta);
         
         // By default = true. Sets if the particle should loop infinite time
-        void SetAuto(bool Auto) { AutoDestroy = Auto; };
+        void SetAuto(bool Auto);
+
+        int GetRemainingLife();
+        bool IsPendingDelete() {return PendingDelete;};
         virtual ~Cascade();
     protected:
-        SSprite Sprite;
-        sf::Clock Remaining;
+        Animation *Anim;
+        sf::Clock LifeCounter;
     private:
         bool AutoDestroy;
-        int Lifetime;
+        int Lifetime; // As milliseconds
+        bool PendingDelete;
 };
 
 

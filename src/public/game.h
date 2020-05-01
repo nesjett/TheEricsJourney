@@ -7,6 +7,7 @@
 #include <iterator>
 #include <SFML/Graphics.hpp>
 #include <algorithm>
+#include <memory>
 
 #include <Engine.h>
 #include <Actor.h>
@@ -35,9 +36,6 @@ class game
         void run();
         void Actualizar();
         void Renderizado(float, float);
-        int getTest() {
-            return test;
-        }
 
         /// Returns all enemies spawned in the world
         list<Enemy*> getAllEnemies();
@@ -47,6 +45,8 @@ class game
         Player* getPlayerCharacter();
 
         void Almacenaenemy(Projectile* proj);
+
+        void SpawnEmitterAtLocation(int Effect, Vector2f Location);
 
         long getTime() { return gameClock.getElapsedTime().asMilliseconds(); };
         Actor* boxTraceByObjectType(FloatRect rect, ObjectType type);
@@ -61,11 +61,15 @@ class game
     private:
         static game* pInstance;
         Engine* eng;
-        int test = 1;
         int largo = 1080;
         int alto = 720;
+
+        // List of active actors to update/render
         list<Actor*> actors;
         list<Actor*> actorsPendingDelete;
+
+        // List of active particles to render
+        vector<std::unique_ptr<Cascade>> Particles;
 
         sf::Event tecla;
         bool estadoJuego;
