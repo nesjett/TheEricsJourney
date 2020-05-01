@@ -61,13 +61,13 @@ void game::InicializaNivel()
 
         //Creamos las mejoras
 
-        Mejora *mejora1 = new Mejora(health);
+        Mejora *mejora1 = new Mejora(attackmore);
         actors.push_back(mejora1);
         mejora1->setActorLocation(Vector2f(200.f, 100.f));
-        Mejora *mejora2 = new Mejora(health);
+        Mejora *mejora2 = new Mejora(movementspeed);
         actors.push_back(mejora2);
         mejora2->setActorLocation(Vector2f(200.f, 150.f));
-        Mejora *mejora3 = new Mejora(health);
+        Mejora *mejora3 = new Mejora(attackspeed);
         actors.push_back(mejora3);
         mejora3->setActorLocation(Vector2f(200.f, 200.f));
         Mejora *mejora4 = new Mejora(health);

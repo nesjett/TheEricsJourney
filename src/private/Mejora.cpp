@@ -25,7 +25,7 @@ Mejora::Mejora(PowerUpType tipo) : Actor(){ // Use this to call to parent's cont
         }
     oType = powerup;
     tipoMejora = tipo;
-    activada = true; //CAMBIAR DESPUES
+    activada = false;
     PrepareSprite();
 }
 Sprite Mejora::getSprite()

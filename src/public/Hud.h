@@ -46,6 +46,7 @@ class Hud
         float height, width;
         float percent; //Porcentaje vidaActual/vidaTotal
         Color colorHealth100, colorHealthLess50, colorHealthLess25; 
+        vector<RectangleShape*> cuadraditos;
 
         //Datos de los powerups adquiridos - TO DO: una vez gestionemos powerups
         float separacion = 25.f;
@@ -60,6 +61,7 @@ class Hud
 
         //Barras de vida de los enemigos
         vector<RectangleShape*> enemyHealthBars;
+        float widthEnemigo;
 };
 
 #endif // Hud_H
