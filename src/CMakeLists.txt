@@ -35,6 +35,7 @@ target_sources(libModulos PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/private/traps/Spikes.cpp"
 
     "${CMAKE_CURRENT_SOURCE_DIR}/private/particles/Fireball_Explosion.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/particles/PlayerHit.cpp"
 
 )
 

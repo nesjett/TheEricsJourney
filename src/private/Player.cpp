@@ -16,7 +16,7 @@ Player::Player(){ // Use this to call to parent's contructor first
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
 
-    movementSpeed = 5.0f;
+    movementSpeed = 0.1f;
     faction = allie;
     AttackImprovement = 0;
 
@@ -56,6 +56,8 @@ void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
             Die();
         } else {
             ApplyHitEffects(damage_type); // Apply hit effects
+            game *gi = game::Instance();
+            gi->SpawnEmitterAtLocation(0, getActorLocation(), Vector2f(0.f,0.f));
         }
     }
 }
@@ -77,11 +79,6 @@ void Player::setDirection(float x, float y){
 }
 sf::Vector2f Player::getDirection(){
     return direction;
-}
-
-
-void Player::UpdateMovement(){
-
 }
 
 void Player::ActorOverlap(Actor otherActor){

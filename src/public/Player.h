@@ -16,7 +16,6 @@ class Player:  public Pawn{
         void Movimiento(sf::Vector2f);
         void setDirection(float, float);
         sf::Vector2f getDirection();
-        void UpdateMovement(); 
         void Attack(list<Enemy*>);
         void Update(float delta);
         void ActorOverlap(Actor otherActor);
