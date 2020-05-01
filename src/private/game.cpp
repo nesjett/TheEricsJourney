@@ -55,8 +55,8 @@ void game::InicializaNivel()
         vMapas.push_back(new Mapa(nombreMapa));
 
         //Cargamos las colisiones del nivel
-        list<Tile*> mapColisionables = vMapas[mapaActual]->getActors();
-        for (Tile *tile : mapColisionables)
+        list<Actor*> mapColisionables = vMapas[mapaActual]->getActors();
+        for (Actor *tile : mapColisionables)
         {
             actors.push_back(tile);
         }
@@ -105,6 +105,10 @@ void game::run(){
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
     stalker->setActorLocation(Vector2f(400.0,400.0));
+
+    Mejora *mejora = new Mejora(health);
+    actors.push_back(mejora);
+    mejora->setActorLocation(Vector2f(0.f, 0.f));
     
     
     listaEnemigos = getAllEnemies();
@@ -332,7 +336,7 @@ void game::CondicionVictoria()
         InicializaNivel();
     }
     //Acabar partida porque has muerto
-    if(jugador->getCurrentHealth() == 0.f)
+    if(!jugador->IsAlive())
     {
         //Calculamos las puntuaciones por nivel
         float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/600); //1 - minutos_transcrridos/100
