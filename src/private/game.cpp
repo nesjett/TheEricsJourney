@@ -59,6 +59,21 @@ void game::InicializaNivel()
             actors.push_back(tile);
         }
 
+        //Creamos las mejoras
+
+        Mejora *mejora1 = new Mejora(health);
+        actors.push_back(mejora1);
+        mejora1->setActorLocation(Vector2f(200.f, 100.f));
+        Mejora *mejora2 = new Mejora(health);
+        actors.push_back(mejora2);
+        mejora2->setActorLocation(Vector2f(200.f, 150.f));
+        Mejora *mejora3 = new Mejora(health);
+        actors.push_back(mejora3);
+        mejora3->setActorLocation(Vector2f(200.f, 200.f));
+        Mejora *mejora4 = new Mejora(health);
+        actors.push_back(mejora4);
+        mejora4->setActorLocation(Vector2f(200.f, 300.f));
+
         //Protagonista set location al inicio del mapa
         jugador->setActorLocation(Vector2f(350.0,200.0));
         
@@ -103,11 +118,6 @@ void game::run(){
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
     stalker->setActorLocation(Vector2f(400.0,400.0));
-
-    Mejora *mejora = new Mejora(health);
-    actors.push_back(mejora);
-    mejora->setActorLocation(Vector2f(0.f, 0.f));
-    
     
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
@@ -286,6 +296,21 @@ Player* game::getPlayerCharacter(){
     return tmp;
 }
 
+PlayerController* game::getPlayerController(){
+    return ControladorJugador;
+}
+
+list<Mejora*> game::getMejoras(){
+    list<Mejora*> tmp;
+    Mejora* tmpE = NULL;
+    for (Actor *actor : actors) {
+        if ( dynamic_cast<Mejora*>( actor ) ) {
+            tmpE = dynamic_cast<Mejora*>(actor);
+            tmp.push_back(tmpE);
+        }
+    }
+    return tmp;
+}
 void game::Almacenaenemy(Projectile* proj){
     actors.push_back(proj); 
     
@@ -311,10 +336,18 @@ Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type) {
 void game::CondicionVictoria()
 {
     //Pasar al siguiente nivel: el jugador pasa por la puerta y no hay enemigos vivos
-    if((jugador->getActorLocation().y < 100.0 && getAllEnemies().size() == 0))
+    if(getAllEnemies().size() == 0)
     {
-        mapaActual++;  
-        InicializaNivel();
+        for(Mejora* mejora : getMejoras())
+        {
+            if(!mejora->pendingDelete)
+                mejora->activada = true;
+        }
+        if(jugador->getActorLocation().y < 100.0)
+        {
+            mapaActual++;  
+            InicializaNivel();
+        }
     }
     //Acabar partida porque has muerto
     if(!jugador->IsAlive())

@@ -1,47 +1,60 @@
-#include <Mejora.h>
+#include "../public/Mejora.h"
+#include "../public/Pawn.h"
+#include "../public/game.h"
 
-//#include <game.h>
+
 
 Mejora::Mejora(PowerUpType tipo) : Actor(){ // Use this to call to parent's contructor first
-    // switch(tipo)
-    // {
-    //     case health:
-    //         texture_file = "./resources/health.png";
-    //         break;
-    //     case movementspeed:
 
-    //         break;
-    // }
-    //texture_file = "./resources/powerups/"+to_string(tipo)+".png";
-    texture_file = "./resources/Zombies.png";
-    
-    
-
-    setActorLocation(Vector2f(150.f, 150.f)); // PLace actor somewhere in the map
-
+    texture_file = "./resources/powerups/"+to_string(tipo)+".png";
+    oType = powerup;
+    tipoMejora = tipo;
+    activada = false; //CAMBIAR DESPUES
     PrepareSprite();
 }
 
 void Mejora::PrepareSprite(){
-    float scale = 0.4;
-    float sizeX = 430.0, sizeY = 519.0;
-    float offsetX = sizeX / 2.0;
-    float offsetY = sizeY / 2.0;
-
     sprite = new SSprite(texture_file);
-    sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
-    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
-    sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    sprite->setScale(scale,scale); // Set the scale of the sprite.
-    oType = powerup;
+    sprite->setOrigin(sprite->getSprite().getGlobalBounds().width/2, sprite->getSprite().getGlobalBounds().height/2); 
 }
 
 void Mejora::Update(float delta){
-   Actor::Update(delta);
+    if(activada)
+        Actor::Update(delta);
 }
-
+void Mejora::Draw(double percent, double delta)
+{
+    if(activada)
+        Actor::Draw(percent,delta);
+}
 void Mejora::OnActorOverlap(Actor *otherActor){
-
+    if (activada == true && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == allie ) {
+        list<Mejora*> listaMejoras = game::Instance()->getMejoras();
+        PlayerController* playercontroller = game::Instance()->getPlayerController();
+        switch(tipoMejora)
+        {
+            case health:
+                playercontroller->IncreaseHealth();
+                break;
+            case movementspeed:
+                playercontroller->MejorarMovimiento(1.08); //Valores copiados del player controller
+                break;
+            case attackspeed:
+                playercontroller->MejorarCadencia(0.9);
+                break;
+            case attackmore:
+                playercontroller->ImprovesAttack();
+                break;   
+        }
+        //Incluimos mejoras en la hud, guardandola ahi directamente o mediante el player
+        
+        //Desactivamos todas las mejoras de game porque ya se ha aplicado una
+        for(Mejora* mejora : listaMejoras)
+        {
+            mejora->activada = false;
+            mejora->setLifespan(0.f);
+        }
+    }
 }
 Mejora::~Mejora() // Destructor
 {

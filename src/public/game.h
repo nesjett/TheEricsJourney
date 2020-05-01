@@ -46,6 +46,8 @@ class game
         list<Projectile*> getAllProjectiles();
         list<Enemy*> listaEnemigos;
         Player* getPlayerCharacter();
+        list<Mejora*> getMejoras();
+        PlayerController* getPlayerController();
 
         void Almacenaenemy(Projectile* proj);
 
