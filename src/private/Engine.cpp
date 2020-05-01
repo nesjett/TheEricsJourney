@@ -57,12 +57,7 @@ void Engine::setView(float centerY, float borderX)
  * **********************/
 SSprite::SSprite(string path){
     eng = Engine::Instance();
-    if (!texture.loadFromFile(path)) {
-        std::cerr << "Error cargando la imagen" << path << std::endl;
-        exit(0);
-    }
-    TextPath = path;
-    sfsprite.setTexture(texture);
+    LoadTexture(path);
     GlobalBounds = sf::FloatRect();
 }
 
@@ -73,6 +68,17 @@ SSprite::SSprite(){
 // Draw at current location
 sf::Vector2f SSprite::Draw(){
     eng->getApp().draw(sfsprite);
+}
+
+sf::Texture SSprite::LoadTexture(string path) {
+    if (!texture.loadFromFile(path)) {
+        std::cerr << "Error cargando la imagen" << path << std::endl;
+        exit(0);
+    }
+    TextPath = path;
+    sfsprite.setTexture(texture);
+    GlobalBounds = sf::FloatRect();
+    return texture;
 }
 
 /// Draw with interpolation
@@ -251,6 +257,7 @@ Animation::Animation(sf::Sprite &target, int length) : target(target) {
     progress = 0;
     totalLength = 0.0;
     duration = length;
+    totalProgress = 0;
     currentFrame = 0;
     loop = false;
 }
@@ -258,6 +265,7 @@ Animation::Animation(sf::Sprite &target, int length, bool looping) : target(targ
     progress = 0;
     totalLength = 0.0;
     duration = length;
+    totalProgress = 0;
     currentFrame = 0;
     loop = looping;
 }
@@ -267,6 +275,7 @@ Animation::~Animation(){
 
 void Animation::Reset() {
     progress = 0;
+    totalProgress = 0;
     currentFrame = 0;
 }
 
@@ -280,15 +289,16 @@ void Animation::addFrame(AnimFrame&& frame) {
     totalLength += frame.duration; 
     frames.push_back(std::move(frame)); 
 }
-void Animation::update(double elapsed) {
+int Animation::update(double elapsed) {
     progress += elapsed;
+    totalProgress += elapsed;
     //double p = progress;
 
     if(progress/1.f >= duration/frames.size()) {
         currentFrame++;
         if(!loop && currentFrame/1.f >= frames.size()){
             progress = 0;
-            return;
+            return 0;
         }
         if(currentFrame/1.f >= frames.size()){
             currentFrame = 0;
@@ -297,6 +307,7 @@ void Animation::update(double elapsed) {
         progress = 0;
     }
 
+    return duration - totalProgress;
 }
 
 
@@ -311,11 +322,37 @@ void Animation::update(double elapsed) {
  * CLASS: CASCADE
  * 
  * **********************/
+// TODO: Now we are using this class RAW as a particle emitter, but this should be just one component of many that composes a emitter.
 
-Cascade::Cascade() { 
-    
+Cascade::Cascade(sf::Vector2f loc) : SSprite() { 
+    this->setPosition(loc.x, loc.y);
+    AutoDestroy = true;
+    Lifetime = 1.f;
+    PendingDelete = false;
+}
+
+Cascade::Cascade(){
+    AutoDestroy = true;
+    Lifetime = 1.f;
+    PendingDelete = false;
 }
 
 Cascade::~Cascade(){
 
 }
+
+void Cascade::Draw(double delta) {
+    int remaining = 0;
+    if(Anim) {
+        remaining = Anim->update(delta);
+        if(remaining <= 0) {
+            PendingDelete = true;
+        }
+    }
+    SSprite::Draw();
+}
+int Cascade::GetRemainingLife() {
+    return Lifetime - LifeCounter.getElapsedTime().asMilliseconds();
+}
+void Cascade::SetLifetime(int time) { Lifetime = time; }
+void Cascade::SetAuto(bool Auto) { AutoDestroy = Auto; };

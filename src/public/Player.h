@@ -16,7 +16,6 @@ class Player:  public Pawn{
         void Movimiento(sf::Vector2f);
         void setDirection(float, float);
         sf::Vector2f getDirection();
-        void UpdateMovement(); 
         void Attack(list<Enemy*>);
         void Update(float delta);
         void ActorOverlap(Actor otherActor);
@@ -36,5 +35,6 @@ class Player:  public Pawn{
         int AttackImprovement;
         sf::Clock relojMejora;
         Enemy *Target;
+        int LastAttack; // Used to select the sound to play for shooting
         
 };

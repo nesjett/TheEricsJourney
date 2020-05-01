@@ -3,7 +3,7 @@
 Stalker::Stalker(): Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/sprites.png";
+    texture_file = "./resources/enemies/ghost/ghost.png";
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(0.f, 0.f);
@@ -25,9 +25,26 @@ Stalker::Stalker(): Enemy(){ // Use this to call to parent's contructor first
 
 void Stalker::Init(){
     sprite = new SSprite(texture_file);
-    sprite->setOrigin(75/2, 75/2);
-    sprite->setTextureRect(75,75,75,75 );
+    sprite->setOrigin(401/2, 249/2);
+    sprite->setTextureRect(0,0,401,249 );
     std::cout << "Terminamos INIT()" << std::endl;
+    
+    sprite->setScale(0.2,0.2);
+
+    Animation *tmpA;
+
+    //IDLE
+    tmpA = new Animation(sprite->getSpriteR(), 1100, true);
+    Animations.insert({"IDLE", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0, 401,249)});
+    tmpA->addFrame({sf::IntRect(401,0, 401,249)});
+    tmpA->addFrame({sf::IntRect(0,249, 401,249)});
+    tmpA->addFrame({sf::IntRect(401,249, 401,249)});
+    tmpA->addFrame({sf::IntRect(0,498, 401,249)});
+    tmpA->addFrame({sf::IntRect(401,498, 401,249)});
+
+    activeAnim = Animations.find("IDLE")->second;
+
 }
 
 void Stalker::Update(float delta){

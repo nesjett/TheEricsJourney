@@ -1,17 +1,17 @@
 #pragma once
-#ifndef FIREEXP_H
-#define FIREEXP_H
+#ifndef PLAYERHIT_H
+#define PLAYERHIT_H
 #include <string>
 #include <Engine.h>
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
 
-class Fireball_Explosion : public Cascade{
+class PlayerHit : public Cascade{
 
   public:
-    Fireball_Explosion(Vector2f Loc);
-    virtual ~Fireball_Explosion();
+    PlayerHit(Vector2f Loc);
+    virtual ~PlayerHit();
 
 
     

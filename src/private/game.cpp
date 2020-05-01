@@ -1,6 +1,8 @@
 #include "../public/game.h"
 
 #include "../public/traps/Spikes.h"
+#include "../public/particles/PlayerHit.h"
+#include "../public/particles/Fireball_Explosion.h"
 
 #define UPDATE_INTERVAL (1000/35.0)
 
@@ -137,16 +139,16 @@ void game::run(){
         //Bucle de obtención de eventos
         //sf::Event event;
         while (eng->getApp().pollEvent(tecla)) {
-
+                
             if (tecla.type == sf::Event::Closed){
                 eng->getApp().close();
             }
-            if (tecla.type == sf::Event::KeyPressed){
+            if (tecla.type == sf::Event::KeyPressed || tecla.type == sf::Event::MouseButtonPressed){
                 //Escape
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 }
-                ControladorJugador->Update(tecla.key.code);
+                ControladorJugador->Update(tecla);
             }
             if (tecla.type == sf::Event::KeyReleased){
                 ControladorJugador->Frenar(tecla.key.code);
@@ -190,6 +192,23 @@ void game::run(){
             Hud* hud = Hud::Instance();
             hud->Draw();
         }
+
+
+        // Draw particles, should do in another thread..?
+        for (auto&& Emitter: Particles) { 
+            if(Emitter) {
+                if(Emitter->IsPendingDelete()) { // Delete emitters that in last game loop where marked to delete.
+                    Emitter.reset();
+                    continue;
+                }
+            } else {
+                continue;
+            }
+            
+            Emitter->Draw(delta);
+        }
+
+
 
         eng->getApp().display();
 
@@ -372,6 +391,24 @@ void game::EndGame()
 
     //Eliminamos los enemigos, si es el caso es que el jugador ha muerto
 
+}
+
+
+void game::SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot) {
+    switch (Effect)
+    {
+    case 0: // Hit effect
+        //unique_ptr<Cascade> t = make_unique<Cascade>(Location);
+        Particles.push_back(make_unique<PlayerHit>(Location));
+        break;
+    case 1: // Explosion
+        //unique_ptr<Cascade> t = make_unique<Cascade>(Location);
+        Particles.push_back(make_unique<Fireball_Explosion>(Location));
+        break;
+    
+    default:
+        break;
+    }
 }
 
 game::~game() // Destructor

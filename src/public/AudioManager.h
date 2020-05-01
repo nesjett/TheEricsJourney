@@ -6,6 +6,7 @@
 
 #include <SFML/System.hpp>
 #include <iostream>
+#include <memory>
 
 
 
@@ -33,6 +34,10 @@ public:
     void play_enemy1_takedamage();
     void play_enemy1_death();
 
+
+    // Fire and forget sound. Keeps track of all in a sound queue.
+    shared_ptr<Music> PlaySound2D(string File);
+
 protected:
 private:
     AudioManager();
@@ -46,6 +51,8 @@ private:
 
     //Audio de los enemigos
     Music enemy1_takedamage, enemy1_death;
+
+    vector<std::shared_ptr<Music>> SoundQueue;
 };
 
 #endif // AUDIOMANAGER_H
