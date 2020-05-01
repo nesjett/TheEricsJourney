@@ -28,13 +28,11 @@ class Player:  public Pawn{
         void improvesAttack();
 
     protected:
-        void PrepareSprite();
-        
+        void PrepareSprite2();
         void SetTarget(Enemy *NewTarget);
 
     private:
-        string texture_file;
-        
+        string texture_file2;
         int AttackImprovement;
         sf::Clock relojMejora;
         Enemy *Target;

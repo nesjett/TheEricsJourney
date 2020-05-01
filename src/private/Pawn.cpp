@@ -70,8 +70,23 @@ void Pawn::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(40,59,sizeX,sizeY), 500});
 }
 
+void Pawn::Update(float delta){
+    //std::cout << "Iniciamos UPDATE()" << std::endl;
+    float x = movementSpeed*direction.x*delta;
+    float y = movementSpeed*direction.y*delta;
+    x = getActorLocation().x + x;
+    y = getActorLocation().y + y;
+
+    if( (direction.x != 0.f || direction.y != 0.f)) {
+        Actor *collide = DirectionPrecheck(Vector2f(x,y), worldstatic);
+        if(!collide) {
+            UpdateMovement( Vector2f (x,y) );
+        }
+    }
+}
+
 void Pawn::SetAnimation(){ //selecciona la animacion del mapa de animaciones dependiendo de la direccion del actor
-/*
+
     auto angleRads = std::atan2(-direction.y, direction.x);
     auto angleDegs = angleRads * 180.0 / M_PI;
     if(angleDegs<0){
@@ -102,35 +117,7 @@ void Pawn::SetAnimation(){ //selecciona la animacion del mapa de animaciones dep
     if(angleDegs<337.5 && angleDegs>=292.5){
         activeAnim=Animations.find("right")->second;
     }
-*/
-    if(direction==Vector2f(0.0,-1.0)){
-        activeAnim=Animations.find("up")->second;
-    }
-    if(direction==Vector2f(0.0,1.0)){
-        activeAnim=Animations.find("down")->second;
-    }
-    if(direction==Vector2f(-1.0,0.0)){
-        activeAnim=Animations.find("left")->second;
-    }
-    if(direction==Vector2f(1.0,0.0)){
-        activeAnim=Animations.find("right")->second;
-    }
-      
-}
 
-void Pawn::Update(float delta){
-    //std::cout << "Iniciamos UPDATE()" << std::endl;
-    float x = movementSpeed*direction.x*delta;
-    float y = movementSpeed*direction.y*delta;
-    x = getActorLocation().x + x;
-    y = getActorLocation().y + y;
-
-    if( (direction.x != 0.f || direction.y != 0.f)) {
-        Actor *collide = DirectionPrecheck(Vector2f(x,y), worldstatic);
-        if(!collide) {
-            UpdateMovement( Vector2f (x,y) );
-        }
-    }
 }
 
 void Pawn::Draw(double percent, double delta ){

@@ -2,13 +2,13 @@
 
 #include <FireBall.h>
 
-Explosionenemy::Explosionenemy() : Enemy(){ // Use this to call to parent's contructor first
+Explosionenemy::Explosionenemy():Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/Zombies.png";
+    texture_file = "./resources/Player.png";
 
     setActorLocation(Vector2f(100.f, 100.f));
-    direction = Vector2f(0.0, -1.0);
+    direction = Vector2f(-0.5, -0.5);
 
     health_MAX = 100.0f;
     health_Current = health_MAX; // Init health
@@ -21,12 +21,20 @@ Explosionenemy::Explosionenemy() : Enemy(){ // Use this to call to parent's cont
     setActorLocation(Vector2f(340.0, 520.0));
 
 
-    Init();
+    //Init();
+    PrepareSprite();
 
 }
 
 void Explosionenemy::Init(){
-    float sizeX = 32.0, sizeY = 64.0;
+    sprite = new SSprite(texture_file);
+    sprite->setOrigin(75/2, 75/2);
+    sprite->setTextureRect(75,75,75,75 );
+    std::cout << "Terminamos INIT()" << std::endl;
+}
+
+void Explosionenemy::PrepareSprite(){
+    float sizeX = 621.0, sizeY = 569.0;
     float offsetX = sizeX / 2.0;
     float offsetY = sizeY / 2.0;
 
@@ -34,37 +42,75 @@ void Explosionenemy::Init(){
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    sprite->setScale( 0.15,0.15 );
     
-    double playrate = 1000.0;
     Animation *tmpA;
 
-    
-    tmpA = new Animation(sprite->getSpriteR(), true);
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"up", tmpA});
-    tmpA->addFrame({sf::IntRect(0,192, sizeX,sizeY), playrate});
-    tmpA->addFrame({sf::IntRect(32,192,sizeX,sizeY), playrate});
-    tmpA->addFrame({sf::IntRect(65,192,sizeX,sizeY), playrate});
-
-   
-    tmpA = new Animation(sprite->getSpriteR(), true);
-    Animations.insert({"right", tmpA});
-    tmpA->addFrame({sf::IntRect(0,128,sizeX,sizeY), playrate});
-    tmpA->addFrame({sf::IntRect(32,128,sizeX,sizeY), playrate});
-    tmpA->addFrame({sf::IntRect(65,128,sizeX,sizeY), playrate});
-
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY)});
+   tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY)});
+    
  
-    tmpA = new Animation(sprite->getSpriteR(), true);
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"right", tmpA});
+    
+       tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY)});
+   tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY)});
+    
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"left", tmpA});
-    tmpA->addFrame({sf::IntRect(0,64,sizeX,sizeY), playrate});
-    tmpA->addFrame({sf::IntRect(32,64,sizeX,sizeY), playrate});
-    tmpA->addFrame({sf::IntRect(65,64,sizeX,sizeY), playrate});
+    
+    tmpA->addFrame({sf::IntRect(0,2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,569+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,569+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,569+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1138+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1138+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1138+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1707+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1707+2276,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1707+2276,sizeX,sizeY)});
+    
 
-
-    tmpA = new Animation(sprite->getSpriteR(), true);
+    
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"down", tmpA});
-    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY), playrate});
-    tmpA->addFrame({sf::IntRect(32,0,sizeX,sizeY), playrate});
-    tmpA->addFrame({sf::IntRect(64,0,sizeX,sizeY), playrate});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY)});
+   tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY)});
 }
 
 void Explosionenemy::Update(float delta){
@@ -74,14 +120,7 @@ void Explosionenemy::Update(float delta){
     Followplayer();
     Attack();
     
-    
 }
-
-void Explosionenemy::PrepareSprite(){
-    
-}
-
-
 
 void Explosionenemy::Draw(double percent, double delta ){
     Pawn::SetAnimation();

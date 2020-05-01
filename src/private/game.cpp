@@ -103,6 +103,8 @@ void game::run(){
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
     stalker->setActorLocation(Vector2f(400.0,400.0));
+
+
     
     
     listaEnemigos = getAllEnemies();

@@ -13,9 +13,8 @@ class Explosionenemy: public Enemy{
         void Init();
         bool Attack();
         void Followplayer();
-        void Update(float delta);
         void PrepareSprite();
-        void SetAnimation();
+        void Update(float delta);
         void Draw(double percent, double delta );
         Vector2f RandomNewDir();
         //Vector2f Direccionunitaria(Vector2f pos_player,Vector2f pos);
