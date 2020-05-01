@@ -93,7 +93,7 @@ bool Fixedenemy::Attack(){
    Vector2f dir = pos_player-pos;
    float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
    Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
-   direction=dir_unit;
+   //direction=dir_unit;
    if(relojMark.getElapsedTime().asSeconds()>3){
        
         //projTest->direction=Vector2f(dir_unit);
