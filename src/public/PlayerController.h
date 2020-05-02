@@ -12,7 +12,7 @@ class PlayerController:  public Controller{
     public:
         PlayerController(Player*, list<Enemy*>);
         void Update(sf::Event);
-        void Mover(sf::Keyboard::Key);
+        void Mover(/*sf::Keyboard::Key*/sf::Event);
         void setPlayer(Player*);
         void setLista(list<Enemy*>);
         void Attacks();

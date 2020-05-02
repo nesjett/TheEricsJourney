@@ -21,11 +21,30 @@ void PlayerController::Update(sf::Event event){
     if(event.key.code == sf::Keyboard::O){
         ImprovesAttack();
     }
-    //Mover(event.key.code);
-
     /**
      * MOUSE IMPLEMENTATION
      **/
+    Mover(event);
+    
+}
+void PlayerController::Mover(sf::Event event){
+    /*
+    Vector2f dir = pos_player-pos;
+   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
+   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
+   */
+    /*if(event==sf::Keyboard::Up || event==sf::Keyboard::W){
+        miJugador->setDirection(0.f, -1);
+    }
+    if(event==sf::Keyboard::Down || event==sf::Keyboard::S){
+        miJugador->setDirection(0.f, 1);
+    }
+    if(event==sf::Keyboard::Left || event==sf::Keyboard::A){
+        miJugador->setDirection(-1.f, 0.f);
+    }
+    if(event==sf::Keyboard::Right || event==sf::Keyboard::D){
+        miJugador->setDirection(1.f, 0.f);
+    }*/
     if (event.type == sf::Event::MouseButtonPressed)
     {
 
@@ -46,38 +65,6 @@ void PlayerController::Update(sf::Event event){
             puntoRaton = pos2;
             miJugador->setDirection(dir_unit.x, dir_unit.y); // apply direction
         }
-    }
-    std::cout << "Jugador X: " << miJugador->getActorLocation().x << std::endl;
-    std::cout << "la horizontal: " << puntoRaton.x << std::endl;
-    if(miJugador->getActorLocation().x == puntoRaton.x && miJugador->getActorLocation().y == puntoRaton.y){
-        Frenar();
-    }
-    /*if (sf::Event::MouseButtonReleased){
-        if (event.mouseButton.button == sf::Mouse::Left){
-            miJugador->setDirection(0.f, 0.f);
-            std::cout<<"¿Entras aquí?"<<std::endl;
-        }
-        
-    }*/
-    
-}
-void PlayerController::Mover(sf::Keyboard::Key event){
-    /*
-    Vector2f dir = pos_player-pos;
-   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
-   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
-   */
-    if(event==sf::Keyboard::Up || event==sf::Keyboard::W){
-        miJugador->setDirection(0.f, -1);
-    }
-    if(event==sf::Keyboard::Down || event==sf::Keyboard::S){
-        miJugador->setDirection(0.f, 1);
-    }
-    if(event==sf::Keyboard::Left || event==sf::Keyboard::A){
-        miJugador->setDirection(-1.f, 0.f);
-    }
-    if(event==sf::Keyboard::Right || event==sf::Keyboard::D){
-        miJugador->setDirection(1.f, 0.f);
     }
 
 }
