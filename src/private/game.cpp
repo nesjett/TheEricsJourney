@@ -175,6 +175,10 @@ void game::run(){
         else{
             vMapas[mapaActual]->render();
             for (Actor *actor : actors) {
+                if(dynamic_cast<Mejora*>(actor))
+                {
+                    cout << "cuidao" << endl;
+                }
                 actor->Draw(percentTick, delta);
             }
             Hud* hud = Hud::Instance();
@@ -259,7 +263,8 @@ void game::run(){
                 if(dynamic_cast<Enemy*>(actor)) {
                     //EnemyDied(); // If we are deleting an enemy, try to spawn another
                 }
-                delete actor;
+                //if(!dynamic_cast<Mejora*>(actor))
+                    delete actor;
             }
             actorsPendingDelete.clear();
         }
