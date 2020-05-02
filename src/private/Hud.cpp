@@ -103,9 +103,9 @@ void Hud::setPlayer(Player* player)
     setCurrentHealth(jugador->getCurrentHealth());
 }
 
-void Hud::addMejora(Mejora mejora)
+void Hud::addMejora(PowerUpType tipo)
 {
-    switch(mejora.tipoMejora)
+    switch(tipo)
     {
         case health:
             vecesMejora1++;

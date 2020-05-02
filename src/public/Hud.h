@@ -25,7 +25,7 @@ class Hud
 
 
         void setPlayer(Player* player);
-        void addMejora(Mejora mejora);
+        void addMejora(PowerUpType tipo);
         void Update();
         void Draw();
 

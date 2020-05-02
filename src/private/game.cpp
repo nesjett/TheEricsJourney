@@ -352,7 +352,7 @@ void game::CondicionVictoria()
     {
         for(Mejora* mejora : getMejoras())
         {
-            if(!mejora->pendingDelete)
+            if(!mejora->utilizada)
                 mejora->activada = true;
         }
         if(jugador->getActorLocation().y < 100.0)

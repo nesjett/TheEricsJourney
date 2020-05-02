@@ -17,6 +17,7 @@ class Mejora: public Actor {
         void Draw(double percent, double delta);
         void OnActorOverlap(Actor *otherActor);
         bool activada;
+        bool utilizada;
         Sprite getSprite();
     protected:
         virtual void PrepareSprite();
