@@ -1,10 +1,9 @@
 #include "../public/Player.h"
 #include "../public/game.h"
 #include "Arrow.h"
+#include "../public/AudioManager.h"
 
 Player::Player(){ // Use this to call to parent's contructor first
-    std::cout << "Pawn spawned..." << std::endl;  
-
     texture_file2 = "./resources/sprites.png";
 
     setActorLocation(Vector2f(100.f, 100.f));
@@ -16,9 +15,11 @@ Player::Player(){ // Use this to call to parent's contructor first
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
 
-    movementSpeed = 0.1f;
+    movementSpeed = 0.2f;
     faction = allie;
     AttackImprovement = 0;
+
+    LastAttack = 0;
 
     Target = nullptr;
 
@@ -56,6 +57,9 @@ void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
             Die();
         } else {
             ApplyHitEffects(damage_type); // Apply hit effects
+            game *gi = game::Instance();
+            gi->SpawnEmitterAtLocation(0, getActorLocation(), Vector2f(0.f,0.f));
+            AudioManager::getInstance()->PlaySound2D("./resources/audio/hit.ogg");
         }
     }
 }
@@ -123,8 +127,15 @@ void Player::Attack(list<Enemy*> enemyList){
     game *eng = game::Instance();
     Arrow *projTest = new Arrow(dir_unit, posPlayer);
     eng->Almacenaenemy(projTest);
-    AudioManager* am = AudioManager::getInstance();
-    am->play_player_shot();
+
+    if(LastAttack == 0) {
+        AudioManager::getInstance()->PlaySound2D("./resources/audio/player_shoot.ogg");
+    } else {
+        AudioManager::getInstance()->PlaySound2D("./resources/audio/player_shoot2.ogg");
+    }
+    LastAttack++;
+
+
     if(AttackImprovement >= 1){
         Arrow *projTest1 = new Arrow(-dir_unit, posPlayer);
         eng->Almacenaenemy(projTest1);

@@ -33,12 +33,12 @@ void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
         health_Current-=damage;
         if(IsAlive() == false){
-            Die();
-            AudioManager::getInstance()->play_enemy1_death();
+            Pawn::Die();
+            AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_die.ogg");
         } else {
             ApplyHitEffects(damage_type); // Apply hit effects
+            AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_hit.ogg");
         }
-        AudioManager::getInstance()->play_enemy1_takedamage();
     }
 }
 

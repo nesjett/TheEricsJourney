@@ -1,5 +1,6 @@
 #include "../public/Fixedenemy.h"
 
+#include "../public/AudioManager.h"
 #include <FireBall.h>
 
 Fixedenemy::Fixedenemy(): Enemy(){ // Use this to call to parent's contructor first
@@ -55,6 +56,9 @@ bool Fixedenemy::Attack(){
         //projTest->setActorLocation(pos);
         FireBall *projTest = new FireBall(dir_unit, pos);
         eng->Almacenaenemy(projTest);
+
+        AudioManager::getInstance()->PlaySound2D("./resources/audio/throw.ogg");
+
         relojMark.restart();
    }
     return true;

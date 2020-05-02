@@ -11,6 +11,7 @@
 #include <Engine.h>
 #include <Player.h>
 #include <Enemy.h>
+#include <Mejora.h>
 
 using namespace std;
 using namespace sf;
@@ -24,6 +25,7 @@ class Hud
 
 
         void setPlayer(Player* player);
+        void addMejora(Mejora mejora);
         void Update();
         void Draw();
 
@@ -38,21 +40,27 @@ class Hud
 
         //Barra de vida del jugador
         Player* jugador;
-        Text txtHealth;
         RectangleShape playerHealth;
         float currentHealth;
         float maxHealth;
         float height, width;
         float percent; //Porcentaje vidaActual/vidaTotal
         Color colorHealth100, colorHealthLess50, colorHealthLess25; 
+        vector<RectangleShape*> cuadraditos;
 
         //Datos de los powerups adquiridos - TO DO: una vez gestionemos powerups
-        Text txtPowerUpInfo;
-        vector<Sprite> spritePowerUps;
-        vector<Text> txtPowerUps;
+        float separacion = 25.f;
+        Text txtHealth, txtMovSpeed, txtAttackSpeed, txtAttackMore;
+        int vecesMejora1 = 0;
+        int vecesMejora2 = 0;
+        int vecesMejora3 = 0;
+        int vecesMejora4 = 0;
+        vector<Sprite*> spritesMejoras;
+        vector<Texture> texturasMejoras;
 
         //Barras de vida de los enemigos
         vector<RectangleShape*> enemyHealthBars;
+        float widthEnemigo;
 };
 
 #endif // Hud_H
