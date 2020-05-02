@@ -50,7 +50,6 @@ class Hud
 
         //Datos de los powerups adquiridos - TO DO: una vez gestionemos powerups
         float separacion = 25.f;
-        vector<Mejora*> vMejoras;
         Text txtHealth, txtMovSpeed, txtAttackSpeed, txtAttackMore;
         int vecesMejora1 = 0;
         int vecesMejora2 = 0;

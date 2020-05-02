@@ -10,7 +10,6 @@ using namespace sf;
 class Mejora: public Actor {
     public:
         Mejora(PowerUpType tipo);
-        ~Mejora();
 
         string nombre;
         PowerUpType tipoMejora;

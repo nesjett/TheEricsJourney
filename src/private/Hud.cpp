@@ -105,8 +105,6 @@ void Hud::setPlayer(Player* player)
 
 void Hud::addMejora(Mejora mejora)
 {
-    // Mejora* mjo = new Mejora(mejora);
-    // vMejoras.push_back(mjo);
     switch(mejora.tipoMejora)
     {
         case health:
