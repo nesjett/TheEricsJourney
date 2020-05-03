@@ -9,6 +9,8 @@
 #include <Tile.h>
 #include <Enemy.h>
 #include <Mejora.h>
+#include <traps/Spikes.h>
+#include <traps/Saw.h>
 
 using namespace std;
 using namespace tinyxml2;
@@ -36,16 +38,19 @@ class Mapa
         vector<Tile*> vTiles;
         vector<Tile*> vPuertas;
         vector<Enemy*> vEnemigos;
+        vector<Trap*> vTrampas;
         vector<Mejora*> vMejoras;
 
         //Nombre de las capas en los mapa Tiled
         string nombreCapaColisiones = "pared";
-        string nombreCapaObjetos = "trampas";
+        string nombreCapaObjetos = "blocker";
         string nombreCapaPuertas = "puerta";
         string nombreCapaEnemigos1 = "enemigos1";
         string nombreCapaEnemigos2 = "enemigos2";
         string nombreCapaEnemigos3 = "enemigos3";
         string nombreCapaSuelo = "suelo";
+        string strCapaPinchos = "pinchos";
+        string strCapaSierra = "sierra";
         string strCapaPowerVida = "mejoraVida";
         string strCapaPowerMov = "mejoraMovimiento";
         string strCapaPowerCadencia = "mejoraCadencia";

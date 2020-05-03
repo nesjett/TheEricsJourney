@@ -79,6 +79,7 @@ void Mapa::cargaMapa()
     XMLElement* tile;
     int posVEnemy = 0;
     int posVMejora = 0;
+    int posVTrampas = 0;
     int posX = 0;
     int posY = 0;
     for(int l = 0; l < num_layers; l++)
@@ -99,6 +100,17 @@ void Mapa::cargaMapa()
                     if(strcmp(layer->Attribute("name"), nombreCapaObjetos.c_str()) == 0) //Objetos o trampas
                     {
                         vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,trap));
+                    }
+                    if(strcmp(layer->Attribute("name"), strCapaPinchos.c_str()) == 0) //Objetos o trampas
+                    {
+                        vTrampas.push_back(new Spikes());
+                        vTrampas[posVTrampas]->setActorLocation(Vector2f(posY, posX));
+                        posVTrampas++;
+                    }
+                    if(strcmp(layer->Attribute("name"), strCapaSierra.c_str()) == 0) //Objetos o trampas
+                    {
+                        vTrampas.push_back(new Saw(Vector2f(posY,posX), 300.f));
+                        posVTrampas++;
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaPuertas.c_str()) == 0) //Puertas (falta cambiarle el oType)
                     {
@@ -183,6 +195,7 @@ list<Actor*> Mapa::getActors()
     list<Tile*> listaTiles(vTiles.begin(),vTiles.end());
     list<Enemy*> listaEnemigos(vEnemigos.begin(), vEnemigos.end());
     list<Mejora*> listaMejoras(vMejoras.begin(), vMejoras.end());
+    list<Trap*> listaTrampas(vTrampas.begin(), vTrampas.end());
     list<Actor*> actores;
     //listaTiles.merge(listaEnemigos);
     for (Tile *tile : listaTiles)
@@ -197,10 +210,15 @@ list<Actor*> Mapa::getActors()
     {
         actores.push_back(mejora);
     }
+    for (Trap *trampa : listaTrampas)
+    {
+        actores.push_back(trampa);
+    }
     vEnemigos.erase(vEnemigos.begin(), vEnemigos.end());
     vTiles.erase(vTiles.begin(), vTiles.end());
     vPuertas.erase(vPuertas.begin(), vPuertas.end());
     vMejoras.erase(vMejoras.begin(), vMejoras.end());
+    vTrampas.erase(vTrampas.begin(), vTrampas.end());
     return actores;
 }
 Tile* Mapa::getPuerta()
