@@ -20,6 +20,7 @@ target_sources(libModulos PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Zombie.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Skeleton.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Stalker.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/Door.cpp"
 
     
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Hud.cpp"

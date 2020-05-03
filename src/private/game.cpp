@@ -36,7 +36,7 @@ void game::InicializaNivel()
 {
     //Limpiamos los datos de los colisionables del mapa anterior
     for (Actor *actor : actors) { 
-        if(actor->getObjectType() == worldstatic)
+        if(actor->getObjectType() == worldstatic || actor->getObjectType() == door || actor->getObjectType() == worlddynamic)
             actor->setLifespan(0.0);
     }
 
@@ -89,33 +89,13 @@ void game::run(){
      ***********************************/
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
-    
-    // Fixedenemy *enemyfijo = new Fixedenemy();
-    // actors.push_back(enemyfijo);
-    // enemyfijo->setActorLocation(Vector2f(600.0,550.0));
-
-    // Movingenemy *enemymove = new Movingenemy();
-    // actors.push_back(enemymove);
-    // enemymove->Prepara(Vector2f(500.0,300.0),Vector2f(300.0,400.0));
-    
-    // Explosionenemy *enemyexp = new Explosionenemy();
-    // actors.push_back(enemyexp);
-    // enemyexp->setActorLocation(Vector2f(400.0,400.0));
-    
+   
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
     stalker->setActorLocation(Vector2f(400.0,400.0));
     
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
-
-    Spikes *trap = new Spikes();
-    actors.push_back(trap);
-    trap->setActorLocation(Vector2f(150.0,150.0));
-
-    Saw *saw = new Saw(Vector2f(300.0,250.0), 300.f);
-    actors.push_back(saw);
-
 
     /***********************************
      * Game loop
@@ -355,8 +335,14 @@ void game::CondicionVictoria()
     {
         for(Mejora* mejora : getMejoras())
         {
-            if(!mejora->pendingDelete)
+            if(!mejora->utilizada)
                 mejora->activada = true;
+        }
+        for(Actor* actor : actors)
+        {
+            if(dynamic_cast<Door*>(actor) && dynamic_cast<Door*>(actor)->superior == true && dynamic_cast<Door*>(actor)->abierta == false)
+                dynamic_cast<Door*>(actor)->openDoor();
+                // dynamic_cast<Door*>(actor)->
         }
         if(jugador->getActorLocation().y < 100.0)
         {
