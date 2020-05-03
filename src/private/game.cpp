@@ -111,16 +111,19 @@ void game::run(){
             if (tecla.type == sf::Event::Closed){
                 eng->getApp().close();
             }
-            if (tecla.type == sf::Event::KeyPressed || tecla.type == sf::Event::MouseButtonPressed){
+            if (tecla.type == sf::Event::KeyPressed){
                 //Escape
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
-                }
-                ControladorJugador->Update(tecla);
+                } 
             }
-            if (tecla.type == sf::Event::KeyReleased){
+            ControladorJugador->Update(tecla);
+            if (tecla.type == sf::Event::MouseButtonReleased){
+                ControladorJugador->Frenar();
+            }
+            /*if (tecla.type == sf::Event::KeyReleased){
                 ControladorJugador->Frenar(tecla.key.code);
-            }
+            }*/
             if(estadoJuego == false) //Estamos en el menu o en la pantalla final
             {
                     estadoJuego = menu->update(tecla);
