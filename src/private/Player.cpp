@@ -6,7 +6,8 @@
 Player::Player(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/Player.png";
+    texture_file = "./resources/player.png";
+    
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(0.f, 0.f);
@@ -25,7 +26,7 @@ Player::Player(){ // Use this to call to parent's contructor first
 
     Target = nullptr;
 
-    Init();
+    //Init();
     PrepareSprite();
 }
 
@@ -38,11 +39,11 @@ void Player::Init(){
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    sprite->setScale( 0.18,0.18 );
+    sprite->setScale( 0.05,0.05 );
 }
 
 void Player::PrepareSprite(){
-    float sizeX = 621.0, sizeY = 569.0;
+    float sizeX = 550.0, sizeY = 550.0;
     float offsetX = sizeX / 2.0;
     float offsetY = sizeY / 2.0;
 
@@ -52,73 +53,83 @@ void Player::PrepareSprite(){
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
     sprite->setScale( 0.15,0.15 );
     
+    
     Animation *tmpA;
 
     tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"up", tmpA});
-    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY)});
-   tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550+1650,2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100+1650,2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1650,550+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550+1650,550+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100+1650,550+2750,sizeX,sizeY)});
+   tmpA->addFrame({sf::IntRect(1650,1100+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550+1650,1100+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100+1650,1100+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1650,1650+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550+1650,1650+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100+1650,1650+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1650,2200+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550+1650,2200+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100+1650,2200+2750,sizeX,sizeY)});
     
- 
+
     tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"right", tmpA});
-    
-       tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY)});
-   tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550,2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100,2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,550+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550,550+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100,550+2750,sizeX,sizeY)});
+   tmpA->addFrame({sf::IntRect(0,1100+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550,1100+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100,1100+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1650+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550,1650+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100,1650+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,2200+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550,2200+2750,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100,2200+2750,sizeX,sizeY)});
     
 
     tmpA = new Animation(sprite->getSpriteR(),1500, true);
-    Animations.insert({"left", tmpA});
-    
-    tmpA->addFrame({sf::IntRect(0,2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,569+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,569+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,569+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,1138+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1138+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1138+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,1707+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1707+2276,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1707+2276,sizeX,sizeY)});
+    Animations.insert({"left", tmpA});   
+    tmpA->addFrame({sf::IntRect(1650,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550+1650,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100+1650,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1650,550,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550+1650,550,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100+1650,550,sizeX,sizeY)});
+   tmpA->addFrame({sf::IntRect(1650,1100,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550+1650,1100,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100+1650,1100,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1650,1650,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550+1650,1650,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100+1650,1650,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1650,2200,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550+1650,2200,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100+1650,2200,sizeX,sizeY)});
     
 
-    
     tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"down", tmpA});
     tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,569,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,569,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,569,sizeX,sizeY)});
-   tmpA->addFrame({sf::IntRect(0,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1138,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,1707,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(621,1707,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(1242,1707,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,550,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550,550,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100,550,sizeX,sizeY)});
+   tmpA->addFrame({sf::IntRect(0,1100,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550,1100,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100,1100,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1650,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550,1650,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100,1650,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,2200,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(550,2200,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(1100,2200,sizeX,sizeY)});
 }
 
 void Player::Draw(double percent, double delta ){

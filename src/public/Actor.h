@@ -87,6 +87,7 @@ class Actor {
   protected:
     bool asleep;
     SSprite *sprite;
+    
     ObjectType oType; // Object type for collision channel
     long lifeSpan = -1;
     Vector2f currentLoc;
