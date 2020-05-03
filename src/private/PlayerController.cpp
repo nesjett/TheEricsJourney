@@ -24,6 +24,11 @@ void PlayerController::Update(sf::Event event){
     /**
      * MOUSE IMPLEMENTATION
      **/
+    if(event.type == sf::Event::MouseButtonPressed){
+        if(event.mouseButton.button == sf::Mouse::Left){
+            stop=false;
+        }
+    }
     Mover(event);
     
 }
@@ -45,28 +50,21 @@ void PlayerController::Mover(sf::Event event){
     if(event==sf::Keyboard::Right || event==sf::Keyboard::D){
         miJugador->setDirection(1.f, 0.f);
     }*/
-    if (event.type == sf::Event::MouseButtonPressed)
-    {
+    if(stop==false){
+        std::cout << "the left button was pressed" << std::endl;
+        std::cout << "mouse x: " << event.mouseButton.x << std::endl;
+        std::cout << "mouse y: " << event.mouseButton.y << std::endl;
 
-        if (event.mouseButton.button == sf::Mouse::Left)
-        {
+        Engine *eng = Engine::Instance();
+        Vector2i pos = sf::Mouse::getPosition(eng->getApp()); // mouse position in window coords
+        Vector2f pos2 = eng->getApp().mapPixelToCoords(pos, eng->getApp().getView()); // convert window coords to world coords
 
-            std::cout << "the left button was pressed" << std::endl;
-            std::cout << "mouse x: " << event.mouseButton.x << std::endl;
-            std::cout << "mouse y: " << event.mouseButton.y << std::endl;
-
-            Engine *eng = Engine::Instance();
-            Vector2i pos = sf::Mouse::getPosition(eng->getApp()); // mouse position in window coords
-            Vector2f pos2 = eng->getApp().mapPixelToCoords(pos, eng->getApp().getView()); // convert window coords to world coords
-
-            Vector2f newDir = Vector2f(pos2.x, pos2.y) - miJugador->getActorLocation(); // Determine direction
-            float aux=sqrt(pow(newDir.x, 2)+pow(newDir.y, 2));
-            Vector2f dir_unit=Vector2f(newDir.x/aux,newDir.y/aux); // convert to unit vector
-            puntoRaton = pos2;
-            miJugador->setDirection(dir_unit.x, dir_unit.y); // apply direction
-        }
+        Vector2f newDir = Vector2f(pos2.x, pos2.y) - miJugador->getActorLocation(); // Determine direction
+        float aux=sqrt(pow(newDir.x, 2)+pow(newDir.y, 2));
+        Vector2f dir_unit=Vector2f(newDir.x/aux,newDir.y/aux); // convert to unit vector
+        puntoRaton = pos2;
+        miJugador->setDirection(dir_unit.x, dir_unit.y); // apply direction
     }
-
 }
 void PlayerController::Frenar(/*sf::Keyboard::Key event*/){
     /*if(event==sf::Keyboard::Up || event==sf::Keyboard::W){
@@ -81,6 +79,7 @@ void PlayerController::Frenar(/*sf::Keyboard::Key event*/){
     if(event==sf::Keyboard::Right || event==sf::Keyboard::D){
         miJugador->setDirection(0.f, miJugador->getDirection().y);
     }*/
+    stop=true;
     miJugador->setDirection(0.f, 0.f);
 }
 
