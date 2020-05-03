@@ -7,7 +7,7 @@
 
 Door::Door(Vector2f position, bool esPuertaSuperior) : Actor(){ // Use this to call to parent's contructor first
 
-    texture_file = "./resources/maps/tiles/doorspritesheet.png";
+    texture_file = "./resources/maps/tiles/doorspritesheet2.png";
     abierta = false;
     superior = esPuertaSuperior;
     PrepareSprite();
@@ -35,7 +35,7 @@ void Door::PrepareSprite(){
     //Animations.insert({"DOORS", tmpA}); // Add to animations map
     tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(145,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(290,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(290,0,153.f,sizeY)});
 
     //activeAnim = Animations.find("DOORS")->second;
     activeAnim = tmpA;

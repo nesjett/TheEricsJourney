@@ -119,24 +119,24 @@ void Mapa::cargaMapa()
                             esPuertaSuperior = true;
                         vPuertas.push_back(new Door(Vector2f(posY,posX + 50.f), esPuertaSuperior));
                     }
-                    // if(strcmp(layer->Attribute("name"), nombreCapaEnemigos1.c_str()) == 0) //Enemigostipo1
-                    // {
-                    //     vEnemigos.push_back(new Movingenemy());
-                    //     dynamic_cast<Movingenemy*>(vEnemigos[posVEnemy])->Prepara(Vector2f(posY + tamTileY/2.f ,posX + tamTileX/2.f),Vector2f(posY + tamTileY/2.f + 50.f ,posX + tamTileX/2.f + 300.f));
-                    //     posVEnemy++;
-                    // }
-                    // if(strcmp(layer->Attribute("name"), nombreCapaEnemigos2.c_str()) == 0) //Enemigostipo1
-                    // {
-                    //     vEnemigos.push_back(new Fixedenemy());
-                    //     vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2,posX + tamTileX/2));
-                    //     posVEnemy++;
-                    // }
-                    // if(strcmp(layer->Attribute("name"), nombreCapaEnemigos3.c_str()) == 0) //Enemigostipo1
-                    // {
-                    //     vEnemigos.push_back(new Explosionenemy());
-                    //     vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
-                    //     posVEnemy++;
-                    // }
+                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos1.c_str()) == 0) //Enemigostipo1
+                    {
+                        vEnemigos.push_back(new Movingenemy());
+                        dynamic_cast<Movingenemy*>(vEnemigos[posVEnemy])->Prepara(Vector2f(posY + tamTileY/2.f ,posX + tamTileX/2.f),Vector2f(posY + tamTileY/2.f + 50.f ,posX + tamTileX/2.f + 300.f));
+                        posVEnemy++;
+                    }
+                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos2.c_str()) == 0) //Enemigostipo1
+                    {
+                        vEnemigos.push_back(new Fixedenemy());
+                        vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2,posX + tamTileX/2));
+                        posVEnemy++;
+                    }
+                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos3.c_str()) == 0) //Enemigostipo1
+                    {
+                        vEnemigos.push_back(new Explosionenemy());
+                        vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
+                        posVEnemy++;
+                    }
                     if(strcmp(layer->Attribute("name"), strCapaPowerVida.c_str()) == 0)
                     {
                         vMejoras.push_back(new Mejora(health));
