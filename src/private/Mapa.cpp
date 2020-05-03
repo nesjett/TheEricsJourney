@@ -114,27 +114,29 @@ void Mapa::cargaMapa()
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaPuertas.c_str()) == 0) //Puertas (falta cambiarle el oType)
                     {
-                        vPuertas.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX*2,tamTileY,trap));
-                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX*2,tamTileY,worldstatic));
+                        bool esPuertaSuperior = false;
+                        if(posX == 50.f)
+                            esPuertaSuperior = true;
+                        vPuertas.push_back(new Door(Vector2f(posY,posX + 50.f), esPuertaSuperior));
                     }
-                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos1.c_str()) == 0) //Enemigostipo1
-                    {
-                        vEnemigos.push_back(new Movingenemy());
-                        dynamic_cast<Movingenemy*>(vEnemigos[posVEnemy])->Prepara(Vector2f(posY + tamTileY/2.f ,posX + tamTileX/2.f),Vector2f(posY + tamTileY/2.f + 50.f ,posX + tamTileX/2.f + 300.f));
-                        posVEnemy++;
-                    }
-                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos2.c_str()) == 0) //Enemigostipo1
-                    {
-                        vEnemigos.push_back(new Fixedenemy());
-                        vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2,posX + tamTileX/2));
-                        posVEnemy++;
-                    }
-                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos3.c_str()) == 0) //Enemigostipo1
-                    {
-                        vEnemigos.push_back(new Explosionenemy());
-                        vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
-                        posVEnemy++;
-                    }
+                    // if(strcmp(layer->Attribute("name"), nombreCapaEnemigos1.c_str()) == 0) //Enemigostipo1
+                    // {
+                    //     vEnemigos.push_back(new Movingenemy());
+                    //     dynamic_cast<Movingenemy*>(vEnemigos[posVEnemy])->Prepara(Vector2f(posY + tamTileY/2.f ,posX + tamTileX/2.f),Vector2f(posY + tamTileY/2.f + 50.f ,posX + tamTileX/2.f + 300.f));
+                    //     posVEnemy++;
+                    // }
+                    // if(strcmp(layer->Attribute("name"), nombreCapaEnemigos2.c_str()) == 0) //Enemigostipo1
+                    // {
+                    //     vEnemigos.push_back(new Fixedenemy());
+                    //     vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2,posX + tamTileX/2));
+                    //     posVEnemy++;
+                    // }
+                    // if(strcmp(layer->Attribute("name"), nombreCapaEnemigos3.c_str()) == 0) //Enemigostipo1
+                    // {
+                    //     vEnemigos.push_back(new Explosionenemy());
+                    //     vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
+                    //     posVEnemy++;
+                    // }
                     if(strcmp(layer->Attribute("name"), strCapaPowerVida.c_str()) == 0)
                     {
                         vMejoras.push_back(new Mejora(health));
@@ -196,6 +198,7 @@ list<Actor*> Mapa::getActors()
     list<Enemy*> listaEnemigos(vEnemigos.begin(), vEnemigos.end());
     list<Mejora*> listaMejoras(vMejoras.begin(), vMejoras.end());
     list<Trap*> listaTrampas(vTrampas.begin(), vTrampas.end());
+    list<Door*> listaPuertas(vPuertas.begin(),vPuertas.end());
     list<Actor*> actores;
     //listaTiles.merge(listaEnemigos);
     for (Tile *tile : listaTiles)
@@ -214,6 +217,10 @@ list<Actor*> Mapa::getActors()
     {
         actores.push_back(trampa);
     }
+    for (Door *puerta : listaPuertas)
+    {
+        actores.push_back(puerta);
+    }
     vEnemigos.erase(vEnemigos.begin(), vEnemigos.end());
     vTiles.erase(vTiles.begin(), vTiles.end());
     vPuertas.erase(vPuertas.begin(), vPuertas.end());
@@ -221,7 +228,7 @@ list<Actor*> Mapa::getActors()
     vTrampas.erase(vTrampas.begin(), vTrampas.end());
     return actores;
 }
-Tile* Mapa::getPuerta()
+Door* Mapa::getPuerta()
 {
     return vPuertas[0];
 }

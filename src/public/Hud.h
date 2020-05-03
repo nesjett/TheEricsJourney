@@ -49,7 +49,7 @@ class Hud
         vector<RectangleShape*> cuadraditos;
 
         //Datos de los powerups adquiridos - TO DO: una vez gestionemos powerups
-        float separacion = 25.f;
+        float separacion = 50.f;
         Text txtHealth, txtMovSpeed, txtAttackSpeed, txtAttackMore;
         int vecesMejora1 = 0;
         int vecesMejora2 = 0;

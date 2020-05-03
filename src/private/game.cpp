@@ -36,7 +36,7 @@ void game::InicializaNivel()
 {
     //Limpiamos los datos de los colisionables del mapa anterior
     for (Actor *actor : actors) { 
-        if(actor->getObjectType() == worldstatic)
+        if(actor->getObjectType() == worldstatic || actor->getObjectType() == door || actor->getObjectType() == worlddynamic)
             actor->setLifespan(0.0);
     }
 
@@ -334,6 +334,12 @@ void game::CondicionVictoria()
         {
             if(!mejora->utilizada)
                 mejora->activada = true;
+        }
+        for(Actor* actor : actors)
+        {
+            if(dynamic_cast<Door*>(actor) && dynamic_cast<Door*>(actor)->superior == true && dynamic_cast<Door*>(actor)->abierta == false)
+                dynamic_cast<Door*>(actor)->openDoor();
+                // dynamic_cast<Door*>(actor)->
         }
         if(jugador->getActorLocation().y < 100.0)
         {
