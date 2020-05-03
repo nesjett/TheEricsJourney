@@ -36,7 +36,7 @@ void game::InicializaNivel()
 {
     //Limpiamos los datos de los colisionables del mapa anterior
     for (Actor *actor : actors) { 
-        if(actor->getObjectType() == worldstatic)
+        if(actor->getObjectType() == worldstatic || actor->getObjectType() == door || actor->getObjectType() == worlddynamic)
             actor->setLifespan(0.0);
     }
 
@@ -89,19 +89,7 @@ void game::run(){
      ***********************************/
     actors.push_back(jugador);
     jugador->setActorLocation(Vector2f(350.0,500.0));
-    
-    // Fixedenemy *enemyfijo = new Fixedenemy();
-    // actors.push_back(enemyfijo);
-    // enemyfijo->setActorLocation(Vector2f(600.0,550.0));
-
-    // Movingenemy *enemymove = new Movingenemy();
-    // actors.push_back(enemymove);
-    // enemymove->Prepara(Vector2f(500.0,300.0),Vector2f(300.0,400.0));
-    
-    // Explosionenemy *enemyexp = new Explosionenemy();
-    // actors.push_back(enemyexp);
-    // enemyexp->setActorLocation(Vector2f(400.0,400.0));
-    
+   
     Stalker *stalker = new Stalker();
     actors.push_back(stalker);
     stalker->setActorLocation(Vector2f(400.0,400.0));
@@ -110,14 +98,6 @@ void game::run(){
     
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
-
-    Spikes *trap = new Spikes();
-    actors.push_back(trap);
-    trap->setActorLocation(Vector2f(150.0,150.0));
-
-    Saw *saw = new Saw(Vector2f(300.0,250.0), 300.f);
-    actors.push_back(saw);
-
 
     /***********************************
      * Game loop
@@ -133,16 +113,19 @@ void game::run(){
             if (tecla.type == sf::Event::Closed){
                 eng->getApp().close();
             }
-            if (tecla.type == sf::Event::KeyPressed || tecla.type == sf::Event::MouseButtonPressed){
+            if (tecla.type == sf::Event::KeyPressed){
                 //Escape
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
-                }
-                ControladorJugador->Update(tecla);
+                } 
             }
-            if (tecla.type == sf::Event::KeyReleased){
+            ControladorJugador->Update(tecla);
+            if (tecla.type == sf::Event::MouseButtonReleased){
+                ControladorJugador->Frenar();
+            }
+            /*if (tecla.type == sf::Event::KeyReleased){
                 ControladorJugador->Frenar(tecla.key.code);
-            }
+            }*/
             if(estadoJuego == false) //Estamos en el menu o en la pantalla final
             {
                     estadoJuego = menu->update(tecla);
@@ -177,6 +160,10 @@ void game::run(){
         else{
             vMapas[mapaActual]->render();
             for (Actor *actor : actors) {
+                if(dynamic_cast<Mejora*>(actor))
+                {
+                    cout << "cuidao" << endl;
+                }
                 actor->Draw(percentTick, delta);
             }
             Hud* hud = Hud::Instance();
@@ -261,7 +248,8 @@ void game::run(){
                 if(dynamic_cast<Enemy*>(actor)) {
                     //EnemyDied(); // If we are deleting an enemy, try to spawn another
                 }
-                delete actor;
+                //if(!dynamic_cast<Mejora*>(actor))
+                    delete actor;
             }
             actorsPendingDelete.clear();
         }
@@ -349,8 +337,14 @@ void game::CondicionVictoria()
     {
         for(Mejora* mejora : getMejoras())
         {
-            if(!mejora->pendingDelete)
+            if(!mejora->utilizada)
                 mejora->activada = true;
+        }
+        for(Actor* actor : actors)
+        {
+            if(dynamic_cast<Door*>(actor) && dynamic_cast<Door*>(actor)->superior == true && dynamic_cast<Door*>(actor)->abierta == false)
+                dynamic_cast<Door*>(actor)->openDoor();
+                // dynamic_cast<Door*>(actor)->
         }
         if(jugador->getActorLocation().y < 100.0)
         {

@@ -26,6 +26,7 @@ Mejora::Mejora(PowerUpType tipo) : Actor(){ // Use this to call to parent's cont
     oType = powerup;
     tipoMejora = tipo;
     activada = false;
+    utilizada = false;
     PrepareSprite();
 }
 Sprite Mejora::getSprite()
@@ -38,8 +39,7 @@ void Mejora::PrepareSprite(){
 }
 
 void Mejora::Update(float delta){
-    if(activada)
-        Actor::Update(delta);
+    Actor::Update(delta);
 }
 void Mejora::Draw(double percent, double delta)
 {
@@ -48,7 +48,7 @@ void Mejora::Draw(double percent, double delta)
 }
 void Mejora::OnActorOverlap(Actor *otherActor){
     if (activada == true && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == allie ) {
-        list<Mejora*> listaMejoras = game::Instance()->getMejoras();
+        //list<Mejora*> listaMejoras = game::Instance()->getMejoras();
         PlayerController* playercontroller = game::Instance()->getPlayerController();
         switch(tipoMejora)
         {
@@ -66,16 +66,14 @@ void Mejora::OnActorOverlap(Actor *otherActor){
                 break;   
         }
         //Incluimos mejoras en la hud, guardandola ahi directamente o mediante el player
-        Hud::Instance()->addMejora(*this);
+        Hud::Instance()->addMejora(tipoMejora);
         //Desactivamos todas las mejoras de game porque ya se ha aplicado una
-        for(Mejora* mejora : listaMejoras)
+        for(Mejora* mejora : game::Instance()->getMejoras())
         {
+            mejora->utilizada = true;
             mejora->activada = false;
             mejora->setLifespan(0.f);
+            //mejora->pendingDelete=true;
         }
     }
-}
-Mejora::~Mejora() // Destructor
-{
- 
 }

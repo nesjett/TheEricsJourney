@@ -21,12 +21,30 @@ void PlayerController::Update(sf::Event event){
     if(event.key.code == sf::Keyboard::O){
         ImprovesAttack();
     }
-    Mover(event.key.code);
-
     /**
      * MOUSE IMPLEMENTATION
      **/
-
+    Mover(event);
+    
+}
+void PlayerController::Mover(sf::Event event){
+    /*
+    Vector2f dir = pos_player-pos;
+   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
+   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
+   */
+    /*if(event==sf::Keyboard::Up || event==sf::Keyboard::W){
+        miJugador->setDirection(0.f, -1);
+    }
+    if(event==sf::Keyboard::Down || event==sf::Keyboard::S){
+        miJugador->setDirection(0.f, 1);
+    }
+    if(event==sf::Keyboard::Left || event==sf::Keyboard::A){
+        miJugador->setDirection(-1.f, 0.f);
+    }
+    if(event==sf::Keyboard::Right || event==sf::Keyboard::D){
+        miJugador->setDirection(1.f, 0.f);
+    }*/
     if (event.type == sf::Event::MouseButtonPressed)
     {
 
@@ -44,33 +62,14 @@ void PlayerController::Update(sf::Event event){
             Vector2f newDir = Vector2f(pos2.x, pos2.y) - miJugador->getActorLocation(); // Determine direction
             float aux=sqrt(pow(newDir.x, 2)+pow(newDir.y, 2));
             Vector2f dir_unit=Vector2f(newDir.x/aux,newDir.y/aux); // convert to unit vector
+            puntoRaton = pos2;
             miJugador->setDirection(dir_unit.x, dir_unit.y); // apply direction
         }
     }
-    
-}
-void PlayerController::Mover(sf::Keyboard::Key event){
-    /*
-    Vector2f dir = pos_player-pos;
-   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
-   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
-   */
-    if(event==sf::Keyboard::Up || event==sf::Keyboard::W){
-        miJugador->setDirection(0.f, -1);
-    }
-    if(event==sf::Keyboard::Down || event==sf::Keyboard::S){
-        miJugador->setDirection(0.f, 1);
-    }
-    if(event==sf::Keyboard::Left || event==sf::Keyboard::A){
-        miJugador->setDirection(-1.f, 0.f);
-    }
-    if(event==sf::Keyboard::Right || event==sf::Keyboard::D){
-        miJugador->setDirection(1.f, 0.f);
-    }
 
 }
-void PlayerController::Frenar(sf::Keyboard::Key event){
-    if(event==sf::Keyboard::Up || event==sf::Keyboard::W){
+void PlayerController::Frenar(/*sf::Keyboard::Key event*/){
+    /*if(event==sf::Keyboard::Up || event==sf::Keyboard::W){
         miJugador->setDirection(miJugador->getDirection().x, 0.f);
     }
     if(event==sf::Keyboard::Down || event==sf::Keyboard::S){
@@ -81,7 +80,8 @@ void PlayerController::Frenar(sf::Keyboard::Key event){
     }
     if(event==sf::Keyboard::Right || event==sf::Keyboard::D){
         miJugador->setDirection(0.f, miJugador->getDirection().y);
-    }
+    }*/
+    miJugador->setDirection(0.f, 0.f);
 }
 
 void PlayerController::setPlayer(Player* jugador){

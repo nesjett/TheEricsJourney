@@ -25,7 +25,7 @@ class Hud
 
 
         void setPlayer(Player* player);
-        void addMejora(Mejora mejora);
+        void addMejora(PowerUpType tipo);
         void Update();
         void Draw();
 
@@ -49,8 +49,7 @@ class Hud
         vector<RectangleShape*> cuadraditos;
 
         //Datos de los powerups adquiridos - TO DO: una vez gestionemos powerups
-        float separacion = 25.f;
-        vector<Mejora*> vMejoras;
+        float separacion = 50.f;
         Text txtHealth, txtMovSpeed, txtAttackSpeed, txtAttackMore;
         int vecesMejora1 = 0;
         int vecesMejora2 = 0;
