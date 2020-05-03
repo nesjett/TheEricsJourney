@@ -130,6 +130,10 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(0,2200,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550,2200,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(1100,2200,sizeX,sizeY)});
+
+    tmpA = new Animation(sprite->getSpriteR(),500, true);
+    Animations.insert({"stop", tmpA});
+    tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)});
 }
 
 void Player::Draw(double percent, double delta ){
