@@ -96,9 +96,11 @@ void PlayerController::MejorarMovimiento(float mejMov){
     miJugador->movementSpeed*=mejMov;
 }
 void PlayerController::setAttack(list<Enemy*> listaEnemigos){
-    if(miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f && miJugador->IsAlive()==true){
-        setLista(listaEnemigos);
-        Attacks();
+    if (listaEnemigos.size() > 0){
+        if(miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f && miJugador->IsAlive()==true){
+            setLista(listaEnemigos);
+            Attacks();
+        }
     }
 }
 void PlayerController::Attacks(){
