@@ -26,6 +26,7 @@ Mejora::Mejora(PowerUpType tipo) : Actor(){ // Use this to call to parent's cont
     oType = powerup;
     tipoMejora = tipo;
     activada = false;
+    utilizada = false;
     PrepareSprite();
 }
 Sprite Mejora::getSprite()
@@ -38,7 +39,7 @@ void Mejora::PrepareSprite(){
 }
 
 void Mejora::Update(float delta){
-    //Actor::Update(delta);
+    Actor::Update(delta);
 }
 void Mejora::Draw(double percent, double delta)
 {
@@ -65,13 +66,14 @@ void Mejora::OnActorOverlap(Actor *otherActor){
                 break;   
         }
         //Incluimos mejoras en la hud, guardandola ahi directamente o mediante el player
-        Hud::Instance()->addMejora(*this);
+        Hud::Instance()->addMejora(tipoMejora);
         //Desactivamos todas las mejoras de game porque ya se ha aplicado una
         for(Mejora* mejora : game::Instance()->getMejoras())
         {
+            mejora->utilizada = true;
             mejora->activada = false;
-            //mejora->setLifespan(0.f);
-            mejora->pendingDelete=true;
+            mejora->setLifespan(0.f);
+            //mejora->pendingDelete=true;
         }
     }
 }
