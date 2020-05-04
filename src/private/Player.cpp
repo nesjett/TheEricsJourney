@@ -134,7 +134,7 @@ void Player::PrepareSprite(){
 }
 
 void Player::PrepareMovementIndicator() {
-    float sizeX = 64.0, sizeY = 64.0;
+    float sizeX = 508.0, sizeY = 508.0;
     float offsetX = sizeX / 2.0;
     float offsetY = sizeY / 2.0;
 
@@ -142,7 +142,7 @@ void Player::PrepareMovementIndicator() {
     MovementIndicator->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     MovementIndicator->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    MovementIndicator->setScale( 0.5,0.5 );
+    MovementIndicator->setScale( 0.07,0.07 );
 }
 
 void Player::Draw(double percent, double delta ){
@@ -158,6 +158,22 @@ void Player::Draw(double percent, double delta ){
     // Draw movement arrow
     if(MovementIndicator) {
         MovementIndicator->Draw();
+        
+   
+        if(getDirection().x != 0.f || getDirection().y != 0.f) {
+            MovementIndicator->getSpriteR().setColor(sf::Color(255,255,255,195)); // Show arrow
+
+            Vector2f newLoc = Vector2f(getDirection().x*45+getInterpolatedPos().x, getDirection().y*45+getInterpolatedPos().y);
+            MovementIndicator->setPosition(newLoc.x, newLoc.y);
+
+            // std::atan2 uses y, x signs' for quadrant signification, unlike std::atan
+            // SFML's y-axis is flipped: flip our y-component
+            auto angleRads = std::atan2(getDirection().y, getDirection().x);
+            auto angleDegs = angleRads * 180.0 / M_PI;
+            MovementIndicator->setRotation(angleDegs);
+        } else {
+            MovementIndicator->getSpriteR().setColor(sf::Color(255,255,255,0)); // HIde arrow
+        }
     }
  
 }
@@ -168,23 +184,6 @@ void Player::Update(float delta){
     }*/
 
     Pawn::Update(delta);
-
-    if(MovementIndicator) {
-        if(getDirection().x != 0.f || getDirection().y != 0.f) {
-            MovementIndicator->getSpriteR().setColor(sf::Color(255,255,255,0)); // Show arrow
-
-            Vector2f newLoc = Vector2f(getDirection().x*50+getInterpolatedPos().x, getDirection().y*50+getInterpolatedPos().y);
-            MovementIndicator->setPosition(newLoc.x, newLoc.y);
-
-            // std::atan2 uses y, x signs' for quadrant signification, unlike std::atan
-            // SFML's y-axis is flipped: flip our y-component
-            auto angleRads = std::atan2(-getDirection().y, -getDirection().x);
-            auto angleDegs = angleRads * 180.0 / M_PI;
-            MovementIndicator->setRotation(angleDegs);
-        } else {
-            MovementIndicator->getSpriteR().setColor(sf::Color(255,255,255,0)); // HIde arrow
-        }
-    }
 }
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     std::cout << "Player toke damage!" << std::endl; 
