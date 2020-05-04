@@ -28,6 +28,7 @@ Player::Player(){ // Use this to call to parent's contructor first
 
     //Init();
     PrepareSprite();
+    PrepareMovementIndicator();
 }
 
 void Player::Init(){
@@ -136,22 +137,57 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)});
 }
 
+void Player::PrepareMovementIndicator() {
+    float sizeX = 508.0, sizeY = 508.0;
+    float offsetX = sizeX / 2.0;
+    float offsetY = sizeY / 2.0;
+
+    MovementIndicator = new SSprite("./resources/movement_arrow.png");
+    MovementIndicator->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
+    MovementIndicator->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    MovementIndicator->setScale( 0.07,0.07 );
+}
+
 void Player::Draw(double percent, double delta ){
     Pawn::SetAnimation();
-   Pawn::Draw(percent, delta);
+    Pawn::Draw(percent, delta);
+
 
     //Movemos la camara 
     Engine* eng = Engine::Instance();
     eng->setView(currentLoc.y, 0.13f);
+
+
+    // Draw movement arrow
+    if(MovementIndicator) {
+        MovementIndicator->Draw();
+        
+   
+        if(getDirection().x != 0.f || getDirection().y != 0.f) {
+            MovementIndicator->getSpriteR().setColor(sf::Color(255,255,255,195)); // Show arrow
+
+            Vector2f newLoc = Vector2f(getDirection().x*45+getInterpolatedPos().x, getDirection().y*45+getInterpolatedPos().y);
+            MovementIndicator->setPosition(newLoc.x, newLoc.y);
+
+            // std::atan2 uses y, x signs' for quadrant signification, unlike std::atan
+            // SFML's y-axis is flipped: flip our y-component
+            auto angleRads = std::atan2(getDirection().y, getDirection().x);
+            auto angleDegs = angleRads * 180.0 / M_PI;
+            MovementIndicator->setRotation(angleDegs);
+        } else {
+            MovementIndicator->getSpriteR().setColor(sf::Color(255,255,255,0)); // HIde arrow
+        }
+    }
  
 }
 
 void Player::Update(float delta){
-    bool estado=IsAlive();
-    if(estado==true){
+    /*if(IsAlive()){
         Pawn::Update( delta);
-    }
-    
+    }*/
+
+    Pawn::Update(delta);
 }
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     std::cout << "Player toke damage!" << std::endl; 
@@ -210,7 +246,8 @@ void Player::Attack(list<Enemy*> enemyList){
     sf::Vector2f dirToEnemy = sf::Vector2f(0.f, 0.f);
     sf::Vector2f posEnemy = sf::Vector2f(0.f, 0.f);
     Enemy *enemy = nullptr;
-    
+
+
     for (Enemy *enemigo : enemyList){
         posEnemy = enemigo->getActorLocation();
         dirToEnemy_tmp = posEnemy-posPlayer;
@@ -227,6 +264,10 @@ void Player::Attack(list<Enemy*> enemyList){
     }
     sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
     SetTarget(enemy);
+
+    if(!enemy) { // FInish executing as no eligible enemy found
+        return;
+    }
 
     game *eng = game::Instance();
     Arrow *projTest = new Arrow(dir_unit, posPlayer);
@@ -276,5 +317,9 @@ float Player::getMaxHealth(){
     //This method returns the current maximum health of the player. 
     //This is to check if the player has any health improve.
     return health_MAX;
+
+}
+
+void Player::ToggleMovementIndicator() {
 
 }
