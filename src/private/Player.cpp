@@ -8,6 +8,7 @@ Player::Player(){ // Use this to call to parent's contructor first
 
     texture_file = "./resources/player.png";
     
+    debug = true;
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(0.f, 0.f);
@@ -53,6 +54,8 @@ void Player::PrepareSprite(){
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
     sprite->setScale( 0.15,0.15 );
+
+    //sprite->setBounds(0.85);
     
     
     Animation *tmpA;

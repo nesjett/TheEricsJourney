@@ -14,7 +14,7 @@ Arrow::Arrow(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
     activeAnim = Animations.find("IDLE")->second;
 }
 void Arrow::Init(){
-    movementSpeed = 0.45;
+    movementSpeed = 0.65;
     damage = 20;
 
     texture_file = "./resources/projectiles/fireball-512.png";
