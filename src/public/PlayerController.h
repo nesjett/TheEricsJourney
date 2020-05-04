@@ -34,6 +34,5 @@ class PlayerController:  public Controller{
         sf::Clock relojAtaque;
         float mejora = 1.f;
         bool Moverse = false;
-        sf::Vector2f puntoRaton;
         bool stop = true;
 };

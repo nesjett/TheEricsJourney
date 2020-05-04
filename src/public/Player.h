@@ -35,5 +35,8 @@ class Player:  public Pawn{
         int AttackImprovement;
         Enemy *Target;
         int LastAttack; // Used to select the sound to play for shooting
+        sf::Vector2f dirToEnemyParallel;
+        float auxParallel = 0.f;
+        sf::Vector2f dir_unitParallel;
         
 };

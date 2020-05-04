@@ -105,12 +105,15 @@ void Player::Attack(list<Enemy*> enemyList){
     sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
     sf::Vector2f dirToEnemy = sf::Vector2f(0.f, 0.f);
     sf::Vector2f posEnemy = sf::Vector2f(0.f, 0.f);
+
     Enemy *enemy = nullptr;
     
     for (Enemy *enemigo : enemyList){
         posEnemy = enemigo->getActorLocation();
         dirToEnemy_tmp = posEnemy-posPlayer;
         float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector
+        dirToEnemyParallel = sf::Vector2f(posEnemy.x-30, posEnemy.y-30)-getActorLocation();
+        auxParallel = sqrt(pow(dirToEnemyParallel.x, 2)+pow(dirToEnemyParallel.y, 2));
         if(minDist == 0.f){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
@@ -122,6 +125,8 @@ void Player::Attack(list<Enemy*> enemyList){
         }
     }
     sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
+    dir_unitParallel = Vector2f(dirToEnemyParallel.x/auxParallel, dirToEnemyParallel.y/auxParallel);
+
     SetTarget(enemy);
 
     game *eng = game::Instance();
@@ -141,7 +146,7 @@ void Player::Attack(list<Enemy*> enemyList){
         eng->Almacenaenemy(flechaTrasera1);
         if(AttackImprovement >= 2){
             sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y));
-            Arrow *flecha2 = new Arrow(dir_unit, dobleFlecha);
+            Arrow *flecha2 = new Arrow(dir_unitParallel, dobleFlecha);
             eng->Almacenaenemy(flecha2);
             /*if(AttackImprovement >= 3){
                 Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha);
