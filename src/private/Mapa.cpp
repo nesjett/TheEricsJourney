@@ -97,7 +97,7 @@ void Mapa::cargaMapa()
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaObjetos.c_str()) == 0) //Objetos o trampas
                     {
-                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,trap));
+                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,blocker));
                     }
                     if(strcmp(layer->Attribute("name"), strCapaPinchos.c_str()) == 0) //Objetos o trampas
                     {
