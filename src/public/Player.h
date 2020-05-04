@@ -33,7 +33,6 @@ class Player:  public Pawn{
     private:
         string texture_file2;
         int AttackImprovement;
-        sf::Clock relojMejora;
         Enemy *Target;
         int LastAttack; // Used to select the sound to play for shooting
         

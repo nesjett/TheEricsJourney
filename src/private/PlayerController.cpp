@@ -29,7 +29,6 @@ void PlayerController::Update(sf::Event event){
             stop=false;
         }
     }
-    Mover(event);
     
 }
 void PlayerController::Mover(sf::Event event){
