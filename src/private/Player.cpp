@@ -53,7 +53,7 @@ void Player::PrepareSprite(){
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    sprite->setScale( 0.15,0.15 );
+    sprite->setScale( 0.18,0.18 );
 
     //sprite->setBounds(0.85);
     
@@ -134,6 +134,10 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(0,2200,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550,2200,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(1100,2200,sizeX,sizeY)});
+
+    tmpA = new Animation(sprite->getSpriteR(),500, true);
+    Animations.insert({"stop", tmpA});
+    tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)});
 }
 
 void Player::PrepareMovementIndicator() {
