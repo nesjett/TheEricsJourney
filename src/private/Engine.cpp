@@ -34,10 +34,14 @@ void Engine::setView(float centerY, float borderX)
 {
     //vista = new sf::View(sf::FloatRect(0.f, 600.f, vm.width, vm.height));
     float posArriba = centerY - (app.getSize().y / 2);
-    if(posArriba < 0.f)
-        posArriba = 0.f;
-    if(posArriba > 280.f)
-        posArriba = 280.f;
+    // if(posArriba < 0.f)
+    //     posArriba = 0.f;
+    if(posArriba < -100.f)
+        posArriba = -100.f;
+    // if(posArriba > 280.f)
+    //     posArriba = 280.f;
+    if(posArriba > 380.f)
+        posArriba = 380.f;
     vista.reset(sf::FloatRect(0.f, posArriba, app.getSize().x, app.getSize().y));
     vista.setViewport(sf::FloatRect(borderX, 0, 1.f, 1.f));
     app.setView(vista);
