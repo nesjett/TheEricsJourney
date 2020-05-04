@@ -112,18 +112,20 @@ void Player::Attack(list<Enemy*> enemyList){
         posEnemy = enemigo->getActorLocation();
         dirToEnemy_tmp = posEnemy-posPlayer;
         float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector
-        dirToEnemyParallel = sf::Vector2f(posEnemy.x-30, posEnemy.y-30)-getActorLocation();
-        auxParallel = sqrt(pow(dirToEnemyParallel.x, 2)+pow(dirToEnemyParallel.y, 2));
+        dirToEnemyParallelAux = sf::Vector2f(posEnemy.x-30, posEnemy.y)-getActorLocation();
         if(minDist == 0.f){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
+            dirToEnemyParallel = dirToEnemyParallelAux;
             enemy = enemigo;
         } else if(aux < minDist){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
+            dirToEnemyParallel = dirToEnemyParallelAux;
             enemy = enemigo;
         }
     }
+    auxParallel = sqrt(pow(dirToEnemyParallel.x, 2)+pow(dirToEnemyParallel.y, 2));
     sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
     dir_unitParallel = Vector2f(dirToEnemyParallel.x/auxParallel, dirToEnemyParallel.y/auxParallel);
 
