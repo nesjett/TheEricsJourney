@@ -20,6 +20,7 @@ class Explosionenemy: public Enemy{
         //Vector2f Direccionunitaria(Vector2f pos_player,Vector2f pos);
         sf::Clock relojMark;
         sf::Clock relojdireccion;
+        sf::Clock relojPausa;
         
 
 

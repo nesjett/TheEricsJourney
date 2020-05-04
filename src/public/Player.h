@@ -37,9 +37,6 @@ class Player:  public Pawn{
         void PrepareSprite();
         void PrepareMovementIndicator();
         string texture_file;
-        string texture_file2;
-        string texture_file3;
-        string texture_file4;
         int AttackImprovement;
         sf::Clock relojMejora;
         Enemy *Target;
