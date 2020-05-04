@@ -53,7 +53,7 @@ void Player::PrepareSprite(){
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    sprite->setScale( 0.18,0.18 );
+    sprite->setScale( 0.14,0.14 );
 
     //sprite->setBounds(0.85);
     
