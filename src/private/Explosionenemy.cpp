@@ -2,10 +2,10 @@
 
 #include <FireBall.h>
 
-Explosionenemy::Explosionenemy() : Enemy(){ // Use this to call to parent's contructor first
+Explosionenemy::Explosionenemy():Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/sprites.png";
+    texture_file = "./resources/Naranja.png";
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(-0.5, -0.5);
@@ -21,7 +21,8 @@ Explosionenemy::Explosionenemy() : Enemy(){ // Use this to call to parent's cont
     setActorLocation(Vector2f(340.0, 520.0));
 
 
-    Init();
+    //Init();
+    PrepareSprite();
 
 }
 
@@ -32,17 +33,72 @@ void Explosionenemy::Init(){
     std::cout << "Terminamos INIT()" << std::endl;
 }
 
+void Explosionenemy::PrepareSprite(){
+    float sizeX = 212.0, sizeY = 235.0;
+    float offsetX = sizeX / 2.0;
+    float offsetY = sizeY / 2.0;
+
+    sprite = new SSprite(texture_file);
+    sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
+    sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    sprite->setScale( 0.25,0.25 );
+    
+    Animation *tmpA;
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"up", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,235,sizeX,sizeY)});
+
+    
+ 
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"right", tmpA});
+    
+    tmpA->addFrame({sf::IntRect(212,0,-sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(212,235,-sizeX,sizeY)});
+    
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"left", tmpA});
+    
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,235,sizeX,sizeY)});
+    
+
+    
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"down", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,235,sizeX,sizeY)});
+}
+
 void Explosionenemy::Update(float delta){
     
     
     Enemy::Update(delta);
-    Followplayer();
-    Attack();
+    if(relojPausa.getElapsedTime().asSeconds()>5.0){
+        direction=Vector2f(0.f,0.f);
+        Attack();
+        
+        if(relojPausa.getElapsedTime().asSeconds()>7.0){
+
+            relojPausa.restart();
+            relojMark.restart();
+        }
+    }
+    else{
+        
+        Followplayer();
+        
+    }
+    
     
 }
 
 void Explosionenemy::Draw(double percent, double delta ){
-    
+    Pawn::SetAnimation();
     Enemy::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
@@ -87,7 +143,6 @@ bool Explosionenemy::Attack(){
         eng->Almacenaenemy(projTest1);
         eng->Almacenaenemy(projTest2);
         eng->Almacenaenemy(projTest3);
-
         relojMark.restart();
    }
     return true;

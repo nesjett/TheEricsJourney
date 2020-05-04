@@ -19,10 +19,11 @@ class Movingenemy: public Enemy{
         void Update(float delta);
         void Draw(double percent, double delta );
         void Prepara(Vector2f inicio, Vector2f final);
-
+        void PrepareSprite();
         Vector2f x;
         Vector2f y;
-
+        Vector2f ultimadir;
+        bool para;
         sf::Clock relojMark;
  
     private:

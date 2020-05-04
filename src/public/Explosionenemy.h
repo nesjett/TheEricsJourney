@@ -13,12 +13,14 @@ class Explosionenemy: public Enemy{
         void Init();
         bool Attack();
         void Followplayer();
+        void PrepareSprite();
         void Update(float delta);
         void Draw(double percent, double delta );
         Vector2f RandomNewDir();
         //Vector2f Direccionunitaria(Vector2f pos_player,Vector2f pos);
         sf::Clock relojMark;
         sf::Clock relojdireccion;
+        sf::Clock relojPausa;
         
 
 

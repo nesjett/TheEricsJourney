@@ -91,6 +91,44 @@ void Pawn::Update(float delta){
     Actor::Update(delta);
 }
 
+void Pawn::SetAnimation(){ //selecciona la animacion del mapa de animaciones dependiendo de la direccion del actor
+
+    auto angleRads = std::atan2(-direction.y, direction.x);
+    auto angleDegs = angleRads * 180.0 / M_PI;
+    if(angleDegs<0){
+      angleDegs=angleDegs+360; //los grados van de 0 a 180 y de 0 a -180, sumamos 360 para establecer cuadrantes segun los angulos
+    }
+
+    if((angleDegs<22.5 && angleDegs>0) || (angleDegs>=337.5 && angleDegs<0)){
+        activeAnim=Animations.find("right")->second;
+    }
+    if(angleDegs<67.5 && angleDegs>=22.5){
+        activeAnim=Animations.find("right")->second;
+    }
+    if(angleDegs<112.5 && angleDegs>=67.5){
+        activeAnim=Animations.find("up")->second;
+    }
+    if(angleDegs<157.5 && angleDegs>=112.5){
+        activeAnim=Animations.find("left")->second;
+    }
+    if(angleDegs<202.5 && angleDegs>=157.5){
+        activeAnim=Animations.find("left")->second;
+    }
+    if(angleDegs<247.5 && angleDegs>=202.5){
+        activeAnim=Animations.find("left")->second;
+    }
+    if(angleDegs<292.5 && angleDegs>=247.5){
+        activeAnim=Animations.find("down")->second;
+    }
+    if(angleDegs<337.5 && angleDegs>=292.5){
+        activeAnim=Animations.find("right")->second;
+    }
+    if(angleDegs==0){
+        activeAnim=Animations.find("stop")->second;
+    }
+
+}
+
 void Pawn::Draw(double percent, double delta ){
     if(activeAnim) {
         activeAnim->update(delta);

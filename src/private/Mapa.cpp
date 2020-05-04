@@ -2,6 +2,7 @@
 #include "../public/Movingenemy.h"
 #include "../public/Explosionenemy.h"
 #include "../public/Fixedenemy.h"
+#include "../public/Stalker.h"
 
 using namespace std;
 
@@ -14,10 +15,7 @@ Mapa::Mapa(string nombre)
 
 Mapa::~Mapa()
 {
-    // vectorPintar.clear();
-    // vectorPintar2.clear();
-    // vPosX.clear();
-    // vPosY.clear();
+    //delete mapa;
 }
 
 void Mapa::cargaMapa()
@@ -99,7 +97,7 @@ void Mapa::cargaMapa()
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaObjetos.c_str()) == 0) //Objetos o trampas
                     {
-                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,trap));
+                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,blocker));
                     }
                     if(strcmp(layer->Attribute("name"), strCapaPinchos.c_str()) == 0) //Objetos o trampas
                     {
@@ -163,9 +161,12 @@ void Mapa::cargaMapa()
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaSuelo.c_str()) == 0)
                     {
-                        vectorPintar2.push_back(*vectorSprite[valor-1]);
-                        vPosX.push_back(posX);
-                        vPosY.push_back(posY);
+                        if(valor <= vectorSprite.size())
+                        {
+                            vectorPintar2.push_back(*vectorSprite[valor-1]);
+                            vPosX.push_back(posX);
+                            vPosY.push_back(posY);
+                        }
                     }
                 }
                 if(tile->NextSiblingElement("tile"))
@@ -209,6 +210,9 @@ list<Actor*> Mapa::getActors()
     {
         actores.push_back(enemy);
     }
+    Stalker *stalker = new Stalker();
+    stalker->setActorLocation(Vector2f(400.0,400.0));
+    actores.push_back(stalker);
     for (Mejora *mejora : listaMejoras)
     {
         actores.push_back(mejora);

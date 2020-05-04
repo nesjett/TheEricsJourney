@@ -26,12 +26,17 @@ class Player:  public Pawn{
         float getMaxHealth();
         void improvesAttack();
 
+        void ToggleMovementIndicator();
+        
+
     protected:
-        void PrepareSprite2();
+        
         void SetTarget(Enemy *NewTarget);
 
     private:
-        string texture_file2;
+        void PrepareSprite();
+        void PrepareMovementIndicator();
+        string texture_file;
         int AttackImprovement;
         Enemy *Target;
         int LastAttack; // Used to select the sound to play for shooting
@@ -39,5 +44,6 @@ class Player:  public Pawn{
         sf::Vector2f dirToEnemyParallelAux;
         float auxParallel = 0.f;
         sf::Vector2f dir_unitParallel;
+        SSprite *MovementIndicator;
         
 };
