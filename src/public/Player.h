@@ -25,6 +25,8 @@ class Player:  public Pawn{
         float getCurrentHealth();
         float getMaxHealth();
         void improvesAttack();
+
+        void ToggleMovementIndicator();
         
 
     protected:
@@ -33,6 +35,7 @@ class Player:  public Pawn{
 
     private:
         void PrepareSprite();
+        void PrepareMovementIndicator();
         string texture_file;
         string texture_file2;
         string texture_file3;
@@ -41,5 +44,6 @@ class Player:  public Pawn{
         sf::Clock relojMejora;
         Enemy *Target;
         int LastAttack; // Used to select the sound to play for shooting
+        SSprite *MovementIndicator;
         
 };
