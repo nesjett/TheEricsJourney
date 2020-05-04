@@ -52,7 +52,7 @@ void game::InicializaNivel()
     if(mapaActual < 3) //HARDCODED: numero maximo de niveles es 3
     {
         //Cargamos el nivel
-        string nombreMapa = "MapaNivel"+to_string(mapaActual+1)+".tmx";
+        string nombreMapa = "MapaN"+to_string(mapaActual+1)+".tmx";
         vMapas.push_back(new Mapa(nombreMapa));
 
         //Cargamos las colisiones del nivel
@@ -62,7 +62,7 @@ void game::InicializaNivel()
             actors.push_back(tile);
         }
         //Protagonista set location al inicio del mapa
-        jugador->setActorLocation(Vector2f(350.0,200.0));
+        jugador->setActorLocation(Vector2f(350.0,850.0));
         
         //Set vista a la primera parte del mapa
         //eng->ChangeAppView(0);
@@ -88,13 +88,7 @@ void game::run(){
      * TEST Actors, pawns and projectiles
      ***********************************/
     actors.push_back(jugador);
-    jugador->setActorLocation(Vector2f(350.0,500.0));
-   
-    Stalker *stalker = new Stalker();
-    actors.push_back(stalker);
-    stalker->setActorLocation(Vector2f(400.0,400.0));
-
-
+    jugador->setActorLocation(Vector2f(350.0,850.0));
     
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
