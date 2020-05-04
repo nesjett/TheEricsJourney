@@ -59,7 +59,14 @@ void PlayerController::Mover(sf::Event event){
         Vector2i pos = sf::Mouse::getPosition(eng->getApp()); // mouse position in window coords
         Vector2f pos2 = eng->getApp().mapPixelToCoords(pos, eng->getApp().getView()); // convert window coords to world coords
 
-        Vector2f newDir = Vector2f(pos2.x, pos2.y) - miJugador->getActorLocation(); // Determine direction
+        Vector2f PlayerLoc = miJugador->getActorLocation();
+
+        /*if( (PlayerLoc.x >= pos2.x + 0.1 || PlayerLoc.x <= pos2.x -0.1) && (PlayerLoc.y >= pos2.y + 0.1 || PlayerLoc.y <= pos2.y -0.1)) { // Check if player reached mouse location, so we stop movement
+            this->Frenar();
+            return;
+        }*/
+
+        Vector2f newDir = Vector2f(pos2.x, pos2.y) - PlayerLoc; // Determine direction
         float aux=sqrt(pow(newDir.x, 2)+pow(newDir.y, 2));
         Vector2f dir_unit=Vector2f(newDir.x/aux,newDir.y/aux); // convert to unit vector
         puntoRaton = pos2;
