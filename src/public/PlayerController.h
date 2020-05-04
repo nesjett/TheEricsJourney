@@ -28,7 +28,6 @@ class PlayerController:  public Controller{
     protected:
         virtual ~PlayerController(); 
     private: 
-        sf::Vector2f stop;
         Player* miJugador;
         list<Enemy*> enemyList;
         float distancia;
@@ -36,4 +35,5 @@ class PlayerController:  public Controller{
         float mejora = 1.f;
         bool Moverse = false;
         sf::Vector2f puntoRaton;
+        bool stop = true;
 };
