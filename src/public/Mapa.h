@@ -59,7 +59,6 @@ class Mapa
 
         int num_layers;
         int tamMapaX, tamMapaY, tamTileX, tamTileY;
-        sf::Event* evento;
         Engine* eng;
         void cargaMapa();
 };
