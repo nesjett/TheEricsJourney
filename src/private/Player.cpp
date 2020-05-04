@@ -242,7 +242,8 @@ void Player::Attack(list<Enemy*> enemyList){
     sf::Vector2f dirToEnemy = sf::Vector2f(0.f, 0.f);
     sf::Vector2f posEnemy = sf::Vector2f(0.f, 0.f);
     Enemy *enemy = nullptr;
-    
+
+
     for (Enemy *enemigo : enemyList){
         posEnemy = enemigo->getActorLocation();
         dirToEnemy_tmp = posEnemy-posPlayer;
@@ -259,6 +260,10 @@ void Player::Attack(list<Enemy*> enemyList){
     }
     sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
     SetTarget(enemy);
+
+    if(!enemy) { // FInish executing as no eligible enemy found
+        return;
+    }
 
     game *eng = game::Instance();
     Arrow *projTest = new Arrow(dir_unit, posPlayer);
