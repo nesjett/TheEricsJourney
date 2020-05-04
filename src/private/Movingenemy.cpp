@@ -38,7 +38,7 @@ void Movingenemy::PrepareSprite(){
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    sprite->setScale( 0.08,0.08 );
+    sprite->setScale( 0.07,0.07 );
     
     Animation *tmpA;
 
@@ -46,24 +46,24 @@ void Movingenemy::PrepareSprite(){
     Animations.insert({"up", tmpA});
     tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
-
-    
- 
+     
     tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"right", tmpA});
     tmpA->addFrame({sf::IntRect(828,1016,-sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(828,1912,-sizeX,sizeY)});
     
-
     tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"left", tmpA});
     tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
     
-
-    
     tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"down", tmpA});
+    tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"stop", tmpA});
     tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
 }
