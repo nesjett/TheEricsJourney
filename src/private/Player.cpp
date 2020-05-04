@@ -193,6 +193,7 @@ void Player::Update(float delta){
     Pawn::Update(delta);
 }
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
+    return;
     std::cout << "Player toke damage!" << std::endl; 
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
         health_Current-=damage;
