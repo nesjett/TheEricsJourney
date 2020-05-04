@@ -12,13 +12,13 @@ class PlayerController:  public Controller{
     public:
         PlayerController(Player*, list<Enemy*>);
         void Update(sf::Event);
-        void Mover(sf::Keyboard::Key);
+        void Mover(/*sf::Keyboard::Key*/sf::Event);
         void setPlayer(Player*);
         void setLista(list<Enemy*>);
         void Attacks();
         void setAttack(list<Enemy*>);
         void ImprovesAttack();
-        void Frenar(sf::Keyboard::Key);
+        void Frenar(/*sf::Keyboard::Key*/);
         void MejorarCadencia(float);
         void MejorarMovimiento(float);
         void IncreaseHealth();
@@ -28,10 +28,12 @@ class PlayerController:  public Controller{
     protected:
         virtual ~PlayerController(); 
     private: 
-        sf::Vector2f stop;
         Player* miJugador;
         list<Enemy*> enemyList;
         float distancia;
         sf::Clock relojAtaque;
         float mejora = 1.f;
+        bool Moverse = false;
+        sf::Vector2f puntoRaton;
+        bool stop = true;
 };

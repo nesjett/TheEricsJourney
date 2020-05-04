@@ -25,13 +25,18 @@ class Player:  public Pawn{
         float getCurrentHealth();
         float getMaxHealth();
         void improvesAttack();
+        
 
     protected:
-        void PrepareSprite2();
+        
         void SetTarget(Enemy *NewTarget);
 
     private:
+        void PrepareSprite();
+        string texture_file;
         string texture_file2;
+        string texture_file3;
+        string texture_file4;
         int AttackImprovement;
         sf::Clock relojMejora;
         Enemy *Target;

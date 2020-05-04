@@ -29,7 +29,7 @@ class Pawn: public Actor {
         bool IsAlive(); // This should go to an interface or to parent PAWN class
 
         bool Attack();
-
+        void SetAnimation();
         void Update(float delta);
         void Draw(double percent, double delta );
         Faction getFaction(){ return faction; };

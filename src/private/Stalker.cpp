@@ -3,7 +3,7 @@
 Stalker::Stalker(): Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/enemies/ghost/ghost.png";
+    texture_file = "./resources/Volador.png";
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(0.f, 0.f);
@@ -19,7 +19,8 @@ Stalker::Stalker(): Enemy(){ // Use this to call to parent's contructor first
     setActorLocation(Vector2f(340.0, 520.0));
 
 
-    Init();
+    //Init();
+    PrepareSprite();
 
 }
 
@@ -46,6 +47,61 @@ void Stalker::Init(){
     activeAnim = Animations.find("IDLE")->second;
 
 }
+void Stalker::PrepareSprite(){
+    float sizeX = 401.0, sizeY = 249.0;
+    float offsetX = sizeX / 2.0;
+    float offsetY = sizeY / 2.0;
+
+    sprite = new SSprite(texture_file);
+    sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
+    sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    sprite->setScale( 0.15,0.15 );
+    
+    Animation *tmpA;
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"up", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(401,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,249,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(401,249,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,498,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(401,498,sizeX,sizeY)});
+    
+ 
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"right", tmpA});
+    
+    tmpA->addFrame({sf::IntRect(0+401,0,-sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(401+401,0,-sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0+401,249,-sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(401+401,249,-sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0+401,498,-sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(401+401,498,-sizeX,sizeY)});
+    
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"left", tmpA});
+    
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(401,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,249,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(401,249,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,498,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(401,498,sizeX,sizeY)});
+    
+
+    
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"down", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(401,0,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,249,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(401,249,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,498,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(401,498,sizeX,sizeY)});
+}
 
 void Stalker::Update(float delta){
     Enemy::Update(delta);
@@ -53,7 +109,7 @@ void Stalker::Update(float delta){
 }
 
 void Stalker::Draw(double percent, double delta ){
-    
+    Pawn::SetAnimation();
     Enemy::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
