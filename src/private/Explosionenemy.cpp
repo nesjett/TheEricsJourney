@@ -78,8 +78,22 @@ void Explosionenemy::Update(float delta){
     
     
     Enemy::Update(delta);
-    Followplayer();
-    Attack();
+    if(relojPausa.getElapsedTime().asSeconds()>5.0){
+        direction=Vector2f(0.f,0.f);
+        Attack();
+        
+        if(relojPausa.getElapsedTime().asSeconds()>7.0){
+
+            relojPausa.restart();
+            relojMark.restart();
+        }
+    }
+    else{
+        
+        Followplayer();
+        
+    }
+    
     
 }
 
@@ -129,7 +143,6 @@ bool Explosionenemy::Attack(){
         eng->Almacenaenemy(projTest1);
         eng->Almacenaenemy(projTest2);
         eng->Almacenaenemy(projTest3);
-
         relojMark.restart();
    }
     return true;
