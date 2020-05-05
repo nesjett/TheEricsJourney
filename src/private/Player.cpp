@@ -278,7 +278,10 @@ void Player::Attack(list<Enemy*> enemyList){
     dirToEnemyParallelAux = Vector2f(dir_unit.x*1.5, dir_unit.y*1.5);
     auxParallel = sqrt(pow(dirToEnemyParallelAux.x, 2)+pow(dirToEnemyParallelAux.y, 2));
     dir_unitParallel = Vector2f(dirToEnemyParallelAux.x/auxParallel, dirToEnemyParallelAux.y/auxParallel);
-
+    std::cout<<"dir_unit - X: "<<dir_unit.x<<std::endl;
+    std::cout<<"dir_unit - Y: "<<dir_unit.y<<std::endl;
+    std::cout<<"dir_unitParallel - X: " << dir_unitParallel.x<<std::endl;
+    std::cout<<"dir_unitParallel - Y: " << dir_unitParallel.y<<std::endl;
     SetTarget(enemy);
 
     if(!enemy) { // FInish executing as no eligible enemy found
@@ -286,8 +289,7 @@ void Player::Attack(list<Enemy*> enemyList){
     }
 
     game *eng = game::Instance();
-    sf::Vector2f posPlayerAux = sf::Vector2f(getActorLocation().x+30, getActorLocation().y+30);
-    Arrow *projTest = new Arrow(dir_unit, posPlayer); //aqui en el segundo parametro antes iba "posPlayer";
+    Arrow *projTest = new Arrow(dir_unit, posPlayer); 
     eng->Almacenaenemy(projTest);
 
     if(LastAttack == 0) {
