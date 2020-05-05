@@ -1,6 +1,8 @@
 #include "../public/Enemy.h"
 #include "../public/AudioManager.h"
 
+#include <game.h>
+
 Enemy::Enemy() : Pawn(){ // Use this to call to parent's contructor first
     Targetted = false;
     PrepareMarker();
@@ -24,18 +26,28 @@ void Enemy::Draw(double percent, double delta ){
         TargetMarker->setPosition(this->getInterpolatedPos().x-offsetx, this->getInterpolatedPos().y-offsety);
         TargetMarker->Draw();
     }
-
-
-    // Draw hit text data
-    for (sf::Text txt : HitText) {
-        
-            // TODO: SHould create a child class from sf::Text for adding Draw() 
-            Engine *eng = Engine::Instance();
-            eng->getApp().draw(txt);
-        
-    }
+    game *gi = game::Instance();
 
     Pawn::Draw(percent, delta);
+
+    std::list<int>::iterator it;
+    // Draw hit text data
+   /* for (TText txt : HitText) {
+        // TODO: SHould create a child class from sf::Text for adding Draw() and handle lifetime better than here
+        if(gi->getTime() <= txt.getDeathTime()) {
+            txt.Draw();
+        } 
+    }*/
+    for (auto it = HitText.begin(); it != HitText.end(); it++) {
+        // Notice that the iterator is decremented after it is passed 
+		// to erase() but before erase() is executed 
+        if(gi->getTime() <= it->getDeathTime()) {
+            it->Draw(delta);
+        } else {
+            HitText.erase(it--);
+        }
+	}
+
 }
 
 void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
@@ -46,14 +58,14 @@ void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
             Pawn::Die();
             AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_die.ogg");
         } else {
-            ApplyHitEffects(damage_type); // Apply hit effects
+            ApplyHitEffects(std::to_string((int)damage)); // Apply hit effects
             AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_hit.ogg");
         }
     }
 }
 
 void Enemy::ApplyHitEffects(string effect) {
-
+    HitText.push_back(TText("+" + effect, Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
 }
 
 bool Enemy::IsAlive(){

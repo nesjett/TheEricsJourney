@@ -22,7 +22,7 @@ class Enemy: public Pawn {
         void ToggleTarget(bool Active);
 
     protected: 
-        list<sf::Text> HitText;
+        list<TText> HitText;
 
     private:
         SSprite* TargetMarker;
