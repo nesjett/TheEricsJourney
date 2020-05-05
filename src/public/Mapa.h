@@ -60,5 +60,7 @@ class Mapa
         int num_layers;
         int tamMapaX, tamMapaY, tamTileX, tamTileY;
         Engine* eng;
+        Texture textura_fondo_ventana;
+        Sprite sprite_fondo_ventana;
         void cargaMapa();
 };

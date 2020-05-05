@@ -154,10 +154,6 @@ void game::run(){
         else{
             vMapas[mapaActual]->render();
             for (Actor *actor : actors) {
-                if(dynamic_cast<Mejora*>(actor))
-                {
-                    cout << "cuidao" << endl;
-                }
                 actor->Draw(percentTick, delta);
             }
             Hud* hud = Hud::Instance();
