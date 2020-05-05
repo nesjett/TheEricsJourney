@@ -267,6 +267,9 @@ void Player::Attack(list<Enemy*> enemyList){
         }
     }
     sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
+    
+
+
     SetTarget(enemy);
 
     if(!enemy) { // FInish executing as no eligible enemy found

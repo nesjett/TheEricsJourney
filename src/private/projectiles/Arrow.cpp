@@ -1,6 +1,7 @@
 #include "../../public/projectiles/Arrow.h"
 #include <Tile.h>
-
+#include <stdlib.h> 
+#include <game.h> 
 
 Arrow::Arrow() : Projectile(){ // Use this to call to parent's contructor first
     targetFaction = enemy;
@@ -15,6 +16,8 @@ Arrow::Arrow(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
 }
 void Arrow::Init(){
     debug = true;
+    game *gi = game::Instance();
+    creationTime = gi->getTime();
     //movementSpeed = 0.65;
     movementSpeed = 0.2;
     damage = 20;
@@ -67,6 +70,21 @@ void Arrow::Update(float delta){
     if(!eng->getApp().getViewport(eng->getApp().getView()).contains(getInterpolatedPos().x, getInterpolatedPos().y)) {
         setLifespan(4.f);
     }
+
+    /*if(timer.getElapsedTime().asMilliseconds() > 1500) {
+        lastCollided = nullptr;
+    }*/
+    direction = direction;
+    Vector2f finalPos = Vector2f(direction.x*80,direction.y*80);
+    lastCollided = DirectionPrecheck(getInterpolatedPos(), finalPos, worldstatic);
+}
+
+void Arrow::Draw(double percent, double delta ) {
+    Projectile::Draw(percent, delta);
+    if(debug) {
+        Engine *eng = Engine::Instance();
+        eng->getApp().draw(movementTraceDebug);
+    }
 }
 
 
@@ -74,6 +92,8 @@ void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
     //Projectile::OnActorOverlap(otherActor); 
 
     if(dynamic_cast<Tile*>(otherActor)){
+        Engine *eng = Engine::Instance();
+
         Vector2f DirToOther = otherActor->getActorLocation() - getInterpolatedPos();
         float aux=sqrt(pow(DirToOther.x, 2)+pow(DirToOther.y, 2));
         DirToOther=Vector2f(DirToOther.x/aux,DirToOther.y/aux); // normalized direction to other actor
@@ -82,13 +102,57 @@ void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
 
         float dot = direction.x * DirToOther.x + direction.y * DirToOther.y; // dot product 
         //float det = direction.x * VerticalDown.x - direction.y * VerticalDown.y;
-        if(!lastCollided || lastCollided != otherActor) {
-            if(dot > 0.5 || dot < 0.5) {
+        if(lastCollided /*|| lastCollided != otherActor*/) {
+            timer.restart();
+            
+        
+            //if(dot > 0.5 || dot < -0.5) {
                 lastCollided = otherActor;
-                this->setDirection(Vector2f(-direction.x, direction.y));
+               
+                //this->setDirection(Vector2f(-direction.x, direction.y));
+                 
+            //}
+
+            // which side did it happen on?
+            if (abs(direction.x) < abs(direction.y)) {
+                if (direction.y > 0) { // bottom
+                    this->setDirection(Vector2f(direction.x, -direction.y));
+                    std::cout << "ARROW COLLIDE " << creationTime << " bottom" << std::endl;
+                } else { // top
+                    std::cout << "ARROW COLLIDE " << creationTime << " top top" << std::endl;
+                    this->setDirection(Vector2f(direction.x, -direction.y));
+                }
+            } else {
+                if (direction.x > 0) { // right
+                    this->setDirection(Vector2f(-direction.x, direction.y));
+                    std::cout << "ARROW COLLIDE " << creationTime << " right" << std::endl;
+                } else { // top
+                    this->setDirection(Vector2f(direction.x, -direction.y));
+                    std::cout << "ARROW COLLIDE " << creationTime << " top" << std::endl;
+                }
             }
         }
     }
+}
+
+
+Actor* Arrow::DirectionPrecheck(Vector2f InitialLocation, Vector2f FinalLocation, ObjectType type) {
+    game *gi = game::Instance();
+    FloatRect trace = FloatRect(Vector2f(InitialLocation.x, InitialLocation.y), 
+        Vector2f(FinalLocation.x,FinalLocation.y));
+
+    Actor* collide = gi->boxTraceByObjectType( trace, type );
+
+    if(debug) {
+        movementTraceDebug = sf::RectangleShape( Vector2f(trace.width,trace.height) );
+        // Show actor pre-movement trace box
+        movementTraceDebug.setPosition(trace.left,trace.top);
+        movementTraceDebug.setFillColor(sf::Color(0,0,0,0));
+        movementTraceDebug.setOutlineThickness(2.f);
+        movementTraceDebug.setOutlineColor(sf::Color(0, 200, 200));
+    }
+
+    return collide;
 }
 
 

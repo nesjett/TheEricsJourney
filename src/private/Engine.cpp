@@ -47,6 +47,27 @@ void Engine::setView(float centerY, float borderX)
     app.setView(vista);
 }
 
+RelativePosition Engine::FindCuadrant(sf::Vector2f Position1, sf::Vector2f Position2) {
+    if(Position2.x >= Position1.x) {
+        // we are in right side (cuadrants top-right and bottom -right)
+        if(Position2.y <= Position1.y){
+            // We are in top-right
+            return topright;
+        } else {
+            // we are in bottom-right
+            return bottomright;
+        }
+    } else {
+        // we are in left size (cuadrants top-left and bottom-left)
+        if(Position2.y <= Position1.y){
+            // We are in top-left
+            return topleft;
+        } else {
+            // we are in bottom-left
+            return bottomleft;
+        }
+    }
+}
 
 
 

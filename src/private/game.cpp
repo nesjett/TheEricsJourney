@@ -380,7 +380,6 @@ void game::SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot) {
         //unique_ptr<Cascade> t = make_unique<Cascade>(Location);
         Particles.push_back(make_unique<Fireball_Explosion>(Location));
         break;
-    
     default:
         break;
     }
