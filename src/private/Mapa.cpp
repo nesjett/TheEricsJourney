@@ -32,6 +32,28 @@ void Mapa::cargaMapa()
     mapa->QueryAttribute("tilewidth", &tamTileX);
     mapa->QueryAttribute("tileheight", &tamTileY);
 
+    float sierra, movX, movY;
+    XMLElement* propiedades = mapa->FirstChildElement("properties");
+    if(propiedades)
+    {
+        XMLElement* propiedad = propiedades->FirstChildElement("property");
+        while(propiedad)
+        {
+            if(strcmp(propiedad->Attribute("name"), strPropiedadSierra.c_str()) == 0)
+            {
+                sierra = stof(propiedad->Attribute("value"));
+            }
+            if(strcmp(propiedad->Attribute("name"), strPropiedadMovEnemyX.c_str()) == 0)
+            {
+                movX = stof(propiedad->Attribute("value"));
+            }
+            if(strcmp(propiedad->Attribute("name"), strPropiedadMovEnemyY.c_str()) == 0)
+            {
+                movY = stof(propiedad->Attribute("value"));
+            }
+            propiedad = propiedad->NextSiblingElement("property");
+        }
+    }
     //Cargar los sprites
     int numTileset = 0;
     XMLElement* tileset = mapa->FirstChildElement("tileset");
@@ -111,7 +133,9 @@ void Mapa::cargaMapa()
                     }
                     if(strcmp(layer->Attribute("name"), strCapaSierra.c_str()) == 0) //Objetos o trampas
                     {
-                        vTrampas.push_back(new Saw(Vector2f(posY,posX), 300.f));
+                        // if(vTrampas.size() == 1)
+                        //     sierra = sierra*3;
+                        vTrampas.push_back(new Saw(Vector2f(posY,posX), sierra*tamTileX));
                         posVTrampas++;
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaPuertas.c_str()) == 0) //Puertas (falta cambiarle el oType)
@@ -124,7 +148,7 @@ void Mapa::cargaMapa()
                     if(strcmp(layer->Attribute("name"), nombreCapaEnemigos2.c_str()) == 0) //Enemigostipo1
                     {
                         vEnemigos.push_back(new Movingenemy());
-                        dynamic_cast<Movingenemy*>(vEnemigos[posVEnemy])->Prepara(Vector2f(posY + tamTileY/2.f ,posX + tamTileX/2.f),Vector2f(posY + tamTileY/2.f + 50.f ,posX + tamTileX/2.f + 300.f));
+                        dynamic_cast<Movingenemy*>(vEnemigos[posVEnemy])->Prepara(Vector2f(posY + tamTileY/2.f ,posX + tamTileX/2.f), Vector2f((movY*tamTileY) + tamTileY/2.f ,(movX*tamTileX) + tamTileX/2.f));
                         posVEnemy++;
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaEnemigos1.c_str()) == 0) //Enemigostipo1
@@ -136,6 +160,12 @@ void Mapa::cargaMapa()
                     if(strcmp(layer->Attribute("name"), nombreCapaEnemigos3.c_str()) == 0) //Enemigostipo1
                     {
                         vEnemigos.push_back(new Explosionenemy());
+                        vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
+                        posVEnemy++;
+                    }
+                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos4.c_str()) == 0) //Enemigostipo1
+                    {
+                        vEnemigos.push_back(new Stalker());
                         vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
                         posVEnemy++;
                     }
@@ -215,9 +245,6 @@ list<Actor*> Mapa::getActors()
     {
         actores.push_back(enemy);
     }
-    Stalker *stalker = new Stalker();
-    stalker->setActorLocation(Vector2f(400.0,400.0));
-    actores.push_back(stalker);
     for (Mejora *mejora : listaMejoras)
     {
         actores.push_back(mejora);
