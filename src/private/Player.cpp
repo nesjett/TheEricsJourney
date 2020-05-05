@@ -249,6 +249,7 @@ void Player::Attack(list<Enemy*> enemyList){
     sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
     sf::Vector2f dirToEnemy = sf::Vector2f(0.f, 0.f);
     sf::Vector2f posEnemy = sf::Vector2f(0.f, 0.f);
+
     Enemy *enemy = nullptr;
 
 
@@ -256,19 +257,22 @@ void Player::Attack(list<Enemy*> enemyList){
         posEnemy = enemigo->getActorLocation();
         dirToEnemy_tmp = posEnemy-posPlayer;
         float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector
+        dirToEnemyParallelAux = sf::Vector2f(posEnemy.x-30, posEnemy.y-30)-getActorLocation();
         if(minDist == 0.f){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
+            dirToEnemyParallel = dirToEnemyParallelAux;
             enemy = enemigo;
         } else if(aux < minDist){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
+            dirToEnemyParallel = dirToEnemyParallelAux;
             enemy = enemigo;
         }
     }
+    auxParallel = sqrt(pow(dirToEnemyParallel.x, 2)+pow(dirToEnemyParallel.y, 2));
     sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
-    
-
+    dir_unitParallel = Vector2f(dirToEnemyParallel.x/auxParallel, dirToEnemyParallel.y/auxParallel);
 
     SetTarget(enemy);
 
@@ -289,17 +293,16 @@ void Player::Attack(list<Enemy*> enemyList){
 
 
     if(AttackImprovement >= 1){
-        Arrow *projTest1 = new Arrow(-dir_unit, posPlayer);
-        eng->Almacenaenemy(projTest1);
-        if(AttackImprovement >= 2/* && relojMejora.getElapsedTime().asSeconds()>2*/){
-            sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x, (getActorLocation().y-30));
-            Arrow *projTest2 = new Arrow(dir_unit, dobleFlecha);
-            eng->Almacenaenemy(projTest2);
-            //relojMejora.restart();
-            if(AttackImprovement >= 3){
+        Arrow *flechaTrasera1 = new Arrow(-dir_unit, posPlayer);
+        eng->Almacenaenemy(flechaTrasera1);
+        if(AttackImprovement >= 2){
+            sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y-30));
+            Arrow *flecha2 = new Arrow(dir_unit, dobleFlecha);
+            eng->Almacenaenemy(flecha2);
+            /*if(AttackImprovement >= 3){
                 Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha);
                 eng->Almacenaenemy(projTest3);
-            }
+            }*/
         }
     }
 }

@@ -114,6 +114,7 @@ void game::run(){
                 } 
             }
             ControladorJugador->Update(tecla);
+            ControladorJugador->Mover(tecla);
             if (tecla.type == sf::Event::MouseButtonReleased){
                 ControladorJugador->Frenar();
             }
