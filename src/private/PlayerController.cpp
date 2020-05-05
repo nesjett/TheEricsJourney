@@ -26,10 +26,12 @@ void PlayerController::Update(sf::Event event){
             if(GodMode==true){
                 setGodMode(false);
                 Godclock->restart();
+                std::cout<<"Modo Dios desactivado"<<std::endl;
             }
             else{
                 setGodMode(true);
                 Godclock->restart();
+                std::cout<<"Modo Dios activado"<<std::endl;
             }
         }
     }
