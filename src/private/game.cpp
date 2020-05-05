@@ -49,10 +49,10 @@ void game::InicializaNivel()
     }
 
 
-    if(mapaActual < 3) //HARDCODED: numero maximo de niveles es 3
+    if(mapaActual < 12) //HARDCODED: numero maximo de niveles es 3
     {
         //Cargamos el nivel
-        string nombreMapa = "MapaN"+to_string(mapaActual+1)+".tmx";
+        string nombreMapa = "Mapa"+to_string(mapaActual+1)+".tmx";
         vMapas.push_back(new Mapa(nombreMapa));
 
         //Cargamos las colisiones del nivel
