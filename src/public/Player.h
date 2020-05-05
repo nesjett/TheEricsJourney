@@ -25,6 +25,7 @@ class Player:  public Pawn{
         float getCurrentHealth();
         float getMaxHealth();
         void improvesAttack();
+        int DireccionPausa();
 
         void ToggleMovementIndicator();
         

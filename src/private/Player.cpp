@@ -134,7 +134,65 @@ void Player::PrepareSprite(){
 
     tmpA = new Animation(sprite->getSpriteR(),500, true);
     Animations.insert({"stop", tmpA});
-    tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)});
+
+    if(Target!=NULL){
+        if(DireccionPausa()==1){
+        tmpA->addFrame({sf::IntRect(0,2750,sizeX,sizeY)});
+        }
+        if(DireccionPausa()==2){
+        tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)});
+        }
+        if(DireccionPausa()==3){
+        tmpA->addFrame({sf::IntRect(1650,0,sizeX,sizeY)});
+        }
+        if(DireccionPausa()==4){
+       tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+        }
+    
+    }else{
+       tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)}); 
+    }
+
+    
+}
+
+int Player::DireccionPausa(){
+    Vector2f pos = Target->getActorLocation();
+    Vector2f pos_player =getActorLocation();
+    Vector2f dir = pos-pos_player;
+    float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
+    Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
+
+        auto angleRads = std::atan2(-dir_unit.y, dir_unit.x);
+    auto angleDegs = angleRads * 180.0 / M_PI;
+    if(angleDegs<0){
+      angleDegs=angleDegs+360; //los grados van de 0 a 180 y de 0 a -180, sumamos 360 para establecer cuadrantes segun los angulos
+    }
+
+    if((angleDegs<22.5 && angleDegs>=0) || (angleDegs>=337.5 && angleDegs<=0)){
+        return 1;//right
+    }
+    if(angleDegs<67.5 && angleDegs>=22.5){
+        return 1;//right
+    }
+    if(angleDegs<112.5 && angleDegs>=67.5){
+        return 2;//up
+    }
+    if(angleDegs<157.5 && angleDegs>=112.5){
+        return 3;//left
+    }
+    if(angleDegs<202.5 && angleDegs>=157.5){
+        return 3;//left
+    }
+    if(angleDegs<247.5 && angleDegs>=202.5){
+        return 3;//left
+    }
+    if(angleDegs<292.5 && angleDegs>=247.5){
+        return 4;//down
+    }
+    if(angleDegs<337.5 && angleDegs>=292.5){
+        return 1;//right
+    }
 }
 
 void Player::PrepareMovementIndicator() {
