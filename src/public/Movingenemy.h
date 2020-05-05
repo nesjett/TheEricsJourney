@@ -25,6 +25,7 @@ class Movingenemy: public Enemy{
         Vector2f ultimadir;
         bool para;
         sf::Clock relojMark;
+        sf::Clock relojPausa;
  
     private:
         string texture_file;

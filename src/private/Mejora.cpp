@@ -75,5 +75,8 @@ void Mejora::OnActorOverlap(Actor *otherActor){
             mejora->setLifespan(0.f);
             //mejora->pendingDelete=true;
         }
+        game *gi = game::Instance();
+        gi->SpawnEmitterAtLocation(2, getActorLocation(), Vector2f(0.f,0.f));
+        AudioManager::getInstance()->PlaySound2D("./resources/audio/health-improve.ogg");
     }
 }

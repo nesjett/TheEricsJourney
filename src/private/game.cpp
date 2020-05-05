@@ -4,6 +4,7 @@
 #include "../public/traps/Saw.h"
 #include "../public/particles/PlayerHit.h"
 #include "../public/particles/Fireball_Explosion.h"
+#include "../public/particles/EfectoMejora.h"
 
 #define UPDATE_INTERVAL (1000/35.0)
 
@@ -383,7 +384,9 @@ void game::SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot) {
         //unique_ptr<Cascade> t = make_unique<Cascade>(Location);
         Particles.push_back(make_unique<Fireball_Explosion>(Location));
         break;
-    
+    case 2: // Mejora
+        Particles.push_back(make_unique<EfectoMejora>(Location));
+        break;
     default:
         break;
     }
