@@ -23,5 +23,6 @@ class Arrow: public Projectile {
         sf::Clock timer;
         Actor* DirectionPrecheck(Vector2f InitialLocation, Vector2f FinalLocation, ObjectType type);
         sf::RectangleShape movementTraceDebug;
+        Actor *lastDamaged;
 
 };

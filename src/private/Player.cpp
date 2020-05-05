@@ -8,7 +8,7 @@ Player::Player(){ // Use this to call to parent's contructor first
 
     texture_file = "./resources/player.png";
     
-    debug = true;
+    debug = false;
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(0.f, 0.f);

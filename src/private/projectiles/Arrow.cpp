@@ -15,11 +15,11 @@ Arrow::Arrow(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
     activeAnim = Animations.find("IDLE")->second;
 }
 void Arrow::Init(){
-    debug = true;
+    debug = false;
     game *gi = game::Instance();
     creationTime = gi->getTime();
     //movementSpeed = 0.65;
-    movementSpeed = 0.2;
+    movementSpeed = 0.5;
     damage = 20;
 
     texture_file = "./resources/projectiles/fireball-512.png";
@@ -90,6 +90,13 @@ void Arrow::Draw(double percent, double delta ) {
 
 void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
     //Projectile::OnActorOverlap(otherActor); 
+
+    if(lastDamaged){
+        if (otherActor != lastDamaged && DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
+            otherActor->TakeDamage(damage, this, ProjectileName);
+            lastDamaged = otherActor;
+        }
+    }
 
     if(dynamic_cast<Tile*>(otherActor)){
         Engine *eng = Engine::Instance();
