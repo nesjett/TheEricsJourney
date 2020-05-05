@@ -107,26 +107,27 @@ void PlayerController::Frenar(/*sf::Keyboard::Key event*/){
 void PlayerController::setPlayer(Player* jugador){
     miJugador = jugador;
 }
-void PlayerController::setLista(list<Enemy*> listaEnemigos){
-    enemyList = listaEnemigos;
-}
 void PlayerController::MejorarCadencia(float mej){
     mejora*=mej;
 }
 void PlayerController::MejorarMovimiento(float mejMov){
     miJugador->movementSpeed*=mejMov;
 }
+void PlayerController::setLista(list<Enemy*> listaEnemigos){
+    enemyList = listaEnemigos;
+    miJugador->setLista(enemyList);
+}
 void PlayerController::setAttack(list<Enemy*> listaEnemigos){
     if (listaEnemigos.size() > 0){
+        setLista(listaEnemigos);
         if(miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f && miJugador->IsAlive()==true){
-            setLista(listaEnemigos);
             Attacks();
         }
     }
 }
 void PlayerController::Attacks(){
     if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora)){
-        miJugador->Attack(enemyList);
+        miJugador->Attack();
         relojAtaque.restart();
     }
 }

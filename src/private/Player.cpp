@@ -241,9 +241,8 @@ void Player::SetTarget(Enemy *NewTarget) {
     }
 }
 
-// Base to implement attacks. This should be on the base class and be overriden by the different enemies
-void Player::Attack(list<Enemy*> enemyList){
-    
+void Player::setLista(list<Enemy*> listaEnemigos){
+    enemyList = listaEnemigos;
     float minDist = 0.f;
     sf::Vector2f posPlayer = getActorLocation();
     sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
@@ -260,22 +259,27 @@ void Player::Attack(list<Enemy*> enemyList){
         if(minDist == 0.f){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
-            //dirToEnemyParallel = dirToEnemyParallelAux;
             enemy = enemigo;
         } else if(aux < minDist){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
-            //dirToEnemyParallel = dirToEnemyParallelAux;
             enemy = enemigo;
         }
     }
-    sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
+    dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
     SetTarget(enemy);
 
     if(!enemy) { // FInish executing as no eligible enemy found
         return;
     }
 
+}
+
+// Base to implement attacks. This should be on the base class and be overriden by the different enemies
+void Player::Attack(){
+    
+    sf::Vector2f posPlayer = getActorLocation();
+    //que empiece aqui
     game *eng = game::Instance();
     Arrow *projTest = new Arrow(dir_unit, posPlayer); 
     eng->Almacenaenemy(projTest);
