@@ -53,10 +53,14 @@ class Menu
 
         map<string, vector<Sprite*>> mapItemsMenu;
         void cargarMapaMenu();
-        void update();
+        bool updateRaton(Event event);
         string itemSeleccionado;
 
         Sprite *jugar, *jugarselecc, *salir, *salirselecc;
         Texture texJugar, texJugarselecc, texSalir, texSalirselecc;
         vector<Sprite*> vJugar, vSalir;
+
+        Sprite fondo;
+        Texture texFondo;
+        float separacionMenuPPal = 155;
 };

@@ -152,6 +152,7 @@ void Menu::draw()
         // {
         //     eng->getApp().draw(*menuInicial[i]);
         // }
+        eng->getApp().draw(fondo);
         map<string, vector<Sprite*>>::iterator it;
 
         for ( it = mapItemsMenu.begin(); it != mapItemsMenu.end(); it++)
@@ -178,7 +179,7 @@ void Menu::draw()
    
 bool Menu::update(sf::Event tecla)
 {
-    update();
+    return updateRaton(tecla);
     // //No necesitamos delta
     // if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
     // {
@@ -250,10 +251,10 @@ void Menu::cargarMapaMenu()
     Engine *eng = Engine::Instance();
     float posX = eng->getApp().getSize().x/2;
     float posY = eng->getApp().getSize().y/2;
-    jugar->setPosition(posX, posY);
-    jugarselecc->setPosition(posX, posY);
-    salir->setPosition(posX, posY + separacion);
-    salirselecc->setPosition(posX, posY + separacion);
+    jugar->setPosition(posX, posY + separacion+10);
+    jugarselecc->setPosition(posX, posY + separacion+10);
+    salir->setPosition(posX, posY + 10 +separacion*2);
+    salirselecc->setPosition(posX, posY + 10 + separacion*2);
 
     vJugar.push_back(jugar);
     vJugar.push_back(jugarselecc);
@@ -262,9 +263,13 @@ void Menu::cargarMapaMenu()
 
     mapItemsMenu.insert({"Jugar",vJugar});
     mapItemsMenu.insert({"Salir",vSalir});
+
+    texFondo.loadFromFile("./resources/menu/main_menu_bg.png");
+    fondo.setTexture(texFondo);
+    fondo.setPosition(0.f,0.f);
 }
 
-void Menu::update()
+bool Menu::updateRaton(Event event)
 {
     Engine *eng = Engine::Instance();
     Vector2i pos = sf::Mouse::getPosition(eng->getApp()); // mouse position in window coords
@@ -272,13 +277,33 @@ void Menu::update()
 
     map<string, vector<Sprite*>>::iterator it;
 
+    string itemSelecAnterior = itemSeleccionado;
+    itemSeleccionado = "";
     for ( it = mapItemsMenu.begin(); it != mapItemsMenu.end(); it++)
     {
-        // if(pos.x > it->second[1].getGlobalBounds().contains.left && pos.x < (it->second[1].getGlobalBounds().left + it->second[1].getGlobalBounds().width)
-        //     && pos.y > it->second[1].getGlobalBounds().top && pos.x < (it->second[1].getGlobalBounds().top + it->second[1].getGlobalBounds().height))
         if(it->second[0]->getGlobalBounds().contains(pos2))
         {
             itemSeleccionado = it->first;
+            if(itemSelecAnterior!=itemSeleccionado)
+                audioManager->play_menu_move();
         }
     }
+
+    if(event.type == sf::Event::MouseButtonPressed){
+        if(event.mouseButton.button == sf::Mouse::Left){
+            if(itemSeleccionado == "Jugar")
+            {
+                audioManager->play_menu_ok();
+                return true;
+            }
+            if(itemSeleccionado == "Salir")
+            {
+                audioManager->play_menu_ok();
+                Engine *eng = Engine::Instance();
+                eng->getApp().close();
+            }
+        }
+    }
+
+    return false;
 }
