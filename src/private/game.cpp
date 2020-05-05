@@ -112,6 +112,9 @@ void game::run(){
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 } 
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)){
+                    KillAllEnemies();
+                }
             }
             ControladorJugador->Update(tecla);
             ControladorJugador->Mover(tecla);
@@ -250,6 +253,14 @@ void game::run(){
         }
         
 
+    }
+}
+
+void game::KillAllEnemies() {
+    for (Actor *actor : actors) {
+        if ( dynamic_cast<Enemy*>( actor ) ) {
+            actor->setLifespan(0.f);
+        }
     }
 }
 
