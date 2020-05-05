@@ -67,13 +67,36 @@ void Movingenemy::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
 }
-
+/*
 void Movingenemy::Update(float delta){
     Enemy::Update(delta);
 
     Linealmove(x,y);
     
     Attack();
+}
+*/
+void Movingenemy::Update(float delta){
+    
+    
+    Enemy::Update(delta);
+    if(relojPausa.getElapsedTime().asSeconds()>3.0){
+        direction=Vector2f(0.f,0.f);
+        Attack();
+        
+        if(relojPausa.getElapsedTime().asSeconds()>5.0){
+
+            relojPausa.restart();
+            relojMark.restart();
+        }
+    }
+    else{
+        
+        direction=ultimadir;
+        Linealmove(x,y);
+    }
+    
+    
 }
 
 void Movingenemy::Draw(double percent, double delta ){
@@ -103,6 +126,7 @@ void Movingenemy::Linealmove(Vector2f pos1, Vector2f pos2){
 
     if(pos1.x==actor.x && pos1.y==actor.y){
         direction = dir_unit;
+        
     }
     else{
         if(aux2<10){
@@ -113,7 +137,7 @@ void Movingenemy::Linealmove(Vector2f pos1, Vector2f pos2){
         }
     }
     
-    
+    ultimadir=direction;
 }
 
 
@@ -130,7 +154,7 @@ bool Movingenemy::Attack(){
    float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
    Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
    
-   if(relojMark.getElapsedTime().asSeconds()>5.0){
+   if(relojMark.getElapsedTime().asSeconds()>4.0){
        
         //projTest->direction=Vector2f(dir_unit);
         //projTest->setActorLocation(pos);
