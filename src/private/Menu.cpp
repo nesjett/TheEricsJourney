@@ -153,6 +153,7 @@ void Menu::draw()
         //     eng->getApp().draw(*menuInicial[i]);
         // }
         eng->getApp().draw(fondo);
+        eng->getApp().draw(logoLetras);
         map<string, vector<Sprite*>>::iterator it;
 
         for ( it = mapItemsMenu.begin(); it != mapItemsMenu.end(); it++)
@@ -251,10 +252,10 @@ void Menu::cargarMapaMenu()
     Engine *eng = Engine::Instance();
     float posX = eng->getApp().getSize().x/2;
     float posY = eng->getApp().getSize().y/2;
-    jugar->setPosition(posX, posY + separacion+10);
-    jugarselecc->setPosition(posX, posY + separacion+10);
-    salir->setPosition(posX, posY + 10 +separacion*2);
-    salirselecc->setPosition(posX, posY + 10 + separacion*2);
+    jugar->setPosition(posX, posY + separacionMenuPPal);
+    jugarselecc->setPosition(posX, posY + separacionMenuPPal);
+    salir->setPosition(posX, posY + separacionMenuPPal*2);
+    salirselecc->setPosition(posX, posY + separacionMenuPPal*2);
 
     vJugar.push_back(jugar);
     vJugar.push_back(jugarselecc);
@@ -267,6 +268,12 @@ void Menu::cargarMapaMenu()
     texFondo.loadFromFile("./resources/menu/main_menu_bg.png");
     fondo.setTexture(texFondo);
     fondo.setPosition(0.f,0.f);
+    texLogoLetras.loadFromFile("./resources/menu/logoletras.png");
+    logoLetras.setTexture(texLogoLetras);
+    logoLetras.setScale(0.1,0.1);
+    logoLetras.setOrigin(salirselecc->getGlobalBounds().width/2,salirselecc->getGlobalBounds().height/2);
+    logoLetras.setPosition(posX - 150.f, 10.f);
+
 }
 
 bool Menu::updateRaton(Event event)

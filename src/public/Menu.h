@@ -62,5 +62,7 @@ class Menu
 
         Sprite fondo;
         Texture texFondo;
-        float separacionMenuPPal = 155;
+        Sprite logoLetras;
+        Texture texLogoLetras;
+        float separacionMenuPPal = 150;
 };
