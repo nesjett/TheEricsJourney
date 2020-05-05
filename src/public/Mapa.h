@@ -49,6 +49,7 @@ class Mapa
         string nombreCapaEnemigos1 = "enemigos1";
         string nombreCapaEnemigos2 = "enemigos2";
         string nombreCapaEnemigos3 = "enemigos3";
+        string nombreCapaEnemigos4 = "enemigos4";
         string nombreCapaSuelo = "suelo";
         string strCapaPinchos = "pinchos";
         string strCapaSierra = "sierra";
@@ -56,6 +57,9 @@ class Mapa
         string strCapaPowerMov = "mejoraMovimiento";
         string strCapaPowerCadencia = "mejoraCadencia";
         string strCapaPowerAtaque= "mejoraAtaque";
+        string strPropiedadSierra = "LongitudSierra";
+        string strPropiedadMovEnemyX = "MovingEnemyFinalPosX";
+        string strPropiedadMovEnemyY = "MovingEnemyFinalPosY";
 
         int num_layers;
         int tamMapaX, tamMapaY, tamTileX, tamTileY;
