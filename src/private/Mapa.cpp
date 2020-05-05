@@ -40,6 +40,10 @@ void Mapa::cargaMapa()
         tileset = tileset->NextSiblingElement("tileset");
     }
 
+    textura_fondo_ventana.loadFromFile("./resources/maps/tiles/fondoExterior.png");
+    sprite_fondo_ventana.setTexture(textura_fondo_ventana);
+    sprite_fondo_ventana.setPosition(-189.f, -100.f);
+    vectorPintar2.push_back(sprite_fondo_ventana);
     vector<sf::Texture*> vectorTextura;
     vector<sf::Sprite*> vectorSprite;
     for(int i=0; i<numTileset;i++)
@@ -163,6 +167,7 @@ void Mapa::cargaMapa()
                     {
                         if(valor <= vectorSprite.size())
                         {
+                            vectorSprite[valor-1]->setPosition(posY, posX);
                             vectorPintar2.push_back(*vectorSprite[valor-1]);
                             vPosX.push_back(posX);
                             vPosY.push_back(posY);
@@ -181,16 +186,16 @@ void Mapa::cargaMapa()
         layer = layer->NextSiblingElement("layer");
     }
     //Seteamos posiciones
-    vector<Sprite>::iterator j;
-    vector<int>::iterator x = vPosX.begin();
-    vector<int>::iterator y = vPosY.begin();
-    for(j = vectorPintar2.begin(); j != vectorPintar2.end(); j++)
-    {
-        //(*j).setOrigin(80/2,80/2);
-        (*j).setPosition(*y,*x);
-        x++;
-        y++;
-    }
+    // vector<Sprite>::iterator j;
+    // vector<int>::iterator x = vPosX.begin();
+    // vector<int>::iterator y = vPosY.begin();
+    // for(j = vectorPintar2.begin(); j != vectorPintar2.end(); j++)
+    // {
+    //     //(*j).setOrigin(80/2,80/2);
+    //     (*j).setPosition(*y,*x);
+    //     x++;
+    //     y++;
+    // }
 }
 
 list<Actor*> Mapa::getActors()
