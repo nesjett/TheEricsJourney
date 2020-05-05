@@ -64,8 +64,8 @@ class game
     private:
         static game* pInstance;
         Engine* eng;
-        int largo = 1080;
-        int alto = 720;
+        int largo = 1920;
+        int alto = 1080;
 
         // List of active actors to update/render
         list<Actor*> actors;
@@ -87,6 +87,7 @@ class game
         float lastUpdateLevelClock;
         void CondicionVictoria();
         void EndGame();
+        void KillAllEnemies();
 };
 
 #endif // GAME_H

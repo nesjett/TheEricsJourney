@@ -21,6 +21,20 @@ void PlayerController::Update(sf::Event event){
     if(event.key.code == sf::Keyboard::O){
         ImprovesAttack();
     }
+    if(event.key.code == sf::Keyboard::G){
+        if(Godclock->getElapsedTime().asSeconds()>1.5){
+            if(GodMode==true){
+                setGodMode(false);
+                Godclock->restart();
+                std::cout<<"Modo Dios desactivado"<<std::endl;
+            }
+            else{
+                setGodMode(true);
+                Godclock->restart();
+                std::cout<<"Modo Dios activado"<<std::endl;
+            }
+        }
+    }
     /**
      * MOUSE IMPLEMENTATION
      **/
@@ -30,6 +44,10 @@ void PlayerController::Update(sf::Event event){
         }
     }
     
+}
+void PlayerController::setGodMode(bool god){
+    miJugador->setGodMode(god);
+    GodMode=god;
 }
 void PlayerController::Mover(sf::Event event){
     /*
@@ -91,26 +109,27 @@ void PlayerController::Frenar(/*sf::Keyboard::Key event*/){
 void PlayerController::setPlayer(Player* jugador){
     miJugador = jugador;
 }
-void PlayerController::setLista(list<Enemy*> listaEnemigos){
-    enemyList = listaEnemigos;
-}
 void PlayerController::MejorarCadencia(float mej){
     mejora*=mej;
 }
 void PlayerController::MejorarMovimiento(float mejMov){
     miJugador->movementSpeed*=mejMov;
 }
+void PlayerController::setLista(list<Enemy*> listaEnemigos){
+    enemyList = listaEnemigos;
+    miJugador->setLista(enemyList);
+}
 void PlayerController::setAttack(list<Enemy*> listaEnemigos){
     if (listaEnemigos.size() > 0){
+        setLista(listaEnemigos);
         if(miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f && miJugador->IsAlive()==true){
-            setLista(listaEnemigos);
             Attacks();
         }
     }
 }
 void PlayerController::Attacks(){
     if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora)){
-        miJugador->Attack(enemyList);
+        miJugador->Attack();
         relojAtaque.restart();
     }
 }

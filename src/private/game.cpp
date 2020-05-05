@@ -4,6 +4,7 @@
 #include "../public/traps/Saw.h"
 #include "../public/particles/PlayerHit.h"
 #include "../public/particles/Fireball_Explosion.h"
+#include "../public/particles/EfectoMejora.h"
 
 #define UPDATE_INTERVAL (1000/25.0)
 
@@ -49,10 +50,10 @@ void game::InicializaNivel()
     }
 
 
-    if(mapaActual < 3) //HARDCODED: numero maximo de niveles es 3
+    if(mapaActual < 12) //HARDCODED: numero maximo de niveles es 3
     {
         //Cargamos el nivel
-        string nombreMapa = "MapaN"+to_string(mapaActual+1)+".tmx";
+        string nombreMapa = "Mapa"+to_string(mapaActual+1)+".tmx";
         vMapas.push_back(new Mapa(nombreMapa));
 
         //Cargamos las colisiones del nivel
@@ -112,6 +113,9 @@ void game::run(){
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 } 
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)){
+                    KillAllEnemies();
+                }
             }
             ControladorJugador->Update(tecla);
             ControladorJugador->Mover(tecla);
@@ -250,6 +254,14 @@ void game::run(){
     }
 }
 
+void game::KillAllEnemies() {
+    for (Actor *actor : actors) {
+        if ( dynamic_cast<Enemy*>( actor ) ) {
+            actor->setLifespan(0.f);
+        }
+    }
+}
+
 list<Enemy*> game::getAllEnemies(){
     list<Enemy*> tmp;
     Enemy* tmpE = NULL;
@@ -380,6 +392,9 @@ void game::SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot) {
     case 1: // Explosion
         //unique_ptr<Cascade> t = make_unique<Cascade>(Location);
         Particles.push_back(make_unique<Fireball_Explosion>(Location));
+        break;
+    case 2: // Mejora
+        Particles.push_back(make_unique<EfectoMejora>(Location));
         break;
     default:
         break;

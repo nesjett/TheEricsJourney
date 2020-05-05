@@ -24,6 +24,7 @@ class PlayerController:  public Controller{
         void IncreaseHealth();
         float getCurrentHealth();
         float getMaxHealth();
+        void setGodMode(bool);
 
     protected:
         virtual ~PlayerController(); 
@@ -35,4 +36,6 @@ class PlayerController:  public Controller{
         float mejora = 1.f;
         bool Moverse = false;
         bool stop = true;
+        sf::Clock *Godclock=new sf::Clock();
+        bool GodMode = false;
 };
