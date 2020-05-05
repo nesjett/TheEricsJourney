@@ -19,6 +19,7 @@ Menu::Menu()
 
     cargarFuente();
     cargarMenu();
+    cargarMapaMenu();
     cambiaColorItems();
     audioManager = AudioManager::getInstance();
     audioManager->menu();
@@ -146,10 +147,24 @@ void Menu::draw()
     Engine *eng = Engine::Instance();
     if(mostrarMenu == true)
     {
-        eng->getApp().draw(*logo);
-        for(int i=0;i<numItems;i++)
+        // eng->getApp().draw(*logo);
+        // for(int i=0;i<numItems;i++)
+        // {
+        //     eng->getApp().draw(*menuInicial[i]);
+        // }
+        map<string, vector<Sprite*>>::iterator it;
+
+        for ( it = mapItemsMenu.begin(); it != mapItemsMenu.end(); it++)
         {
-            eng->getApp().draw(*menuInicial[i]);
+            if(it->first == itemSeleccionado)
+            {
+                eng->getApp().draw(*(it->second[1]));
+            }else
+            {
+                eng->getApp().draw(*(it->second[0]));
+            }
+            
+
         }
     }
     else{
@@ -163,51 +178,107 @@ void Menu::draw()
    
 bool Menu::update(sf::Event tecla)
 {
-    //No necesitamos delta
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-    {
-        audioManager->play_menu_ok();
-        if(actual == 0)
-        {
-            audioManager->menu();
-            return true;
-        }
-        else{
-            Engine *eng = Engine::Instance();
-            eng->getApp().close();
-        }
-    }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
-        if(mostrarMenu == true)
-        {
-            if(actual>0)
-            {
-                actual--;
-                audioManager->play_menu_move();
-            }
-        }
+    update();
+    // //No necesitamos delta
+    // if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+    // {
+    //     audioManager->play_menu_ok();
+    //     if(actual == 0)
+    //     {
+    //         audioManager->menu();
+    //         return true;
+    //     }
+    //     else{
+    //         Engine *eng = Engine::Instance();
+    //         eng->getApp().close();
+    //     }
+    // }
+    // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    // {
+    //     if(mostrarMenu == true)
+    //     {
+    //         if(actual>0)
+    //         {
+    //             actual--;
+    //             audioManager->play_menu_move();
+    //         }
+    //     }
 
 
-    }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        if(mostrarMenu == true)
-        {
-            if(actual<(numItems-1))
-            {
-                actual++;
-                audioManager->play_menu_move();
-            }
+    // }
+    // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    // {
+    //     if(mostrarMenu == true)
+    //     {
+    //         if(actual<(numItems-1))
+    //         {
+    //             actual++;
+    //             audioManager->play_menu_move();
+    //         }
 
-        }
-    }
+    //     }
+    // }
 
-    if(mostrarMenu == false)
-        actual = itemsMnuFinal.size()-1;
-    cambiaColorItems();
+    // if(mostrarMenu == false)
+    //     actual = itemsMnuFinal.size()-1;
+    // cambiaColorItems();
     return false;
 }
 
 
 
+//Nuevos metodos
+void Menu::cargarMapaMenu()
+{
+
+    jugar = new Sprite();
+    jugarselecc = new Sprite();
+    salir = new Sprite();
+    salirselecc = new Sprite();
+    texJugar.loadFromFile("./resources/menu/jugar.png");
+    texJugarselecc.loadFromFile("./resources/menu/jugarselecc.png");
+    texSalir.loadFromFile("./resources/menu/salir.png");
+    texSalirselecc.loadFromFile("./resources/menu/salirselecc.png");
+    jugar->setTexture(texJugar);
+    jugarselecc->setTexture(texJugarselecc);
+    salir->setTexture(texSalir);
+    salirselecc->setTexture(texSalirselecc);
+    jugar->setOrigin(jugar->getGlobalBounds().width/2,jugar->getGlobalBounds().height/2);
+    jugarselecc->setOrigin(jugarselecc->getGlobalBounds().width/2,jugarselecc->getGlobalBounds().height/2);
+    salir->setOrigin(salir->getGlobalBounds().width/2,salir->getGlobalBounds().height/2);
+    salirselecc->setOrigin(salirselecc->getGlobalBounds().width/2,salirselecc->getGlobalBounds().height/2);
+    Engine *eng = Engine::Instance();
+    float posX = eng->getApp().getSize().x/2;
+    float posY = eng->getApp().getSize().y/2;
+    jugar->setPosition(posX, posY);
+    jugarselecc->setPosition(posX, posY);
+    salir->setPosition(posX, posY + separacion);
+    salirselecc->setPosition(posX, posY + separacion);
+
+    vJugar.push_back(jugar);
+    vJugar.push_back(jugarselecc);
+    vSalir.push_back(salir);
+    vSalir.push_back(salirselecc);
+
+    mapItemsMenu.insert({"Jugar",vJugar});
+    mapItemsMenu.insert({"Salir",vSalir});
+}
+
+void Menu::update()
+{
+    Engine *eng = Engine::Instance();
+    Vector2i pos = sf::Mouse::getPosition(eng->getApp()); // mouse position in window coords
+    Vector2f pos2 = eng->getApp().mapPixelToCoords(pos, eng->getApp().getView());
+
+    map<string, vector<Sprite*>>::iterator it;
+
+    for ( it = mapItemsMenu.begin(); it != mapItemsMenu.end(); it++)
+    {
+        // if(pos.x > it->second[1].getGlobalBounds().contains.left && pos.x < (it->second[1].getGlobalBounds().left + it->second[1].getGlobalBounds().width)
+        //     && pos.y > it->second[1].getGlobalBounds().top && pos.x < (it->second[1].getGlobalBounds().top + it->second[1].getGlobalBounds().height))
+        if(it->second[0]->getGlobalBounds().contains(pos2))
+        {
+            itemSeleccionado = it->first;
+        }
+    }
+}
