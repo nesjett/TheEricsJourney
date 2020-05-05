@@ -22,7 +22,8 @@ class Movingenemy: public Enemy{
         void PrepareSprite();
         Vector2f x;
         Vector2f y;
-
+        Vector2f ultimadir;
+        bool para;
         sf::Clock relojMark;
  
     private:

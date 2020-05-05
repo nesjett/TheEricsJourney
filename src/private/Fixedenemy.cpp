@@ -46,29 +46,10 @@ void Fixedenemy::PrepareSprite(){
     Animation *tmpA;
 
     tmpA = new Animation(sprite->getSpriteR(),1500, true);
-    Animations.insert({"up", tmpA});
+    Animations.insert({"stop", tmpA});
     tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(0,500,sizeX,sizeY)});
 
-    
- 
-    tmpA = new Animation(sprite->getSpriteR(),1500, true);
-    Animations.insert({"right", tmpA});
-    tmpA->addFrame({sf::IntRect(376,0,-sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(376,500,-sizeX,sizeY)});
-    
-
-    tmpA = new Animation(sprite->getSpriteR(),1500, true);
-    Animations.insert({"left", tmpA});
-    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,500,sizeX,sizeY)});
-    
-
-    
-    tmpA = new Animation(sprite->getSpriteR(),1500, true);
-    Animations.insert({"down", tmpA});
-    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,500,sizeX,sizeY)});
 }
 
 void Fixedenemy::Update(float delta){

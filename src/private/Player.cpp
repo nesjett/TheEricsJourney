@@ -52,7 +52,7 @@ void Player::PrepareSprite(){
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    sprite->setScale( 0.15,0.15 );
+    sprite->setScale( 0.13,0.13 );
     
     
     Animation *tmpA;
@@ -131,6 +131,10 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(0,2200,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550,2200,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(1100,2200,sizeX,sizeY)});
+
+    tmpA = new Animation(sprite->getSpriteR(),500, true);
+    Animations.insert({"stop", tmpA});
+    tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)});
 }
 
 void Player::PrepareMovementIndicator() {
@@ -241,6 +245,7 @@ void Player::Attack(list<Enemy*> enemyList){
     sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
     sf::Vector2f dirToEnemy = sf::Vector2f(0.f, 0.f);
     sf::Vector2f posEnemy = sf::Vector2f(0.f, 0.f);
+
     Enemy *enemy = nullptr;
 
 
@@ -248,17 +253,23 @@ void Player::Attack(list<Enemy*> enemyList){
         posEnemy = enemigo->getActorLocation();
         dirToEnemy_tmp = posEnemy-posPlayer;
         float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector
+        dirToEnemyParallelAux = sf::Vector2f(posEnemy.x-30, posEnemy.y-30)-getActorLocation();
         if(minDist == 0.f){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
+            dirToEnemyParallel = dirToEnemyParallelAux;
             enemy = enemigo;
         } else if(aux < minDist){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
+            dirToEnemyParallel = dirToEnemyParallelAux;
             enemy = enemigo;
         }
     }
+    auxParallel = sqrt(pow(dirToEnemyParallel.x, 2)+pow(dirToEnemyParallel.y, 2));
     sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
+    dir_unitParallel = Vector2f(dirToEnemyParallel.x/auxParallel, dirToEnemyParallel.y/auxParallel);
+
     SetTarget(enemy);
 
     if(!enemy) { // FInish executing as no eligible enemy found
@@ -278,17 +289,16 @@ void Player::Attack(list<Enemy*> enemyList){
 
 
     if(AttackImprovement >= 1){
-        Arrow *projTest1 = new Arrow(-dir_unit, posPlayer);
-        eng->Almacenaenemy(projTest1);
-        if(AttackImprovement >= 2/* && relojMejora.getElapsedTime().asSeconds()>2*/){
-            sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x, (getActorLocation().y-30));
-            Arrow *projTest2 = new Arrow(dir_unit, dobleFlecha);
-            eng->Almacenaenemy(projTest2);
-            //relojMejora.restart();
-            if(AttackImprovement >= 3){
+        Arrow *flechaTrasera1 = new Arrow(-dir_unit, posPlayer);
+        eng->Almacenaenemy(flechaTrasera1);
+        if(AttackImprovement >= 2){
+            sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y-30));
+            Arrow *flecha2 = new Arrow(dir_unit, dobleFlecha);
+            eng->Almacenaenemy(flecha2);
+            /*if(AttackImprovement >= 3){
                 Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha);
                 eng->Almacenaenemy(projTest3);
-            }
+            }*/
         }
     }
 }
