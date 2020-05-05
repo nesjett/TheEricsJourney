@@ -27,6 +27,7 @@ class Player:  public Pawn{
         void improvesAttack();
 
         void ToggleMovementIndicator();
+        void setGodMode(bool);
         
 
     protected:
@@ -45,5 +46,6 @@ class Player:  public Pawn{
         float auxParallel = 0.f;
         sf::Vector2f dir_unitParallel;
         SSprite *MovementIndicator;
+        bool GodMode = false;
         
 };

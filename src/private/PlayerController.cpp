@@ -21,6 +21,18 @@ void PlayerController::Update(sf::Event event){
     if(event.key.code == sf::Keyboard::O){
         ImprovesAttack();
     }
+    if(event.key.code == sf::Keyboard::G){
+        if(Godclock->getElapsedTime().asSeconds()>1.5){
+            if(GodMode==true){
+                setGodMode(false);
+                Godclock->restart();
+            }
+            else{
+                setGodMode(true);
+                Godclock->restart();
+            }
+        }
+    }
     /**
      * MOUSE IMPLEMENTATION
      **/
@@ -30,6 +42,10 @@ void PlayerController::Update(sf::Event event){
         }
     }
     
+}
+void PlayerController::setGodMode(bool god){
+    miJugador->setGodMode(god);
+    GodMode=god;
 }
 void PlayerController::Mover(sf::Event event){
     /*

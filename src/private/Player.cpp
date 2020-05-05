@@ -191,7 +191,7 @@ void Player::Update(float delta){
 }
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     std::cout << "Player toke damage!" << std::endl; 
-    if(health_Current > 0){ // Only apply damage if the enemy is alive.
+    if(health_Current > 0&&GodMode==false){ // Only apply damage if the enemy is alive.
         health_Current-=damage;
         if(IsAlive() == false){
             Die();
@@ -202,6 +202,10 @@ void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
             AudioManager::getInstance()->PlaySound2D("./resources/audio/hit.ogg");
         }
     }
+}
+
+void Player::setGodMode(bool god){
+    GodMode = god;
 }
 
 bool Player::IsAlive(){
@@ -295,10 +299,10 @@ void Player::Attack(list<Enemy*> enemyList){
             sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y-30));
             Arrow *flecha2 = new Arrow(dir_unit, dobleFlecha);
             eng->Almacenaenemy(flecha2);
-            /*if(AttackImprovement >= 3){
+            if(AttackImprovement >= 3){
                 Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha);
                 eng->Almacenaenemy(projTest3);
-            }*/
+            }
         }
     }
 }
