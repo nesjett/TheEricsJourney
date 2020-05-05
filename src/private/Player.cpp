@@ -242,7 +242,6 @@ void Player::SetTarget(Enemy *NewTarget) {
 }
 
 void Player::setLista(list<Enemy*> listaEnemigos){
-    enemyList = listaEnemigos;
     float minDist = 0.f;
     sf::Vector2f posPlayer = getActorLocation();
     sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
@@ -252,7 +251,7 @@ void Player::setLista(list<Enemy*> listaEnemigos){
     Enemy *enemy = nullptr;
 
 
-    for (Enemy *enemigo : enemyList){
+    for (Enemy *enemigo : listaEnemigos){
         posEnemy = enemigo->getActorLocation();
         dirToEnemy_tmp = posEnemy-posPlayer;
         float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector
