@@ -12,7 +12,7 @@ void PlayerController::Update(sf::Event event){
         MejorarCadencia(0.9);
     }
     if(event.key.code == sf::Keyboard::V){
-        MejorarMovimiento(1.08);
+        MejorarMovimiento(1.1);
     }
     if(event.key.code == sf::Keyboard::P){
         IncreaseHealth();
@@ -29,7 +29,6 @@ void PlayerController::Update(sf::Event event){
             stop=false;
         }
     }
-    Mover(event);
     
 }
 void PlayerController::Mover(sf::Event event){
@@ -69,7 +68,6 @@ void PlayerController::Mover(sf::Event event){
         Vector2f newDir = Vector2f(pos2.x, pos2.y) - PlayerLoc; // Determine direction
         float aux=sqrt(pow(newDir.x, 2)+pow(newDir.y, 2));
         Vector2f dir_unit=Vector2f(newDir.x/aux,newDir.y/aux); // convert to unit vector
-        puntoRaton = pos2;
         miJugador->setDirection(dir_unit.x, dir_unit.y); // apply direction
     }
 }
@@ -103,9 +101,11 @@ void PlayerController::MejorarMovimiento(float mejMov){
     miJugador->movementSpeed*=mejMov;
 }
 void PlayerController::setAttack(list<Enemy*> listaEnemigos){
-    if(miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f && miJugador->IsAlive()==true){
-        setLista(listaEnemigos);
-        Attacks();
+    if (listaEnemigos.size() > 0){
+        if(miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f && miJugador->IsAlive()==true){
+            setLista(listaEnemigos);
+            Attacks();
+        }
     }
 }
 void PlayerController::Attacks(){

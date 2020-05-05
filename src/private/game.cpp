@@ -50,10 +50,10 @@ void game::InicializaNivel()
     }
 
 
-    if(mapaActual < 3) //HARDCODED: numero maximo de niveles es 3
+    if(mapaActual < 12) //HARDCODED: numero maximo de niveles es 3
     {
         //Cargamos el nivel
-        string nombreMapa = "MapaN"+to_string(mapaActual+1)+".tmx";
+        string nombreMapa = "Mapa"+to_string(mapaActual+1)+".tmx";
         vMapas.push_back(new Mapa(nombreMapa));
 
         //Cargamos las colisiones del nivel
@@ -113,8 +113,12 @@ void game::run(){
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 } 
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)){
+                    KillAllEnemies();
+                }
             }
             ControladorJugador->Update(tecla);
+            ControladorJugador->Mover(tecla);
             if (tecla.type == sf::Event::MouseButtonReleased){
                 ControladorJugador->Frenar();
             }
@@ -155,10 +159,6 @@ void game::run(){
         else{
             vMapas[mapaActual]->render();
             for (Actor *actor : actors) {
-                if(dynamic_cast<Mejora*>(actor))
-                {
-                    cout << "cuidao" << endl;
-                }
                 actor->Draw(percentTick, delta);
             }
             Hud* hud = Hud::Instance();
@@ -250,6 +250,14 @@ void game::run(){
         }
         
 
+    }
+}
+
+void game::KillAllEnemies() {
+    for (Actor *actor : actors) {
+        if ( dynamic_cast<Enemy*>( actor ) ) {
+            actor->setLifespan(0.f);
+        }
     }
 }
 

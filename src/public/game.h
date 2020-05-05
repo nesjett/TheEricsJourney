@@ -87,6 +87,7 @@ class game
         float lastUpdateLevelClock;
         void CondicionVictoria();
         void EndGame();
+        void KillAllEnemies();
 };
 
 #endif // GAME_H

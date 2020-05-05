@@ -38,9 +38,12 @@ class Player:  public Pawn{
         void PrepareMovementIndicator();
         string texture_file;
         int AttackImprovement;
-        sf::Clock relojMejora;
         Enemy *Target;
         int LastAttack; // Used to select the sound to play for shooting
+        sf::Vector2f dirToEnemyParallel;
+        sf::Vector2f dirToEnemyParallelAux;
+        float auxParallel = 0.f;
+        sf::Vector2f dir_unitParallel;
         SSprite *MovementIndicator;
         
 };
