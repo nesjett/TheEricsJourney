@@ -64,7 +64,7 @@ void Mapa::cargaMapa()
 
     textura_fondo_ventana.loadFromFile("./resources/maps/tiles/fondoExterior.png");
     sprite_fondo_ventana.setTexture(textura_fondo_ventana);
-    sprite_fondo_ventana.setPosition(-189.f, -100.f);
+    sprite_fondo_ventana.setPosition(-610.f, -100.f);
     vectorPintar2.push_back(sprite_fondo_ventana);
     vector<sf::Texture*> vectorTextura;
     vector<sf::Sprite*> vectorSprite;
