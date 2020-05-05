@@ -55,6 +55,10 @@ class Hud
         int vecesMejora2 = 0;
         int vecesMejora3 = 0;
         int vecesMejora4 = 0;
+        Texture *tx1 = new Texture();
+        Texture *tx2 = new Texture();
+        Texture *tx3 = new Texture();
+        Texture *tx4 = new Texture();
         vector<Sprite*> spritesMejoras;
         vector<Texture> texturasMejoras;
 
