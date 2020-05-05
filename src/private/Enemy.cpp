@@ -25,6 +25,16 @@ void Enemy::Draw(double percent, double delta ){
         TargetMarker->Draw();
     }
 
+
+    // Draw hit text data
+    for (sf::Text txt : HitText) {
+        
+            // TODO: SHould create a child class from sf::Text for adding Draw() 
+            Engine *eng = Engine::Instance();
+            eng->getApp().draw(txt);
+        
+    }
+
     Pawn::Draw(percent, delta);
 }
 
@@ -40,6 +50,10 @@ void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
             AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_hit.ogg");
         }
     }
+}
+
+void Enemy::ApplyHitEffects(string effect) {
+
 }
 
 bool Enemy::IsAlive(){

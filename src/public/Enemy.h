@@ -2,6 +2,7 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 #include <Pawn.h>
+#include <list>
 
 using namespace std;
 using namespace sf;
@@ -16,8 +17,12 @@ class Enemy: public Pawn {
         void Update(float delta);
         void Draw(double percent, double delta );
         void OnActorOverlap(Actor *otherActor);
+        void ApplyHitEffects(string effect);
 
         void ToggleTarget(bool Active);
+
+    protected: 
+        list<sf::Text> HitText;
 
     private:
         SSprite* TargetMarker;
