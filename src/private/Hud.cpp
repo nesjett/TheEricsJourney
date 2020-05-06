@@ -39,10 +39,10 @@ Hud::Hud()
     {
         spritesMejoras.push_back(new Sprite);
     }
-    Texture *tx1 = new Texture();
-    Texture *tx2 = new Texture();
-    Texture *tx3 = new Texture();
-    Texture *tx4 = new Texture();
+    // Texture *tx1 = new Texture();
+    // Texture *tx2 = new Texture();
+    // Texture *tx3 = new Texture();
+    // Texture *tx4 = new Texture();
     tx1->loadFromFile("./resources/powerups/0.png");
     tx2->loadFromFile("./resources/powerups/1.png");
     tx3->loadFromFile("./resources/powerups/2.png");
@@ -129,7 +129,12 @@ void Hud::addMejora(PowerUpType tipo)
  {
     setCurrentHealth(jugador->getCurrentHealth());
     list<Enemy*> enemigos = game::Instance()->getAllEnemies();
-    enemyHealthBars.erase(enemyHealthBars.begin(), enemyHealthBars.end());
+    vector<RectangleShape*>::iterator it;
+    for(it = enemyHealthBars.begin(); it != enemyHealthBars.end(); it++)
+    {
+        delete *it;
+    }
+    //enemyHealthBars.erase(enemyHealthBars.begin(), enemyHealthBars.end());
     enemyHealthBars.clear();
     int i = 0;
     for (Enemy *enemigo : enemigos) {
@@ -158,6 +163,11 @@ void Hud::Draw()
     //Barra de vida del jugador con borde
     playerHealth.setPosition(Vector2f(jugador->getInterpolatedPos().x, jugador->getInterpolatedPos().y - 50));
     //cuadraditos.erase(cuadraditos.begin(),cuadraditos.end());
+    vector<RectangleShape*>::iterator it;
+    for(it = cuadraditos.begin(); it != cuadraditos.end(); it++)
+    {
+        delete *it;
+    }
     cuadraditos.clear();
     int numCuadrados = width/20;
     eng->getApp().draw(playerHealth);

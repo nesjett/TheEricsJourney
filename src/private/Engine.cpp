@@ -1,7 +1,6 @@
 #include "../public/Engine.h"
 
-
-
+#include <game.h>
 
 
 /***********************
@@ -366,3 +365,49 @@ int Cascade::GetRemainingLife() {
 }
 void Cascade::SetLifetime(int time) { Lifetime = time; }
 void Cascade::SetAuto(bool Auto) { AutoDestroy = Auto; };
+
+
+/***********************
+ * 
+ * CLASS: TText
+ * 
+ * **********************/
+
+TText::TText(sf::String txtString, sf::Vector2f Location, float Lifetime) {
+    // Set initial variables and references
+    game *gi = game::Instance();
+    CreationTime = gi->getTime();
+    DeathTime = CreationTime + sf::seconds(Lifetime).asMilliseconds();
+    eng = Engine::Instance();
+
+
+    // Prepare sf::Text with font and initial styl
+    font = new sf::Font();
+    font->loadFromFile("./resources/arial.ttf");
+    text.setFont(*font);
+    text.setString(txtString);
+    text.setCharacterSize(20);
+    text.setStyle(sf::Text::Bold);
+    text.setColor(sf::Color(255,255,255,255)); // White with opacity = 1
+    text.getLocalBounds();
+    text.setPosition(Location.x-text.getGlobalBounds().width/2, Location.y);
+}
+
+void TText::Draw(float delta) {
+    // Update visualstext
+    game *gi = game::Instance();
+    int opacity = (CreationTime-gi->getTime()) * 255 / (DeathTime-CreationTime);
+    //std::cerr << "Opacity: " << opacity << std::endl;
+    text.setColor(sf::Color(255,255,255,opacity));
+
+    text.move(0.f,delta*-0.0085);
+
+    eng->getApp().draw(text);
+    
+}
+
+TText::~TText(){ 
+    //delete font;  // TODO: Enabling this give segmentation fault on draw text, Dont know why
+}
+
+

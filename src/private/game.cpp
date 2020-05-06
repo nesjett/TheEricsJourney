@@ -4,6 +4,7 @@
 #include "../public/traps/Saw.h"
 #include "../public/particles/PlayerHit.h"
 #include "../public/particles/Fireball_Explosion.h"
+#include "../public/particles/EfectoMejora.h"
 
 #define UPDATE_INTERVAL (1000/35.0)
 
@@ -36,7 +37,7 @@ void game::InicializaNivel()
 {
     //Limpiamos los datos de los colisionables del mapa anterior
     for (Actor *actor : actors) { 
-        if(actor->getObjectType() == worldstatic || actor->getObjectType() == door || actor->getObjectType() == worlddynamic)
+        if(actor->getObjectType() == worldstatic || actor->getObjectType() == door || actor->getObjectType() == worlddynamic || actor->getObjectType() == powerup)
             actor->setLifespan(0.0);
     }
 
@@ -52,11 +53,13 @@ void game::InicializaNivel()
     if(mapaActual < 12) //HARDCODED: numero maximo de niveles es 3
     {
         //Cargamos el nivel
+        if(mapa)
+            delete mapa;
         string nombreMapa = "Mapa"+to_string(mapaActual+1)+".tmx";
-        vMapas.push_back(new Mapa(nombreMapa));
+        mapa  = new Mapa(nombreMapa);
 
         //Cargamos las colisiones del nivel
-        list<Actor*> mapColisionables = vMapas[mapaActual]->getActors();
+        list<Actor*> mapColisionables = mapa->getActors();
         for (Actor *tile : mapColisionables)
         {
             actors.push_back(tile);
@@ -156,7 +159,7 @@ void game::run(){
             menu->draw();
         }
         else{
-            vMapas[mapaActual]->render();
+            mapa->render();
             for (Actor *actor : actors) {
                 actor->Draw(percentTick, delta);
             }
@@ -391,7 +394,9 @@ void game::SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot) {
         //unique_ptr<Cascade> t = make_unique<Cascade>(Location);
         Particles.push_back(make_unique<Fireball_Explosion>(Location));
         break;
-    
+    case 2: // Mejora
+        Particles.push_back(make_unique<EfectoMejora>(Location));
+        break;
     default:
         break;
     }
