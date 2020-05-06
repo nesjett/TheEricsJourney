@@ -183,12 +183,11 @@ void Player::Draw(double percent, double delta ){
 }
 
 void Player::Update(float delta){
-    /*if(IsAlive()){
-        Pawn::Update( delta);
-    }*/
-
     Pawn::Update(delta);
+    SetTarget(this->FindClosestEnemy());
 }
+
+
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     std::cout << "Player toke damage!" << std::endl; 
     if(health_Current > 0&&GodMode==false){ // Only apply damage if the enemy is alive.
@@ -241,8 +240,8 @@ void Player::SetTarget(Enemy *NewTarget) {
     }
 }
 
-void Player::setLista(list<Enemy*> listaEnemigos){
-    enemyList = listaEnemigos;
+Enemy* Player::FindClosestEnemy(){
+    enemyList = game::Instance()->getAllEnemies();
     float minDist = 0.f;
     sf::Vector2f posPlayer = getActorLocation();
     sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
@@ -251,10 +250,9 @@ void Player::setLista(list<Enemy*> listaEnemigos){
 
     Enemy *enemy = nullptr;
 
-
     for (Enemy *enemigo : enemyList){
         posEnemy = enemigo->getActorLocation();
-        dirToEnemy_tmp = posEnemy-posPlayer;
+        dirToEnemy_tmp = (posEnemy-posPlayer);
         float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector
         if(minDist == 0.f){
             minDist = aux;
@@ -266,18 +264,18 @@ void Player::setLista(list<Enemy*> listaEnemigos){
             enemy = enemigo;
         }
     }
-    dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
-    SetTarget(enemy);
+    dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist); // This should not be here
 
-    if(!enemy) { // FInish executing as no eligible enemy found
-        return;
-    }
-
+    return enemy;
 }
 
 // Base to implement attacks. This should be on the base class and be overriden by the different enemies
 void Player::Attack(){
     
+    if(!Target){
+        return;
+    }
+
     sf::Vector2f posPlayer = getActorLocation();
     //que empiece aqui
     game *eng = game::Instance();

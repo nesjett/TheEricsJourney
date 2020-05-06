@@ -10,13 +10,12 @@
 class PlayerController:  public Controller{
 
     public:
-        PlayerController(Player*, list<Enemy*>);
+        PlayerController(Player*);
         void Update(sf::Event);
         void Mover(/*sf::Keyboard::Key*/sf::Event);
         void setPlayer(Player*);
         void setLista(list<Enemy*>);
-        void Attacks();
-        void setAttack(list<Enemy*>);
+        void TryToAttack();
         void ImprovesAttack();
         void Frenar(/*sf::Keyboard::Key*/);
         void MejorarCadencia(float);

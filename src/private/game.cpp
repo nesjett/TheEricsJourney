@@ -41,7 +41,7 @@ void game::RestartGame()
     Hud* hud = Hud::Instance();
     hud->setPlayer(jugador);
     InicializaNivel();
-    ControladorJugador = new PlayerController(jugador, getAllEnemies());
+    ControladorJugador = new PlayerController(jugador); // TODO: Should use unique_ptr?
 }
 void game::StartGame()
 {
@@ -52,8 +52,7 @@ void game::StartGame()
     Hud* hud = Hud::Instance();
     hud->setPlayer(jugador);
     InicializaNivel();
-    listaEnemigos = getAllEnemies();
-    ControladorJugador = new PlayerController(jugador, listaEnemigos);
+    ControladorJugador = new PlayerController(jugador);
 }
 void game::InicializaNivel()
 {
@@ -130,10 +129,6 @@ void game::run(){
             if(ControladorJugador)
             {
                 ControladorJugador->Update(tecla);
-                ControladorJugador->Mover(tecla);
-                if (tecla.type == sf::Event::MouseButtonReleased){
-                    ControladorJugador->Frenar();
-                }
             }
             if(estadoJuego == false) //Estamos en el menu o en la pantalla final
             {
@@ -149,13 +144,7 @@ void game::run(){
                 }
             }
         }
-        if(ControladorJugador)
-        {
-            listaEnemigos = getAllEnemies();
-            ControladorJugador->setAttack(listaEnemigos);
-        }
 
-        //ENEMY MOVE
 
         
 

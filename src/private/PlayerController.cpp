@@ -2,9 +2,8 @@
 #include "../public/game.h"
 
 
-PlayerController::PlayerController(Player* jugador, list<Enemy*> listaEnemigos){
+PlayerController::PlayerController(Player* jugador){
     miJugador = jugador;
-    enemyList = listaEnemigos;
 }
 
 void PlayerController::Update(sf::Event event){
@@ -43,7 +42,15 @@ void PlayerController::Update(sf::Event event){
             stop=false;
         }
     }
-    
+
+    this->Mover(event);
+
+    if (event.type == sf::Event::MouseButtonReleased){
+        this->Frenar();
+    }
+
+
+    this->TryToAttack();
 }
 void PlayerController::setGodMode(bool god){
     miJugador->setGodMode(god);
@@ -115,20 +122,9 @@ void PlayerController::MejorarCadencia(float mej){
 void PlayerController::MejorarMovimiento(float mejMov){
     miJugador->movementSpeed*=mejMov;
 }
-void PlayerController::setLista(list<Enemy*> listaEnemigos){
-    enemyList = listaEnemigos;
-    miJugador->setLista(enemyList);
-}
-void PlayerController::setAttack(list<Enemy*> listaEnemigos){
-    if (listaEnemigos.size() > 0){
-        setLista(listaEnemigos);
-        if(miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f && miJugador->IsAlive()==true){
-            Attacks();
-        }
-    }
-}
-void PlayerController::Attacks(){
-    if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora)){
+
+void PlayerController::TryToAttack(){
+    if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora) && (miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f)){
         miJugador->Attack();
         relojAtaque.restart();
     }
