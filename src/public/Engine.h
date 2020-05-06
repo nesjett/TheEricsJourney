@@ -32,6 +32,7 @@ class Engine
         sf::RenderWindow &CreateApp(sf::VideoMode vm, string wn);
         std::string getObjectType(ObjectType type) { if(type <= sizeof(oTypeNames)) { return oTypeNames[type]; } };
         void setView(float centerY, float borderX);
+        void resetView();
         
         // Returns the cuadrant relative to the Position 1 the other object is. In world reference coordinates (Y is vertical, X is horizontal)
         static RelativePosition FindCuadrant(sf::Vector2f Position1, sf::Vector2f Position2);
