@@ -273,7 +273,7 @@ void Menu::cargarMapaMenu()
     logoLetras.setTexture(texLogoLetras);
     logoLetras.setScale(0.1,0.1);
     logoLetras.setOrigin(salirselecc->getGlobalBounds().width/2,salirselecc->getGlobalBounds().height/2);
-    logoLetras.setPosition(posX - 150.f, 10.f);
+    logoLetras.setPosition(posX - 150.f, 20.f);
 
 }
 
