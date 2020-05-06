@@ -23,14 +23,15 @@ void Arrow::Init(){
     movementSpeed = 0.5;
     damage = 20;
 
-    texture_file = "./resources/projectiles/fireball-512.png";
+    texture_file = "./resources/projectiles/arrow.png";
     if(sprite){
         delete sprite;
     }
     sprite = new SSprite(texture_file);
     
-    sprite->setOrigin(85.33/2, 28/2);
-    sprite->setTextureRect( 0, 5 , 85.33, 28 );
+    sprite->setOrigin(397/2, 74/2);
+    sprite->setTextureRect( 0, 0 , 397, 74 );
+    sprite->setScale(0.16, 0.17);
     sprite->setBounds(0.5);
 
 
@@ -39,30 +40,24 @@ void Arrow::Init(){
     //IDLE
     tmpA = new Animation(sprite->getSpriteR(), 1500, true);
     Animations.insert({"IDLE", tmpA});
-    tmpA->addFrame({sf::IntRect(0,0, 85.33,33)});
-    tmpA->addFrame({sf::IntRect(85.33,0,85.33,33)});
-    tmpA->addFrame({sf::IntRect(170.66,0,85.33,33)});
-    tmpA->addFrame({sf::IntRect(0,33, 85.33,33)});
-    tmpA->addFrame({sf::IntRect(85.33,33,85.33,33)});
-    tmpA->addFrame({sf::IntRect(170.66,33,85.33,33)});
+    tmpA->addFrame({sf::IntRect(0,0, 397,74)});
     
 }
 
 void Arrow::Update(float delta){
-    float x = movementSpeed*direction.x*delta;
-    float y = movementSpeed*direction.y*delta;
-    x = getActorLocation().x + x;
-    y = getActorLocation().y + y;
+    float x, y;
     
+    x = getActorLocation().x + movementSpeed*direction.x*delta;
+    y = getActorLocation().y + movementSpeed*direction.y*delta;
 
     Actor *collide = DirectionPrecheck(Vector2f(x, y), worldstatic);
 
-    if(collide) {
+    if(collide) { // Update direction for next loop to take effect. THis loop we maintain the movement to avoid projectile to bounce away from the wall.
         if (abs(direction.x) < abs(direction.y)) { // moving vertically
             if(abs(collide->getActorLocation().x - this->getActorLocation().x) < abs(collide->getActorLocation().y - this->getActorLocation().y)) { // object is bottom
                 this->setDirection(Vector2f(direction.x, -direction.y));
             } else {
-                this->setDirection(Vector2f(-direction.x, -direction.y));// object is top
+                this->setDirection(Vector2f(-direction.x, direction.y));// object is top
             }
         } else { // moving horizontally
                 if(abs(collide->getActorLocation().x - this->getActorLocation().x) > abs(collide->getActorLocation().y - this->getActorLocation().y) ) { // object is right
