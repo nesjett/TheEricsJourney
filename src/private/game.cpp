@@ -19,20 +19,42 @@ game::game()
 {
     
 }
-void game::init(/*char* nombre, int AuxMapa*/){
+void game::init(){
+    //Creamos la ventana del juego
     eng = Engine::Instance();
     eng->CreateApp(sf::VideoMode(largo, alto), "The Eric's Journey");
-    //app = eng->getApp(); // NOT WORKING FOR SOME REASON
+
 
     estadoJuego = false;
     menu = Menu::getInstance();
     mapaActual = 0;
+    PlayerPoints = 0;
+    MapasTotales = 12;
+}
+void game::RestartGame()
+{
+    delete ControladorJugador;
+    mapaActual = 0;
+    PlayerPoints = 0;
     jugador = new Player();
+    actors.push_back(jugador);
     Hud* hud = Hud::Instance();
     hud->setPlayer(jugador);
     InicializaNivel();
+    ControladorJugador = new PlayerController(jugador, getAllEnemies());
 }
-
+void game::StartGame()
+{
+    mapaActual = 0;
+    PlayerPoints = 0;
+    jugador = new Player();
+    actors.push_back(jugador);
+    Hud* hud = Hud::Instance();
+    hud->setPlayer(jugador);
+    InicializaNivel();
+    listaEnemigos = getAllEnemies();
+    ControladorJugador = new PlayerController(jugador, listaEnemigos);
+}
 void game::InicializaNivel()
 {
     //Limpiamos los datos de los colisionables del mapa anterior
@@ -44,9 +66,8 @@ void game::InicializaNivel()
     //Guardamos la puntuacion del nivel anterior
     if(estadoJuego == true) //Nos aseguramos de que lastUpdateLevelClock este inicializado
     {
-        float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/600); //1 - minutos_transcrridos/100
-        float points = porcentaje*1000000; //Puntuacion max es de 1.000.000
-        pointsPerLevel.push_back(points);
+        float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/6000); //1 - minutos_transcrridos/1000
+        PlayerPoints = PlayerPoints + porcentaje*2000; //Puntuacion max es de 2000
     }
 
 
@@ -59,16 +80,13 @@ void game::InicializaNivel()
         mapa  = new Mapa(nombreMapa);
 
         //Cargamos las colisiones del nivel
-        list<Actor*> mapColisionables = mapa->getActors();
-        for (Actor *tile : mapColisionables)
+        list<Actor*> mapActors = mapa->getActors();
+        for (Actor *mapActor : mapActors)
         {
-            actors.push_back(tile);
+            actors.push_back(mapActor);
         }
         //Protagonista set location al inicio del mapa
         jugador->setActorLocation(Vector2f(350.0,850.0));
-        
-        //Set vista a la primera parte del mapa
-        //eng->ChangeAppView(0);
 
         //Epmpezamos a correr el tiempo del nivel
         lastUpdateLevelClock = levelClock.getElapsedTime().asSeconds();
@@ -85,17 +103,7 @@ void game::InicializaNivel()
 
 
 //bucle del juego
-void game::run(){
-
-    /***********************************
-     * TEST Actors, pawns and projectiles
-     ***********************************/
-    actors.push_back(jugador);
-    jugador->setActorLocation(Vector2f(350.0,850.0));
-    
-    listaEnemigos = getAllEnemies();
-    ControladorJugador = new PlayerController(jugador, listaEnemigos);
-
+void game::run(){ 
     /***********************************
      * Game loop
      ***********************************/
@@ -119,21 +127,34 @@ void game::run(){
                     KillAllEnemies();
                 }
             }
-            ControladorJugador->Update(tecla);
-            ControladorJugador->Mover(tecla);
-            if (tecla.type == sf::Event::MouseButtonReleased){
-                ControladorJugador->Frenar();
+            if(ControladorJugador)
+            {
+                ControladorJugador->Update(tecla);
+                ControladorJugador->Mover(tecla);
+                if (tecla.type == sf::Event::MouseButtonReleased){
+                    ControladorJugador->Frenar();
+                }
             }
-            /*if (tecla.type == sf::Event::KeyReleased){
-                ControladorJugador->Frenar(tecla.key.code);
-            }*/
             if(estadoJuego == false) //Estamos en el menu o en la pantalla final
             {
-                    estadoJuego = menu->update(tecla);
+                bool reiniciaJuego = false;
+                estadoJuego = menu->update(tecla, &reiniciaJuego);
+                if(estadoJuego == true)
+                {
+                    StartGame();
+                }
+                if(reiniciaJuego == true)
+                {
+                    RestartGame();
+                }
             }
         }
-        listaEnemigos = getAllEnemies();
-        ControladorJugador->setAttack(listaEnemigos);
+        if(ControladorJugador)
+        {
+            listaEnemigos = getAllEnemies();
+            ControladorJugador->setAttack(listaEnemigos);
+        }
+
         //ENEMY MOVE
 
         
@@ -245,8 +266,7 @@ void game::run(){
                 if(dynamic_cast<Enemy*>(actor)) {
                     //EnemyDied(); // If we are deleting an enemy, try to spawn another
                 }
-                //if(!dynamic_cast<Mejora*>(actor))
-                    delete actor;
+                delete actor;
             }
             actorsPendingDelete.clear();
         }
@@ -337,6 +357,19 @@ Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type) {
 
 void game::CondicionVictoria()
 {
+    //Acabar partida porque has muerto
+    if(!jugador->IsAlive())
+    {
+        float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/6000); //1 - minutos_transcrridos/1000
+        PlayerPoints = PlayerPoints + porcentaje*2000; //Puntuacion max es de 2000
+
+        EndGame();
+        for(Actor* actor : actors)
+        {
+            actor->pendingDelete = true;
+        }
+        return;
+    }
     //Pasar al siguiente nivel: el jugador pasa por la puerta y no hay enemigos vivos
     if(getAllEnemies().size() == 0)
     {
@@ -345,27 +378,20 @@ void game::CondicionVictoria()
             if(!mejora->utilizada)
                 mejora->activada = true;
         }
+        Door* puerta;
         for(Actor* actor : actors)
         {
             if(dynamic_cast<Door*>(actor) && dynamic_cast<Door*>(actor)->superior == true && dynamic_cast<Door*>(actor)->abierta == false)
+            {
                 dynamic_cast<Door*>(actor)->openDoor();
-                // dynamic_cast<Door*>(actor)->
+            }
+
         }
-        if(jugador->getActorLocation().y < 100.0)
+        if(jugador->getActorLocation().y < 100.f)
         {
             mapaActual++;  
             InicializaNivel();
         }
-    }
-    //Acabar partida porque has muerto
-    if(!jugador->IsAlive())
-    {
-        //Calculamos las puntuaciones por nivel
-        float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/600); //1 - minutos_transcrridos/100
-        float points = porcentaje*1000000; //Puntuacion max es de 1.000.000
-        pointsPerLevel.push_back(points);
-
-        EndGame();
     }
 }
 
@@ -374,11 +400,17 @@ void game::EndGame()
 {
     //Cambiamos a pantalla final
     estadoJuego = false;
-    menu->cambiarAPantallaFinal(pointsPerLevel);
+    if(jugador->IsAlive())
+    {
+        menu->MostrarPuntuaciones(PlayerPoints, true);
+    }else
+    {
+        menu->MostrarPuntuaciones(PlayerPoints, false);
+    }
     Engine* eng = Engine::Instance();
     eng->resetView();
 
-    //Eliminamos los enemigos, si es el caso es que el jugador ha muerto
+    //Eliminamos todos los actores?
 
 }
 

@@ -4,7 +4,7 @@
 #include <AudioManager.h>
 #include <list>
 using namespace std;
-
+using namespace sf;
 class Menu
 {
     public:
@@ -14,46 +14,29 @@ class Menu
             }
             return menuInstance;
         }
-        void render(sf::RenderWindow *gameWindow);
-        bool update(sf::Event tecla);
+        bool update(sf::Event event, bool* reiniciaJuego);
         void draw();
-        void cambiarAPantallaFinal(list<float> puntuaciones);
+        void MostrarPuntuaciones(float puntuacion, bool victoria);
     protected:
 
     private:
-        int numItems = 2;
+        Font* fuente;
+        bool MostrarMenuPrincipal;
+        Text textoPuntuaciones;
 
-        sf::Font* fuente;
-        sf::Text* menuInicial [2];
-        sf::Text* menuFinal [4];
-        sf::Texture* texturaLogo;
-        sf::Sprite* logo;
-        string itemsMenu [4];
-        string itemsMenuFinal [4];
-        vector<Text*> itemsMnuFinal;
-        sf::Color colorItemHover;
-        sf::Color colorItemBase;
-        bool mostrarMenu;
-        int separacion;
-        int actual;
-        int presionado;
-        int idMenu;
-        int cont;
         static Menu* menuInstance;
         Menu();
         virtual ~Menu();
         void cargarFuente();
-        void cargarMenu();
-        void cargarMenuFinal();
-        void cambiaColorItems();
-        void cargarLogo();
-        void cargarLogoFinal();
-        list<float> puntos;
+
+        float puntos;
         AudioManager* audioManager;
 
+        //Menu inicial a partir de imagenes y control por raton
         map<string, vector<Sprite*>> mapItemsMenu;
+        map<string, vector<Sprite*>> mapItemsMenuPuntos;
         void cargarMapaMenu();
-        bool updateRaton(Event event);
+        bool updateRaton(Event event, bool* reiniciaJuego);
         string itemSeleccionado;
 
         Sprite *jugar, *jugarselecc, *salir, *salirselecc;

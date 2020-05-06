@@ -75,18 +75,28 @@ class game
         vector<std::unique_ptr<Cascade>> Particles;
 
         sf::Event tecla;
-        bool estadoJuego;
-        Menu* menu;
-        Mapa* mapa;
-        int mapaActual;
         Player *jugador;
         PlayerController* ControladorJugador;
+
+        //Menu
+        bool estadoJuego;
+        Menu* menu;
+
+        //Propiedades de nivel
+        Mapa* mapa;
+        int mapaActual;
+        int MapasTotales;
         void InicializaNivel();
-        Clock levelClock;
-        list<float> pointsPerLevel;
-        float lastUpdateLevelClock;
         void CondicionVictoria();
         void EndGame();
+        void RestartGame();
+        void StartGame();
+
+        //Puntuaciones
+        Clock levelClock; //Tiempo que tarda en pasarse el nivel
+        float PlayerPoints;
+        float lastUpdateLevelClock;
+
         void KillAllEnemies();
 };
 

@@ -25,9 +25,10 @@ class PlayerController:  public Controller{
         float getCurrentHealth();
         float getMaxHealth();
         void setGodMode(bool);
+        virtual ~PlayerController(); 
 
     protected:
-        virtual ~PlayerController(); 
+        
     private: 
         Player* miJugador;
         list<Enemy*> enemyList;
