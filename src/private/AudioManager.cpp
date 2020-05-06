@@ -44,6 +44,13 @@ void AudioManager::play_menu_ok()
 
 
 shared_ptr<Music> AudioManager::PlaySound2D(string File){
+
+    // security remove olds
+    if(SoundQueue.size() > 100) {
+        std::vector<decltype(SoundQueue)::value_type>(SoundQueue.begin()+90, SoundQueue.end()).swap(SoundQueue);
+    }
+
+
     SoundQueue.push_back(make_shared<Music>());
     shared_ptr<Music> ref = SoundQueue.back();
     ref->openFromFile(File);
