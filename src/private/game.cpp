@@ -5,6 +5,7 @@
 #include "../public/particles/PlayerHit.h"
 #include "../public/particles/Fireball_Explosion.h"
 #include "../public/particles/EfectoMejora.h"
+#include "../public/enemies/BouncingBoss.h"
 
 #define UPDATE_INTERVAL (1000/25.0)
 
@@ -94,6 +95,10 @@ void game::run(){
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
 
+    Actor *test = new BouncingBoss();
+    actors.push_back(test);
+    test->setActorLocation(Vector2f(500.f,500.f));
+
     /***********************************
      * Game loop
      ***********************************/
@@ -156,7 +161,8 @@ void game::run(){
         {
             menu->draw();
         }
-        else{
+        else 
+        { //que el jugador mire al enemigo al que está atacando{
             vMapas[mapaActual]->render();
             for (Actor *actor : actors) {
                 actor->Draw(percentTick, delta);
@@ -312,9 +318,8 @@ list<Mejora*> game::getMejoras(){
     }
     return tmp;
 }
-void game::Almacenaenemy(Projectile* proj){
+void game::Almacenaenemy(Actor* proj){
     actors.push_back(proj); 
-    
 }
 /*/////////////////////////
     \brief Traces a box on the desired location to check for collisions.

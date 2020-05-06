@@ -22,6 +22,8 @@ target_sources(libModulos PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Stalker.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Door.cpp"
 
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/enemies/BouncingBoss.cpp"
+
     
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Hud.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Mejora.cpp"

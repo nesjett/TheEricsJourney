@@ -47,7 +47,7 @@ class game
         list<Mejora*> getMejoras();
         PlayerController* getPlayerController();
 
-        void Almacenaenemy(Projectile* proj);
+        void Almacenaenemy(Actor* proj);
 
         void SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot);
 
