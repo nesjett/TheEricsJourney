@@ -50,4 +50,19 @@ class Menu
         void cargarLogoFinal();
         list<float> puntos;
         AudioManager* audioManager;
+
+        map<string, vector<Sprite*>> mapItemsMenu;
+        void cargarMapaMenu();
+        bool updateRaton(Event event);
+        string itemSeleccionado;
+
+        Sprite *jugar, *jugarselecc, *salir, *salirselecc;
+        Texture texJugar, texJugarselecc, texSalir, texSalirselecc;
+        vector<Sprite*> vJugar, vSalir;
+
+        Sprite fondo;
+        Texture texFondo;
+        Sprite logoLetras;
+        Texture texLogoLetras;
+        float separacionMenuPPal = 150;
 };

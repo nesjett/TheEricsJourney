@@ -66,13 +66,19 @@ void Mapa::cargaMapa()
     sprite_fondo_ventana.setTexture(textura_fondo_ventana);
     sprite_fondo_ventana.setPosition(-610.f, -100.f);
     vectorPintar2.push_back(sprite_fondo_ventana);
-    vector<sf::Texture*> vectorTextura;
-    vector<sf::Sprite*> vectorSprite;
-    for(int i=0; i<numTileset;i++)
-    {
-        vectorTextura.push_back(new sf::Texture);
-        vectorSprite.push_back(new sf::Sprite);
-    }
+
+    textura_suelo.loadFromFile("./resources/maps/tiles/sueloCespedCompleto.png");
+    sprite_suelo.setTexture(textura_suelo);
+    sprite_suelo.setPosition(0.f, 0.f);
+    vectorPintar2.push_back(sprite_suelo);
+
+    // vector<sf::Texture*> vectorTextura;
+    // vector<sf::Sprite*> vectorSprite;
+    // for(int i=0; i<numTileset;i++)
+    // {
+    //     vectorTextura.push_back(new sf::Texture);
+    //     vectorSprite.push_back(new sf::Sprite);
+    // }
     string nomSprite;
     vector<string> vectorNombresSprite;
     tileset = mapa->FirstChildElement("tileset");
@@ -82,9 +88,9 @@ void Mapa::cargaMapa()
         image = tileset->FirstChildElement("image");
         nomSprite = image->Attribute("source");
 
-        vectorTextura[i]->loadFromFile("./resources/maps/" + nomSprite);
+        // vectorTextura[i]->loadFromFile("./resources/maps/" + nomSprite);
 
-        vectorSprite[i]->setTexture(*vectorTextura[i]);
+        // vectorSprite[i]->setTexture(*vectorTextura[i]);
         vectorNombresSprite.push_back("./resources/maps/" + nomSprite);
         if(tileset->NextSiblingElement("tileset"))     
             tileset = tileset->NextSiblingElement("tileset");
@@ -195,13 +201,13 @@ void Mapa::cargaMapa()
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaSuelo.c_str()) == 0)
                     {
-                        if(valor <= vectorSprite.size())
-                        {
-                            vectorSprite[valor-1]->setPosition(posY, posX);
-                            vectorPintar2.push_back(*vectorSprite[valor-1]);
-                            vPosX.push_back(posX);
-                            vPosY.push_back(posY);
-                        }
+                        // if(valor <= vectorSprite.size())
+                        // {
+                        //     vectorSprite[valor-1]->setPosition(posY, posX);
+                        //     vectorPintar2.push_back(*vectorSprite[valor-1]);
+                        //     vPosX.push_back(posX);
+                        //     vPosY.push_back(posY);
+                        // }
                     }
                 }
                 if(tile->NextSiblingElement("tile"))
@@ -279,16 +285,6 @@ void Mapa::render()
     {
         eng->getApp().draw(*i);
     }
-    // vector<Tile*>::iterator j;
-    // for(j = vPuertas.begin(); j != vPuertas.end(); j++)
-    // {
-    //     (*j)->Draw(5000.0,0.0);
-    // }
-    // vector<Tile*>::iterator j;
-    // for(j = vTiles.begin(); j != vTiles.end(); j++)
-    // {
-    //     (*j)->Draw(5000.0,0.0);
-    // }
 }
 
 
