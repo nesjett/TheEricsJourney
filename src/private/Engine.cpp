@@ -47,6 +47,12 @@ void Engine::setView(float centerY, float borderX)
     app.setView(vista);
 }
 
+void Engine::resetView()
+{
+    vista.reset(sf::FloatRect(0.f, 0.f, app.getSize().x, app.getSize().y));
+    app.setView(vista);
+}
+
 
 
 

@@ -373,7 +373,7 @@ void game::EndGame()
     estadoJuego = false;
     menu->cambiarAPantallaFinal(pointsPerLevel);
     Engine* eng = Engine::Instance();
-    eng->setView(0.f, 0.f);
+    eng->resetView();
 
     //Eliminamos los enemigos, si es el caso es que el jugador ha muerto
 

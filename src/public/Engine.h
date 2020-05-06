@@ -31,6 +31,7 @@ class Engine
         sf::RenderWindow &CreateApp(sf::VideoMode vm, string wn);
         std::string getObjectType(ObjectType type) { if(type <= sizeof(oTypeNames)) { return oTypeNames[type]; } };
         void setView(float centerY, float borderX);
+        void resetView();
     protected:
         Engine();
         Engine(const Engine &);

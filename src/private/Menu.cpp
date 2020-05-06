@@ -170,6 +170,7 @@ void Menu::draw()
         }
     }
     else{
+        eng->getApp().draw(fondo);
         vector<Text*>::iterator it;
         for(it = itemsMnuFinal.begin(); it != itemsMnuFinal.end(); it++)
         {
