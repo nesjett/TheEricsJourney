@@ -27,6 +27,7 @@ class Player:  public Pawn{
         void improvesAttack();
         int DireccionPausa();
 
+        void SetAnimation();
         void ToggleMovementIndicator();
         void setGodMode(bool);
         void setLista(list<Enemy*>);
