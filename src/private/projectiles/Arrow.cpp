@@ -91,9 +91,9 @@ void Arrow::Draw(double percent, double delta ) {
 void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
     //Projectile::OnActorOverlap(otherActor); 
 
-    if(lastDamaged){
+    /*if(lastDamaged){
         if (otherActor != lastDamaged && DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
-            otherActor->TakeDamage(damage, this, ProjectileName);
+            otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
             lastDamaged = otherActor;
         }
     }
@@ -109,7 +109,7 @@ void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
 
         float dot = direction.x * DirToOther.x + direction.y * DirToOther.y; // dot product 
         //float det = direction.x * VerticalDown.x - direction.y * VerticalDown.y;
-        if(lastCollided /*|| lastCollided != otherActor*/) {
+        if(lastCollided) {
             timer.restart();
             
         
@@ -138,6 +138,18 @@ void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
                     std::cout << "ARROW COLLIDE " << creationTime << " top" << std::endl;
                 }
             }
+        }
+    }*/
+    
+    
+    if ( DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
+        otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
+        DmgApplied = true;
+        setLifespan(0.0);
+    } else {
+        if(dynamic_cast<Tile*>(otherActor)){
+            DmgApplied = true;
+            setLifespan(0.0);
         }
     }
 }
