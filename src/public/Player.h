@@ -28,7 +28,7 @@ class Player:  public Pawn{
 
         void ToggleMovementIndicator();
         void setGodMode(bool);
-        void setLista(list<Enemy*>);
+        Enemy* FindClosestEnemy();
         
 
     protected:
