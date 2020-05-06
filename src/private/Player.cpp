@@ -134,8 +134,12 @@ void Player::PrepareSprite(){
 
     tmpA = new Animation(sprite->getSpriteR(),500, true);
     Animations.insert({"stop", tmpA});
-
+    
     if(Target!=NULL){
+
+        cout<<"___________________________________________________";
+    cout<<DireccionPausa();
+    cout<<"___________________________________________________";
         if(DireccionPausa()==1){
         tmpA->addFrame({sf::IntRect(0,2750,sizeX,sizeY)});
         }
@@ -149,7 +153,8 @@ void Player::PrepareSprite(){
        tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
         }
     
-    }else{
+    }
+    else{
        tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)}); 
     }
 
