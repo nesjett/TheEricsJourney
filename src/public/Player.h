@@ -16,7 +16,7 @@ class Player:  public Pawn{
         void Movimiento(sf::Vector2f);
         void setDirection(float, float);
         sf::Vector2f getDirection();
-        void Attack(list<Enemy*>);
+        void Attack();
         void Update(float delta);
         void ActorOverlap(Actor otherActor);
         void Draw(double percent, double delta);
@@ -28,6 +28,8 @@ class Player:  public Pawn{
         int DireccionPausa();
 
         void ToggleMovementIndicator();
+        void setGodMode(bool);
+        void setLista(list<Enemy*>);
         
 
     protected:
@@ -41,10 +43,9 @@ class Player:  public Pawn{
         int AttackImprovement;
         Enemy *Target;
         int LastAttack; // Used to select the sound to play for shooting
-        sf::Vector2f dirToEnemyParallel;
-        sf::Vector2f dirToEnemyParallelAux;
-        float auxParallel = 0.f;
-        sf::Vector2f dir_unitParallel;
         SSprite *MovementIndicator;
+        bool GodMode = false;
+        list<Enemy*> enemyList;
+        sf::Vector2f dir_unit;
         
 };

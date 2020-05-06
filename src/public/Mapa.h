@@ -32,7 +32,6 @@ class Mapa
     private:
         string nombreMapa;
         XMLElement *mapa;
-        vector<Sprite*> vectorPintar;
         vector<Sprite> vectorPintar2;
         vector<int> vPosX;
         vector<int> vPosY;
@@ -66,5 +65,7 @@ class Mapa
         Engine* eng;
         Texture textura_fondo_ventana;
         Sprite sprite_fondo_ventana;
+        Texture textura_suelo;
+        Sprite sprite_suelo;
         void cargaMapa();
 };

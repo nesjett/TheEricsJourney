@@ -99,7 +99,7 @@ void Pawn::SetAnimation(){ //selecciona la animacion del mapa de animaciones dep
       angleDegs=angleDegs+360; //los grados van de 0 a 180 y de 0 a -180, sumamos 360 para establecer cuadrantes segun los angulos
     }
 
-    if((angleDegs<22.5 && angleDegs>0) || (angleDegs>=337.5 && angleDegs<0)){
+    if((angleDegs<22.5 && angleDegs>0) || (angleDegs>=337.5 && angleDegs<360)){
         activeAnim=Animations.find("right")->second;
     }
     if(angleDegs<67.5 && angleDegs>=22.5){

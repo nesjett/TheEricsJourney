@@ -254,7 +254,7 @@ void Player::Update(float delta){
 }
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     std::cout << "Player toke damage!" << std::endl; 
-    if(health_Current > 0){ // Only apply damage if the enemy is alive.
+    if(health_Current > 0&&GodMode==false){ // Only apply damage if the enemy is alive.
         health_Current-=damage;
         if(IsAlive() == false){
             Die();
@@ -265,6 +265,10 @@ void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
             AudioManager::getInstance()->PlaySound2D("./resources/audio/hit.ogg");
         }
     }
+}
+
+void Player::setGodMode(bool god){
+    GodMode = god;
 }
 
 bool Player::IsAlive(){
@@ -300,9 +304,8 @@ void Player::SetTarget(Enemy *NewTarget) {
     }
 }
 
-// Base to implement attacks. This should be on the base class and be overriden by the different enemies
-void Player::Attack(list<Enemy*> enemyList){
-    
+void Player::setLista(list<Enemy*> listaEnemigos){
+    enemyList = listaEnemigos;
     float minDist = 0.f;
     sf::Vector2f posPlayer = getActorLocation();
     sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
@@ -316,31 +319,32 @@ void Player::Attack(list<Enemy*> enemyList){
         posEnemy = enemigo->getActorLocation();
         dirToEnemy_tmp = posEnemy-posPlayer;
         float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector
-        dirToEnemyParallelAux = sf::Vector2f(posEnemy.x-30, posEnemy.y-30)-getActorLocation();
         if(minDist == 0.f){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
-            dirToEnemyParallel = dirToEnemyParallelAux;
             enemy = enemigo;
         } else if(aux < minDist){
             minDist = aux;
             dirToEnemy = dirToEnemy_tmp;
-            dirToEnemyParallel = dirToEnemyParallelAux;
             enemy = enemigo;
         }
     }
-    auxParallel = sqrt(pow(dirToEnemyParallel.x, 2)+pow(dirToEnemyParallel.y, 2));
-    sf::Vector2f dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
-    dir_unitParallel = Vector2f(dirToEnemyParallel.x/auxParallel, dirToEnemyParallel.y/auxParallel);
-
+    dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
     SetTarget(enemy);
 
     if(!enemy) { // FInish executing as no eligible enemy found
         return;
     }
 
+}
+
+// Base to implement attacks. This should be on the base class and be overriden by the different enemies
+void Player::Attack(){
+    
+    sf::Vector2f posPlayer = getActorLocation();
+    //que empiece aqui
     game *eng = game::Instance();
-    Arrow *projTest = new Arrow(dir_unit, posPlayer);
+    Arrow *projTest = new Arrow(dir_unit, posPlayer); 
     eng->Almacenaenemy(projTest);
 
     if(LastAttack == 0) {
@@ -355,13 +359,13 @@ void Player::Attack(list<Enemy*> enemyList){
         Arrow *flechaTrasera1 = new Arrow(-dir_unit, posPlayer);
         eng->Almacenaenemy(flechaTrasera1);
         if(AttackImprovement >= 2){
-            sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y-30));
+            sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y)-30);
             Arrow *flecha2 = new Arrow(dir_unit, dobleFlecha);
             eng->Almacenaenemy(flecha2);
-            /*if(AttackImprovement >= 3){
+            if(AttackImprovement >= 3){ //HE COMENTADO ESTO PORQUE ESTOY HACIENDO PRUEBAS
                 Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha);
                 eng->Almacenaenemy(projTest3);
-            }*/
+            }
         }
     }
 }

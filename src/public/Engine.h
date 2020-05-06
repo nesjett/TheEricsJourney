@@ -31,6 +31,7 @@ class Engine
         sf::RenderWindow &CreateApp(sf::VideoMode vm, string wn);
         std::string getObjectType(ObjectType type) { if(type <= sizeof(oTypeNames)) { return oTypeNames[type]; } };
         void setView(float centerY, float borderX);
+        void resetView();
     protected:
         Engine();
         Engine(const Engine &);
@@ -149,6 +150,30 @@ class Cascade : public SSprite {
         bool AutoDestroy;
         int Lifetime; // As milliseconds
         bool PendingDelete;
+};
+
+
+
+
+/***********************
+ * 
+ * CLASS: TText. Simple text with lifetime
+ * 
+ * **********************/
+class TText {
+    public:
+        TText(sf::String txtString, sf::Vector2f Location, float Lifetime);
+        virtual ~TText();
+        virtual void Draw(float delta);
+        long getDeathTime() { return DeathTime; };
+
+    private:
+        Engine *eng;
+        //game *gi;
+        long DeathTime;
+        long CreationTime;
+        sf::Font *font;
+        sf::Text text;
 };
 
 

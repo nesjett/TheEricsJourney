@@ -37,7 +37,7 @@ void game::InicializaNivel()
 {
     //Limpiamos los datos de los colisionables del mapa anterior
     for (Actor *actor : actors) { 
-        if(actor->getObjectType() == worldstatic || actor->getObjectType() == door || actor->getObjectType() == worlddynamic)
+        if(actor->getObjectType() == worldstatic || actor->getObjectType() == door || actor->getObjectType() == worlddynamic || actor->getObjectType() == powerup)
             actor->setLifespan(0.0);
     }
 
@@ -53,11 +53,13 @@ void game::InicializaNivel()
     if(mapaActual < 12) //HARDCODED: numero maximo de niveles es 3
     {
         //Cargamos el nivel
+        if(mapa)
+            delete mapa;
         string nombreMapa = "Mapa"+to_string(mapaActual+1)+".tmx";
-        vMapas.push_back(new Mapa(nombreMapa));
+        mapa  = new Mapa(nombreMapa);
 
         //Cargamos las colisiones del nivel
-        list<Actor*> mapColisionables = vMapas[mapaActual]->getActors();
+        list<Actor*> mapColisionables = mapa->getActors();
         for (Actor *tile : mapColisionables)
         {
             actors.push_back(tile);
@@ -157,7 +159,7 @@ void game::run(){
             menu->draw();
         }
         else{
-            vMapas[mapaActual]->render();
+            mapa->render();
             for (Actor *actor : actors) {
                 actor->Draw(percentTick, delta);
             }
@@ -374,7 +376,7 @@ void game::EndGame()
     estadoJuego = false;
     menu->cambiarAPantallaFinal(pointsPerLevel);
     Engine* eng = Engine::Instance();
-    eng->setView(0.f, 0.f);
+    eng->resetView();
 
     //Eliminamos los enemigos, si es el caso es que el jugador ha muerto
 
