@@ -13,9 +13,10 @@ Arrow::Arrow(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
     direction = dir;
     setActorLocation(pos); 
     activeAnim = Animations.find("IDLE")->second;
+    MaxBounceCount = 4;
 }
 void Arrow::Init(){
-    debug = false;
+    debug = true;
     game *gi = game::Instance();
     creationTime = gi->getTime();
     //movementSpeed = 0.65;
@@ -53,6 +54,27 @@ void Arrow::Update(float delta){
     x = getActorLocation().x + x;
     y = getActorLocation().y + y;
     
+
+    Actor *collide = DirectionPrecheck(Vector2f(x, y), worldstatic);
+
+    if(collide) {
+        if (abs(direction.x) < abs(direction.y)) { // moving vertically
+            if(abs(collide->getActorLocation().x - this->getActorLocation().x) < abs(collide->getActorLocation().y - this->getActorLocation().y)) { // object is bottom
+                this->setDirection(Vector2f(direction.x, -direction.y));
+            } else {
+                this->setDirection(Vector2f(-direction.x, -direction.y));// object is top
+            }
+        } else { // moving horizontally
+                if(abs(collide->getActorLocation().x - this->getActorLocation().x) > abs(collide->getActorLocation().y - this->getActorLocation().y) ) { // object is right
+                this->setDirection(Vector2f(-direction.x, direction.y));
+            } else {
+                this->setDirection(Vector2f(direction.x, -direction.y));// object is left
+            }     
+        }
+
+        BounceCount++;
+    }
+
     UpdateMovement(Vector2f(x,y));
     
 
@@ -67,16 +89,11 @@ void Arrow::Update(float delta){
     Engine* eng = Engine::Instance();
     // Delete projectiles that are out of the current view.
     // TODO: Bug: THis is deleting projectiles on top and bottom of map, ask @amador about how view works.
-    if(!eng->getApp().getViewport(eng->getApp().getView()).contains(getInterpolatedPos().x, getInterpolatedPos().y)) {
+    /*if(!eng->getApp().getViewport(eng->getApp().getView()).contains(getInterpolatedPos().x, getInterpolatedPos().y)) {
         setLifespan(4.f);
-    }
-
-    /*if(timer.getElapsedTime().asMilliseconds() > 1500) {
-        lastCollided = nullptr;
     }*/
-    direction = direction;
-    Vector2f finalPos = Vector2f(direction.x*80,direction.y*80);
-    lastCollided = DirectionPrecheck(getInterpolatedPos(), finalPos, worldstatic);
+
+    
 }
 
 void Arrow::Draw(double percent, double delta ) {
@@ -99,63 +116,14 @@ void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
     }
 
     if(dynamic_cast<Tile*>(otherActor)){
-        Engine *eng = Engine::Instance();
+        if(BounceCount > MaxBounceCount){
+            setLifespan(0.f);
+            return;
+        }
 
-        Vector2f DirToOther = otherActor->getActorLocation() - getInterpolatedPos();
-        float aux=sqrt(pow(DirToOther.x, 2)+pow(DirToOther.y, 2));
-        DirToOther=Vector2f(DirToOther.x/aux,DirToOther.y/aux); // normalized direction to other actor
-
-        //Vector2f VerticalDown = Vector2f(0.f, 1.f);
-
-        float dot = direction.x * DirToOther.x + direction.y * DirToOther.y; // dot product 
-        //float det = direction.x * VerticalDown.x - direction.y * VerticalDown.y;
         if(lastCollided) {
             timer.restart();
-            
-        
-            //if(dot > 0.5 || dot < -0.5) {
-                lastCollided = otherActor;
-               
-                //this->setDirection(Vector2f(-direction.x, direction.y));
-                 
-            //}
-
-            // which side did it happen on?
-            /*if (abs(direction.x) < abs(direction.y)) {
-                if (direction.y > 0) { // bottom
-                    this->setDirection(Vector2f(direction.x, -direction.y));
-                    std::cout << "ARROW COLLIDE " << creationTime << " bottom" << std::endl;
-                } else { // top
-                    std::cout << "ARROW COLLIDE " << creationTime << " top top" << std::endl;
-                    this->setDirection(Vector2f(direction.x, -direction.y));
-                }
-            } else {
-                if (direction.x > 0) { // right
-                    this->setDirection(Vector2f(-direction.x, direction.y));
-                    std::cout << "ARROW COLLIDE " << creationTime << " right" << std::endl;
-                } else { // top
-                    this->setDirection(Vector2f(direction.x, -direction.y));
-                    std::cout << "ARROW COLLIDE " << creationTime << " top" << std::endl;
-                }
-            }*/
-
-
-            if (abs(direction.x) < abs(direction.y)) { // moving vertically
-                if(abs(otherActor->getActorLocation().x - this->getActorLocation().x) < abs(otherActor->getActorLocation().y - this->getActorLocation().y)) { // object is bottom
-                    this->setDirection(Vector2f(direction.x, -direction.y));
-                } else {
-                    this->setDirection(Vector2f(-direction.x, -direction.y));// object is top
-                }
-            } else { // moving horizontally
-                 if(abs(otherActor->getActorLocation().x - this->getActorLocation().x) > abs(otherActor->getActorLocation().y - this->getActorLocation().y) ) { // object is right
-                    this->setDirection(Vector2f(-direction.x, direction.y));
-                } else {
-                    this->setDirection(Vector2f(direction.x, -direction.y));// object is left
-                }
-                    
-                
-            }
-
+            lastCollided = otherActor;
         }
     }
     
@@ -173,11 +141,11 @@ void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
 }
 
 
-Actor* Arrow::DirectionPrecheck(Vector2f InitialLocation, Vector2f FinalLocation, ObjectType type) {
+Actor* Arrow::DirectionPrecheck(Vector2f loc, ObjectType type) {
     game *gi = game::Instance();
-    FloatRect trace = FloatRect(Vector2f(InitialLocation.x, InitialLocation.y), 
-        Vector2f(FinalLocation.x,FinalLocation.y));
-
+    double traceX = loc.x-getBoundingBox().width/2+5; // Offset box to make it fit the center location.
+    double traceY = loc.y-getBoundingBox().height/2+5;
+    FloatRect trace = FloatRect(Vector2f(traceX, traceY), Vector2f(getBoundingBox().width-10,getBoundingBox().height-10));
     Actor* collide = gi->boxTraceByObjectType( trace, type );
 
     if(debug) {

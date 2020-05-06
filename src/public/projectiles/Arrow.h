@@ -16,13 +16,17 @@ class Arrow: public Projectile {
         void OnActorOverlap(Actor *otherActor);
 
     protected:
+        /* Max number of times it is allowed to bounce */
+        int MaxBounceCount = 0;
     private:
         Actor *lastCollided;
         ImpactDirection LastImpact = none;
         int creationTime;
         sf::Clock timer;
-        Actor* DirectionPrecheck(Vector2f InitialLocation, Vector2f FinalLocation, ObjectType type);
+        Actor* DirectionPrecheck(Vector2f loc, ObjectType type);
         sf::RectangleShape movementTraceDebug;
         Actor *lastDamaged;
+
+        int BounceCount = 0; // current count of bounces
 
 };
