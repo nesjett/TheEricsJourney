@@ -6,7 +6,7 @@
 #include "../public/particles/Fireball_Explosion.h"
 #include "../public/particles/EfectoMejora.h"
 
-#define UPDATE_INTERVAL (1000/35.0)
+#define UPDATE_INTERVAL (1000/25.0)
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -198,6 +198,7 @@ void game::run(){
                 for (Actor *actor : actors) {
                     // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
                     // Can be improved by not checking the pairs that were already checked
+                    //TODO: should do in another thread
                     for (Actor *test : actors) { // TODO: Add bool to stop updating player movement if collided? prevents input event firing between collision event setting dir to 0 and the update event
                         if(actor != test){
                             //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;

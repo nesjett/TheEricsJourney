@@ -84,6 +84,23 @@ void Pawn::Update(float delta){
             collide = DirectionPrecheck(Vector2f(x,y), blocker);
             if(!collide) {
                 UpdateMovement( Vector2f (x,y) );
+            } else {
+                float newX = 0;
+                float newY = 0;
+
+                // TODO: Calc other direction to stop direction on that component.
+                /*
+                * The result will be -1 if the target is directly behind, +1 if directly ahead and zero if it is side-on to the NPC in any direction (including above, below, etc). The value is actually the cosine of the angle between the two vectors. You can check if it is greater than zero to see if the target is basically ahead of the NPC. However, you can create a narrower field of view by using the cosine of the angle you want. For example, a value of 0.5 means the target can't be more than 30º either side of head-on to be detected. 
+                */
+                Vector2f DirToOther = collide->getActorLocation() - getInterpolatedPos();
+                float aux=sqrt(pow(DirToOther.x, 2)+pow(DirToOther.y, 2));
+                DirToOther=Vector2f(DirToOther.x/aux,DirToOther.y/aux); // normalized direction to other actor
+
+                float dot = direction.x * DirToOther.x + direction.y * DirToOther.y; // dot product 
+                //float det = direction.x * VerticalDown.x - direction.y * VerticalDown.y;
+
+
+                //UpdateMovement( Vector2f (newX,newY) );
             }
         }
     }

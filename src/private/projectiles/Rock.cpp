@@ -11,7 +11,7 @@ Rock::Rock(sf::Vector2f dir, sf::Vector2f pos) : Projectile(dir, pos){
     activeAnim = Animations.find("IDLE")->second;
 }
 void Rock::Init(){
-    movementSpeed = 0.1;
+    movementSpeed = 0.28;
     damage = 20;
 
     texture_file = "./resources/projectiles/rock.png";

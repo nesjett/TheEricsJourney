@@ -17,6 +17,7 @@ struct AnimFrame {
 enum Faction { enemy=2, allie=1, neutral=0 };
 enum ObjectType { worldstatic=0, worlddynamic=1, pawn=2, projectile=3, trap=4, blocker=5, powerup=6, door=7 }; // NOTA: Parece que c++ no permite que los nombres de una enum tengan mayusculas!!
 enum PowerUpType { health=0, movementspeed=1, attackspeed=2, attackmore=3 };
+enum RelativePosition { topright=0, topleft=1, bottomleft=2, bottomright=3 };
 /***********************
  * 
  * CLASS: ENGINE
@@ -31,7 +32,9 @@ class Engine
         sf::RenderWindow &CreateApp(sf::VideoMode vm, string wn);
         std::string getObjectType(ObjectType type) { if(type <= sizeof(oTypeNames)) { return oTypeNames[type]; } };
         void setView(float centerY, float borderX);
-        void resetView();
+        
+        // Returns the cuadrant relative to the Position 1 the other object is. In world reference coordinates (Y is vertical, X is horizontal)
+        static RelativePosition FindCuadrant(sf::Vector2f Position1, sf::Vector2f Position2);
     protected:
         Engine();
         Engine(const Engine &);
