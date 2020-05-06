@@ -91,7 +91,7 @@ void Arrow::Draw(double percent, double delta ) {
 void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
     //Projectile::OnActorOverlap(otherActor); 
 
-    /*if(lastDamaged){
+    if(lastDamaged){
         if (otherActor != lastDamaged && DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
             otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
             lastDamaged = otherActor;
@@ -121,7 +121,7 @@ void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
             //}
 
             // which side did it happen on?
-            if (abs(direction.x) < abs(direction.y)) {
+            /*if (abs(direction.x) < abs(direction.y)) {
                 if (direction.y > 0) { // bottom
                     this->setDirection(Vector2f(direction.x, -direction.y));
                     std::cout << "ARROW COLLIDE " << creationTime << " bottom" << std::endl;
@@ -137,11 +137,29 @@ void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
                     this->setDirection(Vector2f(direction.x, -direction.y));
                     std::cout << "ARROW COLLIDE " << creationTime << " top" << std::endl;
                 }
+            }*/
+
+
+            if (abs(direction.x) < abs(direction.y)) { // moving vertically
+                if(abs(otherActor->getActorLocation().x - this->getActorLocation().x) < abs(otherActor->getActorLocation().y - this->getActorLocation().y)) { // object is bottom
+                    this->setDirection(Vector2f(direction.x, -direction.y));
+                } else {
+                    this->setDirection(Vector2f(-direction.x, -direction.y));// object is top
+                }
+            } else { // moving horizontally
+                 if(abs(otherActor->getActorLocation().x - this->getActorLocation().x) > abs(otherActor->getActorLocation().y - this->getActorLocation().y) ) { // object is right
+                    this->setDirection(Vector2f(-direction.x, direction.y));
+                } else {
+                    this->setDirection(Vector2f(direction.x, -direction.y));// object is left
+                }
+                    
+                
             }
+
         }
-    }*/
+    }
     
-    
+    /*
     if ( DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
         otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
         DmgApplied = true;
@@ -151,7 +169,7 @@ void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
             DmgApplied = true;
             setLifespan(0.0);
         }
-    }
+    }*/
 }
 
 

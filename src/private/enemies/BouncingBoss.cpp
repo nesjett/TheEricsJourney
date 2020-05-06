@@ -103,7 +103,7 @@ void BouncingBoss::Update(float delta){
             float dot = direction.x * DirToOther.x + direction.y * DirToOther.y; // dot product 
             */
             if (abs(direction.x) < abs(direction.y)) { // moving vertically
-                if(collide->getActorLocation().y > this->getActorLocation().y) { // object is bottom
+                if(abs(collide->getActorLocation().x - this->getActorLocation().x) < abs(collide->getActorLocation().y - this->getActorLocation().y)) { // object is bottom
                     this->SetDirection(Vector2f(direction.x, -direction.y));
                 } else {
                     this->SetDirection(Vector2f(-direction.x, -direction.y));// object is top
