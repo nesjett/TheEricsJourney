@@ -3,12 +3,12 @@
 #include <Projectile.h>
 
 
-class Arrow: public Projectile {
+class BouncingArrow: public Projectile {
     enum ImpactDirection { wide, height, none };
     public:
-        Arrow();
-        Arrow(sf::Vector2f, sf::Vector2f);
-        ~Arrow();
+        BouncingArrow();
+        BouncingArrow(sf::Vector2f, sf::Vector2f);
+        ~BouncingArrow();
 
         void Update(float delta);
         void Draw(double percent, double delta );

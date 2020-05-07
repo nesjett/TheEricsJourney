@@ -8,6 +8,7 @@ Player::Player(){ // Use this to call to parent's contructor first
 
     texture_file = "./resources/player.png";
     
+    debug = true;
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(0.f, 0.f);
@@ -52,7 +53,9 @@ void Player::PrepareSprite(){
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    sprite->setScale( 0.13,0.13 );
+    sprite->setScale( 0.14,0.14 );
+
+    sprite->setBounds(0.80);
     
     
     Animation *tmpA;
@@ -190,7 +193,7 @@ void Player::Update(float delta){
     Pawn::Update(delta);
 }
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
-    std::cout << "Player toke damage!" << std::endl; 
+    //std::cout << "Player toke damage!" << std::endl; 
     if(health_Current > 0&&GodMode==false){ // Only apply damage if the enemy is alive.
         health_Current-=damage;
         if(IsAlive() == false){
@@ -242,7 +245,6 @@ void Player::SetTarget(Enemy *NewTarget) {
 }
 
 void Player::setLista(list<Enemy*> listaEnemigos){
-    enemyList = listaEnemigos;
     float minDist = 0.f;
     sf::Vector2f posPlayer = getActorLocation();
     sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
@@ -252,7 +254,7 @@ void Player::setLista(list<Enemy*> listaEnemigos){
     Enemy *enemy = nullptr;
 
 
-    for (Enemy *enemigo : enemyList){
+    for (Enemy *enemigo : listaEnemigos){
         posEnemy = enemigo->getActorLocation();
         dirToEnemy_tmp = posEnemy-posPlayer;
         float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector

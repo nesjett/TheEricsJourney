@@ -52,6 +52,27 @@ void Engine::resetView()
     app.setView(vista);
 }
 
+RelativePosition Engine::FindCuadrant(sf::Vector2f Position1, sf::Vector2f Position2) {
+    if(Position2.x >= Position1.x) {
+        // we are in right side (cuadrants top-right and bottom -right)
+        if(Position2.y <= Position1.y){
+            // We are in top-right
+            return topright;
+        } else {
+            // we are in bottom-right
+            return bottomright;
+        }
+    } else {
+        // we are in left size (cuadrants top-left and bottom-left)
+        if(Position2.y <= Position1.y){
+            // We are in top-left
+            return topleft;
+        } else {
+            // we are in bottom-left
+            return bottomleft;
+        }
+    }
+}
 
 
 
@@ -107,29 +128,24 @@ sf::Vector2f SSprite::Draw(sf::Vector2f location, sf::Vector2f location_prev, do
     return sf::Vector2f(x,y);
 }
 
+/* Gets the sprite original Global Bounds, calculated by SFML */
 sf::FloatRect SSprite::getGlobalBounds() {
     
     return sfsprite.getGlobalBounds();
 }
 
+/* GEts the modified global bounds of this SSprite */
 sf::FloatRect SSprite::getBounds() {
-    sf::FloatRect current = sfsprite.getGlobalBounds();
+    sf::FloatRect global = sfsprite.getGlobalBounds();
     if(GlobalBounds.width == 0.f) {
-        return current;
+        return global;
     }
-    /*if(TextPath == "./resources/projectiles/fireball-short.png") {
-        int i = 0;
-    }*/
-    //GlobalBounds.width = current.width;
-    //GlobalBounds.height = current.height;
-    float top = (current.height * (GlobalBounds.height/current.height) ) /2;
-    float left = (current.width *  (GlobalBounds.width/current.width) ) / 2;
 
-    current.top = current.top + top + GlobalBounds.height/2; // TODO: For some reason seems not to properly center vertically
-    current.left = current.left + left;
-    current.width = GlobalBounds.width;
-    current.height = GlobalBounds.height;
-    return current;
+    global.top = global.top + (global.height/2) - (GlobalBounds.height/2); // TODO: For some reason seems not to properly center vertically
+    global.left = global.left + (global.width/2) - (GlobalBounds.width/2);
+    global.width = GlobalBounds.width;
+    global.height = GlobalBounds.height;
+    return global;
 }
 
 
@@ -237,11 +253,16 @@ void SSprite::setScale(double x, double y){
     sfsprite.setScale(x, y);
 }
 
-// Based on the sprite global bounds, readjust the bounding box to a custom one, relative to the global ones.
+/* Modify the sprite bounds. If param > 0 && < 1, size is applied as a sacling percentage, if > 1, Its set as an absolute size */
 sf::FloatRect SSprite::setBounds(float newScale) {
-    sf::FloatRect current = sfsprite.getGlobalBounds();
-    GlobalBounds.height = current.height * newScale;
-    GlobalBounds.width = current.width * newScale;
+    sf::FloatRect global = sfsprite.getGlobalBounds();
+    if(newScale <= 1) { // we are sending a scale
+        GlobalBounds.height = global.height*newScale;
+        GlobalBounds.width = global.width*newScale;
+    } else { // otherwise, we are sending a static size
+        GlobalBounds.height = newScale;
+        GlobalBounds.width = newScale;
+    }
     GlobalBounds.top = 0.f; // Set to 0 because this changes over time. DInamically calculated in getBOunds()
     GlobalBounds.left = 0.f; // Set to 0 because this changes over time.  DInamically calculated in getBOunds()
     return GlobalBounds;

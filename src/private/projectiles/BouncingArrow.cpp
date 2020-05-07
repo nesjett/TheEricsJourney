@@ -1,26 +1,25 @@
-#include "../../public/projectiles/Arrow.h"
-#include <Tile.h>
+#include "../../public/projectiles/BouncingArrow.h"
 #include <stdlib.h> 
 #include <game.h> 
 
-Arrow::Arrow() : Projectile(){ // Use this to call to parent's contructor first
+BouncingArrow::BouncingArrow() : Projectile(){ // Use this to call to parent's contructor first
     targetFaction = enemy;
     Init();
 }
-Arrow::Arrow(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
+BouncingArrow::BouncingArrow(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
     targetFaction = enemy;
     Init();
     direction = dir;
     setActorLocation(pos); 
     activeAnim = Animations.find("IDLE")->second;
 }
-void Arrow::Init(){
+void BouncingArrow::Init(){
     debug = true;
     game *gi = game::Instance();
     //movementSpeed = 0.65;
     movementSpeed = 0.95;
     damage = 20;
-    MaxBounceCount = 2;
+    MaxBounceCount = 3;
 
     texture_file = "./resources/projectiles/arrow.png";
     if(sprite){
@@ -43,7 +42,7 @@ void Arrow::Init(){
     
 }
 
-void Arrow::Update(float delta){
+void BouncingArrow::Update(float delta){
     float x, y;
     
     x = getActorLocation().x + movementSpeed*direction.x*delta;
@@ -59,7 +58,7 @@ void Arrow::Update(float delta){
                 this->SetDirection(Vector2f(-direction.x, direction.y));// object is top
             }
         } else { // moving horizontally
-                if(abs(collide->getActorLocation().x - this->getActorLocation().x) > abs(collide->getActorLocation().y - this->getActorLocation().y) ) { // object is right
+            if(abs(collide->getActorLocation().x - this->getActorLocation().x) > abs(collide->getActorLocation().y - this->getActorLocation().y) ) { // object is right
                 this->SetDirection(Vector2f(-direction.x, direction.y));
             } else {
                 this->SetDirection(Vector2f(direction.x, -direction.y));// object is left
@@ -94,7 +93,7 @@ void Arrow::Update(float delta){
     
 }
 
-void Arrow::Draw(double percent, double delta ) {
+void BouncingArrow::Draw(double percent, double delta ) {
     Projectile::Draw(percent, delta);
     if(debug) {
         Engine *eng = Engine::Instance();
@@ -103,7 +102,7 @@ void Arrow::Draw(double percent, double delta ) {
 }
 
 
-void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
+void BouncingArrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
     if(lastDamaged){
         if (otherActor != lastDamaged && DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
             otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
@@ -113,7 +112,7 @@ void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
 }
 
 
-Actor* Arrow::DirectionPrecheck(Vector2f loc, ObjectType type) {
+Actor* BouncingArrow::DirectionPrecheck(Vector2f loc, ObjectType type) {
     game *gi = game::Instance();
     double traceX = loc.x-getBoundingBox().width/2+5; // Offset box to make it fit the center location.
     double traceY = loc.y-getBoundingBox().height/2+5;
@@ -133,7 +132,7 @@ Actor* Arrow::DirectionPrecheck(Vector2f loc, ObjectType type) {
 }
 
 
-Arrow::~Arrow(){
+BouncingArrow::~BouncingArrow(){
     //delete sprite;
 }
 

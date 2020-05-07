@@ -23,6 +23,7 @@ class Mejora: public Actor {
         virtual void PrepareSprite();
     private:
         std::string texture_file;
+        SSprite *dialog;
 };
 
 #endif
