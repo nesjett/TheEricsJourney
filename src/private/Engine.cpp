@@ -46,6 +46,12 @@ void Engine::setView(float centerY, float borderX)
     app.setView(vista);
 }
 
+void Engine::resetView()
+{
+    vista.reset(sf::FloatRect(0.f, 0.f, app.getSize().x, app.getSize().y));
+    app.setView(vista);
+}
+
 RelativePosition Engine::FindCuadrant(sf::Vector2f Position1, sf::Vector2f Position2) {
     if(Position2.x >= Position1.x) {
         // we are in right side (cuadrants top-right and bottom -right)

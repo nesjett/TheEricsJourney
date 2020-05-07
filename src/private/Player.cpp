@@ -159,7 +159,7 @@ void Player::Draw(double percent, double delta ){
 
     //Movemos la camara 
     Engine* eng = Engine::Instance();
-    eng->setView(currentLoc.y, -610.f);
+    eng->setView(currentLoc.y, -189.f);
 
 
     // Draw movement arrow

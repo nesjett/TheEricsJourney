@@ -35,6 +35,7 @@ class Engine
         
         // Returns the cuadrant relative to the Position 1 the other object is. In world reference coordinates (Y is vertical, X is horizontal)
         static RelativePosition FindCuadrant(sf::Vector2f Position1, sf::Vector2f Position2);
+        void resetView();
     protected:
         Engine();
         Engine(const Engine &);

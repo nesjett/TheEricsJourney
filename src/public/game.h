@@ -78,7 +78,7 @@ class game
         sf::Event tecla;
         bool estadoJuego;
         Menu* menu;
-        vector<Mapa*> vMapas;
+        Mapa* mapa;
         int mapaActual;
         Player *jugador;
         PlayerController* ControladorJugador;

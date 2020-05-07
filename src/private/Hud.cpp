@@ -39,10 +39,10 @@ Hud::Hud()
     {
         spritesMejoras.push_back(new Sprite);
     }
-    Texture *tx1 = new Texture();
-    Texture *tx2 = new Texture();
-    Texture *tx3 = new Texture();
-    Texture *tx4 = new Texture();
+    // Texture *tx1 = new Texture();
+    // Texture *tx2 = new Texture();
+    // Texture *tx3 = new Texture();
+    // Texture *tx4 = new Texture();
     tx1->loadFromFile("./resources/powerups/0.png");
     tx2->loadFromFile("./resources/powerups/1.png");
     tx3->loadFromFile("./resources/powerups/2.png");
