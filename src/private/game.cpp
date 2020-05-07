@@ -58,6 +58,8 @@ void game::InicializaNivel()
             delete mapa;
         string nombreMapa = "Mapa"+to_string(mapaActual+1)+".tmx";
         mapa  = new Mapa(nombreMapa);
+        Hud* hud = Hud::Instance();
+        hud->setNumMapa(mapaActual+1);
 
         //Cargamos las colisiones del nivel
         list<Actor*> mapColisionables = mapa->getActors();

@@ -65,6 +65,8 @@ class Hud
 
         //Datos mapa
         int NumMapa;
+        Texture texVentana;
+        Sprite spriteVentana;
 
         //Barras de vida de los enemigos
         vector<RectangleShape*> enemyHealthBars;
