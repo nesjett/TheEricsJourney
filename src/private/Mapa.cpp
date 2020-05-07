@@ -175,27 +175,26 @@ void Mapa::cargaMapa()
                         vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
                         posVEnemy++;
                     }
-                    if(strcmp(layer->Attribute("name"), strCapaPowerVida.c_str()) == 0)
+                    if(strcmp(layer->Attribute("name"), strCapaMejoras.c_str()) == 0)
                     {
-                        vMejoras.push_back(new Mejora(health));
-                        vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
-                        posVMejora++;
-                    }
-                    if(strcmp(layer->Attribute("name"), strCapaPowerMov.c_str()) == 0)
-                    {
-                        vMejoras.push_back(new Mejora(movementspeed));
-                        vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
-                        posVMejora++;
-                    }
-                    if(strcmp(layer->Attribute("name"), strCapaPowerCadencia.c_str()) == 0)
-                    {
-                        vMejoras.push_back(new Mejora(attackspeed));
-                        vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
-                        posVMejora++;
-                    }
-                    if(strcmp(layer->Attribute("name"), strCapaPowerAtaque.c_str()) == 0)
-                    {
-                        vMejoras.push_back(new Mejora(attackmore));
+                        //Generamos distintas mejoras aleatorias en las posiciones que leemos del mapa
+                        //Controlamos que el bucle no sea infinito no poniendo mas mejoras en el mapa que tipos de mejoras hay
+                        int intRandom;
+                        bool unica = false;
+                        while(!unica)
+                        {
+                            unica = true;
+                            intRandom = rand() % 4;
+                            vector<Mejora*>::iterator itMejora;
+                            for(itMejora = vMejoras.begin(); itMejora != vMejoras.end(); itMejora++)
+                            {
+                                if((*itMejora)->tipoMejora == (PowerUpType)intRandom)
+                                {
+                                    unica = false;
+                                }
+                            }
+                        }
+                        vMejoras.push_back(new Mejora((PowerUpType)intRandom));
                         vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
                         posVMejora++;
                     }
