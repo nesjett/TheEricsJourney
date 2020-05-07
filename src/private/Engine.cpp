@@ -428,6 +428,7 @@ void TText::Draw(float delta) {
 }
 
 TText::~TText(){ 
+    std::cerr << "Borrado: " << std::endl;
     //delete font;  // TODO: Enabling this give segmentation fault on draw text, Dont know why
 }
 

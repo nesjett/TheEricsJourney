@@ -59,12 +59,19 @@ void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
         } else {
             ApplyHitEffects(std::to_string((int)damage)); // Apply hit effects
             AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_hit.ogg");
+
+            if(rand() % 100 > 85) { // 15% chances of critic
+                HitText.push_back(TText("Critico!", Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
+            } else {
+                HitText.push_back(TText("+" + std::to_string((int)damage), Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
+            }
+
         }
     }
 }
 
 void Enemy::ApplyHitEffects(string effect) {
-    HitText.push_back(TText("+" + effect, Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
+    //HitText.push_back(TText("+" + effect, Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
 }
 
 bool Enemy::IsAlive(){
