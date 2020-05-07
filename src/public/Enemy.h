@@ -23,9 +23,10 @@ class Enemy: public Pawn {
 
     protected: 
         list<TText> HitText;
+        SSprite* TargetMarker;
 
     private:
-        SSprite* TargetMarker;
+        
         void PrepareMarker();
         bool Targetted;
 };
