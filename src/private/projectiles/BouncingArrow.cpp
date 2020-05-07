@@ -30,7 +30,7 @@ void BouncingArrow::Init(){
     sprite->setOrigin(397/2, 74/2);
     sprite->setTextureRect( 0, 0 , 397, 74 );
     sprite->setScale(0.16, 0.17);
-    sprite->setBounds(20);
+    sprite->setBounds(40);
 
 
     Animation *tmpA;

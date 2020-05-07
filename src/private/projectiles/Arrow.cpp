@@ -18,7 +18,7 @@ void Arrow::Init(){
     debug = true;
     game *gi = game::Instance();
     //movementSpeed = 0.65;
-    movementSpeed = 0.95;
+    movementSpeed = 0.80;
     damage = 20;
     MaxBounceCount = 2;
 
@@ -31,7 +31,7 @@ void Arrow::Init(){
     sprite->setOrigin(397/2, 74/2);
     sprite->setTextureRect( 0, 0 , 397, 74 );
     sprite->setScale(0.16, 0.17);
-    sprite->setBounds(20);
+    sprite->setBounds(40);
 
 
     Animation *tmpA;

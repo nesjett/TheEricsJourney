@@ -7,7 +7,7 @@
 #include "../public/particles/EfectoMejora.h"
 #include "../public/enemies/BouncingBoss.h"
 
-#define UPDATE_INTERVAL (1000/25.0)
+#define UPDATE_INTERVAL (1000/35.0)
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -224,7 +224,7 @@ void game::run(){
                 Hud* hud = Hud::Instance();
                 hud->Update();
             }
-            lastUpdate = clock.getElapsedTime().asMilliseconds();
+            
 
             /*////////////////////////////
             
@@ -255,6 +255,9 @@ void game::run(){
                     delete actor;
             }
             actorsPendingDelete.clear();
+
+
+            lastUpdate = clock.getElapsedTime().asMilliseconds();
         }
         
 

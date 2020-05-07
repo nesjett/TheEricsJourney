@@ -140,7 +140,7 @@ void Pawn::Update(float delta){
             }*/
 
             list<Actor*> ignore;
-            Actor *collidee;
+            Actor * collidee = nullptr;
 
             if(BloquedX) {
                 ignore.push_back(BloquedX);
@@ -154,21 +154,17 @@ void Pawn::Update(float delta){
                 collidee = DirectionPrecheck(Vector2f(x,y), worldstatic);
             }
             if(ignore.size() == 1) {
-                if(BloquedY) {
-                    collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 1);
-                }
                 if(BloquedX) {
                     collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 0);
                 }
+                if(BloquedY) {
+                    collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 1);
+                }
             }
-            if(ignore.size() == 2) {
+            /*if(ignore.size() == 2) {
                 collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 2);
-            }
+            }*/
             
-
-
-
-            RelativePosition pos = Engine::Instance()->FindCuadrant(getInterpolatedPos(), collide->getActorLocation());
 
             Vector2f velocityLoc = Vector2f(direction.x, direction.y);
 
@@ -198,13 +194,15 @@ void Pawn::Update(float delta){
                         
                         if(BloquedX->getActorLocation().x != collidee->getActorLocation().x) {
                             velocityLoc = Vector2f(0.f, 0.f);
+                            setActorLocation( this->getActorLastLocation() );
                             BloquedY = collidee;
                         } else {
-                            ignore.clear();
-                            ignore.push_back(collide);
-                            collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 0);
-                            if(collidee && BloquedX->getActorLocation().x != collidee->getActorLocation().x) {
+                            //ignore.clear();
+                            ignore.push_back(collidee);
+                            collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 1);
+                            if(collidee) {
                                 velocityLoc = Vector2f(0.f, 0.f);
+                                setActorLocation( this->getActorLastLocation() );
                                 BloquedY = collidee;
                             }
                         }
@@ -216,16 +214,19 @@ void Pawn::Update(float delta){
                 } 
                 if(abs(collidee->getActorLocation().x - this->getActorLocation().x) > abs(collidee->getActorLocation().y - this->getActorLocation().y))  { // object is left/right
                     if(BloquedY) {
+                        std::cout << "BloquedY: " << BloquedY->getActorLocation().y << " ColliderY: " << collide->getActorLocation().y << std::endl;  
                         if(BloquedY->getActorLocation().y != collide->getActorLocation().y) {
                             velocityLoc = Vector2f(0.f, 0.f);
+                            setActorLocation( this->getActorLastLocation() );
                             BloquedX = collidee;
                         } else {
-                            ignore.clear();
+                            //ignore.clear();
                             ignore.push_back(collidee);
-                            collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 1);
+                            collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 0);
 
-                            if(collidee && BloquedY->getActorLocation().y != collidee->getActorLocation().y) {
+                            if(collidee ) {
                                 velocityLoc = Vector2f(0.f, 0.f);
+                                setActorLocation( this->getActorLastLocation() );
                                 BloquedX = collidee;
                             }
                         }
@@ -244,10 +245,6 @@ void Pawn::Update(float delta){
                 velocityLoc.y = 0.f;
             }
             velocity = velocityLoc;
-
-            if(BloquedY && BloquedX) {
-                int e = 2;
-            }
             
             x = movementSpeed*velocity.x*delta;
             y = movementSpeed*velocity.y*delta;
