@@ -106,7 +106,7 @@ void Arrow::Draw(double percent, double delta ) {
 void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
     if(lastDamaged){
         if (otherActor != lastDamaged && DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
-            otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
+            otherActor->TakeDamage(damage+rand() % 40 + (-20), this, ProjectileName);
             lastDamaged = otherActor;
         }
     }
