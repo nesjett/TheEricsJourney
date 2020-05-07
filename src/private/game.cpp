@@ -7,7 +7,7 @@
 #include "../public/particles/EfectoMejora.h"
 #include "../public/enemies/BouncingBoss.h"
 
-#define UPDATE_INTERVAL (1000/35.0)
+#define UPDATE_INTERVAL (1000/20.0)
 
 game* game::pInstance = NULL;
 game* game::Instance() {

@@ -52,20 +52,20 @@ void Enemy::Draw(double percent, double delta ){
 
 void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
-        health_Current-=damage;
+        if(rand() % 100 > 85) { // 15% chances of critic
+            health_Current-=damage*3;
+            HitText.push_back(TText("Critico!", Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
+        } else {
+            health_Current-=damage;
+            HitText.push_back(TText("+" + std::to_string((int)damage), Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
+        }
+       
         if(IsAlive() == false){
             Die();
             AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_die.ogg");
         } else {
             ApplyHitEffects(std::to_string((int)damage)); // Apply hit effects
             AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_hit.ogg");
-
-            if(rand() % 100 > 85) { // 15% chances of critic
-                HitText.push_back(TText("Critico!", Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
-            } else {
-                HitText.push_back(TText("+" + std::to_string((int)damage), Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
-            }
-
         }
     }
 }
