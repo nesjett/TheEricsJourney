@@ -19,10 +19,6 @@ class Arrow: public Projectile {
         /* Max number of times it is allowed to bounce */
         int MaxBounceCount = 0;
     private:
-        Actor *lastCollided;
-        ImpactDirection LastImpact = none;
-        int creationTime;
-        sf::Clock timer;
         Actor* DirectionPrecheck(Vector2f loc, ObjectType type);
         sf::RectangleShape movementTraceDebug;
         Actor *lastDamaged;

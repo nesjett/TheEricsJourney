@@ -13,15 +13,14 @@ Arrow::Arrow(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
     direction = dir;
     setActorLocation(pos); 
     activeAnim = Animations.find("IDLE")->second;
-    MaxBounceCount = 4;
 }
 void Arrow::Init(){
     debug = true;
     game *gi = game::Instance();
-    creationTime = gi->getTime();
     //movementSpeed = 0.65;
-    movementSpeed = 0.2;
+    movementSpeed = 0.95;
     damage = 20;
+    MaxBounceCount = 2;
 
     texture_file = "./resources/projectiles/arrow.png";
     if(sprite){
@@ -67,7 +66,11 @@ void Arrow::Update(float delta){
             }     
         }
 
-        BounceCount++;
+        BounceCount++; // We just bounced, count it as a current bounce
+
+        if(BounceCount >= MaxBounceCount){ // Now that we bounced, check if that was the last one allowed for this projectile.
+            setLifespan(0.f);
+        }
     }
 
     UpdateMovement(Vector2f(x,y));
@@ -109,30 +112,6 @@ void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
             lastDamaged = otherActor;
         }
     }
-
-    if(dynamic_cast<Tile*>(otherActor)){
-        if(BounceCount > MaxBounceCount){
-            setLifespan(0.f);
-            return;
-        }
-
-        if(lastCollided) {
-            timer.restart();
-            lastCollided = otherActor;
-        }
-    }
-    
-    /*
-    if ( DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
-        otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
-        DmgApplied = true;
-        setLifespan(0.0);
-    } else {
-        if(dynamic_cast<Tile*>(otherActor)){
-            DmgApplied = true;
-            setLifespan(0.0);
-        }
-    }*/
 }
 
 
