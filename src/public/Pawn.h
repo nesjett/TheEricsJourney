@@ -3,6 +3,7 @@
 #define PAWN_H
 #include <Actor.h>
 #include <Engine.h>
+#include <list>
 
 using namespace std;
 using namespace sf;
@@ -50,10 +51,16 @@ class Pawn: public Actor {
         Animation* activeAnim = NULL;
         std::map<std::string, Animation*> Animations;
         Actor* DirectionPrecheck(Vector2f loc, ObjectType type);
+        Actor* DirectionPrecheck(Vector2f loc, ObjectType type, list<Actor*> ActorsToIgnore, int Axis);
         sf::RectangleShape movementTraceDebug;
         Faction faction;
     private:
         string texture_file;
+
+        Actor *BloquedX = nullptr;
+        Actor *BloquedY = nullptr;
+
+        Vector2f velocity = Vector2f(0.f, 0.f);
 };
 
 #endif

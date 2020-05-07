@@ -23,6 +23,7 @@ BouncingBoss::BouncingBoss(Vector2f Dir, int Childrens, float Scale, float MaxHe
 }
 
 void BouncingBoss::Init(){
+    debug = true;
     setActorLocation(Vector2f(100.f, 100.f));
     health_Current = health_MAX; // Init health
 
@@ -44,6 +45,7 @@ void BouncingBoss::PrepareSprite(){
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
     sprite->setScale( 0.25*SpriteScale,0.25*SpriteScale );
+    sprite->setBounds(0.8);
     
     Animation *tmpA;
 
@@ -117,6 +119,8 @@ void BouncingBoss::Update(float delta){
                     
                 
             }
+
+            setActorLocation( this->getActorLastLocation() ); // Move to last valid location, prevent intersecting with the collider actor
         }
     }
 

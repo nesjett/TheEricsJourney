@@ -17,7 +17,7 @@ class Projectile: public Actor {
         //sf::Sprite sprite;
 
         Vector2f direction;
-        Vector2f setDirection(Vector2f newDir) { direction = newDir; return direction; };
+        Vector2f SetDirection(Vector2f newDir) { direction = newDir; return direction; };
         float movementSpeed;
         float damage;
 

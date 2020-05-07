@@ -8,7 +8,7 @@ Player::Player(){ // Use this to call to parent's contructor first
 
     texture_file = "./resources/player.png";
     
-    debug = false;
+    debug = true;
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(0.f, 0.f);
@@ -55,7 +55,7 @@ void Player::PrepareSprite(){
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
     sprite->setScale( 0.14,0.14 );
 
-    //sprite->setBounds(0.85);
+    sprite->setBounds(0.80);
     
     
     Animation *tmpA;
@@ -193,7 +193,7 @@ void Player::Update(float delta){
     Pawn::Update(delta);
 }
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
-    std::cout << "Player toke damage!" << std::endl; 
+    //std::cout << "Player toke damage!" << std::endl; 
     if(health_Current > 0&&GodMode==false){ // Only apply damage if the enemy is alive.
         health_Current-=damage;
         if(IsAlive() == false){

@@ -31,6 +31,7 @@ class Actor {
 
     /////////////////////////////////////////////////////////*/
 		void UpdateMovement(Vector2f loc) {location_prev = location; location = loc;}
+    
     void setActorLocation(Vector2f loc) { location_prev = location = loc; }
 		//void setBoundingBox(IntRect rs) {boundingBox = rs;} // TODO: In the future we should be able to modify bounding box on demand.
     bool isAsleep() {return asleep;};

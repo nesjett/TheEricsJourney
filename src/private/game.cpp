@@ -339,6 +339,64 @@ Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type) {
     return NULL;
 }
 
+/* 
+* @param IgnoreDir ignore actors that have the same dir as the ignored actors. 0 to compare X axis, 1 to compare Y axis, 2 to not compare axis location
+*/
+Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type, list<Actor*> ActorsToIgnore, int IgnoreDir = 0) {
+    for (Actor *act : actors) {
+        if(ActorsToIgnore.size() > 0) {
+            for (Actor *ignore : ActorsToIgnore) {
+                if(act != ignore)  { // filter if the actor is in the ignore list
+                    switch (IgnoreDir)
+                    {
+                    case 0:
+                        if((act->getActorLocation().x != ignore->getActorLocation().x)){
+                            if(act->getObjectType() == type) {
+                                bool overlaps = act->getBoundingBox().intersects( rect );
+                                if(overlaps){
+                                    return act;
+                                }
+                            }
+                        }
+                        break;
+
+                    case 1:
+                        if((act->getActorLocation().y != ignore->getActorLocation().y)){
+                            if(act->getObjectType() == type) {
+                                bool overlaps = act->getBoundingBox().intersects( rect );
+                                if(overlaps){
+                                    return act;
+                                }
+                            }
+                        }
+                        break;
+                    
+                    default:
+                        if(act->getObjectType() == type) {
+                            bool overlaps = act->getBoundingBox().intersects( rect );
+                            if(overlaps){
+                                return act;
+                            }
+                        }
+                        break;
+                    }
+                    
+                }
+            }
+        } else {
+            
+            if(act->getObjectType() == type) {
+                bool overlaps = act->getBoundingBox().intersects( rect );
+                if(overlaps){
+                    return act;
+                }
+            }
+            
+        }
+    }
+    return NULL;
+}
+
 void game::CondicionVictoria()
 {
     //Pasar al siguiente nivel: el jugador pasa por la puerta y no hay enemigos vivos

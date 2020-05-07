@@ -77,6 +77,9 @@ void Pawn::Update(float delta){
     y = getActorLocation().y + y;
 
     if( (direction.x != 0.f || direction.y != 0.f) && IsAlive()) {
+        
+            
+        //ignore.push_back(BloquedY);
         Actor *collide = DirectionPrecheck(Vector2f(x,y), worldstatic);
         if(!collide) {
             BloquedX = nullptr;
@@ -136,9 +139,38 @@ void Pawn::Update(float delta){
                 }     
             }*/
 
+            list<Actor*> ignore;
+            Actor *collidee;
+
+            if(BloquedX) {
+                ignore.push_back(BloquedX);
+            }
+           
+            if(BloquedY) {
+                ignore.push_back(BloquedY);
+            }
+            
+            if(ignore.size() == 0) {
+                collidee = DirectionPrecheck(Vector2f(x,y), worldstatic);
+            }
+            if(ignore.size() == 1) {
+                if(BloquedY) {
+                    collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 1);
+                }
+                if(BloquedX) {
+                    collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 0);
+                }
+            }
+            if(ignore.size() == 2) {
+                collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 2);
+            }
+            
+
+
+
             RelativePosition pos = Engine::Instance()->FindCuadrant(getInterpolatedPos(), collide->getActorLocation());
 
-            Vector2f velocity = Vector2f(direction.x, direction.y);
+            Vector2f velocityLoc = Vector2f(direction.x, direction.y);
 
             /*if (abs(direction.x) < abs(direction.y)) { // vertical movement
                 if(abs(collide->getActorLocation().x - this->getActorLocation().x) < abs(collide->getActorLocation().y - this->getActorLocation().y)) { // object is bottom
@@ -160,44 +192,68 @@ void Pawn::Update(float delta){
                 }    
             }*/
 
+            if(collidee){
+                if(abs(collidee->getActorLocation().x - this->getActorLocation().x) < abs(collidee->getActorLocation().y - this->getActorLocation().y)) { // object is top/bottom
+                    if(BloquedX) {
+                        
+                        if(BloquedX->getActorLocation().x != collidee->getActorLocation().x) {
+                            velocityLoc = Vector2f(0.f, 0.f);
+                            BloquedY = collidee;
+                        } else {
+                            ignore.clear();
+                            ignore.push_back(collide);
+                            collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 0);
+                            if(collidee && BloquedX->getActorLocation().x != collidee->getActorLocation().x) {
+                                velocityLoc = Vector2f(0.f, 0.f);
+                                BloquedY = collidee;
+                            }
+                        }
+                    } else {
+                        velocityLoc = Vector2f(velocityLoc.x, 0.f);
+                        BloquedY = collidee;
+                        setActorLocation( this->getActorLastLocation() );
+                    }
+                } 
+                if(abs(collidee->getActorLocation().x - this->getActorLocation().x) > abs(collidee->getActorLocation().y - this->getActorLocation().y))  { // object is left/right
+                    if(BloquedY) {
+                        if(BloquedY->getActorLocation().y != collide->getActorLocation().y) {
+                            velocityLoc = Vector2f(0.f, 0.f);
+                            BloquedX = collidee;
+                        } else {
+                            ignore.clear();
+                            ignore.push_back(collidee);
+                            collidee = DirectionPrecheck(Vector2f(x,y), worldstatic, ignore, 1);
 
-            if(abs(collide->getActorLocation().x - this->getActorLocation().x) < abs(collide->getActorLocation().y - this->getActorLocation().y)) { // object is top/bottom
-                if(BloquedX) {
-                    if(BloquedX->getActorLocation().x != collide->getActorLocation().x) {
-                        velocity = Vector2f(velocity.x, 0.f);
-                        BloquedY = collide;
-                    } 
-                } else {
-                    velocity = Vector2f(velocity.x, 0.f);
-                    BloquedY = collide;
-                    setActorLocation( this->getActorLastLocation() );
-                }
-            } 
-            if(abs(collide->getActorLocation().x - this->getActorLocation().x) > abs(collide->getActorLocation().y - this->getActorLocation().y))  { // object is left/right
-                if(BloquedY) {
-                    if(BloquedY->getActorLocation().y != collide->getActorLocation().y) {
-                        velocity = Vector2f(velocity.x, 0.f);
-                        BloquedX = collide;
-                    } 
-                } else {
-                    velocity = Vector2f(0.f, velocity.y);
-                    BloquedX = collide;
-                    setActorLocation( this->getActorLastLocation() );
+                            if(collidee && BloquedY->getActorLocation().y != collidee->getActorLocation().y) {
+                                velocityLoc = Vector2f(0.f, 0.f);
+                                BloquedX = collidee;
+                            }
+                        }
+                    } else {
+                        velocityLoc = Vector2f(0.f, velocityLoc.y);
+                        BloquedX = collidee;
+                        setActorLocation( this->getActorLastLocation() );
+                    }
                 }
             }
 
             if(BloquedX) {
-                velocity.x = 0.f;
+                velocityLoc.x = 0.f;
             }
             if(BloquedY) {
-                velocity.y = 0.f;
+                velocityLoc.y = 0.f;
+            }
+            velocity = velocityLoc;
+
+            if(BloquedY && BloquedX) {
+                int e = 2;
             }
             
             x = movementSpeed*velocity.x*delta;
             y = movementSpeed*velocity.y*delta;
             x = getActorLocation().x + x;
             y = getActorLocation().y + y;
-
+            
             UpdateMovement( Vector2f (x,y) );
         }
     }
@@ -268,6 +324,25 @@ Actor* Pawn::DirectionPrecheck(Vector2f loc, ObjectType type) {
     double traceY = loc.y-getBoundingBox().height/2+5;
     FloatRect trace = FloatRect(Vector2f(traceX, traceY), Vector2f(getBoundingBox().width-10,getBoundingBox().height-10));
     Actor* collide = gi->boxTraceByObjectType( trace, type );
+
+    if(debug) {
+        movementTraceDebug = sf::RectangleShape( Vector2f(trace.width,trace.height) );
+        // Show actor pre-movement trace box
+        movementTraceDebug.setPosition(trace.left,trace.top);
+        movementTraceDebug.setFillColor(sf::Color(0,0,0,0));
+        movementTraceDebug.setOutlineThickness(2.f);
+        movementTraceDebug.setOutlineColor(sf::Color(0, 200, 200));
+    }
+
+    return collide;
+}
+
+Actor* Pawn::DirectionPrecheck(Vector2f loc, ObjectType type, list<Actor*> ActorsToIgnore, int Axis) {
+    game *gi = game::Instance();
+    double traceX = loc.x-getBoundingBox().width/2+5; // Offset box to make it fit the center location.
+    double traceY = loc.y-getBoundingBox().height/2+5;
+    FloatRect trace = FloatRect(Vector2f(traceX, traceY), Vector2f(getBoundingBox().width-10,getBoundingBox().height-10));
+    Actor* collide = gi->boxTraceByObjectType( trace, type, ActorsToIgnore, Axis );
 
     if(debug) {
         movementTraceDebug = sf::RectangleShape( Vector2f(trace.width,trace.height) );

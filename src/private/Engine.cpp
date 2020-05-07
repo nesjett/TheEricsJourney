@@ -249,9 +249,10 @@ void SSprite::setScale(double x, double y){
 
 /* Modify the sprite bounds. If param > 0 && < 1, size is applied as a sacling percentage, if > 1, Its set as an absolute size */
 sf::FloatRect SSprite::setBounds(float newScale) {
+    sf::FloatRect global = sfsprite.getGlobalBounds();
     if(newScale <= 1) { // we are sending a scale
-        GlobalBounds.height = GlobalBounds.height*newScale;
-        GlobalBounds.width = GlobalBounds.width*newScale;
+        GlobalBounds.height = global.height*newScale;
+        GlobalBounds.width = global.width*newScale;
     } else { // otherwise, we are sending a static size
         GlobalBounds.height = newScale;
         GlobalBounds.width = newScale;
