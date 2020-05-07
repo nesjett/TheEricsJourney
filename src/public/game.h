@@ -45,7 +45,7 @@ class game
         Player* getPlayerCharacter();
         list<Mejora*> getMejoras();
         PlayerController* getPlayerController();
-
+        //cambio
         void Almacenaenemy(Projectile* proj);
 
         void SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot);
