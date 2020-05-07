@@ -19,7 +19,7 @@ void BouncingArrow::Init(){
     //movementSpeed = 0.65;
     movementSpeed = 0.95;
     damage = 20;
-    MaxBounceCount = 2;
+    MaxBounceCount = 3;
 
     texture_file = "./resources/projectiles/arrow.png";
     if(sprite){
@@ -53,15 +53,15 @@ void BouncingArrow::Update(float delta){
     if(collide) { // Update direction for next loop to take effect. THis loop we maintain the movement to avoid projectile to bounce away from the wall.
         if (abs(direction.x) < abs(direction.y)) { // moving vertically
             if(abs(collide->getActorLocation().x - this->getActorLocation().x) < abs(collide->getActorLocation().y - this->getActorLocation().y)) { // object is bottom
-                this->setDirection(Vector2f(direction.x, -direction.y));
+                this->SetDirection(Vector2f(direction.x, -direction.y));
             } else {
-                this->setDirection(Vector2f(-direction.x, direction.y));// object is top
+                this->SetDirection(Vector2f(-direction.x, direction.y));// object is top
             }
         } else { // moving horizontally
-                if(abs(collide->getActorLocation().x - this->getActorLocation().x) > abs(collide->getActorLocation().y - this->getActorLocation().y) ) { // object is right
-                this->setDirection(Vector2f(-direction.x, direction.y));
+            if(abs(collide->getActorLocation().x - this->getActorLocation().x) > abs(collide->getActorLocation().y - this->getActorLocation().y) ) { // object is right
+                this->SetDirection(Vector2f(-direction.x, direction.y));
             } else {
-                this->setDirection(Vector2f(direction.x, -direction.y));// object is left
+                this->SetDirection(Vector2f(direction.x, -direction.y));// object is left
             }     
         }
 
