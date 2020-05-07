@@ -65,8 +65,8 @@ class game
     private:
         static game* pInstance;
         Engine* eng;
-        int largo = 1920;
-        int alto = 1080;
+        int largo = 1080;
+        int alto = 720;
 
         // List of active actors to update/render
         list<Actor*> actors;
