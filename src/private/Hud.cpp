@@ -67,9 +67,9 @@ void Hud::setMaxHealth(float health)
 {
     if(maxHealth > 0.f)
     {
-        float porcentaje = health/maxHealth;
-        width = width*porcentaje;
-        playerHealth.setSize(Vector2f(width, height));
+        // float porcentaje = health/maxHealth;
+        // width = width*porcentaje;
+        // playerHealth.setSize(Vector2f(width, height));
     }
     maxHealth = health;
 }
@@ -95,7 +95,10 @@ void Hud::setCurrentHealth(float health)
     //     playerHealth.setFillColor(colorHealthLess25);
     // }
 }
-
+void Hud::setNumMapa(int num)
+{
+    NumMapa = num;
+}
 void Hud::setPlayer(Player* player)
 {
     jugador = player;
@@ -159,19 +162,20 @@ void Hud::Draw()
         delete *it;
     }
     cuadraditos.clear();
-    int numCuadrados = width/20;
+    int numCuadrados = maxHealth/25.f;//width/20;
+    float widthCuadradito = width/numCuadrados; //20;
     eng->getApp().draw(playerHealth);
     for(int i = 0; i < numCuadrados; i++)
     {
         cuadraditos.push_back(new RectangleShape);
-        cuadraditos[i]->setSize(sf::Vector2f(20, height));
+        cuadraditos[i]->setSize(sf::Vector2f(widthCuadradito, height));
         cuadraditos[i]->setOrigin(cuadraditos[i]->getGlobalBounds().width/2, cuadraditos[i]->getGlobalBounds().height/2);
         if(i == 0)
         {
-            cuadraditos[i]->setPosition(Vector2f(playerHealth.getPosition().x - width/2 + 10, jugador->getInterpolatedPos().y - 50));
+            cuadraditos[i]->setPosition(Vector2f(playerHealth.getPosition().x - width/2 + widthCuadradito/2, jugador->getInterpolatedPos().y - 50));
         }
         else{
-            cuadraditos[i]->setPosition(Vector2f(cuadraditos[i-1]->getPosition().x + 20, jugador->getInterpolatedPos().y - 50));
+            cuadraditos[i]->setPosition(Vector2f(cuadraditos[i-1]->getPosition().x + widthCuadradito, jugador->getInterpolatedPos().y - 50));
         }
         cuadraditos[i]->setOutlineColor(sf::Color::Black);
         cuadraditos[i]->setOutlineThickness(1);
@@ -197,6 +201,7 @@ void Hud::Draw()
             i++;       
         }
     }
+    //Draw de las mejoras
     int cont = 0;
     if(vecesMejora1 > 0)
     {
