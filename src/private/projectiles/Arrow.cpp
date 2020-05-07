@@ -20,7 +20,7 @@ void Arrow::Init(){
     game *gi = game::Instance();
     creationTime = gi->getTime();
     //movementSpeed = 0.65;
-    movementSpeed = 0.5;
+    movementSpeed = 0.2;
     damage = 20;
 
     texture_file = "./resources/projectiles/arrow.png";
@@ -32,7 +32,7 @@ void Arrow::Init(){
     sprite->setOrigin(397/2, 74/2);
     sprite->setTextureRect( 0, 0 , 397, 74 );
     sprite->setScale(0.16, 0.17);
-    sprite->setBounds(0.5);
+    sprite->setBounds(20);
 
 
     Animation *tmpA;
