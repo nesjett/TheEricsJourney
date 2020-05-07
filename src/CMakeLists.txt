@@ -31,6 +31,7 @@ target_sources(libModulos PRIVATE
 
     "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/FireBall.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/Arrow.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/BouncingArrow.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/Rock.cpp"
 
 
