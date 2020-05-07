@@ -28,6 +28,8 @@ void Saw::PrepareSprite(){
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
     sprite->setScale(scale,scale); // Set the scale of the sprite.
+
+    sprite->setBounds(0.65);
     
     Animation *tmpA;
 

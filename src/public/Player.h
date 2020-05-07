@@ -44,7 +44,6 @@ class Player:  public Pawn{
         int LastAttack; // Used to select the sound to play for shooting
         SSprite *MovementIndicator;
         bool GodMode = false;
-        list<Enemy*> enemyList;
         sf::Vector2f dir_unit;
         
 };

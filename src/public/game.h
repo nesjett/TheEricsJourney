@@ -47,12 +47,13 @@ class game
         list<Mejora*> getMejoras();
         PlayerController* getPlayerController();
 
-        void Almacenaenemy(Projectile* proj);
+        void Almacenaenemy(Actor* proj);
 
         void SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot);
 
         long getTime() { return gameClock.getElapsedTime().asMilliseconds(); };
         Actor* boxTraceByObjectType(FloatRect rect, ObjectType type);
+        Actor* boxTraceByObjectType(FloatRect rect, ObjectType type, list<Actor*> ActorsToIgnore, int IgnoreDir);
         sf::Clock gameClock;
 
     protected:

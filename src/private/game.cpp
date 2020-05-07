@@ -5,8 +5,9 @@
 #include "../public/particles/PlayerHit.h"
 #include "../public/particles/Fireball_Explosion.h"
 #include "../public/particles/EfectoMejora.h"
+#include "../public/enemies/BouncingBoss.h"
 
-#define UPDATE_INTERVAL (1000/35.0)
+#define UPDATE_INTERVAL (1000/25.0)
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -95,6 +96,10 @@ void game::run(){
     
     listaEnemigos = getAllEnemies();
     ControladorJugador = new PlayerController(jugador, listaEnemigos);
+
+    Actor *test = new BouncingBoss();
+    actors.push_back(test);
+    test->setActorLocation(Vector2f(500.f,500.f));
 
     /***********************************
      * Game loop
@@ -198,6 +203,7 @@ void game::run(){
                 for (Actor *actor : actors) {
                     // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
                     // Can be improved by not checking the pairs that were already checked
+                    //TODO: should do in another thread
                     for (Actor *test : actors) { // TODO: Add bool to stop updating player movement if collided? prevents input event firing between collision event setting dir to 0 and the update event
                         if(actor != test){
                             //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
@@ -313,9 +319,8 @@ list<Mejora*> game::getMejoras(){
     }
     return tmp;
 }
-void game::Almacenaenemy(Projectile* proj){
+void game::Almacenaenemy(Actor* proj){
     actors.push_back(proj); 
-    
 }
 /*/////////////////////////
     \brief Traces a box on the desired location to check for collisions.
@@ -330,6 +335,64 @@ Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type) {
             if(overlaps){
                 return act;
             }
+        }
+    }
+    return NULL;
+}
+
+/* 
+* @param IgnoreDir ignore actors that have the same dir as the ignored actors. 0 to compare X axis, 1 to compare Y axis, 2 to not compare axis location
+*/
+Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type, list<Actor*> ActorsToIgnore, int IgnoreDir = 0) {
+    for (Actor *act : actors) {
+        if(ActorsToIgnore.size() > 0) {
+            for (Actor *ignore : ActorsToIgnore) {
+                if(act != ignore)  { // filter if the actor is in the ignore list
+                    switch (IgnoreDir)
+                    {
+                    case 0:
+                        if((act->getActorLocation().x != ignore->getActorLocation().x)){
+                            if(act->getObjectType() == type) {
+                                bool overlaps = act->getBoundingBox().intersects( rect );
+                                if(overlaps){
+                                    return act;
+                                }
+                            }
+                        }
+                        break;
+
+                    case 1:
+                        if((act->getActorLocation().y != ignore->getActorLocation().y)){
+                            if(act->getObjectType() == type) {
+                                bool overlaps = act->getBoundingBox().intersects( rect );
+                                if(overlaps){
+                                    return act;
+                                }
+                            }
+                        }
+                        break;
+                    
+                    default:
+                        if(act->getObjectType() == type) {
+                            bool overlaps = act->getBoundingBox().intersects( rect );
+                            if(overlaps){
+                                return act;
+                            }
+                        }
+                        break;
+                    }
+                    
+                }
+            }
+        } else {
+            
+            if(act->getObjectType() == type) {
+                bool overlaps = act->getBoundingBox().intersects( rect );
+                if(overlaps){
+                    return act;
+                }
+            }
+            
         }
     }
     return NULL;

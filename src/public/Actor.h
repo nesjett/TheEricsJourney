@@ -31,6 +31,7 @@ class Actor {
 
     /////////////////////////////////////////////////////////*/
 		void UpdateMovement(Vector2f loc) {location_prev = location; location = loc;}
+    
     void setActorLocation(Vector2f loc) { location_prev = location = loc; }
 		//void setBoundingBox(IntRect rs) {boundingBox = rs;} // TODO: In the future we should be able to modify bounding box on demand.
     bool isAsleep() {return asleep;};
@@ -38,9 +39,19 @@ class Actor {
     Vector2f getActorLastLocation() { return location_prev; };
     ObjectType getObjectType(){return oType; };
 
+
+
+    /* Used to update actor logic like collisions. Pawns may use it to update movement, etc */
     virtual void Update(float delta);
+
+    /* Interpolated draw of the actor. By default draws the main actor Sprite */
 		virtual void Draw(double percent, double delta );
+
+    /* Used to initialize the basic required DATA for the class in different constructors */
 		virtual void Init();
+
+
+    /* Used receive damage and proccess It */
     virtual void TakeDamage(float damage, Actor* dmgCauser, string damage_type);
 
     bool debug;

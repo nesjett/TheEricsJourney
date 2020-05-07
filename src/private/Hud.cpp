@@ -127,14 +127,18 @@ void Hud::addMejora(PowerUpType tipo)
 }
  void Hud::Update()
  {
+ }
+
+void Hud::Draw()
+{
     setCurrentHealth(jugador->getCurrentHealth());
     list<Enemy*> enemigos = game::Instance()->getAllEnemies();
+
     vector<RectangleShape*>::iterator it;
-    for(it = enemyHealthBars.begin(); it != enemyHealthBars.end(); it++)
+    for(it=enemyHealthBars.begin(); it != enemyHealthBars.end(); it++)
     {
         delete *it;
     }
-    //enemyHealthBars.erase(enemyHealthBars.begin(), enemyHealthBars.end());
     enemyHealthBars.clear();
     int i = 0;
     for (Enemy *enemigo : enemigos) {
@@ -145,26 +149,12 @@ void Hud::addMejora(PowerUpType tipo)
             enemyHealthBars[i]->setSize(sf::Vector2f(percent*widthEnemigo, height));
             enemyHealthBars[i]->setFillColor(colorHealthLess25);
             enemyHealthBars[i]->setOrigin(widthEnemigo/2, height/2);
-            // if(percent <= 0.5f && percent > 0.25f)
-            // {
-            //     enemyHealthBars[i]->setFillColor(colorHealthLess50);
-            // }
-            // if(percent <= 0.25f)
-            // {
-            //     enemyHealthBars[i]->setFillColor(colorHealthLess25);
-            // }
             i++;
         }       
     }
- }
-
-void Hud::Draw()
-{
     //Barra de vida del jugador con borde
     playerHealth.setPosition(Vector2f(jugador->getInterpolatedPos().x, jugador->getInterpolatedPos().y - 50));
-    //cuadraditos.erase(cuadraditos.begin(),cuadraditos.end());
-    vector<RectangleShape*>::iterator it;
-    for(it = cuadraditos.begin(); it != cuadraditos.end(); it++)
+    for(it=cuadraditos.begin(); it != cuadraditos.end(); it++)
     {
         delete *it;
     }
@@ -189,24 +179,16 @@ void Hud::Draw()
         eng->getApp().draw(*cuadraditos[i]);
     }
 
-    //Barras de vida de los enemigos con borde
-    // for(int i = 0; i < enemigos.size(); i++)
-    // {
-    //     enemyHealthBars[i].setPosition(enemigos[i]->getInterpolatedPos().x, enemigos[i]->getInterpolatedPos().y - 50);
-    //     borde.setPosition(enemigos[i]->getInterpolatedPos().x, enemigos[i]->getInterpolatedPos().y - 50);
-    //     eng->getApp().draw(borde);
-    //     eng->getApp().draw(enemyHealthBars[i]);
-    // }
+
     RectangleShape borde;
     borde.setSize(sf::Vector2f(widthEnemigo, height));
     borde.setOutlineColor(sf::Color::Black);
     borde.setOutlineThickness(1);
     borde.setFillColor(Color::Transparent);
     borde.setOrigin(widthEnemigo/2, height/2);
-    list<Enemy*> enemigos = game::Instance()->getAllEnemies();
-    int i = 0;
+    i = 0;
     for (Enemy *enemigo : enemigos) {
-        if(enemyHealthBars.size() > 0)
+        if(enemigo && enemyHealthBars.size() > 0 && enemigo->IsAlive())
         {
             enemyHealthBars[i]->setPosition(enemigo->getInterpolatedPos().x, enemigo->getInterpolatedPos().y - 50);
             borde.setPosition(enemigo->getInterpolatedPos().x, enemigo->getInterpolatedPos().y - 50);

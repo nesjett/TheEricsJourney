@@ -68,9 +68,9 @@ void PlayerController::Mover(sf::Event event){
         miJugador->setDirection(1.f, 0.f);
     }*/
     if(stop==false){
-        std::cout << "the left button was pressed" << std::endl;
-        std::cout << "mouse x: " << event.mouseButton.x << std::endl;
-        std::cout << "mouse y: " << event.mouseButton.y << std::endl;
+        //std::cout << "the left button was pressed" << std::endl;
+        //std::cout << "mouse x: " << event.mouseButton.x << std::endl;
+        //std::cout << "mouse y: " << event.mouseButton.y << std::endl;
 
         Engine *eng = Engine::Instance();
         Vector2i pos = sf::Mouse::getPosition(eng->getApp()); // mouse position in window coords
