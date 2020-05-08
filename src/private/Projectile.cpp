@@ -71,6 +71,19 @@ void Projectile::OnActorOverlap(Actor *otherActor){
     }
 }
 
+void Projectile::OnActorOverlap(Actor *otherActor, Hit Hit){
+    if ( DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
+        otherActor->TakeDamage(damage, this, ProjectileName);
+        DmgApplied = true;
+        setLifespan(0.0);
+    } else {
+        if(dynamic_cast<Tile*>(otherActor)){
+            DmgApplied = true;
+            setLifespan(0.0);
+        }
+    }
+}
+
 Vector2f Projectile::SetDirection(Vector2f newDir) { 
     direction = newDir; 
     SetVelocity(Vector2f(newDir.x*movementSpeed, newDir.y*movementSpeed));

@@ -14,6 +14,14 @@ struct AnimFrame {
    double duration; // in milliseconds
 };
 
+struct Hit {
+    /* Normal vector of the hit */
+   sf::Vector2f HitNormal;
+
+   /* Point in space where the hit was detected */
+   sf::Vector2f HitPoint;
+};
+
 enum Faction { enemy=2, allie=1, neutral=0 };
 enum ObjectType { worldstatic=0, worlddynamic=1, pawn=2, projectile=3, trap=4, blocker=5, powerup=6, door=7 }; // NOTA: Parece que c++ no permite que los nombres de una enum tengan mayusculas!!
 enum PowerUpType { health=0, movementspeed=1, attackspeed=2, attackmore=3 };

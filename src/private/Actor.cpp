@@ -43,6 +43,8 @@ void Actor::Draw(double percent, double delta ){
     setActorLocation(location);
   }
 
+  //BroadphaseBox = GetSweptBroadphaseBox();
+
   if(!debug){ 
     return;
   }
@@ -97,9 +99,35 @@ void Actor::Draw(double percent, double delta ){
   circ_bounding.setOutlineColor(sf::Color::Red);
 
 
+  // AABB Swept broadphase box
+  /*sf::RectangleShape BroadRect = sf::RectangleShape( Vector2f(BroadphaseBox.width,BroadphaseBox.height) );
+  BroadRect.setPosition(BroadphaseBox.left, BroadphaseBox.top);
+  BroadRect.setFillColor(sf::Color(0,0,0,0));
+  BroadRect.setOutlineThickness(2.f);
+  BroadRect.setOutlineColor(sf::Color(0, 200, 55)); // green if no overlap
+*/
+  /*for (Actor *test : game::Instance()->GetAllActors()) { // TODO: Add bool to stop updating player movement if collided? prevents input event firing between collision event setting dir to 0 and the update event
+      if(this != test){
+          //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
+          if(AABBCheck( *test ) ){ // Intersects broadphase box?
+              //test->OnActorOverlap(this);
+
+              BroadRect.setOutlineColor(sf::Color(255, 0, 100)); // red if overlap
+              Vector2f normal;
+              if(SweptAABB( *test, normal ) < 1.0f ) {
+                BroadRect.setOutlineColor(sf::Color(0, 80, 200)); // aqua if SWEPT
+                if((normal.x != 0 || normal.y != 0) && dynamic_cast<Tile*>(test))
+                  int er = 1;
+              }
+          }
+      }
+  }*/
+
+
   Engine *eng = Engine::Instance();
   eng->getApp().draw(rect); // bounding box
   eng->getApp().draw(circ); // actor location
+  //eng->getApp().draw(BroadRect);
   if(debug_coords) {
     eng->getApp().draw(text); // actor location
     eng->getApp().draw(text_bounding); // actor bounding box data
@@ -144,12 +172,18 @@ sf::FloatRect Actor::GetSweptBroadphaseBox(){
 }
 
 bool Actor::AABBCheck(Actor& Other) {
-  sf::FloatRect b1 = this->getBoundingBox();
+  sf::FloatRect b1 = GetSweptBroadphaseBox();
   sf::FloatRect b2 = Other.getBoundingBox();
   return b1.intersects(b2); 
 }
 
-float Actor::SweptAABB(Actor& Other, Vector2f& ImpactNormal){
+void Actor::UpdateSweptBraodphaseBox() {
+
+
+}
+
+
+float Actor::SweptAABB(Actor& Other, Hit& HitResult){
   float xInvEntry, yInvEntry;
   float xInvExit, yInvExit;
   sf::FloatRect OtherBox = Other.getBoundingBox();
@@ -197,42 +231,62 @@ float Actor::SweptAABB(Actor& Other, Vector2f& ImpactNormal){
   }
 
   // find the earliest/latest times of collision
-  // TODO: Is this the correct order..?
   float entryTime = std::max(xEntry, yEntry);
   float exitTime = std::min(xExit, yExit);
 
   // if there was no collision
-  if (entryTime > exitTime || (xEntry < 0.0f && yEntry < 0.0f) || xEntry > 1.0f || yEntry > 1.0f) {
+  /*if (entryTime > exitTime || (xEntry < 0.0f && yEntry < 0.0f) || xEntry > 1.0f || yEntry > 1.0f) {
       ImpactNormal.x = 0.0f;
       ImpactNormal.y = 0.0f;
       return 1.0f;
+  }*/
+
+  //if (entryY > 1.0f) entryY = -Float.MAX_VALUE; // From previous bug above.
+  //if (entryX > 1.0f) entryX = -Float.MAX_VALUE; // From previous bug above.
+  if (entryTime > exitTime) return 1.0f; // This check was correct.
+  if (xEntry < 0.0f && yEntry < 0.0f) return 1.0f;
+  if (xEntry < 0.0f) {
+      // Check that the bounding box started overlapped or not.
+      if (OtherBox.left + OtherBox.width < OwnBox.left || OtherBox.left > OwnBox.left+OwnBox.width) return 1.0f;
   }
-  else{ // There was a collision
+  if (yEntry < 0.0f) {
+      // Check that the bounding box started overlapped or not.
+      if (OtherBox.top + OtherBox.height < OwnBox.top || OtherBox.top > OwnBox.top + OwnBox.height) return 1.0f;
+  }
+
+  HitResult.HitPoint = Vector2f(xEntry, yEntry);
+
+  //else{ // There was a collision
       // calculate normal of collided surface
       if (xEntry > yEntry) 
       {
           if (xInvEntry < 0.0f) {
-              ImpactNormal.x = 1.0f;
-              ImpactNormal.y = 0.0f;
+              HitResult.HitNormal.x = 1.0f;
+              HitResult.HitNormal.y = 0.0f;
           }
           else {
-              ImpactNormal.x = -1.0f;
-              ImpactNormal.y = 0.0f;
+              HitResult.HitNormal.x = -1.0f;
+              HitResult.HitNormal.y = 0.0f;
           }
       }
       else 
       {
           if (yInvEntry < 0.0f) {
-              ImpactNormal.x = 0.0f;
-              ImpactNormal.y = 1.0f;
+              HitResult.HitNormal.x = 0.0f;
+              HitResult.HitNormal.y = 1.0f;
           }
           else {
-              ImpactNormal.x = 0.0f;
-              ImpactNormal.y = -1.0f;
+              HitResult.HitNormal.x = 0.0f;
+              HitResult.HitNormal.y = -1.0f;
           }
       }
 
       // return the time of collision
       return entryTime;
-  }
+  //}
+}
+
+
+void Actor::OnActorOverlap(Actor *OtherActor, Hit Hit) {
+  std::cout << "SWEPT Hit in ACTOR " << std::endl;
 }

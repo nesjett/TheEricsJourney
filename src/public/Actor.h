@@ -70,6 +70,7 @@ class Actor {
 
   /////////////////////////////////////////////////////////*/
     virtual void OnActorOverlap(Actor *otherActor);
+    virtual void OnActorOverlap(Actor *OtherActor, Hit Hit);
 
 
   /*///////////////////////////
@@ -92,13 +93,15 @@ class Actor {
     /* Calc precision collision and normals 
     * @params ImpactNormal ref Vector2f with the impact normals if any
     * @return float between 0 and 1 of "time" collision happened.*/
-    float SweptAABB(Actor& Other, Vector2f& ImpactNormal); 
+    float SweptAABB(Actor& Other, Hit& HitResult); 
 
     /* Calculate the bounding box between initial and final position to find potential collisions */
     sf::FloatRect GetSweptBroadphaseBox();
 
     /* Checks if there is an AABB collision between two actors. Used within GetSweptBroadphaseBox() */
     bool AABBCheck(Actor& Other);
+
+    void UpdateSweptBraodphaseBox();
 
 
     void SetVelocity(Vector2f NewVelocity) { Velocity = NewVelocity; };
@@ -110,7 +113,7 @@ class Actor {
     //IntRect boundingBox;
     sf::Font font;
 
-    
+    sf::FloatRect BroadphaseBox;
 
     sf::Vector2f Velocity;
 

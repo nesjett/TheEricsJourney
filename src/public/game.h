@@ -56,7 +56,7 @@ class game
         Actor* boxTraceByObjectType(FloatRect rect, ObjectType type, list<Actor*> ActorsToIgnore, int IgnoreDir);
         sf::Clock gameClock;
 
-        Actor* GetPlayer() { return jugador; };
+        list<Actor*> GetAllActors() { return actors; };
 
     protected:
         game();

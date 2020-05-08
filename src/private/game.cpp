@@ -204,13 +204,13 @@ void game::run(){
                     // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
                     // Can be improved by not checking the pairs that were already checked
                     //TODO: should do in another thread
-                    for (Actor *test : actors) { // TODO: Add bool to stop updating player movement if collided? prevents input event firing between collision event setting dir to 0 and the update event
+                    for (Actor *test : actors) {
                         if(actor != test){
-                            //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
-                            bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
-                            if(overlaps){
-                                //std::cout << "--------------------------------- OVERLAPS! ----------------------------" << std::endl;
-                                test->OnActorOverlap(actor);
+                            if(actor->AABBCheck( *test )){ // Checks if a hit is possible (Don guarantee that is actually hittin!). The aim is to save performance if no collision is even possible
+                                Hit HitResult;
+                                if(actor->SweptAABB( *test, HitResult ) < 1.0f ) { // Checks if hit happens. SWEPT algorithm for AABB check
+                                    test->OnActorOverlap(actor, HitResult);
+                                }
                             }
                         }
                     }

@@ -13,7 +13,7 @@ class BouncingArrow: public Projectile {
         void Update(float delta);
         void Draw(double percent, double delta );
         void Init();
-        void OnActorOverlap(Actor *otherActor);
+        void OnActorOverlap(Actor *otherActor, Hit Hit) override;
 
     protected:
         /* Max number of times it is allowed to bounce */

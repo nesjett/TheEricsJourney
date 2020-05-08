@@ -5,6 +5,7 @@
 
 Enemy::Enemy() : Pawn(){ // Use this to call to parent's contructor first
     Targetted = false;
+    debug = true;
     PrepareMarker();
 }
 

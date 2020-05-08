@@ -17,7 +17,7 @@ void BouncingArrow::Init(){
     debug = true;
     game *gi = game::Instance();
     //movementSpeed = 0.65;
-    movementSpeed = 15;
+    movementSpeed = 200;
     damage = 20;
     MaxBounceCount = 3;
 
@@ -30,7 +30,7 @@ void BouncingArrow::Init(){
     sprite->setOrigin(397/2, 74/2);
     sprite->setTextureRect( 0, 0 , 397, 74 );
     sprite->setScale(0.16, 0.17);
-    sprite->setBounds(40);
+    sprite->setBounds(20);
 
 
     Animation *tmpA;
@@ -51,7 +51,7 @@ void BouncingArrow::Update(float delta){
 
     Actor *collide = DirectionPrecheck(Vector2f(x, y), worldstatic);
 
-    if(collide) { // Update direction for next loop to take effect. THis loop we maintain the movement to avoid projectile to bounce away from the wall.
+    /*if(collide) { // Update direction for next loop to take effect. THis loop we maintain the movement to avoid projectile to bounce away from the wall.
         if (abs(direction.x) < abs(direction.y)) { // moving vertically
             if(abs(collide->getActorLocation().x - this->getActorLocation().x) < abs(collide->getActorLocation().y - this->getActorLocation().y)) { // object is bottom
                 this->SetDirection(Vector2f(direction.x, -direction.y));
@@ -71,7 +71,7 @@ void BouncingArrow::Update(float delta){
         if(BounceCount >= MaxBounceCount){ // Now that we bounced, check if that was the last one allowed for this projectile.
             setLifespan(0.f);
         }
-    }
+    }*/
 
     UpdateMovement(Vector2f(x,y));
     
@@ -94,20 +94,32 @@ void BouncingArrow::Update(float delta){
 
     game* gi = game::Instance();
 
-    SetVelocity(Vector2f(direction.x*movementSpeed, direction.y*movementSpeed));
+    SetVelocity(Vector2f(direction.x*movementSpeed*delta, direction.y*movementSpeed*delta));
     // DEBUG NEW AABB SWEPT detection
     sf::FloatRect broadphasebox = GetSweptBroadphaseBox();
 
-    movementTraceDebug = sf::RectangleShape( Vector2f(broadphasebox.width,broadphasebox.height) );
+   /* movementTraceDebug = sf::RectangleShape( Vector2f(broadphasebox.width,broadphasebox.height) );
     movementTraceDebug.setPosition(broadphasebox.left, broadphasebox.top);
     movementTraceDebug.setFillColor(sf::Color(0,0,0,0));
     movementTraceDebug.setOutlineThickness(2.f);
     movementTraceDebug.setOutlineColor(sf::Color(0, 200, 55));
 
+    
     if(AABBCheck( *gi->getPlayerCharacter() ) ) {
         std::cout << "AABB colisiona!!" << std::endl;
-        movementTraceDebug.setOutlineColor(sf::Color(0, 255, 255));
-    }
+
+        Vector2f normal;
+        float collisiontime = SweptAABB(*gi->getPlayerCharacter(), normal); 
+
+        if(collisiontime < 1.0f) {
+            std::cout << "SWEPT Colisiona!!" << std::endl;
+            movementTraceDebug.setOutlineColor(sf::Color(0, 255, 255));
+        } else {
+            std::cout << "SWEPT: " << collisiontime << std::endl;
+            movementTraceDebug.setOutlineColor(sf::Color(0, 55, 255));
+        }
+    }*/
+    
 
     
 }
@@ -121,13 +133,19 @@ void BouncingArrow::Draw(double percent, double delta ) {
 }
 
 
-void BouncingArrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
+void BouncingArrow::OnActorOverlap(Actor *otherActor, Hit Hit){ // Implement Buncing...? hehehe
     if(lastDamaged){
-        if (otherActor != lastDamaged && DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
+        if (otherActor != lastDamaged && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
+            otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
+            lastDamaged = otherActor;
+        }
+    } else {
+        if (dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
             otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
             lastDamaged = otherActor;
         }
     }
+    std::cout << "SWEPT Hit " << std::endl;
 }
 
 
