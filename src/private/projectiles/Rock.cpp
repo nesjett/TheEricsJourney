@@ -1,4 +1,5 @@
 #include "../../public/projectiles/Rock.h"
+#include <game.h> 
 
 
 
@@ -57,6 +58,10 @@ void Rock::Update(float delta){
     Projectile::Update(delta);
 }
 
+void Rock::Destroy(){
+    game *gi = game::Instance();
+    gi->SpawnEmitterAtLocation(3, getActorLocation(), Vector2f(0.f,0.f));
+}
 
 Rock::~Rock(){
     //delete sprite;

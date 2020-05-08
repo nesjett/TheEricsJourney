@@ -5,6 +5,7 @@
 #include "../public/particles/PlayerHit.h"
 #include "../public/particles/Fireball_Explosion.h"
 #include "../public/particles/EfectoMejora.h"
+#include "../public/particles/Astillas.h"
 #include "../public/enemies/BouncingBoss.h"
 
 #define UPDATE_INTERVAL (1000/25.0)
@@ -459,6 +460,9 @@ void game::SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot) {
         break;
     case 2: // Mejora
         Particles.push_back(make_unique<EfectoMejora>(Location));
+        break;
+    case 3: // Mejora
+        Particles.push_back(make_unique<Astillas>(Location));
         break;
     default:
         break;

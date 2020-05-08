@@ -30,6 +30,8 @@ class Projectile: public Actor {
         void OnActorOverlap(Actor *otherActor);
         void TakeDamage(float damage, Actor* dmgCauser, string damage_type);
 
+        virtual void Destroy();
+
     protected:
         Animation* activeAnim = NULL;
         std::map<std::string, Animation*> Animations;

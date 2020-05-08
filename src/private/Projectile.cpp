@@ -62,13 +62,19 @@ void Projectile::OnActorOverlap(Actor *otherActor){
     if ( DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
         otherActor->TakeDamage(damage, this, ProjectileName);
         DmgApplied = true;
+        Destroy();
         setLifespan(0.0);
     } else {
         if(dynamic_cast<Tile*>(otherActor)){
             DmgApplied = true;
+            Destroy();
             setLifespan(0.0);
         }
     }
+}
+
+void Projectile::Destroy(){
+
 }
 
 Projectile::~Projectile(){

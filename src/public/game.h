@@ -25,7 +25,6 @@
 #include <Explosionenemy.h>
 #include <Stalker.h>
 #include <Hud.h>
-#include <Mejora.h>
 
 using namespace std;
 
