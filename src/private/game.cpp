@@ -38,10 +38,10 @@ void game::RestartGame()
     mapaActual = 0;
     PlayerPoints = 0;
     jugador = new Player();
-    actors.push_back(jugador);
     Hud* hud = Hud::Instance();
     hud->setPlayer(jugador);
     InicializaNivel();
+    //actors.push_back(jugador);
     ControladorJugador = new PlayerController(jugador); // TODO: Should use unique_ptr?
 }
 void game::StartGame()
@@ -49,10 +49,10 @@ void game::StartGame()
     mapaActual = 0;
     PlayerPoints = 0;
     jugador = new Player();
-    actors.push_back(jugador);
     Hud* hud = Hud::Instance();
     hud->setPlayer(jugador);
     InicializaNivel();
+    //actors.push_back(jugador);
     ControladorJugador = new PlayerController(jugador);
 }
 void game::InicializaNivel()
@@ -78,6 +78,8 @@ void game::InicializaNivel()
             delete mapa;
         string nombreMapa = "Mapa"+to_string(mapaActual+1)+".tmx";
         mapa  = new Mapa(nombreMapa);
+        Hud* hud = Hud::Instance();
+        hud->setNumMapa(mapaActual+1);
 
         //Cargamos las colisiones del nivel
         list<Actor*> mapActors = mapa->getActors();
@@ -85,6 +87,8 @@ void game::InicializaNivel()
         {
             actors.push_back(mapActor);
         }
+        actors.remove(jugador);
+        actors.push_back(jugador);
         //Protagonista set location al inicio del mapa
         jugador->setActorLocation(Vector2f(350.0,850.0));
 
