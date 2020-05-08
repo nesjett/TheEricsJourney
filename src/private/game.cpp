@@ -419,7 +419,7 @@ void game::CondicionVictoria()
         EndGame();
         for(Actor* actor : actors)
         {
-            actor->pendingDelete = true;
+            actor->setLifespan(0.f);
         }
         return;
     }

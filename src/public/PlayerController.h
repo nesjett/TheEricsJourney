@@ -30,7 +30,6 @@ class PlayerController:  public Controller{
         
     private: 
         Player* miJugador;
-        list<Enemy*> enemyList;
         float distancia;
         sf::Clock relojAtaque;
         float mejora = 1.f;
