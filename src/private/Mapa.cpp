@@ -246,10 +246,6 @@ list<Actor*> Mapa::getActors()
     {
         actores.push_back(tile);
     }
-    for (Enemy *enemy : listaEnemigos)
-    {
-        actores.push_back(enemy);
-    }
     for (Mejora *mejora : listaMejoras)
     {
         actores.push_back(mejora);
@@ -261,6 +257,10 @@ list<Actor*> Mapa::getActors()
     for (Door *puerta : listaPuertas)
     {
         actores.push_back(puerta);
+    }
+    for (Enemy *enemy : listaEnemigos)
+    {
+        actores.push_back(enemy);
     }
     vEnemigos.erase(vEnemigos.begin(), vEnemigos.end());
     vTiles.erase(vTiles.begin(), vTiles.end());
