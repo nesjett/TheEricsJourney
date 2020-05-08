@@ -12,12 +12,12 @@ class PlayerController:  public Controller{
     public:
         PlayerController(Player*);
         void Update(sf::Event);
-        void Mover(/*sf::Keyboard::Key*/sf::Event);
+        void Mover(sf::Event);
         void setPlayer(Player*);
         void setLista(list<Enemy*>);
         void TryToAttack();
         void ImprovesAttack();
-        void Frenar(/*sf::Keyboard::Key*/);
+        void Frenar();
         void MejorarCadencia(float);
         void MejorarMovimiento(float);
         void IncreaseHealth();

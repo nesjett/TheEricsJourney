@@ -37,9 +37,7 @@ void PlayerController::Update(sf::Event event){
         }
     }
     if(event.key.code == sf::Keyboard::Q){
-        //Aumento de danyo de la bala
         ModifyDamage();
-        //std::cout<<"Daño de flechas aumentado con éxito"<<std::endl;
     }
     /**
      * MOUSE IMPLEMENTATION
@@ -64,23 +62,6 @@ void PlayerController::setGodMode(bool god){
     GodMode=god;
 }
 void PlayerController::Mover(sf::Event event){
-    /*
-    Vector2f dir = pos_player-pos;
-   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
-   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
-   */
-    /*if(event==sf::Keyboard::Up || event==sf::Keyboard::W){
-        miJugador->setDirection(0.f, -1);
-    }
-    if(event==sf::Keyboard::Down || event==sf::Keyboard::S){
-        miJugador->setDirection(0.f, 1);
-    }
-    if(event==sf::Keyboard::Left || event==sf::Keyboard::A){
-        miJugador->setDirection(-1.f, 0.f);
-    }
-    if(event==sf::Keyboard::Right || event==sf::Keyboard::D){
-        miJugador->setDirection(1.f, 0.f);
-    }*/
     if(stop==false){
         std::cout << "the left button was pressed" << std::endl;
         std::cout << "mouse x: " << event.mouseButton.x << std::endl;
@@ -92,30 +73,13 @@ void PlayerController::Mover(sf::Event event){
 
         Vector2f PlayerLoc = miJugador->getActorLocation();
 
-        /*if( (PlayerLoc.x >= pos2.x + 0.1 || PlayerLoc.x <= pos2.x -0.1) && (PlayerLoc.y >= pos2.y + 0.1 || PlayerLoc.y <= pos2.y -0.1)) { // Check if player reached mouse location, so we stop movement
-            this->Frenar();
-            return;
-        }*/
-
         Vector2f newDir = Vector2f(pos2.x, pos2.y) - PlayerLoc; // Determine direction
         float aux=sqrt(pow(newDir.x, 2)+pow(newDir.y, 2));
         Vector2f dir_unit=Vector2f(newDir.x/aux,newDir.y/aux); // convert to unit vector
         miJugador->setDirection(dir_unit.x, dir_unit.y); // apply direction
     }
 }
-void PlayerController::Frenar(/*sf::Keyboard::Key event*/){
-    /*if(event==sf::Keyboard::Up || event==sf::Keyboard::W){
-        miJugador->setDirection(miJugador->getDirection().x, 0.f);
-    }
-    if(event==sf::Keyboard::Down || event==sf::Keyboard::S){
-        miJugador->setDirection(miJugador->getDirection().x, 0.f);
-    }
-    if(event==sf::Keyboard::Left || event==sf::Keyboard::A){
-        miJugador->setDirection(0.f, miJugador->getDirection().y);
-    }
-    if(event==sf::Keyboard::Right || event==sf::Keyboard::D){
-        miJugador->setDirection(0.f, miJugador->getDirection().y);
-    }*/
+void PlayerController::Frenar(){
     stop=true;
     miJugador->setDirection(0.f, 0.f);
 }
