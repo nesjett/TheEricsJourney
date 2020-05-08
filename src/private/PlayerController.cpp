@@ -90,9 +90,11 @@ void PlayerController::MejorarMovimiento(float mejMov){
     miJugador->movementSpeed*=mejMov;
 }
 void PlayerController::TryToAttack(){
-    if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora) && (miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f)){
-        miJugador->Attack();
-        relojAtaque.restart();
+    if(relojAtaque.getElapsedTime().asSeconds()>=1){
+        if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora) && (miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f)){
+            miJugador->Attack();
+            relojAtaque.restart();
+        }
     }
 }
 void PlayerController::ImprovesAttack(){

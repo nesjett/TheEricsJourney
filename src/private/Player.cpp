@@ -298,7 +298,7 @@ void Player::Attack(){
             sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y)-30);
             Arrow *flecha2 = new Arrow(dir_unit, dobleFlecha);
             eng->Almacenaenemy(flecha2);
-            if(AttackImprovement >= 3){ //HE COMENTADO ESTO PORQUE ESTOY HACIENDO PRUEBAS
+            if(AttackImprovement >= 3){ 
                 Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha);
                 eng->Almacenaenemy(projTest3);
             }
