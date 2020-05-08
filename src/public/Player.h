@@ -26,6 +26,7 @@ class Player:  public Pawn{
         float getMaxHealth();
         void improvesAttack();
         void ModifyDamage();
+        void IncreaseDamageArrows();
 
         void ToggleMovementIndicator();
         void setGodMode(bool);
@@ -41,6 +42,7 @@ class Player:  public Pawn{
         void PrepareMovementIndicator();
         string texture_file;
         int AttackImprovement;
+        int IncreaseDamage;
         Enemy *Target;
         int LastAttack; // Used to select the sound to play for shooting
         SSprite *MovementIndicator;

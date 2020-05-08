@@ -147,7 +147,7 @@ float PlayerController::getMaxHealth(){
     return miJugador->getMaxHealth();
 }
 void PlayerController::ModifyDamage(){
-    miJugador->ModifyDamage();
+    miJugador->IncreaseDamageArrows();
 }
 PlayerController::~PlayerController() // Destructor
 {

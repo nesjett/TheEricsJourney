@@ -21,6 +21,7 @@ Player::Player(){ // Use this to call to parent's contructor first
     movementSpeed = 0.2f;
     faction = allie;
     AttackImprovement = 0;
+    IncreaseDamage = 0;
 
     LastAttack = 0;
 
@@ -303,9 +304,18 @@ void Player::Attack(){
             }
         }
     }
+    if(IncreaseDamage>0){
+        //ModifyDamage();
+        for (int i = 0; i < IncreaseDamage; i++){
+            ModifyDamage();
+        }
+    }
 }
 void Player::improvesAttack(){
     AttackImprovement++;
+}
+void Player::IncreaseDamageArrows(){
+    IncreaseDamage++;
 }
 void Player::ModifyDamage(){
     game *eng = game::Instance();
