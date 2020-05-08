@@ -307,6 +307,16 @@ void Player::Attack(){
 void Player::improvesAttack(){
     AttackImprovement++;
 }
+void Player::ModifyDamage(){
+    game *eng = game::Instance();
+    list<Projectile*> Projectiles = eng->getAllProjectiles();
+    for (Projectile* pro : Projectiles){
+        if ( dynamic_cast<Arrow*>( pro ) ) {
+            dynamic_cast<Arrow*>(pro)->ModifyDamage(1.2f);
+        }
+    }
+    std::cout<<"Daño de flechas aumentado con éxito"<<std::endl;
+}
 void Player::setHealthMax(float increase){
     //In this method, you can set an increase of Player's maximum health
     health_MAX+=increase;

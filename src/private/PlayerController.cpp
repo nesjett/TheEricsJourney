@@ -5,7 +5,9 @@
 PlayerController::PlayerController(Player* jugador){
     miJugador = jugador;
 }
-
+void PlayerController::setPlayer(Player* jugador){
+    miJugador = jugador;
+}
 void PlayerController::Update(sf::Event event){
     if (event.key.code == sf::Keyboard::N){
         MejorarCadencia(0.9);
@@ -33,6 +35,11 @@ void PlayerController::Update(sf::Event event){
                 std::cout<<"Modo Dios activado"<<std::endl;
             }
         }
+    }
+    if(event.key.code == sf::Keyboard::Q){
+        //Aumento de danyo de la bala
+        ModifyDamage();
+        //std::cout<<"Daño de flechas aumentado con éxito"<<std::endl;
     }
     /**
      * MOUSE IMPLEMENTATION
@@ -112,17 +119,12 @@ void PlayerController::Frenar(/*sf::Keyboard::Key event*/){
     stop=true;
     miJugador->setDirection(0.f, 0.f);
 }
-
-void PlayerController::setPlayer(Player* jugador){
-    miJugador = jugador;
-}
 void PlayerController::MejorarCadencia(float mej){
     mejora*=mej;
 }
 void PlayerController::MejorarMovimiento(float mejMov){
     miJugador->movementSpeed*=mejMov;
 }
-
 void PlayerController::TryToAttack(){
     if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora) && (miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f)){
         miJugador->Attack();
@@ -143,6 +145,9 @@ float PlayerController::getCurrentHealth(){
 }
 float PlayerController::getMaxHealth(){
     return miJugador->getMaxHealth();
+}
+void PlayerController::ModifyDamage(){
+    miJugador->ModifyDamage();
 }
 PlayerController::~PlayerController() // Destructor
 {
