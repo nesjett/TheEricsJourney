@@ -111,7 +111,7 @@ void game::run(){
 
     Actor *test = new BouncingBoss();
     actors.push_back(test);
-    test->setActorLocation(Vector2f(500.f,500.f));
+    test->setActorLocation(Vector2f(300.f,300.f));
     
     /***********************************
      * Game loop

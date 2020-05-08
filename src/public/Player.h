@@ -30,7 +30,7 @@ class Player:  public Pawn{
         void setGodMode(bool);
         Enemy* FindClosestEnemy();
         
-
+        float cadenciaMultiplier = 1.f;
     protected:
         
         void SetTarget(Enemy *NewTarget);
@@ -45,5 +45,7 @@ class Player:  public Pawn{
         SSprite *MovementIndicator;
         bool GodMode = false;
         sf::Vector2f dir_unit;
+
+        sf::Clock relojAtaque;
         
 };
