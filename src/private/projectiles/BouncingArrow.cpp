@@ -17,7 +17,7 @@ void BouncingArrow::Init(){
     debug = true;
     game *gi = game::Instance();
     //movementSpeed = 0.65;
-    movementSpeed = 0.95;
+    movementSpeed = 15;
     damage = 20;
     MaxBounceCount = 3;
 
@@ -44,6 +44,7 @@ void BouncingArrow::Init(){
 
 void BouncingArrow::Update(float delta){
     float x, y;
+    delta = delta / 1000.f;
     
     x = getActorLocation().x + movementSpeed*direction.x*delta;
     y = getActorLocation().y + movementSpeed*direction.y*delta;
@@ -90,6 +91,24 @@ void BouncingArrow::Update(float delta){
         setLifespan(4.f);
     }*/
 
+
+    game* gi = game::Instance();
+
+    SetVelocity(Vector2f(direction.x*movementSpeed, direction.y*movementSpeed));
+    // DEBUG NEW AABB SWEPT detection
+    sf::FloatRect broadphasebox = GetSweptBroadphaseBox();
+
+    movementTraceDebug = sf::RectangleShape( Vector2f(broadphasebox.width,broadphasebox.height) );
+    movementTraceDebug.setPosition(broadphasebox.left, broadphasebox.top);
+    movementTraceDebug.setFillColor(sf::Color(0,0,0,0));
+    movementTraceDebug.setOutlineThickness(2.f);
+    movementTraceDebug.setOutlineColor(sf::Color(0, 200, 55));
+
+    if(AABBCheck( *gi->getPlayerCharacter() ) ) {
+        std::cout << "AABB colisiona!!" << std::endl;
+        movementTraceDebug.setOutlineColor(sf::Color(0, 255, 255));
+    }
+
     
 }
 
@@ -119,14 +138,14 @@ Actor* BouncingArrow::DirectionPrecheck(Vector2f loc, ObjectType type) {
     FloatRect trace = FloatRect(Vector2f(traceX, traceY), Vector2f(getBoundingBox().width-10,getBoundingBox().height-10));
     Actor* collide = gi->boxTraceByObjectType( trace, type );
 
-    if(debug) {
+    /*if(debug) {
         movementTraceDebug = sf::RectangleShape( Vector2f(trace.width,trace.height) );
         // Show actor pre-movement trace box
         movementTraceDebug.setPosition(trace.left,trace.top);
         movementTraceDebug.setFillColor(sf::Color(0,0,0,0));
         movementTraceDebug.setOutlineThickness(2.f);
         movementTraceDebug.setOutlineColor(sf::Color(0, 200, 200));
-    }
+    }*/
 
     return collide;
 }

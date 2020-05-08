@@ -88,12 +88,31 @@ class Actor {
     // Returns whether the actor is pending delete or not
     bool IsValid() { return pendingDelete; };
     Vector2f getInterpolatedPos();
-    
+
+    /* Calc precision collision and normals 
+    * @params ImpactNormal ref Vector2f with the impact normals if any
+    * @return float between 0 and 1 of "time" collision happened.*/
+    float SweptAABB(Actor& Other, Vector2f& ImpactNormal); 
+
+    /* Calculate the bounding box between initial and final position to find potential collisions */
+    sf::FloatRect GetSweptBroadphaseBox();
+
+    /* Checks if there is an AABB collision between two actors. Used within GetSweptBroadphaseBox() */
+    bool AABBCheck(Actor& Other);
+
+
+    void SetVelocity(Vector2f NewVelocity) { Velocity = NewVelocity; };
+    Vector2f GetVelocity() { return Velocity; };
+
   private:
     Vector2f location_prev;
     Vector2f location;
     //IntRect boundingBox;
     sf::Font font;
+
+    
+
+    sf::Vector2f Velocity;
 
   protected:
     bool asleep;

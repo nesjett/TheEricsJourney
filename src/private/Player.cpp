@@ -1,6 +1,6 @@
 #include "../public/Player.h"
 #include "../public/game.h"
-#include "Arrow.h"
+#include "BouncingArrow.h"
 #include "../public/AudioManager.h"
 
 Player::Player(){ // Use this to call to parent's contructor first
@@ -283,7 +283,7 @@ void Player::Attack(){
     sf::Vector2f posPlayer = getActorLocation();
     //que empiece aqui
     game *eng = game::Instance();
-    Arrow *projTest = new Arrow(dir_unit, posPlayer); 
+    Projectile *projTest = new BouncingArrow(dir_unit, posPlayer); 
     eng->Almacenaenemy(projTest);
 
     if(LastAttack == 0) {
@@ -295,14 +295,14 @@ void Player::Attack(){
 
 
     if(AttackImprovement >= 1){
-        Arrow *flechaTrasera1 = new Arrow(-dir_unit, posPlayer);
+        Projectile *flechaTrasera1 = new BouncingArrow(-dir_unit, posPlayer);
         eng->Almacenaenemy(flechaTrasera1);
         if(AttackImprovement >= 2){
             sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y)-30);
-            Arrow *flecha2 = new Arrow(dir_unit, dobleFlecha);
+            Projectile *flecha2 = new BouncingArrow(dir_unit, dobleFlecha);
             eng->Almacenaenemy(flecha2);
             if(AttackImprovement >= 3){ //HE COMENTADO ESTO PORQUE ESTOY HACIENDO PRUEBAS
-                Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha);
+                Projectile *projTest3 = new BouncingArrow(-dir_unit, dobleFlecha);
                 eng->Almacenaenemy(projTest3);
             }
         }

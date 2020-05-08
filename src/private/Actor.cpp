@@ -127,9 +127,112 @@ Vector2f Actor::getInterpolatedPos()
 
 void Actor::setLifespan(float secs) { 
     sf::Time t1 = sf::seconds(secs);
-    game *gi = game::Instance();
+    lifeSpan = game::Instance()->getTime() + t1.asMilliseconds(); // Define exact time at which the actor should be destroyed
+}
 
-    long gameTime = gi->getTime();
-    lifeSpan = gi->getTime() + t1.asMilliseconds(); // Define exact time at which the actor should be destroyed
-    //std::cout << "Game time: " << gameTime << " Destroy time: " << lifeSpan << std::endl;
+
+/* SWEPT AABB source: https://www.gamedev.net/articles/programming/general-and-gameplay-programming/swept-aabb-collision-detection-and-response-r3084/ */
+sf::FloatRect Actor::GetSweptBroadphaseBox(){
+  sf::FloatRect b = this->getBoundingBox(); // own actor box
+  sf::FloatRect broadphasebox;
+  broadphasebox.left = Velocity.x > 0 ? b.left : b.left + Velocity.x;  
+  broadphasebox.top = Velocity.y > 0 ? b.top : b.top + Velocity.y;  
+  broadphasebox.width = Velocity.x > 0 ? Velocity.x + b.width : b.width - Velocity.x;  
+  broadphasebox.height = Velocity.y > 0 ? Velocity.y + b.height : b.height - Velocity.y;  
+
+  return broadphasebox; 
+}
+
+bool Actor::AABBCheck(Actor& Other) {
+  sf::FloatRect b1 = this->getBoundingBox();
+  sf::FloatRect b2 = Other.getBoundingBox();
+  return b1.intersects(b2); 
+}
+
+float Actor::SweptAABB(Actor& Other, Vector2f& ImpactNormal){
+  float xInvEntry, yInvEntry;
+  float xInvExit, yInvExit;
+  sf::FloatRect OtherBox = Other.getBoundingBox();
+  sf::FloatRect OwnBox = this->getBoundingBox();
+
+  // find the distance between the objects on the near and far sides for both x and y
+  if (Velocity.x > 0.0f) {
+      xInvEntry = OtherBox.left - (OwnBox.left + OwnBox.width);
+      xInvExit = (OtherBox.left + OtherBox.width) - OwnBox.left;
+  }
+  else {
+      xInvEntry = (OtherBox.left + OtherBox.width) - OwnBox.left;
+      xInvExit = OtherBox.left - (OwnBox.left + OwnBox.width);
+  }
+
+  if (Velocity.y > 0.0f) {
+      yInvEntry = OtherBox.top - (OwnBox.top + OwnBox.height);
+      yInvExit = (OtherBox.top + OtherBox.height) - OwnBox.top;
+  }
+  else {
+      yInvEntry = (OtherBox.top + OtherBox.height) - OwnBox.top;
+      yInvExit = OtherBox.top - (OwnBox.top + OwnBox.height);
+  }
+
+  // find time of collision and time of leaving for each axis (if statement is to prevent divide by zero)
+  float xEntry, yEntry;
+  float xExit, yExit;
+
+  if (Velocity.x == 0.0f) {
+      xEntry = -std::numeric_limits<float>::infinity();
+      xExit = std::numeric_limits<float>::infinity();
+  }
+  else  {
+      xEntry = xInvEntry / Velocity.x;
+      xExit = xInvExit / Velocity.x;
+  }
+
+  if (Velocity.y == 0.0f) {
+      yEntry = -std::numeric_limits<float>::infinity();
+      yExit = std::numeric_limits<float>::infinity();
+  }
+  else {
+      yEntry = yInvEntry / Velocity.y;
+      yExit = yInvExit / Velocity.y;
+  }
+
+  // find the earliest/latest times of collision
+  // TODO: Is this the correct order..?
+  float entryTime = std::max(xEntry, yEntry);
+  float exitTime = std::min(xExit, yExit);
+
+  // if there was no collision
+  if (entryTime > exitTime || (xEntry < 0.0f && yEntry < 0.0f) || xEntry > 1.0f || yEntry > 1.0f) {
+      ImpactNormal.x = 0.0f;
+      ImpactNormal.y = 0.0f;
+      return 1.0f;
+  }
+  else{ // There was a collision
+      // calculate normal of collided surface
+      if (xEntry > yEntry) 
+      {
+          if (xInvEntry < 0.0f) {
+              ImpactNormal.x = 1.0f;
+              ImpactNormal.y = 0.0f;
+          }
+          else {
+              ImpactNormal.x = -1.0f;
+              ImpactNormal.y = 0.0f;
+          }
+      }
+      else 
+      {
+          if (yInvEntry < 0.0f) {
+              ImpactNormal.x = 0.0f;
+              ImpactNormal.y = 1.0f;
+          }
+          else {
+              ImpactNormal.x = 0.0f;
+              ImpactNormal.y = -1.0f;
+          }
+      }
+
+      // return the time of collision
+      return entryTime;
+  }
 }

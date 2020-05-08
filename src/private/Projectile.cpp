@@ -71,6 +71,12 @@ void Projectile::OnActorOverlap(Actor *otherActor){
     }
 }
 
+Vector2f Projectile::SetDirection(Vector2f newDir) { 
+    direction = newDir; 
+    SetVelocity(Vector2f(newDir.x*movementSpeed, newDir.y*movementSpeed));
+    return direction; 
+}
+
 Projectile::~Projectile(){
     delete activeAnim;
     Animations.erase(Animations.begin(), Animations.end());
