@@ -56,6 +56,7 @@ void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
         health_Current-=damage;
         if(IsAlive() == false){
             Die();
+            this->ToggleTarget(false);
             AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_die.ogg");
         } else {
             ApplyHitEffects(std::to_string((int)damage)); // Apply hit effects

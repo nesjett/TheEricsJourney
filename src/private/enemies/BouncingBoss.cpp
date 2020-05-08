@@ -23,7 +23,6 @@ BouncingBoss::BouncingBoss(Vector2f Dir, int Childrens, float Scale, float MaxHe
 }
 
 void BouncingBoss::Init(){
-    debug = true;
     setActorLocation(Vector2f(100.f, 100.f));
     health_Current = health_MAX; // Init health
 

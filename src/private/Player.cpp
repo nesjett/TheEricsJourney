@@ -2,13 +2,13 @@
 #include "../public/game.h"
 #include "Arrow.h"
 #include "../public/AudioManager.h"
+#include <list>
 
 Player::Player(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
     texture_file = "./resources/player.png";
-    
-    debug = true;
+
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(0.f, 0.f);
