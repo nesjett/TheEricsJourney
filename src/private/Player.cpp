@@ -188,6 +188,11 @@ void Player::Draw(double percent, double delta ){
 void Player::Update(float delta){
     Pawn::Update(delta);
     SetTarget(this->FindClosestEnemy());
+
+    if(relojAtaque.getElapsedTime().asSeconds()>(2.f*cadenciaMultiplier) && (getDirection().x == 0.f && getDirection().y == 0.f)){
+        Attack();
+        relojAtaque.restart();
+    }
 }
 
 

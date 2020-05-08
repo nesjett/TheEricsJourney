@@ -49,8 +49,6 @@ void PlayerController::Update(sf::Event event){
         this->Frenar();
     }
 
-
-    this->TryToAttack();
 }
 void PlayerController::setGodMode(bool god){
     miJugador->setGodMode(god);
@@ -118,17 +116,13 @@ void PlayerController::setPlayer(Player* jugador){
 }
 void PlayerController::MejorarCadencia(float mej){
     mejora*=mej;
+    miJugador->cadenciaMultiplier = mejora;
 }
 void PlayerController::MejorarMovimiento(float mejMov){
     miJugador->movementSpeed*=mejMov;
 }
 
-void PlayerController::TryToAttack(){
-    if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora) && (miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f)){
-        miJugador->Attack();
-        relojAtaque.restart();
-    }
-}
+
 void PlayerController::ImprovesAttack(){
     miJugador->improvesAttack();
 }
