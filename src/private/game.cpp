@@ -261,6 +261,9 @@ void game::run(){
             for (Actor *actor : actorsPendingDelete) {
                 if(dynamic_cast<Enemy*>(actor)) {
                     //EnemyDied(); // If we are deleting an enemy, try to spawn another
+                    if(getPlayerCharacter()->GetTarget() && getPlayerCharacter()->GetTarget() == actor){
+                        getPlayerCharacter()->ClearTarget();
+                    }
                 }
                 delete actor;
             }

@@ -29,6 +29,9 @@ class Player:  public Pawn{
         void ToggleMovementIndicator();
         void setGodMode(bool);
         Enemy* FindClosestEnemy();
+
+        Enemy* GetTarget() { return Target; };
+        void ClearTarget() { Target = nullptr; };
         
         float cadenciaMultiplier = 1.f;
     protected:
