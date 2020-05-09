@@ -370,6 +370,9 @@ Enemy* Player::FindClosestEnemy(){
     Enemy *enemy = nullptr;
 
     for (Enemy *enemigo : game::Instance()->getAllEnemies()){
+        if(enemigo->IsAlive() == false) {
+            continue;
+        }
         posEnemy = enemigo->getActorLocation();
         dirToEnemy_tmp = (posEnemy-posPlayer);
         float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector
