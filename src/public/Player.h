@@ -27,6 +27,8 @@ class Player:  public Pawn{
         void improvesAttack();
         void ModifyDamage();
         void IncreaseDamageArrows();
+        void ModifyCritic(float cri);
+        float GetCritic();
 
         void ToggleMovementIndicator();
         void setGodMode(bool);
@@ -51,7 +53,7 @@ class Player:  public Pawn{
         SSprite *MovementIndicator;
         bool GodMode = false;
         sf::Vector2f dir_unit;
-
         sf::Clock relojAtaque;
+        float Critic = 1.f;
         
 };

@@ -58,9 +58,11 @@ void Enemy::Die(){
 }
 
 void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
+    float cri = game::Instance()->getPlayerCharacter()->GetCritic();
+    std::cout << "Dime el crítico: " <<  game::Instance()->getPlayerCharacter()->GetCritic() << std::endl;
     std::cout << "Damage taken!" << std::endl; 
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
-        if(rand() % 100 > 85) { // 15% chances of critic
+        if(rand() % 100 > 85*cri) { // 15% chances of critic
             health_Current-=damage*3;
             HitText.push_back(TText("Critico!", Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
         } else {

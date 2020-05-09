@@ -334,6 +334,12 @@ void Player::ModifyDamage(){
     }
     std::cout<<"Daño de flechas aumentado con éxito"<<std::endl;
 }
+void Player::ModifyCritic(float cri){
+    Critic *= cri;
+}
+float Player::GetCritic(){
+    return Critic;
+}
 void Player::setHealthMax(float increase){
     //In this method, you can set an increase of Player's maximum health
     health_MAX+=increase;

@@ -6,18 +6,24 @@ PlayerController::PlayerController(Player* jugador){
     miJugador = jugador;
 }
 void PlayerController::Update(sf::Event event){
-    if (event.key.code == sf::Keyboard::N){
+    if (event.key.code == sf::Keyboard::Q){
         MejorarCadencia(0.9);
     }
-    if(event.key.code == sf::Keyboard::V){
+    if(event.key.code == sf::Keyboard::W){
         MejorarMovimiento(1.1);
     }
-    if(event.key.code == sf::Keyboard::P){
+    if(event.key.code == sf::Keyboard::E){
         IncreaseHealth();
         std::cout<<"Vida total: "<<getMaxHealth()<<std::endl;
     }
-    if(event.key.code == sf::Keyboard::O){
+    if(event.key.code == sf::Keyboard::R){
         ImprovesAttack();
+    }
+    if(event.key.code == sf::Keyboard::T){
+        ModifyDamage();
+    }
+    if(event.key.code == sf::Keyboard::Y){
+        ModifyCritic(0.96);
     }
     if(event.key.code == sf::Keyboard::G){
         if(Godclock->getElapsedTime().asSeconds()>1.5){
@@ -32,9 +38,6 @@ void PlayerController::Update(sf::Event event){
                 std::cout<<"Modo Dios activado"<<std::endl;
             }
         }
-    }
-    if(event.key.code == sf::Keyboard::Q){
-        ModifyDamage();
     }
     /**
      * MOUSE IMPLEMENTATION
@@ -103,6 +106,9 @@ float PlayerController::getMaxHealth(){
 }
 void PlayerController::ModifyDamage(){
     miJugador->IncreaseDamageArrows();
+}
+void PlayerController::ModifyCritic(float cri){
+    miJugador->ModifyCritic(cri);
 }
 PlayerController::~PlayerController() // Destructor
 {

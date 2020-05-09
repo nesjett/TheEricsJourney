@@ -23,6 +23,7 @@ class PlayerController:  public Controller{
         float getMaxHealth();
         void setGodMode(bool);
         void ModifyDamage();
+        void ModifyCritic(float cri);
         virtual ~PlayerController(); 
 
     protected:
