@@ -50,15 +50,22 @@ void Fixedenemy::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(0,500,sizeX,sizeY)});
 
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"dead", tmpA});
+    //tmpA->addFrame({sf::IntRect(0,1000,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1500,sizeX,sizeY)});
+
 }
 
 void Fixedenemy::Update(float delta){
     Enemy::Update(delta);
-    Attack();
+    if(IsAlive()==true){
+        Attack();
+    }
 }
 
 void Fixedenemy::Draw(double percent, double delta ){
-    Pawn::SetAnimation();
+    this->SetAnimation();
     Enemy::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
@@ -87,4 +94,18 @@ bool Fixedenemy::Attack(){
         relojMark.restart();
    }
     return true;
+}
+
+void Fixedenemy::SetAnimation(){
+    
+    if(IsAlive()==true){
+        Pawn::SetAnimation();
+    }
+}
+
+void Fixedenemy::Die(){
+    
+    activeAnim=Animations.find("dead")->second;
+
+    setLifespan(1.5);
 }

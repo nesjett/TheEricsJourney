@@ -67,7 +67,10 @@ void BouncingArrow::Update(float delta){
         BounceCount++; // We just bounced, count it as a current bounce
 
         if(BounceCount >= MaxBounceCount){ // Now that we bounced, check if that was the last one allowed for this projectile.
+            game *gi = game::Instance();
+            gi->SpawnEmitterAtLocation(3, getActorLocation(), Vector2f(0.f,0.f));
             setLifespan(0.f);
+
         }
     }
 
