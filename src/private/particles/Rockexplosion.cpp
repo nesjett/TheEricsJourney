@@ -13,7 +13,7 @@ Rockexplosion::Rockexplosion(Vector2f Loc) : Cascade(Loc) {
     this->setBounds(0.5);
 
     //IDLE
-    Anim = new Animation(this->getSpriteR(), 1000, true);
+    Anim = new Animation(this->getSpriteR(), 1000, false);
     Anim->addFrame({sf::IntRect(0,0, 32,32)});
     Anim->addFrame({sf::IntRect(0,32, 32,32)});
     Anim->addFrame({sf::IntRect(0,32*2, 32,32)});

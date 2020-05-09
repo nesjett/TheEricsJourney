@@ -14,7 +14,6 @@ BouncingArrow::BouncingArrow(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
     activeAnim = Animations.find("IDLE")->second;
 }
 void BouncingArrow::Init(){
-    debug = true;
     game *gi = game::Instance();
     //movementSpeed = 0.65;
     movementSpeed = 0.95;

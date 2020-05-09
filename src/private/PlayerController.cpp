@@ -2,9 +2,8 @@
 #include "../public/game.h"
 
 
-PlayerController::PlayerController(Player* jugador, list<Enemy*> listaEnemigos){
+PlayerController::PlayerController(Player* jugador){
     miJugador = jugador;
-    enemyList = listaEnemigos;
 }
 
 void PlayerController::Update(sf::Event event){
@@ -43,7 +42,13 @@ void PlayerController::Update(sf::Event event){
             stop=false;
         }
     }
-    
+
+    this->Mover(event);
+
+    if (event.type == sf::Event::MouseButtonReleased){
+        this->Frenar();
+    }
+
 }
 void PlayerController::setGodMode(bool god){
     miJugador->setGodMode(god);
@@ -111,28 +116,13 @@ void PlayerController::setPlayer(Player* jugador){
 }
 void PlayerController::MejorarCadencia(float mej){
     mejora*=mej;
+    miJugador->cadenciaMultiplier = mejora;
 }
 void PlayerController::MejorarMovimiento(float mejMov){
     miJugador->movementSpeed*=mejMov;
 }
-void PlayerController::setLista(list<Enemy*> listaEnemigos){
-    enemyList = listaEnemigos;
-    miJugador->setLista(enemyList);
-}
-void PlayerController::setAttack(list<Enemy*> listaEnemigos){
-    if (listaEnemigos.size() > 0){
-        setLista(listaEnemigos);
-        if(miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f && miJugador->IsAlive()==true){
-            Attacks();
-        }
-    }
-}
-void PlayerController::Attacks(){
-    if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora)){
-        miJugador->Attack();
-        relojAtaque.restart();
-    }
-}
+
+
 void PlayerController::ImprovesAttack(){
     miJugador->improvesAttack();
 }

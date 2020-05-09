@@ -115,6 +115,7 @@ class Animation {
         // Returns the remaining animation time in ms
         int update(double elapsed); 
         double getLength() const { return totalLength; }
+        bool IsLooping();
     private:
         bool loop = false;
         int totalProgress;

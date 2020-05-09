@@ -35,6 +35,10 @@ Hud::Hud()
     txtMovSpeed.setCharacterSize(20);
     txtAttackSpeed.setCharacterSize(20);
     txtAttackMore.setCharacterSize(20);
+    txtHealth.setColor(Color::Black);
+    txtMovSpeed.setColor(Color::Black);
+    txtAttackSpeed.setColor(Color::Black);
+    txtAttackMore.setColor(Color::Black);
     for(int i = 0; i < 4; i++)
     {
         spritesMejoras.push_back(new Sprite);
@@ -56,6 +60,11 @@ Hud::Hud()
         spritesMejoras[i]->setOrigin(spritesMejoras[i]->getGlobalBounds().width/2,spritesMejoras[i]->getGlobalBounds().height/2);
     }
 
+    texVentana.loadFromFile("./resources/menu/Windows.png");
+    spriteVentana.setTexture(texVentana);
+    spriteVentana.setTextureRect(IntRect(1504.f, 960.f, 530.f, 717.f));
+    spriteVentana.setScale(0.3f, 0.45f);
+
 
 }
 Hud::~Hud()
@@ -67,9 +76,9 @@ void Hud::setMaxHealth(float health)
 {
     if(maxHealth > 0.f)
     {
-        float porcentaje = health/maxHealth;
-        width = width*porcentaje;
-        playerHealth.setSize(Vector2f(width, height));
+        // float porcentaje = health/maxHealth;
+        // width = width*porcentaje;
+        // playerHealth.setSize(Vector2f(width, height));
     }
     maxHealth = health;
 }
@@ -95,7 +104,10 @@ void Hud::setCurrentHealth(float health)
     //     playerHealth.setFillColor(colorHealthLess25);
     // }
 }
-
+void Hud::setNumMapa(int num)
+{
+    NumMapa = num;
+}
 void Hud::setPlayer(Player* player)
 {
     jugador = player;
@@ -131,6 +143,15 @@ void Hud::addMejora(PowerUpType tipo)
 
 void Hud::Draw()
 {
+    spriteVentana.setPosition(725.f, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50);
+    eng->getApp().draw(spriteVentana);
+    Text textoMapa;
+    textoMapa.setFont(fontHud);
+    textoMapa.setString("Nivel "+ to_string(NumMapa));
+    textoMapa.setPosition(760.f, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 80);
+    textoMapa.setCharacterSize(20);
+    textoMapa.setColor(Color::Black);
+    eng->getApp().draw(textoMapa);
     setCurrentHealth(jugador->getCurrentHealth());
     list<Enemy*> enemigos = game::Instance()->getAllEnemies();
 
@@ -159,19 +180,20 @@ void Hud::Draw()
         delete *it;
     }
     cuadraditos.clear();
-    int numCuadrados = width/20;
+    int numCuadrados = maxHealth/25.f;//width/20;
+    float widthCuadradito = width/numCuadrados; //20;
     eng->getApp().draw(playerHealth);
     for(int i = 0; i < numCuadrados; i++)
     {
         cuadraditos.push_back(new RectangleShape);
-        cuadraditos[i]->setSize(sf::Vector2f(20, height));
+        cuadraditos[i]->setSize(sf::Vector2f(widthCuadradito, height));
         cuadraditos[i]->setOrigin(cuadraditos[i]->getGlobalBounds().width/2, cuadraditos[i]->getGlobalBounds().height/2);
         if(i == 0)
         {
-            cuadraditos[i]->setPosition(Vector2f(playerHealth.getPosition().x - width/2 + 10, jugador->getInterpolatedPos().y - 50));
+            cuadraditos[i]->setPosition(Vector2f(playerHealth.getPosition().x - width/2 + widthCuadradito/2, jugador->getInterpolatedPos().y - 50));
         }
         else{
-            cuadraditos[i]->setPosition(Vector2f(cuadraditos[i-1]->getPosition().x + 20, jugador->getInterpolatedPos().y - 50));
+            cuadraditos[i]->setPosition(Vector2f(cuadraditos[i-1]->getPosition().x + widthCuadradito, jugador->getInterpolatedPos().y - 50));
         }
         cuadraditos[i]->setOutlineColor(sf::Color::Black);
         cuadraditos[i]->setOutlineThickness(1);
@@ -197,38 +219,52 @@ void Hud::Draw()
             i++;       
         }
     }
+    //Draw de las mejoras
     int cont = 0;
     if(vecesMejora1 > 0)
     {
-        txtHealth.setPosition(Vector2f(725.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
+        txtHealth.setPosition(Vector2f(755.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 130));
         eng->getApp().draw(txtHealth);
-        spritesMejoras[0]->setPosition(Vector2f(775.f, separacion*cont +eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 60));
+        spritesMejoras[0]->setPosition(Vector2f(805.f, separacion*cont +eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 140));
         eng->getApp().draw(*spritesMejoras[0]);
         cont++;
     }
     if(vecesMejora2 > 0)
     {
-        txtMovSpeed.setPosition(Vector2f(725.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
+        txtMovSpeed.setPosition(Vector2f(755.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 130));
         eng->getApp().draw(txtMovSpeed);
-        spritesMejoras[1]->setPosition(Vector2f(775.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 60));
+        spritesMejoras[1]->setPosition(Vector2f(810.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 140));
         eng->getApp().draw(*spritesMejoras[1]);
         cont++;
     }
     if(vecesMejora3 > 0)
     {
-        txtAttackSpeed.setPosition(Vector2f(725.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
+        txtAttackSpeed.setPosition(Vector2f(755.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 130));
         eng->getApp().draw(txtAttackSpeed);
-        spritesMejoras[2]->setPosition(Vector2f(775.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 60));
+        spritesMejoras[2]->setPosition(Vector2f(805.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 140));
         eng->getApp().draw(*spritesMejoras[2]);
         cont++;
     }
     if(vecesMejora4 > 0)
     {
-        txtAttackMore.setPosition(Vector2f(725.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50));
+        txtAttackMore.setPosition(Vector2f(755.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 130));
         eng->getApp().draw(txtAttackMore);
-        spritesMejoras[3]->setPosition(Vector2f(775.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 60));
+        spritesMejoras[3]->setPosition(Vector2f(820.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 140));
         eng->getApp().draw(*spritesMejoras[3]);
         cont++;
+    }
+    if(vecesMejora1 == 0
+    && vecesMejora2 == 0
+    && vecesMejora3 == 0
+    && vecesMejora4 == 0)
+    {
+        Text txtSinMejoras;
+        txtSinMejoras.setFont(fontHud);
+        txtSinMejoras.setString("Sin mejoras");
+        txtSinMejoras.setPosition(745.f, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 190);
+        txtSinMejoras.setCharacterSize(15);
+        txtSinMejoras.setColor(Color::Black);
+        eng->getApp().draw(txtSinMejoras);
     }
 
 }

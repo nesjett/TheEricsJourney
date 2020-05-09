@@ -26,6 +26,7 @@ class Hud
 
         void setPlayer(Player* player);
         void addMejora(PowerUpType tipo);
+        void setNumMapa(int num);
         void Update();
         void Draw();
 
@@ -61,6 +62,11 @@ class Hud
         Texture *tx4 = new Texture();
         vector<Sprite*> spritesMejoras;
         vector<Texture> texturasMejoras;
+
+        //Datos mapa
+        int NumMapa;
+        Texture texVentana;
+        Sprite spriteVentana;
 
         //Barras de vida de los enemigos
         vector<RectangleShape*> enemyHealthBars;

@@ -13,7 +13,7 @@ Astillas::Astillas(Vector2f Loc) : Cascade(Loc) {
     this->setBounds(0.5);
 
     //IDLE
-    Anim = new Animation(this->getSpriteR(), 500, true);
+    Anim = new Animation(this->getSpriteR(), 500, false);
     Anim->addFrame({sf::IntRect(0,0, 64,64)});
     Anim->addFrame({sf::IntRect(0,64, 64,64)});
     Anim->addFrame({sf::IntRect(0,64*2, 64,64)});

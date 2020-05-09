@@ -23,6 +23,7 @@ class Enemy: public Pawn {
 
     protected: 
         list<TText> HitText;
+        virtual void Die();
 
     private:
         SSprite* TargetMarker;

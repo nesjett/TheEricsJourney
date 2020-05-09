@@ -27,6 +27,7 @@ class Movingenemy: public Enemy{
         sf::Clock relojMark;
         sf::Clock relojPausa;
         void Die();
+        void SetAnimation();
     private:
         string texture_file;
 };

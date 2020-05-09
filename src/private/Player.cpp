@@ -2,13 +2,13 @@
 #include "../public/game.h"
 #include "Arrow.h"
 #include "../public/AudioManager.h"
+#include <list>
 
 Player::Player(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
     texture_file = "./resources/player.png";
-    
-    debug = true;
+
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(0.f, 0.f);
@@ -297,12 +297,16 @@ void Player::Draw(double percent, double delta ){
 }
 
 void Player::Update(float delta){
-    /*if(IsAlive()){
-        Pawn::Update( delta);
-    }*/
-
     Pawn::Update(delta);
+    SetTarget(this->FindClosestEnemy());
+
+    if(relojAtaque.getElapsedTime().asSeconds()>(2.f*cadenciaMultiplier) && (getDirection().x == 0.f && getDirection().y == 0.f)){
+        Attack();
+        relojAtaque.restart();
+    }
 }
+
+
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     //std::cout << "Player toke damage!" << std::endl; 
     if(health_Current > 0&&GodMode==false){ // Only apply damage if the enemy is alive.
@@ -355,7 +359,7 @@ void Player::SetTarget(Enemy *NewTarget) {
     }
 }
 
-void Player::setLista(list<Enemy*> listaEnemigos){
+Enemy* Player::FindClosestEnemy(){
     float minDist = 0.f;
     sf::Vector2f posPlayer = getActorLocation();
     sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
@@ -364,10 +368,9 @@ void Player::setLista(list<Enemy*> listaEnemigos){
 
     Enemy *enemy = nullptr;
 
-
-    for (Enemy *enemigo : listaEnemigos){
+    for (Enemy *enemigo : game::Instance()->getAllEnemies()){
         posEnemy = enemigo->getActorLocation();
-        dirToEnemy_tmp = posEnemy-posPlayer;
+        dirToEnemy_tmp = (posEnemy-posPlayer);
         float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector
         if(minDist == 0.f){
             minDist = aux;
@@ -379,18 +382,18 @@ void Player::setLista(list<Enemy*> listaEnemigos){
             enemy = enemigo;
         }
     }
-    dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist);
-    SetTarget(enemy);
+    dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist); // This should not be here
 
-    if(!enemy) { // FInish executing as no eligible enemy found
-        return;
-    }
-
+    return enemy;
 }
 
 // Base to implement attacks. This should be on the base class and be overriden by the different enemies
 void Player::Attack(){
     
+    if(!Target){
+        return;
+    }
+
     sf::Vector2f posPlayer = getActorLocation();
     //que empiece aqui
     game *eng = game::Instance();

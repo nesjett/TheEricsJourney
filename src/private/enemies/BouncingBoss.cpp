@@ -3,8 +3,8 @@
 #include <AudioManager.h>
 
 BouncingBoss::BouncingBoss(): Enemy(){
-    NbrChildren = 2;
-    health_MAX = 800.0f;
+    NbrChildren = 4;
+    health_MAX = 100.0f;
     this->SetDirection(Vector2f(0.5, 0.5));
     SpriteScale = 1;
 
@@ -23,14 +23,13 @@ BouncingBoss::BouncingBoss(Vector2f Dir, int Childrens, float Scale, float MaxHe
 }
 
 void BouncingBoss::Init(){
-    debug = true;
     setActorLocation(Vector2f(100.f, 100.f));
     health_Current = health_MAX; // Init health
 
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
 
-    movementSpeed = 0.2f;
+    movementSpeed = 0.35f;
 }
 
 void BouncingBoss::PrepareSprite(){
@@ -44,7 +43,7 @@ void BouncingBoss::PrepareSprite(){
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    sprite->setScale( 0.25*SpriteScale,0.25*SpriteScale );
+    sprite->setScale( 0.20*SpriteScale,0.20*SpriteScale );
     sprite->setBounds(0.8);
     
     Animation *tmpA;
@@ -165,16 +164,18 @@ void BouncingBoss::OnActorOverlap(Actor *otherActor){
 
 void BouncingBoss::Die() {
 
-    if(NbrChildren > 0) { // spawn children
+    if(NbrChildren > 0) {
+        // spawn children (always from 2 on 2)
         game *gi = game::Instance();
         // Vector2f Dir, int Childrens, float Scale, float MaxHealth
-        BouncingBoss *tmp = new BouncingBoss(GetDirection(), NbrChildren, 0.85, 200.f);
+        BouncingBoss *tmp = new BouncingBoss(Vector2f(-GetDirection().x, GetDirection().y), NbrChildren-1, SpriteScale*0.8, 200.f);
         tmp->setActorLocation(getActorLocation());
         gi->Almacenaenemy(tmp);
-        tmp = new BouncingBoss(GetDirection(), NbrChildren, 0.85, 200.f);
+        tmp = new BouncingBoss(Vector2f(GetDirection().x, -GetDirection().y), NbrChildren-1, SpriteScale*.8, 200.f);
         tmp->setActorLocation(getActorLocation());
         gi->Almacenaenemy(tmp);
     }
+    
 
     setLifespan(0.1); // ENsure everything spawns before destroying
 }

@@ -4,7 +4,7 @@
 Movingenemy::Movingenemy(): Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/Calavera.png";
+    texture_file = "./resources/Calavera2.png";
 
 
     health_MAX = 100.0f;
@@ -66,6 +66,11 @@ void Movingenemy::PrepareSprite(){
     Animations.insert({"stop", tmpA});
     tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, false);
+    Animations.insert({"dead", tmpA});
+    tmpA->addFrame({sf::IntRect(0,3824,sizeX,sizeY)});
+    
 }
 /*
 void Movingenemy::Update(float delta){
@@ -166,21 +171,17 @@ bool Movingenemy::Attack(){
     return true;
 }
 
+void Movingenemy::SetAnimation(){
+    if(IsAlive()==true){
+        Pawn::SetAnimation();
+    }
+    else{
+        cout<<"ESTA MUERTO ESTA MUERTO ESTA MUERTO ESTA MUERTO ESTA MUERTO";
+        activeAnim=Animations.find("dead")->second;
+    }
+}
+
 void Movingenemy::Die(){
-    float sizeX = 828.0, sizeY = 896.0;
-    float offsetX = sizeX / 2.0;
-    float offsetY = sizeY / 2.0;
-
-    sprite->LoadTexture("./resources/enemies/dead/Calaveradead.png");
-    sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
-    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
-    sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    sprite->setScale( 0.07,0.07 );
-    //sprite->SetLifetime(1500);
-    Animation *tmpA;
-
-    tmpA = new Animation(sprite->getSpriteR(),1500, false);
-    tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
-    tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
-    activeAnim=tmpA;
+    //std::cout << "Enemy died!" << std::endl; 
+    setLifespan(1.0);
 }
