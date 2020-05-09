@@ -172,7 +172,7 @@ bool Movingenemy::Attack(){
 }
 
 void Movingenemy::SetAnimation(){
-    Animation* anima=activeAnim;
+    
     if(IsAlive()==true){
         Pawn::SetAnimation();
     }
