@@ -73,7 +73,7 @@ Hud::Hud()
     texVentana.loadFromFile("./resources/menu/Windows.png");
     spriteVentana.setTexture(texVentana);
     spriteVentana.setTextureRect(IntRect(1504.f, 960.f, 530.f, 717.f));
-    spriteVentana.setScale(0.3f, 0.45f);
+    spriteVentana.setScale(0.3f, 0.60f);
 
 
 }
@@ -166,7 +166,7 @@ void Hud::Draw()
     Text textoMapa;
     textoMapa.setFont(fontHud);
     textoMapa.setString("Nivel "+ to_string(NumMapa));
-    textoMapa.setPosition(760.f, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 80);
+    textoMapa.setPosition(760.f, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 85);
     textoMapa.setCharacterSize(20);
     textoMapa.setColor(Color::Black);
     eng->getApp().draw(textoMapa);

@@ -85,6 +85,7 @@ class game
         Mapa* mapa;
         int mapaActual;
         int MapasTotales;
+        int NumMaxNiveles = 13;
         void InicializaNivel();
         void CondicionVictoria();
         void EndGame();

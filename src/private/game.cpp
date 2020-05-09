@@ -73,7 +73,7 @@ void game::InicializaNivel()
     }
 
 
-    if(mapaActual < 12) //HARDCODED: numero maximo de niveles es 3
+    if(mapaActual < NumMaxNiveles) 
     {
         //Cargamos el nivel
         if(mapa)
