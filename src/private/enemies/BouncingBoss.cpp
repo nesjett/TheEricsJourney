@@ -3,7 +3,6 @@
 #include <AudioManager.h>
 
 BouncingBoss::BouncingBoss(): Enemy(){
-    debug = true;
     NbrChildren = 4;
     health_MAX = 100.0f;
     this->SetDirection(Vector2f(0.5, 0.5));
@@ -14,7 +13,6 @@ BouncingBoss::BouncingBoss(): Enemy(){
 }
 
 BouncingBoss::BouncingBoss(Vector2f Dir, int Childrens, float Scale, float MaxHealth): Enemy(){ // Use this to call to parent's contructor first
-    debug = true;
     NbrChildren = Childrens;
     health_MAX = MaxHealth;
     this->SetDirection(Dir);
