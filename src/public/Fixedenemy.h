@@ -17,7 +17,10 @@ class Fixedenemy: public Enemy{
         void Draw(double percent, double delta );
 
         sf::Clock relojMark;
-
+        void Die();
+    protected:
+    
+        void SetAnimation();
     private:
         string texture_file;
 };

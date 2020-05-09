@@ -31,6 +31,8 @@ class Projectile: public Actor {
         void TakeDamage(float damage, Actor* dmgCauser, string damage_type);
         void ModifyDamage(float Modify);
 
+        virtual void Destroy();
+
     protected:
         Animation* activeAnim = NULL;
         std::map<std::string, Animation*> Animations;

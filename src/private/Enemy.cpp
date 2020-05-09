@@ -76,6 +76,8 @@ void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
             this->ToggleTarget(false);
             AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_die.ogg");
         } else {
+            game *gi = game::Instance();
+            gi->SpawnEmitterAtLocation(0, getActorLocation(), Vector2f(0.f,0.f));
             ApplyHitEffects(std::to_string((int)damage)); // Apply hit effects
             AudioManager::getInstance()->PlaySound2D("./resources/audio/enemy_hit.ogg");
         }

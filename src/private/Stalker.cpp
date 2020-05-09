@@ -101,6 +101,10 @@ void Stalker::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(401,249,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(0,498,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(401,498,sizeX,sizeY)});
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"dead", tmpA});
+    tmpA->addFrame({sf::IntRect(0,747,sizeX,sizeY)});
 }
 
 void Stalker::Update(float delta){
@@ -109,7 +113,7 @@ void Stalker::Update(float delta){
 }
 
 void Stalker::Draw(double percent, double delta ){
-    Pawn::SetAnimation();
+    this->SetAnimation();
     Enemy::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
@@ -125,4 +129,18 @@ void Stalker::Followplayer(){
    float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
    Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
    direction = dir_unit;
+}
+
+void Stalker::SetAnimation(){
+    
+    if(IsAlive()==true){
+        Pawn::SetAnimation();
+    }
+}
+
+void Stalker::Die(){
+    
+    activeAnim=Animations.find("dead")->second;
+
+    setLifespan(1.5);
 }
