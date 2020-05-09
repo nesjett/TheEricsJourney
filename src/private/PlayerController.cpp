@@ -8,21 +8,27 @@ PlayerController::PlayerController(Player* jugador){
 void PlayerController::Update(sf::Event event){
     if (event.key.code == sf::Keyboard::Q){
         MejorarCadencia(0.9);
+        Hud::Instance()->addMejora(attackspeed);
     }
     if(event.key.code == sf::Keyboard::W){
         MejorarMovimiento(1.1);
+        Hud::Instance()->addMejora(movementspeed);
     }
     if(event.key.code == sf::Keyboard::E){
         IncreaseHealth();
         std::cout<<"Vida total: "<<getMaxHealth()<<std::endl;
+        Hud::Instance()->addMejora(health);
     }
     if(event.key.code == sf::Keyboard::R){
         ImprovesAttack();
+        Hud::Instance()->addMejora(attackmore);
     }
     if(event.key.code == sf::Keyboard::T){
         ModifyDamage();
+        Hud::Instance()->addMejora(moredamage);
     }
     if(event.key.code == sf::Keyboard::Y){
+        Hud::Instance()->addMejora(critattack);
         ModifyCritic(0.96);
     }
     if(event.key.code == sf::Keyboard::G){

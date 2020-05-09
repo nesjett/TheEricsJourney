@@ -73,7 +73,7 @@ void game::InicializaNivel()
     }
 
 
-    if(mapaActual < 12) //HARDCODED: numero maximo de niveles es 3
+    if(mapaActual < NumMaxNiveles) 
     {
         //Cargamos el nivel
         if(mapa)
@@ -421,10 +421,6 @@ void game::CondicionVictoria()
         PlayerPoints = PlayerPoints + porcentaje*2000; //Puntuacion max es de 2000
 
         EndGame();
-        for(Actor* actor : actors)
-        {
-            actor->setLifespan(0.f);
-        }
         return;
     }
     //Pasar al siguiente nivel: el jugador pasa por la puerta y no hay enemigos vivos
@@ -470,7 +466,13 @@ void game::EndGame()
     Engine* eng = Engine::Instance();
     eng->resetView();
 
-    //Eliminamos todos los actores?
+    //Reseteamos la HUD
+    Hud::Instance()->resetMejoras();
+    //Eliminamos todos los actores
+    for(Actor* actor : actors)
+    {
+        actor->setLifespan(0.f);
+    }
 
 }
 
