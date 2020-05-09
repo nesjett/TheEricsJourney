@@ -25,7 +25,6 @@ class Mapa
         void update();
         void render();
         list<Actor*> getActors();
-        Door* getPuerta();
 
     protected:
 

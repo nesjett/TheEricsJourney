@@ -125,11 +125,11 @@ void Mapa::cargaMapa()
                     int valor = atoi(tile->Attribute("gid"));
                     if(strcmp(layer->Attribute("name"), nombreCapaColisiones.c_str()) == 0) //Elementos Colisionables
                     {
-                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,worldstatic));
+                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,worldstatic, false));
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaObjetos.c_str()) == 0) //Objetos o trampas
                     {
-                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,blocker));
+                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,blocker, false));
                     }
                     if(strcmp(layer->Attribute("name"), strCapaPinchos.c_str()) == 0) //Objetos o trampas
                     {
@@ -150,6 +150,16 @@ void Mapa::cargaMapa()
                         if(posX == 50.f)
                             esPuertaSuperior = true;
                         vPuertas.push_back(new Door(Vector2f(posY,posX + 50.f), esPuertaSuperior));
+                        if(esPuertaSuperior)
+                        {
+                            vTiles.push_back(new Tile(vectorNombresSprite[valor-1], posX,posY, tamTileX,tamTileY,worldstatic, true));
+                            vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY + 50.f, tamTileX,tamTileY,worldstatic, true));
+                        }
+                        else{
+                            vTiles.push_back(new Tile(vectorNombresSprite[valor-1], posX-50.f,posY, tamTileX,tamTileY,worldstatic, true));
+                            vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX-50.f,posY + 50.f, tamTileX,tamTileY,worldstatic, true));
+                        }
+
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaEnemigos2.c_str()) == 0) //Enemigostipo1
                     {
@@ -242,6 +252,10 @@ list<Actor*> Mapa::getActors()
     list<Door*> listaPuertas(vPuertas.begin(),vPuertas.end());
     list<Actor*> actores;
     //listaTiles.merge(listaEnemigos);
+    for (Door *puerta : listaPuertas)
+    {
+        actores.push_back(puerta);
+    }
     for (Tile *tile : listaTiles)
     {
         actores.push_back(tile);
@@ -254,10 +268,6 @@ list<Actor*> Mapa::getActors()
     {
         actores.push_back(trampa);
     }
-    for (Door *puerta : listaPuertas)
-    {
-        actores.push_back(puerta);
-    }
     for (Enemy *enemy : listaEnemigos)
     {
         actores.push_back(enemy);
@@ -268,10 +278,6 @@ list<Actor*> Mapa::getActors()
     vMejoras.erase(vMejoras.begin(), vMejoras.end());
     vTrampas.erase(vTrampas.begin(), vTrampas.end());
     return actores;
-}
-Door* Mapa::getPuerta()
-{
-    return vPuertas[0];
 }
 void Mapa::update()
 {

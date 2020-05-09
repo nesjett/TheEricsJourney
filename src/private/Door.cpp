@@ -26,10 +26,10 @@ void Door::PrepareSprite(){
     sizeX = 145.f;
     sizeY = 166.f;
     sprite = new SSprite(texture_file);
-    sprite->setOrigin(0, sizeY); 
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); 
-    sprite->setScale(0.6896,0.492); 
+    sprite->setOrigin(0, sizeY); 
+    sprite->setScale((100/145.f),(100/166.f)); 
 
     Animation* tmpA = new Animation(sprite->getSpriteR(), 1200); // Create animation
     //Animations.insert({"DOORS", tmpA}); // Add to animations map

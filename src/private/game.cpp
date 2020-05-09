@@ -145,7 +145,7 @@ void game::run(){
             {
                 bool reiniciaJuego = false;
                 estadoJuego = menu->update(tecla, &reiniciaJuego);
-                if(estadoJuego == true)
+                if(estadoJuego == true && reiniciaJuego == false)
                 {
                     StartGame();
                 }
@@ -446,7 +446,10 @@ void game::CondicionVictoria()
             {
                 dynamic_cast<Door*>(actor)->openDoor();
             }
-
+            if(dynamic_cast<Tile*>(actor) && dynamic_cast<Tile*>(actor)->esPuerta == true)
+            {
+                dynamic_cast<Tile*>(actor)->setLifespan(0.f);
+            }
         }
         if(jugador->getActorLocation().y < 100.f)
         {
