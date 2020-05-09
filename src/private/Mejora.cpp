@@ -74,6 +74,12 @@ void Mejora::OnActorOverlap(Actor *otherActor){
             case attackmore:
                 playercontroller->ImprovesAttack();
                 break;   
+            case moredamage:
+                playercontroller->ModifyDamage();
+                break;
+            case critattack:
+                playercontroller->ModifyCritic(0.96);
+                break;
         }
         //Incluimos mejoras en la hud, guardandola ahi directamente o mediante el player
         Hud::Instance()->addMejora(tipoMejora);

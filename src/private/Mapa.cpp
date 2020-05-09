@@ -194,7 +194,7 @@ void Mapa::cargaMapa()
                         while(!unica)
                         {
                             unica = true;
-                            intRandom = rand() % 4;
+                            intRandom = rand() % 6;
                             vector<Mejora*>::iterator itMejora;
                             for(itMejora = vMejoras.begin(); itMejora != vMejoras.end(); itMejora++)
                             {
