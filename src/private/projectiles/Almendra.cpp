@@ -66,7 +66,7 @@ void Almendra::OnActorOverlap(Actor *otherActor) {
 
     if(dynamic_cast<Tile*>(otherActor)){
         game *gi = game::Instance();
-        gi->SpawnEmitterAtLocation(1, getActorLocation(), Vector2f(0.f,0.f));
+        gi->SpawnEmitterAtLocation(3, getActorLocation(), Vector2f(0.f,0.f));
         AudioManager::getInstance()->PlaySound2D("./resources/audio/hit.ogg");
     }
     Projectile::OnActorOverlap(otherActor);
