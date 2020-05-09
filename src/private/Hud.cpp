@@ -155,6 +155,16 @@ void Hud::addMejora(PowerUpType tipo)
     txtMoreDamage.setString(to_string(vecesMejora5) + "x");
     txtCritAttack.setString(to_string(vecesMejora6) + "x");
 }
+
+void::Hud::resetMejoras()
+{
+    vecesMejora1 = 0;
+    vecesMejora2 = 0;
+    vecesMejora3 = 0;
+    vecesMejora4 = 0;
+    vecesMejora5 = 0;
+    vecesMejora6 = 0; 
+}
  void Hud::Update()
  {
  }

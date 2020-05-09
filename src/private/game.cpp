@@ -466,6 +466,8 @@ void game::EndGame()
     Engine* eng = Engine::Instance();
     eng->resetView();
 
+    //Reseteamos la HUD
+    Hud::Instance()->resetMejoras();
     //Eliminamos todos los actores
     for(Actor* actor : actors)
     {
