@@ -37,7 +37,8 @@ class Pawn: public Actor {
         void setFaction(Faction f){ faction = f; };
         void OnActorOverlap(Actor *otherActor);
 
-        void SetDirection(Vector2f NewDir) { direction = NewDir; };
+        void SetDirection(Vector2f NewDir) { LastDirection = direction; direction = NewDir; };
+        Vector2f GetLastDirection() { return LastDirection; };
         Vector2f GetDirection() { return direction; };
     protected:
         void PrepareSprite();
@@ -61,6 +62,7 @@ class Pawn: public Actor {
         Actor *BloquedY = nullptr;
 
         Vector2f velocity = Vector2f(0.f, 0.f);
+        Vector2f LastDirection;
 };
 
 #endif

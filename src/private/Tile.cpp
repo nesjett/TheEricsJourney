@@ -3,6 +3,7 @@
 
 
 Tile::Tile(string nombreSprite, float x, float y, float widthSprite, float heightSprite, ObjectType tipo, bool puerta) : Actor(){ 
+    debug = true;
     width = widthSprite;
     height = heightSprite;
     texture_file = nombreSprite;

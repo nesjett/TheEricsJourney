@@ -6,7 +6,6 @@
 
 
 Door::Door(Vector2f position, bool esPuertaSuperior) : Actor(){ // Use this to call to parent's contructor first
-    debug = true;
     texture_file = "./resources/maps/tiles/doorspritesheet2.png";
     abierta = false;
     superior = esPuertaSuperior;
