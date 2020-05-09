@@ -77,7 +77,7 @@ void game::InicializaNivel()
         //Cargamos el nivel
         if(mapa)
             delete mapa;
-        string nombreMapa = "Mapa"+to_string(13)+".tmx";
+        string nombreMapa = "Mapa"+to_string(mapaActual+1)+".tmx";
         mapa  = new Mapa(nombreMapa);
         Hud* hud = Hud::Instance();
         hud->setNumMapa(mapaActual+1);

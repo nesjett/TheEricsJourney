@@ -155,31 +155,31 @@ void Mapa::cargaMapa()
                         }
 
                     }
-                    if(strcmp(layer->Attribute("name"), strCapaEnemigos2.c_str()) == 0) //Enemigostipo1
+                    if(strcmp(layer->Attribute("name"), strCapaEnemigos2.c_str()) == 0) //Enemigos que se mueven entre dos puntos
                     {
                         vEnemigos.push_back(new Movingenemy());
                         dynamic_cast<Movingenemy*>(vEnemigos[posVEnemy])->Prepara(Vector2f(posY + tamTileY/2.f ,posX + tamTileX/2.f), Vector2f((movY*tamTileY) + tamTileY/2.f ,(movX*tamTileX) + tamTileX/2.f));
                         posVEnemy++;
                     }
-                    if(strcmp(layer->Attribute("name"), strCapaEnemigos1.c_str()) == 0) //Enemigostipo1
+                    if(strcmp(layer->Attribute("name"), strCapaEnemigos1.c_str()) == 0) //Enemigos fijos
                     {
                         vEnemigos.push_back(new Fixedenemy());
                         vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2,posX + tamTileX/2));
                         posVEnemy++;
                     }
-                    if(strcmp(layer->Attribute("name"), strCapaEnemigos3.c_str()) == 0) //Enemigostipo1
+                    if(strcmp(layer->Attribute("name"), strCapaEnemigos3.c_str()) == 0) //Enemigos que se mueven aleatoriamente
                     {
                         vEnemigos.push_back(new Explosionenemy());
                         vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
                         posVEnemy++;
                     }
-                    if(strcmp(layer->Attribute("name"), strCapaEnemigos4.c_str()) == 0) //Enemigostipo1
+                    if(strcmp(layer->Attribute("name"), strCapaEnemigos4.c_str()) == 0) //Enemigos stalker
                     {
                         vEnemigos.push_back(new Stalker());
                         vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
                         posVEnemy++;
                     }
-                    if(strcmp(layer->Attribute("name"), strCapaEnemigos5.c_str()) == 0) //Enemigostipo1
+                    if(strcmp(layer->Attribute("name"), strCapaEnemigos5.c_str()) == 0) //Boss
                     {
                         vEnemigos.push_back(new BouncingBoss());
                         vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
