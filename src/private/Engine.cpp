@@ -340,7 +340,9 @@ int Animation::update(double elapsed) {
     return duration - totalProgress;
 }
 
-
+bool Animation::IsLooping(){
+    return loop;
+}
 
 
 
@@ -375,16 +377,19 @@ void Cascade::Draw(double delta) {
     int remaining = 0;
     if(Anim) {
         remaining = Anim->update(delta);
-        if(remaining <= 0) {
+        if(remaining <= 0 && !Anim->IsLooping() && GetRemainingLife() != -1.f) {
             PendingDelete = true;
         }
     }
     SSprite::Draw();
 }
 int Cascade::GetRemainingLife() {
-    return Lifetime - LifeCounter.getElapsedTime().asMilliseconds();
+    if(Lifetime == -1)
+        return 1.f;
+    else
+        return Lifetime - LifeCounter.getElapsedTime().asMilliseconds();
 }
-void Cascade::SetLifetime(int time) { Lifetime = time; }
+void Cascade::SetLifetime(int time) { Lifetime = time; };
 void Cascade::SetAuto(bool Auto) { AutoDestroy = Auto; };
 
 

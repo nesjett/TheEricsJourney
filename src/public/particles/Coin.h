@@ -1,6 +1,6 @@
 #pragma once
-#ifndef PLAYERHIT_H
-#define PLAYERHIT_H
+#ifndef COIN_H
+#define COIN_H
 #include <string>
 #include <Engine.h>
 #include <SFML/Graphics.hpp>

@@ -11,7 +11,7 @@ Fireball_Explosion::Fireball_Explosion(Vector2f Loc) : Cascade(Loc) {
     this->setScale(0.35, 0.35);
 
     //IDLE
-    Anim = new Animation(this->getSpriteR(), 2000, true);
+    Anim = new Animation(this->getSpriteR(), 2000, false);
     Anim->addFrame({sf::IntRect(0,0, 120,172)});
     Anim->addFrame({sf::IntRect(120,0, 120,172)});
     Anim->addFrame({sf::IntRect(0,172, 120,172)});

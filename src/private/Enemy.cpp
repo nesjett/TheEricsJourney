@@ -50,10 +50,25 @@ void Enemy::Draw(double percent, double delta ){
 
 }
 
+void Enemy::Die(){
+    for(int i = 0; i < 8; i++){
+        game::Instance()->SpawnEmitterAtLocation(10, Vector2f(getActorLocation().x+rand() % 220 + (-110), getActorLocation().y+rand() % 20 + (-10)), Vector2f(0.f,0.f));
+    }
+    Pawn::Die();
+}
+
 void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     std::cout << "Damage taken!" << std::endl; 
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
-        health_Current-=damage;
+        if(rand() % 100 > 85) { // 15% chances of critic
+            health_Current-=damage*3;
+            HitText.push_back(TText("Critico!", Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
+        } else {
+            health_Current-=damage;
+            HitText.push_back(TText("+" + std::to_string((int)damage), Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
+        }
+
+
         if(IsAlive() == false){
             Die();
             this->ToggleTarget(false);
@@ -66,7 +81,7 @@ void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
 }
 
 void Enemy::ApplyHitEffects(string effect) {
-    HitText.push_back(TText("+" + effect, Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
+    //HitText.push_back(TText("+" + effect, Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
 }
 
 bool Enemy::IsAlive(){
