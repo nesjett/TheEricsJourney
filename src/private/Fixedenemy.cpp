@@ -1,7 +1,7 @@
 #include "../public/Fixedenemy.h"
 
 #include "../public/AudioManager.h"
-#include <FireBall.h>
+#include <Almendra.h>
 
 Fixedenemy::Fixedenemy(): Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
@@ -86,7 +86,7 @@ bool Fixedenemy::Attack(){
        
         //projTest->direction=Vector2f(dir_unit);
         //projTest->setActorLocation(pos);
-        FireBall *projTest = new FireBall(dir_unit, pos);
+        Almendra *projTest = new Almendra(dir_unit, pos);
         eng->Almacenaenemy(projTest);
 
         AudioManager::getInstance()->PlaySound2D("./resources/audio/throw.ogg");
