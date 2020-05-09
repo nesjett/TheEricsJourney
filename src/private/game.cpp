@@ -5,8 +5,10 @@
 #include "../public/particles/PlayerHit.h"
 #include "../public/particles/Fireball_Explosion.h"
 #include "../public/particles/EfectoMejora.h"
+#include "../public/particles/Coin.h"
+#include "../public/enemies/BouncingBoss.h"
 
-#define UPDATE_INTERVAL (1000/35.0)
+#define UPDATE_INTERVAL (1000/25.0)
 
 game* game::pInstance = NULL;
 game* game::Instance() {
@@ -37,7 +39,6 @@ void game::RestartGame()
     mapaActual = 0;
     PlayerPoints = 0;
     jugador = new Player();
-    actors.push_back(jugador);
     Hud* hud = Hud::Instance();
     hud->setPlayer(jugador);
     InicializaNivel();
@@ -48,10 +49,10 @@ void game::StartGame()
     mapaActual = 0;
     PlayerPoints = 0;
     jugador = new Player();
-    actors.push_back(jugador);
     Hud* hud = Hud::Instance();
     hud->setPlayer(jugador);
     InicializaNivel();
+    //actors.push_back(jugador);
     ControladorJugador = new PlayerController(jugador);
 }
 void game::InicializaNivel()
@@ -77,6 +78,8 @@ void game::InicializaNivel()
             delete mapa;
         string nombreMapa = "Mapa"+to_string(mapaActual+1)+".tmx";
         mapa  = new Mapa(nombreMapa);
+        Hud* hud = Hud::Instance();
+        hud->setNumMapa(mapaActual+1);
 
         //Cargamos las colisiones del nivel
         list<Actor*> mapActors = mapa->getActors();
@@ -84,6 +87,8 @@ void game::InicializaNivel()
         {
             actors.push_back(mapActor);
         }
+        actors.remove(jugador);
+        actors.push_back(jugador);
         //Protagonista set location al inicio del mapa
         jugador->setActorLocation(Vector2f(350.0,850.0));
 
@@ -103,6 +108,11 @@ void game::InicializaNivel()
 
 //bucle del juego
 void game::run(){ 
+
+    Actor *test = new BouncingBoss();
+    actors.push_back(test);
+    test->setActorLocation(Vector2f(300.f,150.f));
+    
     /***********************************
      * Game loop
      ***********************************/
@@ -134,7 +144,7 @@ void game::run(){
             {
                 bool reiniciaJuego = false;
                 estadoJuego = menu->update(tecla, &reiniciaJuego);
-                if(estadoJuego == true)
+                if(estadoJuego == true && reiniciaJuego == false)
                 {
                     StartGame();
                 }
@@ -208,6 +218,7 @@ void game::run(){
                 for (Actor *actor : actors) {
                     // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
                     // Can be improved by not checking the pairs that were already checked
+                    //TODO: should do in another thread
                     for (Actor *test : actors) { // TODO: Add bool to stop updating player movement if collided? prevents input event firing between collision event setting dir to 0 and the update event
                         if(actor != test){
                             //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
@@ -254,6 +265,9 @@ void game::run(){
             for (Actor *actor : actorsPendingDelete) {
                 if(dynamic_cast<Enemy*>(actor)) {
                     //EnemyDied(); // If we are deleting an enemy, try to spawn another
+                    if(getPlayerCharacter()->GetTarget() && getPlayerCharacter()->GetTarget() == actor){
+                        getPlayerCharacter()->ClearTarget();
+                    }
                 }
                 delete actor;
             }
@@ -322,9 +336,8 @@ list<Mejora*> game::getMejoras(){
     }
     return tmp;
 }
-void game::Almacenaenemy(Projectile* proj){
+void game::Almacenaenemy(Actor* proj){
     actors.push_back(proj); 
-    
 }
 /*/////////////////////////
     \brief Traces a box on the desired location to check for collisions.
@@ -344,6 +357,64 @@ Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type) {
     return NULL;
 }
 
+/* 
+* @param IgnoreDir ignore actors that have the same dir as the ignored actors. 0 to compare X axis, 1 to compare Y axis, 2 to not compare axis location
+*/
+Actor* game::boxTraceByObjectType(FloatRect rect, ObjectType type, list<Actor*> ActorsToIgnore, int IgnoreDir = 0) {
+    for (Actor *act : actors) {
+        if(ActorsToIgnore.size() > 0) {
+            for (Actor *ignore : ActorsToIgnore) {
+                if(act != ignore)  { // filter if the actor is in the ignore list
+                    switch (IgnoreDir)
+                    {
+                    case 0:
+                        if((act->getActorLocation().x != ignore->getActorLocation().x)){
+                            if(act->getObjectType() == type) {
+                                bool overlaps = act->getBoundingBox().intersects( rect );
+                                if(overlaps){
+                                    return act;
+                                }
+                            }
+                        }
+                        break;
+
+                    case 1:
+                        if((act->getActorLocation().y != ignore->getActorLocation().y)){
+                            if(act->getObjectType() == type) {
+                                bool overlaps = act->getBoundingBox().intersects( rect );
+                                if(overlaps){
+                                    return act;
+                                }
+                            }
+                        }
+                        break;
+                    
+                    default:
+                        if(act->getObjectType() == type) {
+                            bool overlaps = act->getBoundingBox().intersects( rect );
+                            if(overlaps){
+                                return act;
+                            }
+                        }
+                        break;
+                    }
+                    
+                }
+            }
+        } else {
+            
+            if(act->getObjectType() == type) {
+                bool overlaps = act->getBoundingBox().intersects( rect );
+                if(overlaps){
+                    return act;
+                }
+            }
+            
+        }
+    }
+    return NULL;
+}
+
 void game::CondicionVictoria()
 {
     //Acabar partida porque has muerto
@@ -355,7 +426,7 @@ void game::CondicionVictoria()
         EndGame();
         for(Actor* actor : actors)
         {
-            actor->pendingDelete = true;
+            actor->setLifespan(0.f);
         }
         return;
     }
@@ -374,7 +445,10 @@ void game::CondicionVictoria()
             {
                 dynamic_cast<Door*>(actor)->openDoor();
             }
-
+            if(dynamic_cast<Tile*>(actor) && dynamic_cast<Tile*>(actor)->esPuerta == true)
+            {
+                dynamic_cast<Tile*>(actor)->setLifespan(0.f);
+            }
         }
         if(jugador->getActorLocation().y < 100.f)
         {
@@ -417,6 +491,11 @@ void game::SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot) {
         break;
     case 2: // Mejora
         Particles.push_back(make_unique<EfectoMejora>(Location));
+        break;
+
+
+    case 10: // Puntos
+        Particles.push_back(make_unique<Coin>(Location));
         break;
     default:
         break;

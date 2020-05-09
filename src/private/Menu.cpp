@@ -35,8 +35,24 @@ void Menu::MostrarPuntuaciones(float puntuacion, bool victoria)
     puntos = puntuacion;
     MostrarMenuPrincipal = false;
     textoPuntuaciones.setFont(*fuente);
-    textoPuntuaciones.setString("Puntuacion: " + to_string(puntuacion));
+    textoPuntuaciones.setString(to_string((int)puntuacion));
+    textoPuntuaciones.setCharacterSize(30);
     textoPuntuaciones.setOrigin(textoPuntuaciones.getGlobalBounds().width/2,textoPuntuaciones.getGlobalBounds().height/2);
+    textoVictoria.setFont(*fuente);
+    textoCartel.setFont(*fuente);
+    textoCartel.setString("Puntos");
+    textoCartel.setColor(Color::Black);
+    textoCartel.setCharacterSize(28);
+    if(victoria)
+    {
+        textoVictoria.setString("VICTORIA");
+    }
+    else{
+        textoVictoria.setString("DERROTA");
+    }
+    textoVictoria.setCharacterSize(100);
+    textoVictoria.setOrigin(textoVictoria.getGlobalBounds().width/2,textoVictoria.getGlobalBounds().height/2);
+    textoCartel.setOrigin(textoCartel.getGlobalBounds().width/2,textoCartel.getGlobalBounds().height/2);
 }
 
 void Menu::draw()
@@ -62,7 +78,13 @@ void Menu::draw()
         }
     }
     else{
-        eng->getApp().draw(fondo);
+        eng->getApp().draw(fondo2);
+        textoVictoria.setPosition(eng->getApp().getSize().x/2,eng->getApp().getSize().y/2 - 200);
+        textoCartel.setPosition(eng->getApp().getSize().x/2,eng->getApp().getSize().y/2 - 75);
+        textoPuntuaciones.setPosition(eng->getApp().getSize().x/2,eng->getApp().getSize().y/2 + 20);
+        eng->getApp().draw(textoVictoria);
+        eng->getApp().draw(textoCartel);
+        eng->getApp().draw(textoPuntuaciones);
         map<string, vector<Sprite*>>::iterator it;
 
         for ( it = mapItemsMenuPuntos.begin(); it != mapItemsMenuPuntos.end(); it++)
@@ -119,6 +141,7 @@ bool Menu::update(sf::Event event, bool *reiniciaJuego)
             if(itemSeleccionado == "Jugar")
             {
                 audioManager->play_menu_ok();
+                audioManager->menu();
                 return true;
             }
             if(itemSeleccionado == "Salir")
@@ -131,6 +154,7 @@ bool Menu::update(sf::Event event, bool *reiniciaJuego)
             {
                 *reiniciaJuego = true;
                 audioManager->play_menu_ok();
+                audioManager->menu();
                 return true;
             }
         }
@@ -149,45 +173,60 @@ void Menu::cargarMapaMenu()
     jugarselecc = new Sprite();
     salir = new Sprite();
     salirselecc = new Sprite();
+    reintentar = new Sprite();
+    reintentarselecc = new Sprite();
     texJugar.loadFromFile("./resources/menu/jugar.png");
     texJugarselecc.loadFromFile("./resources/menu/jugarselecc.png");
     texSalir.loadFromFile("./resources/menu/salir.png");
     texSalirselecc.loadFromFile("./resources/menu/salirselecc.png");
+    texreintenar.loadFromFile("./resources/menu/reintentar.png");
+    texreintentarselecc.loadFromFile("./resources/menu/reintentarselecc.png");
     jugar->setTexture(texJugar);
     jugarselecc->setTexture(texJugarselecc);
     salir->setTexture(texSalir);
     salirselecc->setTexture(texSalirselecc);
+    reintentar->setTexture(texreintenar);
+    reintentarselecc->setTexture(texreintentarselecc);
     jugar->setOrigin(jugar->getGlobalBounds().width/2,jugar->getGlobalBounds().height/2);
     jugarselecc->setOrigin(jugarselecc->getGlobalBounds().width/2,jugarselecc->getGlobalBounds().height/2);
     salir->setOrigin(salir->getGlobalBounds().width/2,salir->getGlobalBounds().height/2);
     salirselecc->setOrigin(salirselecc->getGlobalBounds().width/2,salirselecc->getGlobalBounds().height/2);
+    reintentar->setOrigin(reintentar->getGlobalBounds().width/2,reintentar->getGlobalBounds().height/2);
+    reintentarselecc->setOrigin(reintentarselecc->getGlobalBounds().width/2,reintentarselecc->getGlobalBounds().height/2);
     Engine *eng = Engine::Instance();
     float posX = eng->getApp().getSize().x/2;
     float posY = eng->getApp().getSize().y/2;
     jugar->setPosition(posX, posY + separacionMenuPPal);
     jugarselecc->setPosition(posX, posY + separacionMenuPPal);
-    salir->setPosition(posX, posY + separacionMenuPPal*2);
-    salirselecc->setPosition(posX, posY + separacionMenuPPal*2);
+    salir->setPosition(posX, posY + separacionMenuPPal + separacionMenuPPal/2);
+    salirselecc->setPosition(posX, posY + + separacionMenuPPal +separacionMenuPPal/2);
+    reintentar->setPosition(posX, posY + separacionMenuPPal);
+    reintentarselecc->setPosition(posX, posY + separacionMenuPPal);
 
     vJugar.push_back(jugar);
     vJugar.push_back(jugarselecc);
     vSalir.push_back(salir);
     vSalir.push_back(salirselecc);
+    vReintentar.push_back(reintentar);
+    vReintentar.push_back(reintentarselecc);
 
     mapItemsMenu.insert({"Jugar",vJugar});
     mapItemsMenu.insert({"Salir",vSalir});
 
-    mapItemsMenuPuntos.insert({"Reinicia",vJugar});
+    mapItemsMenuPuntos.insert({"Reinicia",vReintentar});
     mapItemsMenuPuntos.insert({"Salir",vSalir});
 
-    texFondo.loadFromFile("./resources/menu/main_menu_bg.png");
+    texFondo.loadFromFile("./resources/menu/pantallamenu.png");
     fondo.setTexture(texFondo);
     fondo.setPosition(0.f,0.f);
+    texFondo2.loadFromFile("./resources/menu/pantallapuntos.png");
+    fondo2.setTexture(texFondo2);
+    fondo2.setPosition(0.f,0.f);
     texLogoLetras.loadFromFile("./resources/menu/logoletras.png");
     logoLetras.setTexture(texLogoLetras);
     logoLetras.setScale(0.1,0.1);
     logoLetras.setOrigin(salirselecc->getGlobalBounds().width/2,salirselecc->getGlobalBounds().height/2);
-    logoLetras.setPosition(posX - 150.f, 10.f);
+    logoLetras.setPosition(posX - 170.f, 10.f);
 
 }
 

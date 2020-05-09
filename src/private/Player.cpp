@@ -2,12 +2,13 @@
 #include "../public/game.h"
 #include "Arrow.h"
 #include "../public/AudioManager.h"
+#include <list>
 
 Player::Player(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
     texture_file = "./resources/player.png";
-    
+
 
     setActorLocation(Vector2f(100.f, 100.f));
     direction = Vector2f(0.f, 0.f);
@@ -53,7 +54,9 @@ void Player::PrepareSprite(){
     sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
     IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
     sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
-    sprite->setScale( 0.13,0.13 );
+    sprite->setScale( 0.14,0.14 );
+
+    sprite->setBounds(0.80);
     
     
     Animation *tmpA;
@@ -186,11 +189,16 @@ void Player::Draw(double percent, double delta ){
 void Player::Update(float delta){
     Pawn::Update(delta);
     SetTarget(this->FindClosestEnemy());
+    if(relojAtaque.getElapsedTime().asSeconds()>=1){
+        if(relojAtaque.getElapsedTime().asSeconds()>(2.f*cadenciaMultiplier) && (getDirection().x == 0.f && getDirection().y == 0.f)){
+            Attack();
+            relojAtaque.restart();
+        }
+    }
 }
 
-
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
-    std::cout << "Player toke damage!" << std::endl; 
+    //std::cout << "Player toke damage!" << std::endl; 
     if(health_Current > 0&&GodMode==false){ // Only apply damage if the enemy is alive.
         health_Current-=damage;
         if(IsAlive() == false){
@@ -242,7 +250,6 @@ void Player::SetTarget(Enemy *NewTarget) {
 }
 
 Enemy* Player::FindClosestEnemy(){
-    enemyList = game::Instance()->getAllEnemies();
     float minDist = 0.f;
     sf::Vector2f posPlayer = getActorLocation();
     sf::Vector2f dirToEnemy_tmp = sf::Vector2f(0.f, 0.f);
@@ -251,7 +258,7 @@ Enemy* Player::FindClosestEnemy(){
 
     Enemy *enemy = nullptr;
 
-    for (Enemy *enemigo : enemyList){
+    for (Enemy *enemigo : game::Instance()->getAllEnemies()){
         posEnemy = enemigo->getActorLocation();
         dirToEnemy_tmp = (posEnemy-posPlayer);
         float aux=sqrt(pow(dirToEnemy_tmp.x, 2)+pow(dirToEnemy_tmp.y, 2)); //Esto es la longitud del vector

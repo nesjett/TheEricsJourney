@@ -14,8 +14,6 @@ class PlayerController:  public Controller{
         void Update(sf::Event);
         void Mover(sf::Event);
         void setPlayer(Player*);
-        void setLista(list<Enemy*>);
-        void TryToAttack();
         void ImprovesAttack();
         void Frenar();
         void MejorarCadencia(float);
@@ -31,9 +29,7 @@ class PlayerController:  public Controller{
         
     private: 
         Player* miJugador;
-        list<Enemy*> enemyList;
         float distancia;
-        sf::Clock relojAtaque;
         float mejora = 1.f;
         bool Moverse = false;
         bool stop = true;

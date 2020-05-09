@@ -5,9 +5,6 @@
 PlayerController::PlayerController(Player* jugador){
     miJugador = jugador;
 }
-void PlayerController::setPlayer(Player* jugador){
-    miJugador = jugador;
-}
 void PlayerController::Update(sf::Event event){
     if (event.key.code == sf::Keyboard::N){
         MejorarCadencia(0.9);
@@ -54,8 +51,6 @@ void PlayerController::Update(sf::Event event){
         this->Frenar();
     }
 
-
-    this->TryToAttack();
 }
 void PlayerController::setGodMode(bool god){
     miJugador->setGodMode(god);
@@ -63,9 +58,9 @@ void PlayerController::setGodMode(bool god){
 }
 void PlayerController::Mover(sf::Event event){
     if(stop==false){
-        std::cout << "the left button was pressed" << std::endl;
-        std::cout << "mouse x: " << event.mouseButton.x << std::endl;
-        std::cout << "mouse y: " << event.mouseButton.y << std::endl;
+        //std::cout << "the left button was pressed" << std::endl;
+        //std::cout << "mouse x: " << event.mouseButton.x << std::endl;
+        //std::cout << "mouse y: " << event.mouseButton.y << std::endl;
 
         Engine *eng = Engine::Instance();
         Vector2i pos = sf::Mouse::getPosition(eng->getApp()); // mouse position in window coords
@@ -85,18 +80,12 @@ void PlayerController::Frenar(){
 }
 void PlayerController::MejorarCadencia(float mej){
     mejora*=mej;
+    miJugador->cadenciaMultiplier = mejora;
 }
 void PlayerController::MejorarMovimiento(float mejMov){
     miJugador->movementSpeed*=mejMov;
 }
-void PlayerController::TryToAttack(){
-    if(relojAtaque.getElapsedTime().asSeconds()>=1){
-        if(relojAtaque.getElapsedTime().asSeconds()>(2.f*mejora) && (miJugador->getDirection().x == 0.f && miJugador->getDirection().y == 0.f)){
-            miJugador->Attack();
-            relojAtaque.restart();
-        }
-    }
-}
+
 void PlayerController::ImprovesAttack(){
     miJugador->improvesAttack();
 }

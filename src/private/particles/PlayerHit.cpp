@@ -13,7 +13,7 @@ PlayerHit::PlayerHit(Vector2f Loc) : Cascade(Loc) {
     this->setBounds(0.5);
 
     //IDLE
-    Anim = new Animation(this->getSpriteR(), 2000, true);
+    Anim = new Animation(this->getSpriteR(), 2000, false);
     Anim->addFrame({sf::IntRect(0,0, 32,32)});
     Anim->addFrame({sf::IntRect(32,0, 32,32)});
     Anim->addFrame({sf::IntRect(64,0, 32,32)});

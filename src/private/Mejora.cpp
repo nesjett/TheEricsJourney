@@ -8,6 +8,7 @@
 Mejora::Mejora(PowerUpType tipo) : Actor(){ // Use this to call to parent's contructor first
 
     texture_file = "./resources/powerups/"+to_string(tipo)+".png";
+    tipoMejora = tipo;
     switch(tipoMejora)
     {
         case health:
@@ -24,7 +25,6 @@ Mejora::Mejora(PowerUpType tipo) : Actor(){ // Use this to call to parent's cont
             break;   
         }
     oType = powerup;
-    tipoMejora = tipo;
     activada = false;
     utilizada = false;
     PrepareSprite();
@@ -35,7 +35,11 @@ Sprite Mejora::getSprite()
 }
 void Mejora::PrepareSprite(){
     sprite = new SSprite(texture_file);
-    sprite->setOrigin(sprite->getSprite().getGlobalBounds().width/2, sprite->getSprite().getGlobalBounds().height/2); 
+    sprite->setOrigin(sprite->getSprite().getGlobalBounds().width/2, sprite->getSprite().getGlobalBounds().height/2);
+    
+    dialog = new SSprite("./resources/powerups/"+to_string(tipoMejora)+"_d.png");
+    dialog->setOrigin(dialog->getSprite().getGlobalBounds().width/2, dialog->getSprite().getGlobalBounds().height/2);
+    dialog->setScale(0.15,0.15);
 }
 
 void Mejora::Update(float delta){
@@ -43,8 +47,14 @@ void Mejora::Update(float delta){
 }
 void Mejora::Draw(double percent, double delta)
 {
-    if(activada)
+    if(activada) {
         Actor::Draw(percent,delta);
+
+        if(dialog) {
+            dialog->setPosition(getActorLocation().x, getActorLocation().y-50);
+            dialog->Draw();
+        }
+    }
 }
 void Mejora::OnActorOverlap(Actor *otherActor){
     if (activada == true && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == allie ) {

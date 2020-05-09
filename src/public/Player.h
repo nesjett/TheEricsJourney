@@ -31,8 +31,11 @@ class Player:  public Pawn{
         void ToggleMovementIndicator();
         void setGodMode(bool);
         Enemy* FindClosestEnemy();
-        
 
+        Enemy* GetTarget() { return Target; };
+        void ClearTarget() { Target = nullptr; };
+        
+        float cadenciaMultiplier = 1.f;
     protected:
         
         void SetTarget(Enemy *NewTarget);
@@ -47,7 +50,8 @@ class Player:  public Pawn{
         int LastAttack; // Used to select the sound to play for shooting
         SSprite *MovementIndicator;
         bool GodMode = false;
-        list<Enemy*> enemyList;
         sf::Vector2f dir_unit;
+
+        sf::Clock relojAtaque;
         
 };

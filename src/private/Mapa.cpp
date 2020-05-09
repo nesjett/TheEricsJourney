@@ -125,11 +125,11 @@ void Mapa::cargaMapa()
                     int valor = atoi(tile->Attribute("gid"));
                     if(strcmp(layer->Attribute("name"), nombreCapaColisiones.c_str()) == 0) //Elementos Colisionables
                     {
-                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,worldstatic));
+                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,worldstatic, false));
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaObjetos.c_str()) == 0) //Objetos o trampas
                     {
-                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,blocker));
+                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,blocker, false));
                     }
                     if(strcmp(layer->Attribute("name"), strCapaPinchos.c_str()) == 0) //Objetos o trampas
                     {
@@ -150,6 +150,16 @@ void Mapa::cargaMapa()
                         if(posX == 50.f)
                             esPuertaSuperior = true;
                         vPuertas.push_back(new Door(Vector2f(posY,posX + 50.f), esPuertaSuperior));
+                        if(esPuertaSuperior)
+                        {
+                            vTiles.push_back(new Tile(vectorNombresSprite[valor-1], posX,posY, tamTileX,tamTileY,worldstatic, true));
+                            vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY + 50.f, tamTileX,tamTileY,worldstatic, true));
+                        }
+                        else{
+                            vTiles.push_back(new Tile(vectorNombresSprite[valor-1], posX-50.f,posY, tamTileX,tamTileY,worldstatic, true));
+                            vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX-50.f,posY + 50.f, tamTileX,tamTileY,worldstatic, true));
+                        }
+
                     }
                     if(strcmp(layer->Attribute("name"), nombreCapaEnemigos2.c_str()) == 0) //Enemigostipo1
                     {
@@ -175,27 +185,26 @@ void Mapa::cargaMapa()
                         vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
                         posVEnemy++;
                     }
-                    if(strcmp(layer->Attribute("name"), strCapaPowerVida.c_str()) == 0)
+                    if(strcmp(layer->Attribute("name"), strCapaMejoras.c_str()) == 0)
                     {
-                        vMejoras.push_back(new Mejora(health));
-                        vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
-                        posVMejora++;
-                    }
-                    if(strcmp(layer->Attribute("name"), strCapaPowerMov.c_str()) == 0)
-                    {
-                        vMejoras.push_back(new Mejora(movementspeed));
-                        vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
-                        posVMejora++;
-                    }
-                    if(strcmp(layer->Attribute("name"), strCapaPowerCadencia.c_str()) == 0)
-                    {
-                        vMejoras.push_back(new Mejora(attackspeed));
-                        vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
-                        posVMejora++;
-                    }
-                    if(strcmp(layer->Attribute("name"), strCapaPowerAtaque.c_str()) == 0)
-                    {
-                        vMejoras.push_back(new Mejora(attackmore));
+                        //Generamos distintas mejoras aleatorias en las posiciones que leemos del mapa
+                        //Controlamos que el bucle no sea infinito no poniendo mas mejoras en el mapa que tipos de mejoras hay
+                        int intRandom;
+                        bool unica = false;
+                        while(!unica)
+                        {
+                            unica = true;
+                            intRandom = rand() % 4;
+                            vector<Mejora*>::iterator itMejora;
+                            for(itMejora = vMejoras.begin(); itMejora != vMejoras.end(); itMejora++)
+                            {
+                                if((*itMejora)->tipoMejora == (PowerUpType)intRandom)
+                                {
+                                    unica = false;
+                                }
+                            }
+                        }
+                        vMejoras.push_back(new Mejora((PowerUpType)intRandom));
                         vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
                         posVMejora++;
                     }
@@ -243,13 +252,13 @@ list<Actor*> Mapa::getActors()
     list<Door*> listaPuertas(vPuertas.begin(),vPuertas.end());
     list<Actor*> actores;
     //listaTiles.merge(listaEnemigos);
+    for (Door *puerta : listaPuertas)
+    {
+        actores.push_back(puerta);
+    }
     for (Tile *tile : listaTiles)
     {
         actores.push_back(tile);
-    }
-    for (Enemy *enemy : listaEnemigos)
-    {
-        actores.push_back(enemy);
     }
     for (Mejora *mejora : listaMejoras)
     {
@@ -259,9 +268,9 @@ list<Actor*> Mapa::getActors()
     {
         actores.push_back(trampa);
     }
-    for (Door *puerta : listaPuertas)
+    for (Enemy *enemy : listaEnemigos)
     {
-        actores.push_back(puerta);
+        actores.push_back(enemy);
     }
     vEnemigos.erase(vEnemigos.begin(), vEnemigos.end());
     vTiles.erase(vTiles.begin(), vTiles.end());
@@ -269,10 +278,6 @@ list<Actor*> Mapa::getActors()
     vMejoras.erase(vMejoras.begin(), vMejoras.end());
     vTrampas.erase(vTrampas.begin(), vTrampas.end());
     return actores;
-}
-Door* Mapa::getPuerta()
-{
-    return vPuertas[0];
 }
 void Mapa::update()
 {

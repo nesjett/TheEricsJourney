@@ -25,7 +25,6 @@ class Mapa
         void update();
         void render();
         list<Actor*> getActors();
-        Door* getPuerta();
 
     protected:
 
@@ -52,10 +51,7 @@ class Mapa
         string nombreCapaSuelo = "suelo";
         string strCapaPinchos = "pinchos";
         string strCapaSierra = "sierra";
-        string strCapaPowerVida = "mejoraVida";
-        string strCapaPowerMov = "mejoraMovimiento";
-        string strCapaPowerCadencia = "mejoraCadencia";
-        string strCapaPowerAtaque= "mejoraAtaque";
+        string strCapaMejoras = "mejoras";
         string strPropiedadSierra = "LongitudSierra";
         string strPropiedadMovEnemyX = "MovingEnemyFinalPosX";
         string strPropiedadMovEnemyY = "MovingEnemyFinalPosY";

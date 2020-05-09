@@ -22,6 +22,8 @@ target_sources(libModulos PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Stalker.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Door.cpp"
 
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/enemies/BouncingBoss.cpp"
+
     
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Hud.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/Mejora.cpp"
@@ -29,6 +31,7 @@ target_sources(libModulos PRIVATE
 
     "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/FireBall.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/Arrow.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/BouncingArrow.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/projectiles/Rock.cpp"
 
 
@@ -39,6 +42,7 @@ target_sources(libModulos PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/private/particles/Fireball_Explosion.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/particles/PlayerHit.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/private/particles/EfectoMejora.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/particles/Coin.cpp"
 
 )
 

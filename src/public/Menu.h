@@ -22,7 +22,7 @@ class Menu
     private:
         Font* fuente;
         bool MostrarMenuPrincipal;
-        Text textoPuntuaciones;
+        Text textoPuntuaciones, textoCartel, textoVictoria;
 
         static Menu* menuInstance;
         Menu();
@@ -39,13 +39,15 @@ class Menu
         bool updateRaton(Event event, bool* reiniciaJuego);
         string itemSeleccionado;
 
-        Sprite *jugar, *jugarselecc, *salir, *salirselecc;
-        Texture texJugar, texJugarselecc, texSalir, texSalirselecc;
-        vector<Sprite*> vJugar, vSalir;
+        Sprite *jugar, *jugarselecc, *salir, *salirselecc, *reintentar, *reintentarselecc;
+        Texture texJugar, texJugarselecc, texSalir, texSalirselecc, texreintenar, texreintentarselecc;
+        vector<Sprite*> vJugar, vSalir, vReintentar;
 
         Sprite fondo;
+        Sprite fondo2;
         Texture texFondo;
+        Texture texFondo2;
         Sprite logoLetras;
         Texture texLogoLetras;
-        float separacionMenuPPal = 150;
+        float separacionMenuPPal = 160;
 };

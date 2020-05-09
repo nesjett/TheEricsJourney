@@ -131,5 +131,5 @@ void Actor::setLifespan(float secs) {
 
     long gameTime = gi->getTime();
     lifeSpan = gi->getTime() + t1.asMilliseconds(); // Define exact time at which the actor should be destroyed
-    std::cout << "Game time: " << gameTime << " Destroy time: " << lifeSpan << std::endl;
+    //std::cout << "Game time: " << gameTime << " Destroy time: " << lifeSpan << std::endl;
 }
