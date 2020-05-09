@@ -66,7 +66,7 @@ void Mejora::OnActorOverlap(Actor *otherActor){
                 playercontroller->IncreaseHealth();
                 break;
             case movementspeed:
-                playercontroller->MejorarMovimiento(1.08); //Valores copiados del player controller
+                playercontroller->MejorarMovimiento(1.1); //Valores copiados del player controller
                 break;
             case attackspeed:
                 playercontroller->MejorarCadencia(0.9);
