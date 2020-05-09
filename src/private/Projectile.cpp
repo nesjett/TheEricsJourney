@@ -71,6 +71,10 @@ void Projectile::OnActorOverlap(Actor *otherActor){
     }
 }
 
+void Projectile::ModifyDamage(float Modify){
+    damage*=Modify;
+}
+
 Projectile::~Projectile(){
     delete activeAnim;
     Animations.erase(Animations.begin(), Animations.end());

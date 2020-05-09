@@ -22,6 +22,7 @@ Player::Player(){ // Use this to call to parent's contructor first
     movementSpeed = 0.2f;
     faction = allie;
     AttackImprovement = 0;
+    IncreaseDamage = 0;
 
     LastAttack = 0;
 
@@ -188,13 +189,13 @@ void Player::Draw(double percent, double delta ){
 void Player::Update(float delta){
     Pawn::Update(delta);
     SetTarget(this->FindClosestEnemy());
-
-    if(relojAtaque.getElapsedTime().asSeconds()>(2.f*cadenciaMultiplier) && (getDirection().x == 0.f && getDirection().y == 0.f)){
-        Attack();
-        relojAtaque.restart();
+    if(relojAtaque.getElapsedTime().asSeconds()>=1){
+        if(relojAtaque.getElapsedTime().asSeconds()>(2.f*cadenciaMultiplier) && (getDirection().x == 0.f && getDirection().y == 0.f)){
+            Attack();
+            relojAtaque.restart();
+        }
     }
 }
-
 
 void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     //std::cout << "Player toke damage!" << std::endl; 
@@ -304,15 +305,40 @@ void Player::Attack(){
             sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y)-30);
             Arrow *flecha2 = new Arrow(dir_unit, dobleFlecha);
             eng->Almacenaenemy(flecha2);
-            if(AttackImprovement >= 3){ //HE COMENTADO ESTO PORQUE ESTOY HACIENDO PRUEBAS
+            if(AttackImprovement >= 3){ 
                 Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha);
                 eng->Almacenaenemy(projTest3);
             }
         }
     }
+    if(IncreaseDamage>0){
+        //ModifyDamage();
+        for (int i = 0; i < IncreaseDamage; i++){
+            ModifyDamage();
+        }
+    }
 }
 void Player::improvesAttack(){
     AttackImprovement++;
+}
+void Player::IncreaseDamageArrows(){
+    IncreaseDamage++;
+}
+void Player::ModifyDamage(){
+    game *eng = game::Instance();
+    list<Projectile*> Projectiles = eng->getAllProjectiles();
+    for (Projectile* pro : Projectiles){
+        if ( dynamic_cast<Arrow*>( pro ) ) {
+            dynamic_cast<Arrow*>(pro)->ModifyDamage(1.2f);
+        }
+    }
+    std::cout<<"Daño de flechas aumentado con éxito"<<std::endl;
+}
+void Player::ModifyCritic(float cri){
+    Critic *= cri;
+}
+float Player::GetCritic(){
+    return Critic;
 }
 void Player::setHealthMax(float increase){
     //In this method, you can set an increase of Player's maximum health

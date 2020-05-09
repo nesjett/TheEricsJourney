@@ -42,7 +42,6 @@ void game::RestartGame()
     Hud* hud = Hud::Instance();
     hud->setPlayer(jugador);
     InicializaNivel();
-    //actors.push_back(jugador);
     ControladorJugador = new PlayerController(jugador); // TODO: Should use unique_ptr?
 }
 void game::StartGame()

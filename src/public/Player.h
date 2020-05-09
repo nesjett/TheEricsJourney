@@ -25,6 +25,10 @@ class Player:  public Pawn{
         float getCurrentHealth();
         float getMaxHealth();
         void improvesAttack();
+        void ModifyDamage();
+        void IncreaseDamageArrows();
+        void ModifyCritic(float cri);
+        float GetCritic();
 
         void ToggleMovementIndicator();
         void setGodMode(bool);
@@ -43,12 +47,13 @@ class Player:  public Pawn{
         void PrepareMovementIndicator();
         string texture_file;
         int AttackImprovement;
+        int IncreaseDamage;
         Enemy *Target;
         int LastAttack; // Used to select the sound to play for shooting
         SSprite *MovementIndicator;
         bool GodMode = false;
         sf::Vector2f dir_unit;
-
         sf::Clock relojAtaque;
+        float Critic = 1.f;
         
 };
