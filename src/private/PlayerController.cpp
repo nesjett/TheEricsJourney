@@ -92,7 +92,9 @@ void PlayerController::MejorarCadencia(float mej){
     miJugador->cadenciaMultiplier = mejora;
 }
 void PlayerController::MejorarMovimiento(float mejMov){
-    miJugador->movementSpeed*=mejMov;
+    if(miJugador->movementSpeed<=0.5f){
+        miJugador->movementSpeed*=mejMov;
+    }
 }
 
 void PlayerController::ImprovesAttack(){
