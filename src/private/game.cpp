@@ -108,10 +108,6 @@ void game::InicializaNivel()
 
 //bucle del juego
 void game::run(){ 
-
-    Actor *test = new BouncingBoss();
-    actors.push_back(test);
-    test->setActorLocation(Vector2f(300.f,150.f));
     
     /***********************************
      * Game loop
