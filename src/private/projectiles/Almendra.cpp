@@ -33,7 +33,7 @@ void Almendra::Init(){
     Animation *tmpA;
 
     //IDLE
-    tmpA = new Animation(sprite->getSpriteR(), 2100, true);
+    tmpA = new Animation(sprite->getSpriteR(), 4100, true);
     Animations.insert({"IDLE", tmpA});
     tmpA->addFrame({sf::IntRect(0,0, 512,197)});
     tmpA->addFrame({sf::IntRect(512,0, 512,197)});
