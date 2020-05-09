@@ -51,15 +51,19 @@ class Hud
 
         //Datos de los powerups adquiridos - TO DO: una vez gestionemos powerups
         float separacion = 50.f;
-        Text txtHealth, txtMovSpeed, txtAttackSpeed, txtAttackMore;
+        Text txtHealth, txtMovSpeed, txtAttackSpeed, txtAttackMore, txtMoreDamage, txtCritAttack;
         int vecesMejora1 = 0;
         int vecesMejora2 = 0;
         int vecesMejora3 = 0;
         int vecesMejora4 = 0;
+        int vecesMejora5 = 0;
+        int vecesMejora6 = 0;
         Texture *tx1 = new Texture();
         Texture *tx2 = new Texture();
         Texture *tx3 = new Texture();
         Texture *tx4 = new Texture();
+        Texture *tx5 = new Texture();
+        Texture *tx6 = new Texture();
         vector<Sprite*> spritesMejoras;
         vector<Texture> texturasMejoras;
 

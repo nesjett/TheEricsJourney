@@ -31,15 +31,21 @@ Hud::Hud()
     txtMovSpeed.setFont(fontHud);
     txtAttackSpeed.setFont(fontHud);
     txtAttackMore.setFont(fontHud);
+    txtMoreDamage.setFont(fontHud);
+    txtCritAttack.setFont(fontHud);
     txtHealth.setCharacterSize(20);
     txtMovSpeed.setCharacterSize(20);
     txtAttackSpeed.setCharacterSize(20);
     txtAttackMore.setCharacterSize(20);
+    txtMoreDamage.setCharacterSize(20);
+    txtCritAttack.setCharacterSize(20);
     txtHealth.setColor(Color::Black);
     txtMovSpeed.setColor(Color::Black);
     txtAttackSpeed.setColor(Color::Black);
     txtAttackMore.setColor(Color::Black);
-    for(int i = 0; i < 4; i++)
+    txtMoreDamage.setColor(Color::Black);
+    txtCritAttack.setColor(Color::Black);
+    for(int i = 0; i < 6; i++)
     {
         spritesMejoras.push_back(new Sprite);
     }
@@ -51,11 +57,15 @@ Hud::Hud()
     tx2->loadFromFile("./resources/powerups/1.png");
     tx3->loadFromFile("./resources/powerups/2.png");
     tx4->loadFromFile("./resources/powerups/3.png");
+    tx5->loadFromFile("./resources/powerups/4.png");
+    tx6->loadFromFile("./resources/powerups/5.png");
     spritesMejoras[0]->setTexture(*tx1);
     spritesMejoras[1]->setTexture(*tx2);
     spritesMejoras[2]->setTexture(*tx3);
     spritesMejoras[3]->setTexture(*tx4);
-    for(int i = 0; i < 4; i++)
+    spritesMejoras[4]->setTexture(*tx5);
+    spritesMejoras[5]->setTexture(*tx6);
+    for(int i = 0; i < spritesMejoras.size(); i++)
     {
         spritesMejoras[i]->setOrigin(spritesMejoras[i]->getGlobalBounds().width/2,spritesMejoras[i]->getGlobalBounds().height/2);
     }
@@ -131,11 +141,19 @@ void Hud::addMejora(PowerUpType tipo)
         case attackmore:
             vecesMejora4++;
             break;
+        case moredamage:
+            vecesMejora5++;
+            break;
+        case critattack:
+            vecesMejora6++;
+            break;
     }
     txtHealth.setString(to_string(vecesMejora1) + "x");
     txtMovSpeed.setString(to_string(vecesMejora2) + "x");
     txtAttackSpeed.setString(to_string(vecesMejora3) + "x");
     txtAttackMore.setString(to_string(vecesMejora4) + "x");
+    txtMoreDamage.setString(to_string(vecesMejora5) + "x");
+    txtCritAttack.setString(to_string(vecesMejora6) + "x");
 }
  void Hud::Update()
  {
@@ -253,10 +271,28 @@ void Hud::Draw()
         eng->getApp().draw(*spritesMejoras[3]);
         cont++;
     }
+    if(vecesMejora5 > 0)
+    {
+        txtMoreDamage.setPosition(Vector2f(755.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 130));
+        eng->getApp().draw(txtMoreDamage);
+        spritesMejoras[4]->setPosition(Vector2f(820.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 140));
+        eng->getApp().draw(*spritesMejoras[4]);
+        cont++;
+    }
+    if(vecesMejora6 > 0)
+    {
+        txtCritAttack.setPosition(Vector2f(755.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 130));
+        eng->getApp().draw(txtCritAttack);
+        spritesMejoras[5]->setPosition(Vector2f(820.f,separacion*cont + eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 140));
+        eng->getApp().draw(*spritesMejoras[5]);
+        cont++;
+    }
     if(vecesMejora1 == 0
     && vecesMejora2 == 0
     && vecesMejora3 == 0
-    && vecesMejora4 == 0)
+    && vecesMejora4 == 0
+    && vecesMejora5 == 0
+    && vecesMejora6 == 0)
     {
         Text txtSinMejoras;
         txtSinMejoras.setFont(fontHud);
