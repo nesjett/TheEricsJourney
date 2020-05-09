@@ -172,7 +172,7 @@ bool Movingenemy::Attack(){
 }
 
 void Movingenemy::SetAnimation(){
-    if(IsAlive()==true){
+    if(muerto!=true){
         Pawn::SetAnimation();
     }
     else{
@@ -182,6 +182,7 @@ void Movingenemy::SetAnimation(){
 }
 
 void Movingenemy::Die(){
+    muerto=true;
     //std::cout << "Enemy died!" << std::endl; 
     setLifespan(1.0);
 }

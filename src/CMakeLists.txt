@@ -45,7 +45,6 @@ target_sources(libModulos PRIVATE
 	"${CMAKE_CURRENT_SOURCE_DIR}/private/particles/Astillas.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/private/particles/Rockexplosion.cpp"
 
-	"${CMAKE_CURRENT_SOURCE_DIR}/private/enemydead/Calaveradead.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/particles/Coin.cpp"
 
 )
