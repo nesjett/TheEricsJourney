@@ -67,7 +67,7 @@ void Movingenemy::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
 
-    tmpA = new Animation(sprite->getSpriteR(),1500, false);
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"dead", tmpA});
     tmpA->addFrame({sf::IntRect(0,3824,sizeX,sizeY)});
     
@@ -176,15 +176,11 @@ void Movingenemy::SetAnimation(){
     if(IsAlive()==true){
         Pawn::SetAnimation();
     }
-    else{
-        cout<<"ESTA MUERTO ESTA MUERTO ESTA MUERTO ESTA MUERTO ESTA MUERTO";
-        activeAnim=Animations.find("dead")->second;
-        Animation* anima=activeAnim;
-    }
 }
 
 void Movingenemy::Die(){
     
-    //std::cout << "Enemy died!" << std::endl; 
+    activeAnim=Animations.find("dead")->second;
+
     setLifespan(1.0);
 }
