@@ -105,7 +105,7 @@ void Movingenemy::Update(float delta){
 }
 
 void Movingenemy::Draw(double percent, double delta ){
-    Pawn::SetAnimation();
+    this->SetAnimation();
     Enemy::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
@@ -172,17 +172,19 @@ bool Movingenemy::Attack(){
 }
 
 void Movingenemy::SetAnimation(){
-    if(muerto!=true){
+    Animation* anima=activeAnim;
+    if(IsAlive()==true){
         Pawn::SetAnimation();
     }
     else{
         cout<<"ESTA MUERTO ESTA MUERTO ESTA MUERTO ESTA MUERTO ESTA MUERTO";
         activeAnim=Animations.find("dead")->second;
+        Animation* anima=activeAnim;
     }
 }
 
 void Movingenemy::Die(){
-    muerto=true;
+    
     //std::cout << "Enemy died!" << std::endl; 
     setLifespan(1.0);
 }
