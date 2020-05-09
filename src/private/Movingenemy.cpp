@@ -87,7 +87,10 @@ void Movingenemy::Update(float delta){
     Enemy::Update(delta);
     if(relojPausa.getElapsedTime().asSeconds()>3.0){
         direction=Vector2f(0.f,0.f);
-        Attack();
+        if(IsAlive()==true){
+            Attack();
+        }
+        
         
         if(relojPausa.getElapsedTime().asSeconds()>5.0){
 
@@ -182,5 +185,5 @@ void Movingenemy::Die(){
     
     activeAnim=Animations.find("dead")->second;
 
-    setLifespan(1.0);
+    setLifespan(1.5);
 }
