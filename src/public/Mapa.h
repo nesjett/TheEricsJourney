@@ -25,7 +25,6 @@ class Mapa
         void update();
         void render();
         list<Actor*> getActors();
-        Door* getPuerta();
 
     protected:
 
@@ -42,14 +41,15 @@ class Mapa
         vector<Mejora*> vMejoras;
 
         //Nombre de las capas en los mapa Tiled
-        string nombreCapaColisiones = "pared";
-        string nombreCapaObjetos = "blocker";
-        string nombreCapaPuertas = "puerta";
-        string nombreCapaEnemigos1 = "enemigos1";
-        string nombreCapaEnemigos2 = "enemigos2";
-        string nombreCapaEnemigos3 = "enemigos3";
-        string nombreCapaEnemigos4 = "enemigos4";
-        string nombreCapaSuelo = "suelo";
+        string strCapaColisiones = "pared";
+        string strCapaObjetos = "blocker";
+        string strCapaPuertas = "puerta";
+        string strCapaEnemigos1 = "enemigos1";
+        string strCapaEnemigos2 = "enemigos2";
+        string strCapaEnemigos3 = "enemigos3";
+        string strCapaEnemigos4 = "enemigos4";
+        string strCapaEnemigos5 = "boss1";
+        string strCapaSuelo = "suelo";
         string strCapaPinchos = "pinchos";
         string strCapaSierra = "sierra";
         string strCapaMejoras = "mejoras";

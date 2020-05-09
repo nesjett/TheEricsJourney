@@ -2,13 +2,13 @@
 #include "../public/Pawn.h"
 
 
-Tile::Tile(string nombreSprite, float x, float y, float widthSprite, float heightSprite, ObjectType tipo) : Actor(){ 
+Tile::Tile(string nombreSprite, float x, float y, float widthSprite, float heightSprite, ObjectType tipo, bool puerta) : Actor(){ 
     width = widthSprite;
     height = heightSprite;
     texture_file = nombreSprite;
     debug_coords = false;
     setActorLocation(Vector2f(y+(width/2),x+(height/2))); //las posiciones en sfml primer y luego x
-
+    esPuerta = puerta;
     PrepareSprite();
 }
 

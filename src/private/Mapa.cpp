@@ -3,6 +3,7 @@
 #include "../public/Explosionenemy.h"
 #include "../public/Fixedenemy.h"
 #include "../public/Stalker.h"
+#include "../public/enemies/BouncingBoss.h"
 
 using namespace std;
 
@@ -72,13 +73,6 @@ void Mapa::cargaMapa()
     sprite_suelo.setPosition(0.f, 0.f);
     vectorPintar2.push_back(sprite_suelo);
 
-    // vector<sf::Texture*> vectorTextura;
-    // vector<sf::Sprite*> vectorSprite;
-    // for(int i=0; i<numTileset;i++)
-    // {
-    //     vectorTextura.push_back(new sf::Texture);
-    //     vectorSprite.push_back(new sf::Sprite);
-    // }
     string nomSprite;
     vector<string> vectorNombresSprite;
     tileset = mapa->FirstChildElement("tileset");
@@ -123,13 +117,13 @@ void Mapa::cargaMapa()
                 if(tile->Attribute("gid"))
                 {
                     int valor = atoi(tile->Attribute("gid"));
-                    if(strcmp(layer->Attribute("name"), nombreCapaColisiones.c_str()) == 0) //Elementos Colisionables
+                    if(strcmp(layer->Attribute("name"), strCapaColisiones.c_str()) == 0) //Elementos Colisionables
                     {
-                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,worldstatic));
+                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,worldstatic, false));
                     }
-                    if(strcmp(layer->Attribute("name"), nombreCapaObjetos.c_str()) == 0) //Objetos o trampas
+                    if(strcmp(layer->Attribute("name"), strCapaObjetos.c_str()) == 0) //Objetos o trampas
                     {
-                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,blocker));
+                        vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,blocker, false));
                     }
                     if(strcmp(layer->Attribute("name"), strCapaPinchos.c_str()) == 0) //Objetos o trampas
                     {
@@ -144,34 +138,50 @@ void Mapa::cargaMapa()
                         vTrampas.push_back(new Saw(Vector2f(posY,posX), sierra*tamTileX));
                         posVTrampas++;
                     }
-                    if(strcmp(layer->Attribute("name"), nombreCapaPuertas.c_str()) == 0) //Puertas (falta cambiarle el oType)
+                    if(strcmp(layer->Attribute("name"), strCapaPuertas.c_str()) == 0) //Puertas (falta cambiarle el oType)
                     {
                         bool esPuertaSuperior = false;
                         if(posX == 50.f)
                             esPuertaSuperior = true;
                         vPuertas.push_back(new Door(Vector2f(posY,posX + 50.f), esPuertaSuperior));
+                        if(esPuertaSuperior)
+                        {
+                            vTiles.push_back(new Tile(vectorNombresSprite[valor-1], posX,posY, tamTileX,tamTileY,worldstatic, true));
+                            vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY + 50.f, tamTileX,tamTileY,worldstatic, true));
+                        }
+                        else{
+                            vTiles.push_back(new Tile(vectorNombresSprite[valor-1], posX-50.f,posY, tamTileX,tamTileY,worldstatic, true));
+                            vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX-50.f,posY + 50.f, tamTileX,tamTileY,worldstatic, true));
+                        }
+
                     }
-                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos2.c_str()) == 0) //Enemigostipo1
+                    if(strcmp(layer->Attribute("name"), strCapaEnemigos2.c_str()) == 0) //Enemigos que se mueven entre dos puntos
                     {
                         vEnemigos.push_back(new Movingenemy());
                         dynamic_cast<Movingenemy*>(vEnemigos[posVEnemy])->Prepara(Vector2f(posY + tamTileY/2.f ,posX + tamTileX/2.f), Vector2f((movY*tamTileY) + tamTileY/2.f ,(movX*tamTileX) + tamTileX/2.f));
                         posVEnemy++;
                     }
-                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos1.c_str()) == 0) //Enemigostipo1
+                    if(strcmp(layer->Attribute("name"), strCapaEnemigos1.c_str()) == 0) //Enemigos fijos
                     {
                         vEnemigos.push_back(new Fixedenemy());
                         vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2,posX + tamTileX/2));
                         posVEnemy++;
                     }
-                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos3.c_str()) == 0) //Enemigostipo1
+                    if(strcmp(layer->Attribute("name"), strCapaEnemigos3.c_str()) == 0) //Enemigos que se mueven aleatoriamente
                     {
                         vEnemigos.push_back(new Explosionenemy());
                         vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
                         posVEnemy++;
                     }
-                    if(strcmp(layer->Attribute("name"), nombreCapaEnemigos4.c_str()) == 0) //Enemigostipo1
+                    if(strcmp(layer->Attribute("name"), strCapaEnemigos4.c_str()) == 0) //Enemigos stalker
                     {
                         vEnemigos.push_back(new Stalker());
+                        vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
+                        posVEnemy++;
+                    }
+                    if(strcmp(layer->Attribute("name"), strCapaEnemigos5.c_str()) == 0) //Boss
+                    {
+                        vEnemigos.push_back(new BouncingBoss());
                         vEnemigos[posVEnemy]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
                         posVEnemy++;
                     }
@@ -198,7 +208,7 @@ void Mapa::cargaMapa()
                         vMejoras[posVMejora]->setActorLocation(Vector2f(posY + tamTileY/2 ,posX + tamTileX/2));
                         posVMejora++;
                     }
-                    if(strcmp(layer->Attribute("name"), nombreCapaSuelo.c_str()) == 0)
+                    if(strcmp(layer->Attribute("name"), strCapaSuelo.c_str()) == 0)
                     {
                         // if(valor <= vectorSprite.size())
                         // {
@@ -242,6 +252,10 @@ list<Actor*> Mapa::getActors()
     list<Door*> listaPuertas(vPuertas.begin(),vPuertas.end());
     list<Actor*> actores;
     //listaTiles.merge(listaEnemigos);
+    for (Door *puerta : listaPuertas)
+    {
+        actores.push_back(puerta);
+    }
     for (Tile *tile : listaTiles)
     {
         actores.push_back(tile);
@@ -254,10 +268,6 @@ list<Actor*> Mapa::getActors()
     {
         actores.push_back(trampa);
     }
-    for (Door *puerta : listaPuertas)
-    {
-        actores.push_back(puerta);
-    }
     for (Enemy *enemy : listaEnemigos)
     {
         actores.push_back(enemy);
@@ -268,10 +278,6 @@ list<Actor*> Mapa::getActors()
     vMejoras.erase(vMejoras.begin(), vMejoras.end());
     vTrampas.erase(vTrampas.begin(), vTrampas.end());
     return actores;
-}
-Door* Mapa::getPuerta()
-{
-    return vPuertas[0];
 }
 void Mapa::update()
 {

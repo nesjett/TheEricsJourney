@@ -111,10 +111,6 @@ void game::InicializaNivel()
 
 //bucle del juego
 void game::run(){ 
-
-    Actor *test = new BouncingBoss();
-    actors.push_back(test);
-    test->setActorLocation(Vector2f(300.f,150.f));
     
     /***********************************
      * Game loop
@@ -147,7 +143,7 @@ void game::run(){
             {
                 bool reiniciaJuego = false;
                 estadoJuego = menu->update(tecla, &reiniciaJuego);
-                if(estadoJuego == true)
+                if(estadoJuego == true && reiniciaJuego == false)
                 {
                     StartGame();
                 }
@@ -447,7 +443,10 @@ void game::CondicionVictoria()
             {
                 dynamic_cast<Door*>(actor)->openDoor();
             }
-
+            if(dynamic_cast<Tile*>(actor) && dynamic_cast<Tile*>(actor)->esPuerta == true)
+            {
+                dynamic_cast<Tile*>(actor)->setLifespan(0.f);
+            }
         }
         if(jugador->getActorLocation().y < 100.f)
         {
