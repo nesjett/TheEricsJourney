@@ -77,7 +77,7 @@ void game::InicializaNivel()
         //Cargamos el nivel
         if(mapa)
             delete mapa;
-        string nombreMapa = "Mapa"+to_string(mapaActual+1)+".tmx";
+        string nombreMapa = "Mapa"+to_string(13)+".tmx";
         mapa  = new Mapa(nombreMapa);
         Hud* hud = Hud::Instance();
         hud->setNumMapa(mapaActual+1);
@@ -109,10 +109,6 @@ void game::InicializaNivel()
 
 //bucle del juego
 void game::run(){ 
-
-    Actor *test = new BouncingBoss();
-    actors.push_back(test);
-    test->setActorLocation(Vector2f(300.f,150.f));
     
     /***********************************
      * Game loop
