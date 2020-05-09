@@ -42,6 +42,7 @@ target_sources(libModulos PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/private/particles/Fireball_Explosion.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/private/particles/PlayerHit.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/private/particles/EfectoMejora.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/private/particles/Coin.cpp"
 
 )
 
