@@ -26,7 +26,7 @@ class Movingenemy: public Enemy{
         bool para;
         sf::Clock relojMark;
         sf::Clock relojPausa;
- 
+        void Die();
     private:
         string texture_file;
 };

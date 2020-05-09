@@ -165,3 +165,22 @@ bool Movingenemy::Attack(){
    }
     return true;
 }
+
+void Movingenemy::Die(){
+    float sizeX = 828.0, sizeY = 896.0;
+    float offsetX = sizeX / 2.0;
+    float offsetY = sizeY / 2.0;
+
+    sprite->LoadTexture("./resources/enemies/dead/Calaveradead.png");
+    sprite->setOrigin(offsetX, offsetY); // Set anchor to center of texture rect. Now sprite is centered with real position.
+    IntRect rectangle = IntRect(0, 0, sizeX, sizeY);
+    sprite->setTextureRect( rectangle ); // Set the texture section we want to add to the sprite.
+    sprite->setScale( 0.07,0.07 );
+    //sprite->SetLifetime(1500);
+    Animation *tmpA;
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, false);
+    tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
+    tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
+    activeAnim=tmpA;
+}

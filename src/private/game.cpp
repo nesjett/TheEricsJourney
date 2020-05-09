@@ -7,6 +7,7 @@
 #include "../public/particles/EfectoMejora.h"
 #include "../public/particles/Astillas.h"
 #include "../public/enemies/BouncingBoss.h"
+#include "../public/particles/Rockexplosion.h"
 
 #define UPDATE_INTERVAL (1000/25.0)
 
@@ -461,8 +462,11 @@ void game::SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot) {
     case 2: // Mejora
         Particles.push_back(make_unique<EfectoMejora>(Location));
         break;
-    case 3: // Mejora
+    case 3: // destruye flecha
         Particles.push_back(make_unique<Astillas>(Location));
+        break;
+    case 4: // destruye roca
+        Particles.push_back(make_unique<Rockexplosion>(Location));
         break;
     default:
         break;
