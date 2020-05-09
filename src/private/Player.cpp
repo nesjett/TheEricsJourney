@@ -137,8 +137,116 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(1100,2200,sizeX,sizeY)});
 
     tmpA = new Animation(sprite->getSpriteR(),500, true);
-    Animations.insert({"stop", tmpA});
+    Animations.insert({"stopright", tmpA});
+    tmpA->addFrame({sf::IntRect(0,2750,sizeX,sizeY)});
+
+    tmpA = new Animation(sprite->getSpriteR(),500, true);
+    Animations.insert({"stopup", tmpA});
     tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)});
+
+    tmpA = new Animation(sprite->getSpriteR(),500, true);
+    Animations.insert({"stopleft", tmpA});
+    tmpA->addFrame({sf::IntRect(1650,0,sizeX,sizeY)});
+
+    tmpA = new Animation(sprite->getSpriteR(),500, true);
+    Animations.insert({"stopdown", tmpA});
+    tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
+  
+}
+
+int Player::DireccionPausa(){
+    Vector2f pos = Target->getActorLocation();
+    Vector2f pos_player =getActorLocation();
+    Vector2f dir = pos-pos_player;
+    float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
+    Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
+
+    auto angleRads = std::atan2(-dir_unit.y, dir_unit.x);
+    auto angleDegs = angleRads * 180.0 / M_PI;
+    if(angleDegs<0){
+      angleDegs=angleDegs+360; //los grados van de 0 a 180 y de 0 a -180, sumamos 360 para establecer cuadrantes segun los angulos
+    }
+
+    if((angleDegs<22.5 && angleDegs>=0) || (angleDegs>=337.5 && angleDegs<=0)){
+        return 1;//right
+    }
+    if(angleDegs<67.5 && angleDegs>=22.5){
+        return 1;//right
+    }
+    if(angleDegs<112.5 && angleDegs>=67.5){
+        return 2;//up
+    }
+    if(angleDegs<157.5 && angleDegs>=112.5){
+        return 3;//left
+    }
+    if(angleDegs<202.5 && angleDegs>=157.5){
+        return 3;//left
+    }
+    if(angleDegs<247.5 && angleDegs>=202.5){
+        return 3;//left
+    }
+    if(angleDegs<292.5 && angleDegs>=247.5){
+        return 4;//down
+    }
+    if(angleDegs<337.5 && angleDegs>=292.5){
+        return 1;//right
+    }
+}
+
+void Player::SetAnimation(){ //selecciona la animacion del mapa de animaciones dependiendo de la direccion del actor
+
+    auto angleRads = std::atan2(-direction.y, direction.x);
+    auto angleDegs = angleRads * 180.0 / M_PI;
+    if(angleDegs<0){
+      angleDegs=angleDegs+360; //los grados van de 0 a 180 y de 0 a -180, sumamos 360 para establecer cuadrantes segun los angulos
+    }
+
+    if((angleDegs<22.5 && angleDegs>0) || (angleDegs>=337.5 && angleDegs<360)){
+        activeAnim=Animations.find("right")->second;
+    }
+    if(angleDegs<67.5 && angleDegs>=22.5){
+        activeAnim=Animations.find("right")->second;
+    }
+    if(angleDegs<112.5 && angleDegs>=67.5){
+        activeAnim=Animations.find("up")->second;
+    }
+    if(angleDegs<157.5 && angleDegs>=112.5){
+        activeAnim=Animations.find("left")->second;
+    }
+    if(angleDegs<202.5 && angleDegs>=157.5){
+        activeAnim=Animations.find("left")->second;
+    }
+    if(angleDegs<247.5 && angleDegs>=202.5){
+        activeAnim=Animations.find("left")->second;
+    }
+    if(angleDegs<292.5 && angleDegs>=247.5){
+        activeAnim=Animations.find("down")->second;
+    }
+    if(angleDegs<337.5 && angleDegs>=292.5){
+        activeAnim=Animations.find("right")->second;
+    }
+    if(angleDegs==0){
+        if(Target!=nullptr){
+            if(DireccionPausa()==1){
+                activeAnim=Animations.find("stopright")->second;
+            }
+            if(DireccionPausa()==2){
+                activeAnim=Animations.find("stopup")->second;
+            }
+            if(DireccionPausa()==3){
+                activeAnim=Animations.find("stopleft")->second;
+            }
+            if(DireccionPausa()==4){
+                activeAnim=Animations.find("stopdown")->second;
+            }
+        }
+        else{
+            activeAnim=Animations.find("stopup")->second;
+        }
+
+        
+    }
+
 }
 
 void Player::PrepareMovementIndicator() {
@@ -154,7 +262,10 @@ void Player::PrepareMovementIndicator() {
 }
 
 void Player::Draw(double percent, double delta ){
-    Pawn::SetAnimation();
+    SetAnimation();
+    if(activeAnim) {
+        activeAnim->update(delta);
+    }
     Pawn::Draw(percent, delta);
 
 

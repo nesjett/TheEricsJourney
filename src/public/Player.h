@@ -29,7 +29,8 @@ class Player:  public Pawn{
         void IncreaseDamageArrows();
         void ModifyCritic(float cri);
         float GetCritic();
-
+        int DireccionPausa();
+        void SetAnimation();
         void ToggleMovementIndicator();
         void setGodMode(bool);
         Enemy* FindClosestEnemy();

@@ -18,7 +18,10 @@ class Stalker: public Enemy{
         void PrepareSprite();
         //Vector2f Direccionunitaria(Vector2f pos_player,Vector2f pos);
         sf::Clock relojMark;
-
+        void Die();
+    protected:
+    
+        void SetAnimation();
 
     private:
         string texture_file;

@@ -4,7 +4,7 @@
 Movingenemy::Movingenemy(): Enemy(){ // Use this to call to parent's contructor first
     std::cout << "Pawn spawned..." << std::endl;  
 
-    texture_file = "./resources/Calavera.png";
+    texture_file = "./resources/Calavera2.png";
 
 
     health_MAX = 100.0f;
@@ -66,6 +66,11 @@ void Movingenemy::PrepareSprite(){
     Animations.insert({"stop", tmpA});
     tmpA->addFrame({sf::IntRect(0,1016,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(0,1912,sizeX,sizeY)});
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"dead", tmpA});
+    tmpA->addFrame({sf::IntRect(0,3824,sizeX,sizeY)});
+    
 }
 /*
 void Movingenemy::Update(float delta){
@@ -82,7 +87,10 @@ void Movingenemy::Update(float delta){
     Enemy::Update(delta);
     if(relojPausa.getElapsedTime().asSeconds()>3.0){
         direction=Vector2f(0.f,0.f);
-        Attack();
+        if(IsAlive()==true){
+            Attack();
+        }
+        
         
         if(relojPausa.getElapsedTime().asSeconds()>5.0){
 
@@ -100,7 +108,7 @@ void Movingenemy::Update(float delta){
 }
 
 void Movingenemy::Draw(double percent, double delta ){
-    Pawn::SetAnimation();
+    this->SetAnimation();
     Enemy::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
@@ -164,4 +172,18 @@ bool Movingenemy::Attack(){
         relojMark.restart();
    }
     return true;
+}
+
+void Movingenemy::SetAnimation(){
+    
+    if(IsAlive()==true){
+        Pawn::SetAnimation();
+    }
+}
+
+void Movingenemy::Die(){
+    
+    activeAnim=Animations.find("dead")->second;
+
+    setLifespan(1.5);
 }

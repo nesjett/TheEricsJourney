@@ -72,6 +72,10 @@ void Explosionenemy::PrepareSprite(){
     Animations.insert({"down", tmpA});
     tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(0,235,sizeX,sizeY)});
+
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    Animations.insert({"dead", tmpA});
+    tmpA->addFrame({sf::IntRect(0,470,sizeX,sizeY)});
 }
 
 void Explosionenemy::Update(float delta){
@@ -80,7 +84,9 @@ void Explosionenemy::Update(float delta){
     Enemy::Update(delta);
     if(relojPausa.getElapsedTime().asSeconds()>5.0){
         direction=Vector2f(0.f,0.f);
-        Attack();
+        if(IsAlive()==true){
+            Attack();
+        }
         
         if(relojPausa.getElapsedTime().asSeconds()>7.0){
 
@@ -98,7 +104,7 @@ void Explosionenemy::Update(float delta){
 }
 
 void Explosionenemy::Draw(double percent, double delta ){
-    Pawn::SetAnimation();
+    this->SetAnimation();
     Enemy::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
@@ -155,3 +161,17 @@ Vector2f Explosionenemy::Direccionunitaria(Vector2f pos_player,Vector2f pos){
    return dir_unit;
 }
 */
+
+void Explosionenemy::SetAnimation(){
+    
+    if(IsAlive()==true){
+        Pawn::SetAnimation();
+    }
+}
+
+void Explosionenemy::Die(){
+    
+    activeAnim=Animations.find("dead")->second;
+
+    setLifespan(1.5);
+}

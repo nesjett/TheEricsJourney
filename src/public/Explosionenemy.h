@@ -21,7 +21,10 @@ class Explosionenemy: public Enemy{
         sf::Clock relojMark;
         sf::Clock relojdireccion;
         sf::Clock relojPausa;
-        
+        void Die();
+    protected:
+    
+        void SetAnimation();    
 
 
     private:

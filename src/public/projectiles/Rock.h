@@ -11,7 +11,7 @@ class Rock: public Projectile {
 
         void Update(float delta);
         void Init();
-
+        virtual void Destroy();
     protected:
     private:
 

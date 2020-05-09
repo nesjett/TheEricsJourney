@@ -5,8 +5,10 @@
 #include "../public/particles/PlayerHit.h"
 #include "../public/particles/Fireball_Explosion.h"
 #include "../public/particles/EfectoMejora.h"
+#include "../public/particles/Astillas.h"
 #include "../public/particles/Coin.h"
 #include "../public/enemies/BouncingBoss.h"
+#include "../public/particles/Rockexplosion.h"
 
 #define UPDATE_INTERVAL (1000/25.0)
 
@@ -198,8 +200,7 @@ void game::run(){
             Emitter->Draw(delta);
         }
 
-
-
+ 
         eng->getApp().display();
 
 
@@ -488,6 +489,11 @@ void game::SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot) {
     case 2: // Mejora
         Particles.push_back(make_unique<EfectoMejora>(Location));
         break;
+    case 3: // destruye flecha
+        Particles.push_back(make_unique<Astillas>(Location));
+        break;
+    case 4: // destruye roca
+        Particles.push_back(make_unique<Rockexplosion>(Location));
 
 
     case 10: // Puntos
