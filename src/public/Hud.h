@@ -27,6 +27,7 @@ class Hud
         void setPlayer(Player* player);
         void addMejora(PowerUpType tipo);
         void setNumMapa(int num);
+        void resetMejoras();
         void Update();
         void Draw();
 

@@ -53,6 +53,8 @@ void Menu::MostrarPuntuaciones(float puntuacion, bool victoria)
     textoVictoria.setCharacterSize(100);
     textoVictoria.setOrigin(textoVictoria.getGlobalBounds().width/2,textoVictoria.getGlobalBounds().height/2);
     textoCartel.setOrigin(textoCartel.getGlobalBounds().width/2,textoCartel.getGlobalBounds().height/2);
+
+    audioManager->menu();
 }
 
 void Menu::draw()
