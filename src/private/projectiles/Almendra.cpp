@@ -23,8 +23,8 @@ void Almendra::Init(){
     }
     sprite = new SSprite(texture_file);
     
-    sprite->setOrigin(512/2, 197/2);
-    sprite->setTextureRect( 0, 5 , 512, 197 );
+    sprite->setOrigin(228/2, 118/2);
+    sprite->setTextureRect( 0, 5 , 228, 118 );
     sprite->setScale(0.35, 0.35);
 
     sprite->setBounds(0.5);
@@ -35,12 +35,13 @@ void Almendra::Init(){
     //IDLE
     tmpA = new Animation(sprite->getSpriteR(), 2100, true);
     Animations.insert({"IDLE", tmpA});
-    tmpA->addFrame({sf::IntRect(0,0, 512,197)});
-    tmpA->addFrame({sf::IntRect(512,0, 512,197)});
-    tmpA->addFrame({sf::IntRect(1024,0, 512,197)});
-    tmpA->addFrame({sf::IntRect(0,197, 512,197)});
-    tmpA->addFrame({sf::IntRect(512,197, 512,197)});
-    tmpA->addFrame({sf::IntRect(1024,197, 512,197)});
+    tmpA->addFrame({sf::IntRect(0,0, 228,118)});
+    tmpA->addFrame({sf::IntRect(228,0, 228,118)});
+    tmpA->addFrame({sf::IntRect(0,118, 228,118)});
+    tmpA->addFrame({sf::IntRect(228,118, 228,118)});
+    tmpA->addFrame({sf::IntRect(0,236, 228,118)});
+    tmpA->addFrame({sf::IntRect(228,236, 228,118)});
+    
     
 }
 
