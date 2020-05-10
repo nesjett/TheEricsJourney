@@ -82,14 +82,13 @@ void Explosionenemy::Update(float delta){
     
     
     Enemy::Update(delta);
-    if(relojPausa.getElapsedTime().asSeconds()>5.0){
+    if(relojPausa.getElapsedTime().asSeconds()>1.0){
         direction=Vector2f(0.f,0.f);
         if(IsAlive()==true){
             Attack();
         }
         
-        if(relojPausa.getElapsedTime().asSeconds()>7.0){
-
+        if(relojPausa.getElapsedTime().asSeconds()>4.0){
             relojPausa.restart();
             relojMark.restart();
         }
@@ -111,7 +110,7 @@ void Explosionenemy::Draw(double percent, double delta ){
 
 void Explosionenemy::Followplayer(){
     
-    if(relojdireccion.getElapsedTime().asSeconds()>4.0){
+    if(relojdireccion.getElapsedTime().asSeconds()>2.0){
         direction=RandomNewDir();
         relojdireccion.restart(); 
     }
@@ -136,10 +135,7 @@ bool Explosionenemy::Attack(){
     Vector2f dir_unit2=Vector2f(-1.f, 1.f);
     Vector2f dir_unit3=Vector2f(1.f, -1.f);
     
-   if(relojMark.getElapsedTime().asSeconds()>6.0){
-       
-        //projTest->direction=Vector2f(dir_unit);
-        //projTest->setActorLocation(pos);
+   if(relojMark.getElapsedTime().asSeconds()>3.0){
         FireBall *projTest = new FireBall(dir_unit, pos);
         FireBall *projTest1 = new FireBall(dir_unit1, pos);
         FireBall *projTest2 = new FireBall(dir_unit2, pos);
@@ -153,14 +149,6 @@ bool Explosionenemy::Attack(){
    }
     return true;
 }
-/*
-Vector2f Explosionenemy::Direccionunitaria(Vector2f pos_player,Vector2f pos){
-    Vector2f dir = pos_player-pos;
-   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
-   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
-   return dir_unit;
-}
-*/
 
 void Explosionenemy::SetAnimation(){
     
