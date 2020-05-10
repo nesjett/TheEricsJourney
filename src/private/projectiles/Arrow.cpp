@@ -20,7 +20,6 @@ void Arrow::Init(){
     //movementSpeed = 0.65;
     movementSpeed = 0.95;
     damage = 20;
-    MaxBounceCount = 2;
 
     texture_file = "./resources/projectiles/arrow.png";
     if(sprite){
@@ -28,8 +27,8 @@ void Arrow::Init(){
     }
     sprite = new SSprite(texture_file);
     
-    sprite->setOrigin(397/2, 74/2);
-    sprite->setTextureRect( 0, 0 , 397, 74 );
+    sprite->setOrigin(330/2, 74/2);
+    sprite->setTextureRect( 0, 0 , 830, 74 );
     sprite->setScale(0.16, 0.17);
     sprite->setBounds(20);
 
@@ -39,42 +38,16 @@ void Arrow::Init(){
     //IDLE
     tmpA = new Animation(sprite->getSpriteR(), 1500, true);
     Animations.insert({"IDLE", tmpA});
-    tmpA->addFrame({sf::IntRect(0,0, 397,74)});
+    tmpA->addFrame({sf::IntRect(0,0, 830,74)});
     
 }
 
 void Arrow::Update(float delta){
-    float x, y;
+    float x = movementSpeed*direction.x*delta;
+    float y = movementSpeed*direction.y*delta;
+    x = getActorLocation().x + x;
+    y = getActorLocation().y + y;
     
-    x = getActorLocation().x + movementSpeed*direction.x*delta;
-    y = getActorLocation().y + movementSpeed*direction.y*delta;
-
-    Actor *collide = DirectionPrecheck(Vector2f(x, y), worldstatic);
-
-    if(collide) { // Update direction for next loop to take effect. THis loop we maintain the movement to avoid projectile to bounce away from the wall.
-        if (abs(direction.x) < abs(direction.y)) { // moving vertically
-            if(abs(collide->getActorLocation().x - this->getActorLocation().x) < abs(collide->getActorLocation().y - this->getActorLocation().y)) { // object is bottom
-                this->SetDirection(Vector2f(direction.x, -direction.y));
-            } else {
-                this->SetDirection(Vector2f(-direction.x, direction.y));// object is top
-            }
-        } else { // moving horizontally
-                if(abs(collide->getActorLocation().x - this->getActorLocation().x) > abs(collide->getActorLocation().y - this->getActorLocation().y) ) { // object is right
-                this->SetDirection(Vector2f(-direction.x, direction.y));
-            } else {
-                this->SetDirection(Vector2f(direction.x, -direction.y));// object is left
-            }     
-        }
-
-        BounceCount++; // We just bounced, count it as a current bounce
-
-        if(BounceCount >= MaxBounceCount){ // Now that we bounced, check if that was the last one allowed for this projectile.
-             game *gi = game::Instance();
-            gi->SpawnEmitterAtLocation(3, getActorLocation(), Vector2f(0.f,0.f));
-            setLifespan(0.f);
-        }
-    }
-
     UpdateMovement(Vector2f(x,y));
     
 
@@ -84,60 +57,19 @@ void Arrow::Update(float delta){
     auto angleDegs = angleRads * 180.0 / M_PI;
     sprite->setRotation(angleDegs);
 
-    Projectile::Update(delta);
-
-    Engine* eng = Engine::Instance();
-    // Delete projectiles that are out of the current view.
-    // TODO: Bug: THis is deleting projectiles on top and bottom of map, ask @amador about how view works.
-    /*if(!eng->getApp().getViewport(eng->getApp().getView()).contains(getInterpolatedPos().x, getInterpolatedPos().y)) {
-        setLifespan(4.f);
-    }*/
-
-    
+    Projectile::Update(delta); 
 }
-
-void Arrow::Draw(double percent, double delta ) {
-    Projectile::Draw(percent, delta);
-    if(debug) {
-        Engine *eng = Engine::Instance();
-        eng->getApp().draw(movementTraceDebug);
-    }
-}
-
 
 void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
-    if(lastDamaged){
-        if (otherActor != lastDamaged && DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
-            otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
-            lastDamaged = otherActor;
-        }
-    } else {
-        if (dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
-            otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
-            lastDamaged = otherActor;
-        }
-    }
-}
-
-
-Actor* Arrow::DirectionPrecheck(Vector2f loc, ObjectType type) {
-    game *gi = game::Instance();
-    double traceX = loc.x-getBoundingBox().width/2+5; // Offset box to make it fit the center location.
-    double traceY = loc.y-getBoundingBox().height/2+5;
-    FloatRect trace = FloatRect(Vector2f(traceX, traceY), Vector2f(getBoundingBox().width-10,getBoundingBox().height-10));
-    Actor* collide = gi->boxTraceByObjectType( trace, type );
-
-    if(debug) {
-        movementTraceDebug = sf::RectangleShape( Vector2f(trace.width,trace.height) );
-        // Show actor pre-movement trace box
-        movementTraceDebug.setPosition(trace.left,trace.top);
-        movementTraceDebug.setFillColor(sf::Color(0,0,0,0));
-        movementTraceDebug.setOutlineThickness(2.f);
-        movementTraceDebug.setOutlineColor(sf::Color(0, 200, 200));
+    if(dynamic_cast<Tile*>(otherActor)){
+        game *gi = game::Instance();
+        gi->SpawnEmitterAtLocation(4, getActorLocation(), Vector2f(0.f,0.f));
+        AudioManager::getInstance()->PlaySound2D("./resources/audio/hit.ogg");
     }
 
-    return collide;
+    Projectile::OnActorOverlap(otherActor);
 }
+
 
 
 Arrow::~Arrow(){

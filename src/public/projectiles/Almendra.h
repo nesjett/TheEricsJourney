@@ -3,18 +3,18 @@
 #include <Projectile.h>
 
 
-class Arrow: public Projectile {
-    enum ImpactDirection { wide, height, none };
+class Almendra: public Projectile {
     public:
-        Arrow();
-        Arrow(sf::Vector2f, sf::Vector2f);
-        ~Arrow();
+        Almendra();
+        Almendra(sf::Vector2f, sf::Vector2f);
+        ~Almendra();
 
         void Update(float delta);
         void Init();
+
         void OnActorOverlap(Actor *otherActor);
 
     protected:
     private:
-        Actor *lastDamaged;
+
 };

@@ -2,6 +2,7 @@
 #include "../public/Pawn.h"
 #include "../public/game.h"
 #include "../public/Hud.h"
+#include "../public/AudioManager.h"
 
 
 
@@ -18,6 +19,7 @@ void Door::openDoor()
 {
     abierta = true;
     oType = door; //Se puede colisionar
+    AudioManager::getInstance()->PlaySound2D("./resources/audio/door_open.ogg");
 }
 
 void Door::PrepareSprite(){
