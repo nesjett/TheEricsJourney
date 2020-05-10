@@ -23,7 +23,7 @@ Hud::Hud()
     playerHealth.setFillColor(colorHealth100);
     maxHealth = 0.f;
     currentHealth = 0.f;
-    fontHud.loadFromFile("./resources/typos/BenguiatBold.ttf");
+    fontHud.loadFromFile("./resources/typos/SupercellMagic.ttf");
     playerHealth.setPosition(Vector2f(775,eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 25));
 
     //Cargamos los textos de las mejoras
