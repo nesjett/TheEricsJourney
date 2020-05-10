@@ -415,7 +415,7 @@ void Player::Attack(){
     LastAttack++;
 
 
-    if(AttackImprovement >= 1 && AttackImprovement<4){
+    if(AttackImprovement > 0/* && AttackImprovement<4*/){
         Arrow *flechaTrasera1 = new Arrow(-dir_unit, posPlayer);
         eng->Almacenaenemy(flechaTrasera1);
         if(AttackImprovement >= 2){
@@ -424,18 +424,18 @@ void Player::Attack(){
             if(AttackImprovement >= 3){ 
                 Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha);
                 eng->Almacenaenemy(projTest3);
+                if (AttackImprovement >= 4){
+                    BouncingArrow *BA1 = new BouncingArrow(dir_unit, posPlayer); 
+                    BouncingArrow *BA2 = new BouncingArrow(-dir_unit, posPlayer);
+                    BouncingArrow *BA3 = new BouncingArrow(dir_unit, dobleFlecha);
+                    BouncingArrow *BA4 = new BouncingArrow(-dir_unit, dobleFlecha);
+                    eng->Almacenaenemy(BA1);
+                    eng->Almacenaenemy(BA2);
+                    eng->Almacenaenemy(BA3);
+                    eng->Almacenaenemy(BA4);
+                }
             }
         }
-    }
-    if(AttackImprovement==4){
-        BouncingArrow *BA1 = new BouncingArrow(dir_unit, posPlayer); 
-        BouncingArrow *BA2 = new BouncingArrow(-dir_unit, posPlayer);
-        BouncingArrow *BA3 = new BouncingArrow(dir_unit, dobleFlecha);
-        BouncingArrow *BA4 = new BouncingArrow(-dir_unit, dobleFlecha);
-        eng->Almacenaenemy(BA1);
-        eng->Almacenaenemy(BA2);
-        eng->Almacenaenemy(BA3);
-        eng->Almacenaenemy(BA4);
     }
     if(IncreaseDamage>0){
         //ModifyDamage();
