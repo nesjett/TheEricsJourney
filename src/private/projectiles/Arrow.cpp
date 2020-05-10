@@ -28,8 +28,8 @@ void Arrow::Init(){
     }
     sprite = new SSprite(texture_file);
     
-    sprite->setOrigin(397/2, 74/2);
-    sprite->setTextureRect( 0, 0 , 397, 74 );
+    sprite->setOrigin(330/2, 74/2);
+    sprite->setTextureRect( 0, 0 , 830, 74 );
     sprite->setScale(0.16, 0.17);
     sprite->setBounds(20);
 
@@ -39,7 +39,7 @@ void Arrow::Init(){
     //IDLE
     tmpA = new Animation(sprite->getSpriteR(), 1500, true);
     Animations.insert({"IDLE", tmpA});
-    tmpA->addFrame({sf::IntRect(0,0, 397,74)});
+    tmpA->addFrame({sf::IntRect(0,0, 830,74)});
     
 }
 
