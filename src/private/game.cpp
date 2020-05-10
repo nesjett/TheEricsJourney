@@ -501,7 +501,7 @@ void game::SpawnEmitterAtLocation(int Effect, Vector2f Location, Vector2f Rot) {
         break;
     case 4: // destruye roca
         Particles.push_back(make_unique<Rockexplosion>(Location));
-
+        break;
 
     case 10: // Puntos
         Particles.push_back(make_unique<Coin>(Location));
