@@ -62,7 +62,7 @@ void Player::PrepareSprite(){
     
     Animation *tmpA;
 
-    tmpA = new Animation(sprite->getSpriteR(),6500, true);
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"up", tmpA});
     tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550+1650,2750,sizeX,sizeY)});
@@ -81,7 +81,7 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(1100+1650,2200+2750,sizeX,sizeY)});
     
 
-    tmpA = new Animation(sprite->getSpriteR(),6500, true);
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"right", tmpA});
     tmpA->addFrame({sf::IntRect(0,2750,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550,2750,sizeX,sizeY)});
@@ -100,7 +100,7 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(1100,2200+2750,sizeX,sizeY)});
     
 
-    tmpA = new Animation(sprite->getSpriteR(),6500, true);
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"left", tmpA});   
     tmpA->addFrame({sf::IntRect(1650,0,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550+1650,0,sizeX,sizeY)});
@@ -119,7 +119,7 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(1100+1650,2200,sizeX,sizeY)});
     
 
-    tmpA = new Animation(sprite->getSpriteR(),6500, true);
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"down", tmpA});
     tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550,0,sizeX,sizeY)});
@@ -459,6 +459,9 @@ void Player::ModifyDamage(){
     for (Projectile* pro : Projectiles){
         if ( dynamic_cast<Arrow*>( pro ) ) {
             dynamic_cast<Arrow*>(pro)->ModifyDamage(1.2f);
+        }
+        if ( dynamic_cast<BouncingArrow*>( pro ) ) {
+            dynamic_cast<BouncingArrow*>(pro)->ModifyDamage(1.2f);
         }
     }
     std::cout<<"Daño de flechas aumentado con éxito"<<std::endl;
