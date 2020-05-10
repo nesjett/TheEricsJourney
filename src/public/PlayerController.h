@@ -10,18 +10,18 @@
 class PlayerController:  public Controller{
 
     public:
-        PlayerController(Player*);
-        void Update(sf::Event);
-        void Mover(sf::Event);
-        void setPlayer(Player*);
+        PlayerController(Player* jugador);
+        void Update(sf::Event event);
+        void Mover();
+        void setPlayer(Player* jugador);
         void ImprovesAttack();
         void Frenar();
-        void MejorarCadencia(float);
-        void MejorarMovimiento(float);
+        void MejorarCadencia(float mej);
+        void MejorarMovimiento(float mejMov);
         void IncreaseHealth();
         float getCurrentHealth();
         float getMaxHealth();
-        void setGodMode(bool);
+        void setGodMode(bool god);
         void ModifyDamage();
         void ModifyCritic(float cri);
         virtual ~PlayerController(); 
