@@ -14,7 +14,7 @@ Almendra::Almendra(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
     activeAnim = Animations.find("IDLE")->second;
 }
 void Almendra::Init(){
-    movementSpeed = 0.23;
+    movementSpeed = 0.4;
     damage = 20;
 
     texture_file = "./resources/projectiles/almendra.png";
