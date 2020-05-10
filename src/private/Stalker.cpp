@@ -47,7 +47,7 @@ void Stalker::Init(){
     activeAnim = Animations.find("IDLE")->second;
 
 }
-void Stalker::PrepareSprite(){
+void Stalker::PrepareSprite(){ //animation map creation
     float sizeX = 401.0, sizeY = 249.0;
     float offsetX = sizeX / 2.0;
     float offsetY = sizeY / 2.0;
@@ -126,9 +126,9 @@ void Stalker::Followplayer(){
 
    Vector2f pos_player = miJugador->getActorLocation();
    Vector2f dir = pos_player-pos;
-   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
-   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
-   direction = dir_unit;
+   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));//distance between enemy and player
+   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);//get unit direction
+   direction = dir_unit;//set the player direction to the unit direction
 }
 
 void Stalker::SetAnimation(){
