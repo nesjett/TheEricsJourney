@@ -1,4 +1,6 @@
+
 #include "../../public/projectiles/BouncingArrow.h"
+#include <Tile.h>
 #include <stdlib.h> 
 #include <game.h> 
 
@@ -18,7 +20,7 @@ void BouncingArrow::Init(){
     //movementSpeed = 0.65;
     movementSpeed = 0.95;
     damage = 20;
-    MaxBounceCount = 3;
+    MaxBounceCount = 2;
 
     texture_file = "./resources/projectiles/arrow.png";
     if(sprite){
@@ -26,8 +28,8 @@ void BouncingArrow::Init(){
     }
     sprite = new SSprite(texture_file);
     
-    sprite->setOrigin(397/2, 74/2);
-    sprite->setTextureRect( 0, 0 , 397, 74 );
+    sprite->setOrigin(330/2, 74/2);
+    sprite->setTextureRect( 0, 0 , 830, 74 );
     sprite->setScale(0.16, 0.17);
     sprite->setBounds(20);
 
@@ -37,7 +39,7 @@ void BouncingArrow::Init(){
     //IDLE
     tmpA = new Animation(sprite->getSpriteR(), 1500, true);
     Animations.insert({"IDLE", tmpA});
-    tmpA->addFrame({sf::IntRect(0,0, 397,74)});
+    tmpA->addFrame({sf::IntRect(0,0, 830,74)});
     
 }
 
@@ -57,7 +59,7 @@ void BouncingArrow::Update(float delta){
                 this->SetDirection(Vector2f(-direction.x, direction.y));// object is top
             }
         } else { // moving horizontally
-            if(abs(collide->getActorLocation().x - this->getActorLocation().x) > abs(collide->getActorLocation().y - this->getActorLocation().y) ) { // object is right
+                if(abs(collide->getActorLocation().x - this->getActorLocation().x) > abs(collide->getActorLocation().y - this->getActorLocation().y) ) { // object is right
                 this->SetDirection(Vector2f(-direction.x, direction.y));
             } else {
                 this->SetDirection(Vector2f(direction.x, -direction.y));// object is left
@@ -67,10 +69,9 @@ void BouncingArrow::Update(float delta){
         BounceCount++; // We just bounced, count it as a current bounce
 
         if(BounceCount >= MaxBounceCount){ // Now that we bounced, check if that was the last one allowed for this projectile.
-            game *gi = game::Instance();
+             game *gi = game::Instance();
             gi->SpawnEmitterAtLocation(3, getActorLocation(), Vector2f(0.f,0.f));
             setLifespan(0.f);
-
         }
     }
 
@@ -85,13 +86,14 @@ void BouncingArrow::Update(float delta){
 
     Projectile::Update(delta);
 
-    Engine* eng = Engine::Instance();
     // Delete projectiles that are out of the current view.
     // TODO: Bug: THis is deleting projectiles on top and bottom of map, ask @amador about how view works.
-    /*if(!eng->getApp().getViewport(eng->getApp().getView()).contains(getInterpolatedPos().x, getInterpolatedPos().y)) {
-        setLifespan(4.f);
+    /*if(!Engine::Instance()->getApp().getViewport(eng->getApp().getView()).contains(getInterpolatedPos().x, getInterpolatedPos().y)) {
+        setLifespan(8.f);
     }*/
 
+    // LIfeguard in case an arrow gets missing in the world (out of bounds) because of a bad collision testing
+    setLifespan(8.f);
     
 }
 
@@ -107,6 +109,11 @@ void BouncingArrow::Draw(double percent, double delta ) {
 void BouncingArrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
     if(lastDamaged){
         if (otherActor != lastDamaged && DmgApplied == false && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
+            otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
+            lastDamaged = otherActor;
+        }
+    } else {
+        if (dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
             otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
             lastDamaged = otherActor;
         }
