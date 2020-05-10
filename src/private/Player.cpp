@@ -61,7 +61,7 @@ void Player::PrepareSprite(){
     
     Animation *tmpA;
 
-    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    tmpA = new Animation(sprite->getSpriteR(),6500, true);
     Animations.insert({"up", tmpA});
     tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550+1650,2750,sizeX,sizeY)});
@@ -80,7 +80,7 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(1100+1650,2200+2750,sizeX,sizeY)});
     
 
-    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    tmpA = new Animation(sprite->getSpriteR(),6500, true);
     Animations.insert({"right", tmpA});
     tmpA->addFrame({sf::IntRect(0,2750,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550,2750,sizeX,sizeY)});
@@ -99,7 +99,7 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(1100,2200+2750,sizeX,sizeY)});
     
 
-    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    tmpA = new Animation(sprite->getSpriteR(),6500, true);
     Animations.insert({"left", tmpA});   
     tmpA->addFrame({sf::IntRect(1650,0,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550+1650,0,sizeX,sizeY)});
@@ -118,7 +118,7 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(1100+1650,2200,sizeX,sizeY)});
     
 
-    tmpA = new Animation(sprite->getSpriteR(),1500, true);
+    tmpA = new Animation(sprite->getSpriteR(),6500, true);
     Animations.insert({"down", tmpA});
     tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550,0,sizeX,sizeY)});
