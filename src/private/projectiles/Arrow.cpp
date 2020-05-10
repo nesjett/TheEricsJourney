@@ -86,13 +86,14 @@ void Arrow::Update(float delta){
 
     Projectile::Update(delta);
 
-    Engine* eng = Engine::Instance();
     // Delete projectiles that are out of the current view.
     // TODO: Bug: THis is deleting projectiles on top and bottom of map, ask @amador about how view works.
-    /*if(!eng->getApp().getViewport(eng->getApp().getView()).contains(getInterpolatedPos().x, getInterpolatedPos().y)) {
-        setLifespan(4.f);
+    /*if(!Engine::Instance()->getApp().getViewport(eng->getApp().getView()).contains(getInterpolatedPos().x, getInterpolatedPos().y)) {
+        setLifespan(8.f);
     }*/
 
+    // LIfeguard in case an arrow gets missing in the world (out of bounds) because of a bad collision testing
+    setLifespan(8.f);
     
 }
 
