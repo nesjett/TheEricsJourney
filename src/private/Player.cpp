@@ -428,12 +428,6 @@ void Player::Attack(){
         }
     }
     if(AttackImprovement==4){
-        list<Projectile*> Projectiles = eng->getAllProjectiles();
-        for (Projectile* pro : Projectiles){
-            if ( dynamic_cast<Arrow*>( pro ) ) {
-                dynamic_cast<Arrow*>(pro)->setLifespan(0.f);
-            }
-        }
         BouncingArrow *BA1 = new BouncingArrow(dir_unit, posPlayer); 
         BouncingArrow *BA2 = new BouncingArrow(-dir_unit, posPlayer);
         BouncingArrow *BA3 = new BouncingArrow(dir_unit, dobleFlecha);
