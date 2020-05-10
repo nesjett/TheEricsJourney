@@ -81,8 +81,6 @@ void Mejora::OnActorOverlap(Actor *otherActor){
                 playercontroller->ModifyCritic(0.96);
                 break;
         }
-        //Incluimos mejoras en la hud, guardandola ahi directamente o mediante el player
-        Hud::Instance()->addMejora(tipoMejora);
         //Desactivamos todas las mejoras de game porque ya se ha aplicado una
         for(Mejora* mejora : game::Instance()->getMejoras())
         {

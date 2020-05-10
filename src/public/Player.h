@@ -13,15 +13,15 @@ class Player:  public Pawn{
         bool IsAlive(); // This should go to an interface or to parent PAWN class
         void Init();
         // Adds movement to the desired direction
-        void Movimiento(sf::Vector2f);
-        void setDirection(float, float);
+        void Movimiento(sf::Vector2f pos);
+        void setDirection(float x, float y);
         sf::Vector2f getDirection();
         void Attack();
         void Update(float delta);
         void ActorOverlap(Actor otherActor);
         void Draw(double percent, double delta);
-        void setHealthMax(float);
-        void setCurrentH(float);
+        void setHealthMax(float increase);
+        void setCurrentH(float increase);
         float getCurrentHealth();
         float getMaxHealth();
         void improvesAttack();
@@ -33,13 +33,13 @@ class Player:  public Pawn{
         int DireccionPausa();
         void SetAnimation();
         void ToggleMovementIndicator();
-        void setGodMode(bool);
+        void setGodMode(bool god);
         Enemy* FindClosestEnemy();
 
         Enemy* GetTarget() { return Target; };
         void ClearTarget() { Target = nullptr; };
         
-        float cadenciaMultiplier = 1.f;
+        float cadenciaMultiplier = 1.f; //This variable multiplies the condition of shooting clock
     protected:
         
         void SetTarget(Enemy *NewTarget);

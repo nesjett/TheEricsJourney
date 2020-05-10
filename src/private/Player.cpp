@@ -301,9 +301,9 @@ void Player::Draw(double percent, double delta ){
 void Player::Update(float delta){
     Pawn::Update(delta);
     SetTarget(this->FindClosestEnemy());
-    if(relojAtaque.getElapsedTime().asSeconds()>=0.86f){
+    if(relojAtaque.getElapsedTime().asSeconds()>=0.86f){ //This line limits de maximum cadence
         if(relojAtaque.getElapsedTime().asSeconds()>(1.8f*cadenciaMultiplier) && (getDirection().x == 0.f && getDirection().y == 0.f)){
-            
+            //Player shoots when it's stopped and the clock is less than a parameter
             Attack();
             relojAtaque.restart();
         }
@@ -326,10 +326,11 @@ void Player::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
 }
 
 void Player::setGodMode(bool god){
-    GodMode = god;
+    GodMode = god; //set Player's godMode
 }
 
 bool Player::IsAlive(){
+    //This method shows if player is alive or not
     if(health_Current > 0){
         return true;
     } else {
@@ -338,14 +339,14 @@ bool Player::IsAlive(){
 }
 
 void Player::Movimiento(sf::Vector2f pos){
-    direction = pos;
+    direction = pos; 
 }
 void Player::setDirection(float x, float y){
     direction.x = x;
     direction.y = y;
 }
 sf::Vector2f Player::getDirection(){
-    return direction;
+    return direction; //gets Player direction
 }
 
 void Player::ActorOverlap(Actor otherActor){
@@ -371,7 +372,7 @@ Enemy* Player::FindClosestEnemy(){
 
     Enemy *enemy = nullptr;
 
-    for (Enemy *enemigo : game::Instance()->getAllEnemies()){
+    for (Enemy *enemigo : game::Instance()->getAllEnemies()){ //Loop that runs through all enemies
         if(enemigo->IsAlive() == false) {
             continue;
         }
@@ -388,7 +389,7 @@ Enemy* Player::FindClosestEnemy(){
             enemy = enemigo;
         }
     }
-    dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist); // This should not be here
+    dir_unit=Vector2f(dirToEnemy.x/minDist,dirToEnemy.y/minDist); //unit vector. It's used in Attack Method
 
     return enemy;
 }
@@ -402,12 +403,12 @@ void Player::Attack(){
 
     sf::Vector2f posPlayer = getActorLocation();
     sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y)-30);
-    //que empiece aqui
+    
     game *eng = game::Instance();
-    Arrow *projTest = new Arrow(dir_unit, posPlayer); 
-    eng->Almacenaenemy(projTest);
+    Arrow *projTest = new Arrow(dir_unit, posPlayer); //Create the basic arrow
+    eng->Almacenaenemy(projTest); //stores the arrow in the array to draw them
 
-    if(LastAttack == 0) {
+    if(LastAttack == 0) { //Sound the shot
         AudioManager::getInstance()->PlaySound2D("./resources/audio/player_shoot.ogg");
     } else {
         AudioManager::getInstance()->PlaySound2D("./resources/audio/player_shoot2.ogg");
@@ -415,16 +416,16 @@ void Player::Attack(){
     LastAttack++;
 
 
-    if(AttackImprovement > 0){
-        Arrow *flechaTrasera1 = new Arrow(-dir_unit, posPlayer);
-        eng->Almacenaenemy(flechaTrasera1);
+    if(AttackImprovement > 0){ //Shooting enhancements
+        Arrow *flechaTrasera1 = new Arrow(-dir_unit, posPlayer); //Backward arrow
+        eng->Almacenaenemy(flechaTrasera1); //Stores it in the array
         if(AttackImprovement >= 2){
-            Arrow *flecha2 = new Arrow(dir_unit, dobleFlecha);
+            Arrow *flecha2 = new Arrow(dir_unit, dobleFlecha); //A secondary forward arrow
             eng->Almacenaenemy(flecha2);
             if(AttackImprovement >= 3){ 
-                Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha);
+                Arrow *projTest3 = new Arrow(-dir_unit, dobleFlecha); //A secondary backward arrow
                 eng->Almacenaenemy(projTest3);
-                if (AttackImprovement >= 4){
+                if (AttackImprovement >= 4){ //Replace all the arrows with bouncing arrows on the walls
                     BouncingArrow *BA1 = new BouncingArrow(dir_unit, posPlayer); 
                     BouncingArrow *BA2 = new BouncingArrow(-dir_unit, posPlayer);
                     BouncingArrow *BA3 = new BouncingArrow(dir_unit, dobleFlecha);
@@ -438,25 +439,27 @@ void Player::Attack(){
         }
     }
     if(IncreaseDamage>0){
-        //ModifyDamage();
         for (int i = 0; i < IncreaseDamage; i++){
-            ModifyDamage();
+            ModifyDamage(); //This increase arrows' damage.
         }
     }
 }
 void Player::improvesAttack(){
+    //This method increases the number of arrow enhancements the player has.
     AttackImprovement++;
 }
 int Player::GetAttackImprove(){
+    //This method returns the number of arrow enhancements the player has.
     return AttackImprovement;
 }
 void Player::IncreaseDamageArrows(){
+    //This method increases the number of damage enhancements the player has.
     IncreaseDamage++;
 }
 void Player::ModifyDamage(){
     game *eng = game::Instance();
     list<Projectile*> Projectiles = eng->getAllProjectiles();
-    for (Projectile* pro : Projectiles){
+    for (Projectile* pro : Projectiles){ //runs through the entire projectile loop and set the enhancement to both types of arrow
         if ( dynamic_cast<Arrow*>( pro ) ) {
             dynamic_cast<Arrow*>(pro)->ModifyDamage(1.2f);
         }
@@ -464,21 +467,22 @@ void Player::ModifyDamage(){
             dynamic_cast<BouncingArrow*>(pro)->ModifyDamage(1.2f);
         }
     }
-    std::cout<<"Daño de flechas aumentado con éxito"<<std::endl;
+    std::cout<<"Daño de flechas aumentado con éxito"<<std::endl; //Show on the console
 }
 void Player::ModifyCritic(float cri){
+    //In this method, player's possibility of making a critical hit is increased
     Critic *= cri;
 }
 float Player::GetCritic(){
     return Critic;
 }
 void Player::setHealthMax(float increase){
-    //In this method, you can set an increase of Player's maximum health
+    //In this method, Player's maximum health is increased
     health_MAX+=increase;
 }
 void Player::setCurrentH(float increase){
-    //In this method, you can set an increse of Player's current health
-    //This is made to increase a little bit Player's current health when Player gets a Health Improve.
+    /*In this method, Player's current health is increased
+    This is made to increase a little bit Player's current health when Player gets a Health Improve.*/
     health_Current+=increase;
 }
 float Player::getCurrentHealth(){
@@ -487,8 +491,8 @@ float Player::getCurrentHealth(){
 
 }
 float Player::getMaxHealth(){
-    //This method returns the current maximum health of the player. 
-    //This is to check if the player has any health improve.
+    /*This method returns the current maximum health of the player. 
+    This is to check if the player has any health improve.*/
     return health_MAX;
 
 }
