@@ -25,6 +25,7 @@ class Player:  public Pawn{
         float getCurrentHealth();
         float getMaxHealth();
         void improvesAttack();
+        int GetAttackImprove();
         void ModifyDamage();
         void IncreaseDamageArrows();
         void ModifyCritic(float cri);
