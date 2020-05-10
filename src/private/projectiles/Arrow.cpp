@@ -61,10 +61,20 @@ void Arrow::Update(float delta){
 }
 
 void Arrow::OnActorOverlap(Actor *otherActor){ // Implement Buncing...? hehehe
-    if(dynamic_cast<Tile*>(otherActor)){
-        game *gi = game::Instance();
-        gi->SpawnEmitterAtLocation(4, getActorLocation(), Vector2f(0.f,0.f));
+    if (!DmgApplied && dynamic_cast<Pawn*>(otherActor) && dynamic_cast<Pawn*>(otherActor)->getFaction() == targetFaction ) {
+        otherActor->TakeDamage(damage+rand() % 20 + (-10), this, ProjectileName);
+        DmgApplied = true;
         AudioManager::getInstance()->PlaySound2D("./resources/audio/hit.ogg");
+        Destroy();
+        setLifespan(0.0);
+    } else {
+        if(dynamic_cast<Tile*>(otherActor)){
+            game *gi = game::Instance();
+            gi->SpawnEmitterAtLocation(4, getActorLocation(), Vector2f(0.f,0.f));
+            AudioManager::getInstance()->PlaySound2D("./resources/audio/hit.ogg");
+            Destroy();
+            setLifespan(0.0);
+        }
     }
 
     Projectile::OnActorOverlap(otherActor);
