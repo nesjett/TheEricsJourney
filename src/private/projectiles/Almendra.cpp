@@ -16,7 +16,6 @@ Almendra::Almendra(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
 void Almendra::Init(){
     movementSpeed = 0.23;
     damage = 20;
-    debug = true;
 
     texture_file = "./resources/projectiles/almendra.png";
     if(sprite){
