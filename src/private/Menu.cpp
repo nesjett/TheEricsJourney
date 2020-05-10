@@ -24,7 +24,7 @@ Menu::~Menu()
 void Menu::cargarFuente()
 {
     fuente = new sf::Font();
-    if(!fuente->loadFromFile("./resources/typos/BenguiatBold.ttf"))
+    if(!fuente->loadFromFile("./resources/typos/SupercellMagic.ttf"))
     {
         cout << "Error en fuente";
     }
@@ -224,11 +224,11 @@ void Menu::cargarMapaMenu()
     texFondo2.loadFromFile("./resources/menu/pantallapuntos.png");
     fondo2.setTexture(texFondo2);
     fondo2.setPosition(0.f,0.f);
-    texLogoLetras.loadFromFile("./resources/menu/logoletras.png");
+    texLogoLetras.loadFromFile("./resources/menu/logoletras2.png");
     logoLetras.setTexture(texLogoLetras);
-    logoLetras.setScale(0.1,0.1);
+    logoLetras.setScale(0.5,0.5);
     logoLetras.setOrigin(salirselecc->getGlobalBounds().width/2,salirselecc->getGlobalBounds().height/2);
-    logoLetras.setPosition(posX - 170.f, 10.f);
+    logoLetras.setPosition(posX-10.f, 30.f);
 
 }
 
