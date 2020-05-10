@@ -1,6 +1,7 @@
 #include "../public/Player.h"
 #include "../public/game.h"
 #include "Arrow.h"
+#include "BouncingArrow.h"
 #include "../public/AudioManager.h"
 #include <list>
 
@@ -400,6 +401,7 @@ void Player::Attack(){
     }
 
     sf::Vector2f posPlayer = getActorLocation();
+    sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y)-30);
     //que empiece aqui
     game *eng = game::Instance();
     Arrow *projTest = new Arrow(dir_unit, posPlayer); 
@@ -413,11 +415,10 @@ void Player::Attack(){
     LastAttack++;
 
 
-    if(AttackImprovement >= 1){
+    if(AttackImprovement >= 1 && AttackImprovement<4){
         Arrow *flechaTrasera1 = new Arrow(-dir_unit, posPlayer);
         eng->Almacenaenemy(flechaTrasera1);
         if(AttackImprovement >= 2){
-            sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y)-30);
             Arrow *flecha2 = new Arrow(dir_unit, dobleFlecha);
             eng->Almacenaenemy(flecha2);
             if(AttackImprovement >= 3){ 
@@ -425,6 +426,22 @@ void Player::Attack(){
                 eng->Almacenaenemy(projTest3);
             }
         }
+    }
+    if(AttackImprovement==4){
+        list<Projectile*> Projectiles = eng->getAllProjectiles();
+        for (Projectile* pro : Projectiles){
+            if ( dynamic_cast<Arrow*>( pro ) ) {
+                dynamic_cast<Arrow*>(pro)->setLifespan(0.f);
+            }
+        }
+        BouncingArrow *BA1 = new BouncingArrow(dir_unit, posPlayer); 
+        BouncingArrow *BA2 = new BouncingArrow(-dir_unit, posPlayer);
+        BouncingArrow *BA3 = new BouncingArrow(dir_unit, dobleFlecha);
+        BouncingArrow *BA4 = new BouncingArrow(-dir_unit, dobleFlecha);
+        eng->Almacenaenemy(BA1);
+        eng->Almacenaenemy(BA2);
+        eng->Almacenaenemy(BA3);
+        eng->Almacenaenemy(BA4);
     }
     if(IncreaseDamage>0){
         //ModifyDamage();

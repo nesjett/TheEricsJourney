@@ -99,7 +99,7 @@ void PlayerController::MejorarMovimiento(float mejMov){
 }
 void PlayerController::ImprovesAttack(){
     miJugador->improvesAttack();
-    if(miJugador->GetAttackImprove()<=3){
+    if(miJugador->GetAttackImprove()<=4){
         Hud::Instance()->addMejora(attackmore);
     }
 }
