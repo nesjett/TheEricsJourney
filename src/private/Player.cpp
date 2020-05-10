@@ -46,7 +46,7 @@ void Player::Init(){
     sprite->setScale( 0.05,0.05 );
 }
 
-void Player::PrepareSprite(){
+void Player::PrepareSprite(){ //animation map creation
     float sizeX = 550.0, sizeY = 550.0;
     float offsetX = sizeX / 2.0;
     float offsetY = sizeY / 2.0;
@@ -155,7 +155,7 @@ void Player::PrepareSprite(){
   
 }
 
-int Player::DireccionPausa(){
+int Player::DireccionPausa(){ //get the actor's direction regarding the enemy
     Vector2f pos = Target->getActorLocation();
     Vector2f pos_player =getActorLocation();
     Vector2f dir = pos-pos_player;
@@ -165,7 +165,7 @@ int Player::DireccionPausa(){
     auto angleRads = std::atan2(-dir_unit.y, dir_unit.x);
     auto angleDegs = angleRads * 180.0 / M_PI;
     if(angleDegs<0){
-      angleDegs=angleDegs+360; //los grados van de 0 a 180 y de 0 a -180, sumamos 360 para establecer cuadrantes segun los angulos
+      angleDegs=angleDegs+360; //degrees go from 0 to 180 and from 0 to -180, we add 360 to establish quadrants according to the angles
     }
 
     if((angleDegs<22.5 && angleDegs>=0) || (angleDegs>=337.5 && angleDegs<=0)){
@@ -194,12 +194,12 @@ int Player::DireccionPausa(){
     }
 }
 
-void Player::SetAnimation(){ //selecciona la animacion del mapa de animaciones dependiendo de la direccion del actor
+void Player::SetAnimation(){  //select the animation from the animation map depending on the direction of the actor
 
     auto angleRads = std::atan2(-direction.y, direction.x);
     auto angleDegs = angleRads * 180.0 / M_PI;
     if(angleDegs<0){
-      angleDegs=angleDegs+360; //los grados van de 0 a 180 y de 0 a -180, sumamos 360 para establecer cuadrantes segun los angulos
+      angleDegs=angleDegs+360; //degrees go from 0 to 180 and from 0 to -180, we add 360 to establish quadrants according to the angles
     }
 
     if((angleDegs<22.5 && angleDegs>0) || (angleDegs>=337.5 && angleDegs<360)){
