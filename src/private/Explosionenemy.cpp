@@ -82,13 +82,13 @@ void Explosionenemy::Update(float delta){
     
     
     Enemy::Update(delta);
-    if(relojPausa.getElapsedTime().asSeconds()>1.0){
+    if(relojPausa.getElapsedTime().asSeconds()>1.0){//pause to attack
         direction=Vector2f(0.f,0.f);
-        if(IsAlive()==true){
+        if(IsAlive()==true){ // while alive he keeps attacking
             Attack();
         }
         
-        if(relojPausa.getElapsedTime().asSeconds()>4.0){
+        if(relojPausa.getElapsedTime().asSeconds()>4.0){ // continue the movement
             relojPausa.restart();
             relojMark.restart();
         }
@@ -110,21 +110,21 @@ void Explosionenemy::Draw(double percent, double delta ){
 
 void Explosionenemy::Followplayer(){
     
-    if(relojdireccion.getElapsedTime().asSeconds()>2.0){
+    if(relojdireccion.getElapsedTime().asSeconds()>2.0){ //change of direction every 2 seconds
         direction=RandomNewDir();
         relojdireccion.restart(); 
     }
    
 }
 
-Vector2f Explosionenemy::RandomNewDir() {
+Vector2f Explosionenemy::RandomNewDir() { // get random direction
     std::vector<Vector2f> possibleDir = {Vector2f(0.0, -1.0), Vector2f(0.0, 1.0), Vector2f(-1.0, 0.0), Vector2f(1.0, 0.0), Vector2f(1.0, 1.0), Vector2f(-1.0, 1.0), Vector2f(-1.0, -1.0), Vector2f(1.0, -1.0)};
     std::random_shuffle ( possibleDir.begin(), possibleDir.end() );
     return possibleDir.front();
     //return Vector2f(0.f, 0.f);
 }
 
-bool Explosionenemy::Attack(){
+bool Explosionenemy::Attack(){ //generates 4 projectiles in different directions
     //Projectile *projTest = new Projectile();
  
     Vector2f pos = getActorLocation();
@@ -150,14 +150,14 @@ bool Explosionenemy::Attack(){
     return true;
 }
 
-void Explosionenemy::SetAnimation(){
+void Explosionenemy::SetAnimation(){// while still alive set the corresponding animation
     
     if(IsAlive()==true){
         Pawn::SetAnimation();
     }
 }
 
-void Explosionenemy::Die(){
+void Explosionenemy::Die(){// if he dies activates the dead animation
     
     activeAnim=Animations.find("dead")->second;
 

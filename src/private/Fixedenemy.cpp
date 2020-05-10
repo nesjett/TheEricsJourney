@@ -32,7 +32,7 @@ void Fixedenemy::Init(){
     std::cout << "Terminamos INIT()" << std::endl;
 }
 
-void Fixedenemy::PrepareSprite(){
+void Fixedenemy::PrepareSprite(){ //animation map creation
     float sizeX = 376.0, sizeY = 500.0;
     float offsetX = sizeX / 2.0;
     float offsetY = sizeY / 2.0;
@@ -79,14 +79,14 @@ bool Fixedenemy::Attack(){
 
    Vector2f pos_player = miJugador->getActorLocation();
    Vector2f dir = pos_player-pos;
-   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2));
-   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux);
-   //direction=dir_unit;
+   float aux=sqrt(pow(dir.x, 2)+pow(dir.y, 2)); //distance between enemy and player
+   Vector2f dir_unit=Vector2f(dir.x/aux,dir.y/aux); //get unit direction
+   
    if(relojMark.getElapsedTime().asSeconds()>3){
        
         //projTest->direction=Vector2f(dir_unit);
         //projTest->setActorLocation(pos);
-        Almendra *projTest = new Almendra(dir_unit, pos);
+        Almendra *projTest = new Almendra(dir_unit, pos); //pass the direction of the player to the projectile
         eng->Almacenaenemy(projTest);
 
         AudioManager::getInstance()->PlaySound2D("./resources/audio/throw.ogg");
@@ -96,14 +96,14 @@ bool Fixedenemy::Attack(){
     return true;
 }
 
-void Fixedenemy::SetAnimation(){
+void Fixedenemy::SetAnimation(){// while still alive set the corresponding animation
     
     if(IsAlive()==true){
         Pawn::SetAnimation();
     }
 }
 
-void Fixedenemy::Die(){
+void Fixedenemy::Die(){// if he dies activates the dead animation
     
     activeAnim=Animations.find("dead")->second;
 
