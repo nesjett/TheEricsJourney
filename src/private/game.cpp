@@ -431,6 +431,11 @@ void game::CondicionVictoria()
             if(!mejora->utilizada)
                 mejora->activada = true;
         }
+
+        if(getMejoras().size() > 0) {
+            return;
+        }
+
         Door* puerta;
         for(Actor* actor : actors)
         {
