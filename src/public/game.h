@@ -12,18 +12,12 @@
 #include <Engine.h>
 #include <Actor.h>
 #include <Pawn.h>
-#include <Zombie.h>
-#include <Skeleton.h>
 #include <Enemy.h>
 #include <Projectile.h>
 #include <Menu.h>
 #include <Mapa.h>
 #include <Player.h>
 #include <PlayerController.h>
-#include <Fixedenemy.h>
-#include <Movingenemy.h>
-#include <Explosionenemy.h>
-#include <Stalker.h>
 #include <Hud.h>
 
 using namespace std;
