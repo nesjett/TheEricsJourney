@@ -8,11 +8,9 @@ PlayerController::PlayerController(Player* jugador){
 void PlayerController::Update(sf::Event event){
     if (event.key.code == sf::Keyboard::Q){
         MejorarCadencia(0.9);
-        Hud::Instance()->addMejora(attackspeed);
     }
     if(event.key.code == sf::Keyboard::W){
         MejorarMovimiento(1.1);
-        Hud::Instance()->addMejora(movementspeed);
     }
     if(event.key.code == sf::Keyboard::E){
         IncreaseHealth();
@@ -21,7 +19,6 @@ void PlayerController::Update(sf::Event event){
     }
     if(event.key.code == sf::Keyboard::R){
         ImprovesAttack();
-        Hud::Instance()->addMejora(attackmore);
     }
     if(event.key.code == sf::Keyboard::T){
         ModifyDamage();
@@ -89,14 +86,22 @@ void PlayerController::Frenar(){
 }
 void PlayerController::MejorarCadencia(float mej){
     mejora*=mej;
+    if(mejora>=0.47f){
+        Hud::Instance()->addMejora(attackspeed);
+    }
     miJugador->cadenciaMultiplier = mejora;
 }
 void PlayerController::MejorarMovimiento(float mejMov){
-    miJugador->movementSpeed*=mejMov;
+    if(miJugador->movementSpeed<=0.5f){
+        Hud::Instance()->addMejora(movementspeed);
+        miJugador->movementSpeed*=mejMov;
+    }
 }
-
 void PlayerController::ImprovesAttack(){
     miJugador->improvesAttack();
+    if(miJugador->GetAttackImprove()<=4){
+        Hud::Instance()->addMejora(attackmore);
+    }
 }
 void PlayerController::IncreaseHealth(){
     //In this method, you can set an increase of 25 HP in Player's health

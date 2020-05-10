@@ -1,6 +1,7 @@
 #include "../public/Player.h"
 #include "../public/game.h"
 #include "Arrow.h"
+#include "BouncingArrow.h"
 #include "../public/AudioManager.h"
 #include <list>
 
@@ -61,7 +62,7 @@ void Player::PrepareSprite(){
     
     Animation *tmpA;
 
-    tmpA = new Animation(sprite->getSpriteR(),6500, true);
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"up", tmpA});
     tmpA->addFrame({sf::IntRect(1650,2750,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550+1650,2750,sizeX,sizeY)});
@@ -80,7 +81,7 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(1100+1650,2200+2750,sizeX,sizeY)});
     
 
-    tmpA = new Animation(sprite->getSpriteR(),6500, true);
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"right", tmpA});
     tmpA->addFrame({sf::IntRect(0,2750,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550,2750,sizeX,sizeY)});
@@ -99,7 +100,7 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(1100,2200+2750,sizeX,sizeY)});
     
 
-    tmpA = new Animation(sprite->getSpriteR(),6500, true);
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"left", tmpA});   
     tmpA->addFrame({sf::IntRect(1650,0,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550+1650,0,sizeX,sizeY)});
@@ -118,7 +119,7 @@ void Player::PrepareSprite(){
     tmpA->addFrame({sf::IntRect(1100+1650,2200,sizeX,sizeY)});
     
 
-    tmpA = new Animation(sprite->getSpriteR(),6500, true);
+    tmpA = new Animation(sprite->getSpriteR(),1500, true);
     Animations.insert({"down", tmpA});
     tmpA->addFrame({sf::IntRect(0,0,sizeX,sizeY)});
     tmpA->addFrame({sf::IntRect(550,0,sizeX,sizeY)});
@@ -300,8 +301,9 @@ void Player::Draw(double percent, double delta ){
 void Player::Update(float delta){
     Pawn::Update(delta);
     SetTarget(this->FindClosestEnemy());
-    if(relojAtaque.getElapsedTime().asSeconds()>=1){
-        if(relojAtaque.getElapsedTime().asSeconds()>(2.f*cadenciaMultiplier) && (getDirection().x == 0.f && getDirection().y == 0.f)){
+    if(relojAtaque.getElapsedTime().asSeconds()>=0.86f){
+        if(relojAtaque.getElapsedTime().asSeconds()>(1.8f*cadenciaMultiplier) && (getDirection().x == 0.f && getDirection().y == 0.f)){
+            
             Attack();
             relojAtaque.restart();
         }
@@ -399,6 +401,7 @@ void Player::Attack(){
     }
 
     sf::Vector2f posPlayer = getActorLocation();
+    sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y)-30);
     //que empiece aqui
     game *eng = game::Instance();
     Arrow *projTest = new Arrow(dir_unit, posPlayer); 
@@ -412,11 +415,10 @@ void Player::Attack(){
     LastAttack++;
 
 
-    if(AttackImprovement >= 1){
+    if(AttackImprovement >= 1 && AttackImprovement<4){
         Arrow *flechaTrasera1 = new Arrow(-dir_unit, posPlayer);
         eng->Almacenaenemy(flechaTrasera1);
         if(AttackImprovement >= 2){
-            sf::Vector2f dobleFlecha = sf::Vector2f(getActorLocation().x-30, (getActorLocation().y)-30);
             Arrow *flecha2 = new Arrow(dir_unit, dobleFlecha);
             eng->Almacenaenemy(flecha2);
             if(AttackImprovement >= 3){ 
@@ -424,6 +426,16 @@ void Player::Attack(){
                 eng->Almacenaenemy(projTest3);
             }
         }
+    }
+    if(AttackImprovement==4){
+        BouncingArrow *BA1 = new BouncingArrow(dir_unit, posPlayer); 
+        BouncingArrow *BA2 = new BouncingArrow(-dir_unit, posPlayer);
+        BouncingArrow *BA3 = new BouncingArrow(dir_unit, dobleFlecha);
+        BouncingArrow *BA4 = new BouncingArrow(-dir_unit, dobleFlecha);
+        eng->Almacenaenemy(BA1);
+        eng->Almacenaenemy(BA2);
+        eng->Almacenaenemy(BA3);
+        eng->Almacenaenemy(BA4);
     }
     if(IncreaseDamage>0){
         //ModifyDamage();
@@ -435,6 +447,9 @@ void Player::Attack(){
 void Player::improvesAttack(){
     AttackImprovement++;
 }
+int Player::GetAttackImprove(){
+    return AttackImprovement;
+}
 void Player::IncreaseDamageArrows(){
     IncreaseDamage++;
 }
@@ -444,6 +459,9 @@ void Player::ModifyDamage(){
     for (Projectile* pro : Projectiles){
         if ( dynamic_cast<Arrow*>( pro ) ) {
             dynamic_cast<Arrow*>(pro)->ModifyDamage(1.2f);
+        }
+        if ( dynamic_cast<BouncingArrow*>( pro ) ) {
+            dynamic_cast<BouncingArrow*>(pro)->ModifyDamage(1.2f);
         }
     }
     std::cout<<"Daño de flechas aumentado con éxito"<<std::endl;
