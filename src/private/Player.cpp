@@ -20,7 +20,7 @@ Player::Player(){ // Use this to call to parent's contructor first
     damage_Base = 15.0f;
     damage_Multiplier = 0.0f; 
 
-    movementSpeed = 0.2f;
+    movementSpeed = 0.25f;
     faction = allie;
     AttackImprovement = 0;
     IncreaseDamage = 0;
@@ -415,7 +415,7 @@ void Player::Attack(){
     LastAttack++;
 
 
-    if(AttackImprovement > 0/* && AttackImprovement<4*/){
+    if(AttackImprovement > 0){
         Arrow *flechaTrasera1 = new Arrow(-dir_unit, posPlayer);
         eng->Almacenaenemy(flechaTrasera1);
         if(AttackImprovement >= 2){
