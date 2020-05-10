@@ -300,8 +300,9 @@ void Player::Draw(double percent, double delta ){
 void Player::Update(float delta){
     Pawn::Update(delta);
     SetTarget(this->FindClosestEnemy());
-    if(relojAtaque.getElapsedTime().asSeconds()>=0.8f){
+    if(relojAtaque.getElapsedTime().asSeconds()>=0.86f){
         if(relojAtaque.getElapsedTime().asSeconds()>(1.8f*cadenciaMultiplier) && (getDirection().x == 0.f && getDirection().y == 0.f)){
+            
             Attack();
             relojAtaque.restart();
         }
@@ -434,6 +435,9 @@ void Player::Attack(){
 }
 void Player::improvesAttack(){
     AttackImprovement++;
+}
+int Player::GetAttackImprove(){
+    return AttackImprovement;
 }
 void Player::IncreaseDamageArrows(){
     IncreaseDamage++;
