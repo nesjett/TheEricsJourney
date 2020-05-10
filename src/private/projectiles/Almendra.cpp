@@ -16,6 +16,7 @@ Almendra::Almendra(sf::Vector2f dir, sf::Vector2f pos) : Projectile(){
 void Almendra::Init(){
     movementSpeed = 0.23;
     damage = 20;
+    debug = true;
 
     texture_file = "./resources/projectiles/almendra.png";
     if(sprite){
@@ -27,7 +28,7 @@ void Almendra::Init(){
     sprite->setTextureRect( 0, 5 , 512, 197 );
     sprite->setScale(0.35, 0.35);
 
-    sprite->setBounds(0.5);
+    sprite->setBounds(0.35);
 
 
     Animation *tmpA;
