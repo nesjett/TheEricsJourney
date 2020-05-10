@@ -6,29 +6,29 @@ PlayerController::PlayerController(Player* jugador){
     miJugador = jugador;
 }
 void PlayerController::Update(sf::Event event){
-    if (event.key.code == sf::Keyboard::Q){
+    if (event.key.code == sf::Keyboard::Q && event.type == sf::Event::KeyReleased){
         MejorarCadencia(0.9);
     }
-    if(event.key.code == sf::Keyboard::W){
+    if(event.key.code == sf::Keyboard::W && event.type == sf::Event::KeyReleased){
         MejorarMovimiento(1.1);
     }
-    if(event.key.code == sf::Keyboard::E){
+    if(event.key.code == sf::Keyboard::E && event.type == sf::Event::KeyReleased){
         IncreaseHealth();
         std::cout<<"Vida total: "<<getMaxHealth()<<std::endl;
         Hud::Instance()->addMejora(health);
     }
-    if(event.key.code == sf::Keyboard::R){
+    if(event.key.code == sf::Keyboard::R && event.type == sf::Event::KeyReleased){
         ImprovesAttack();
     }
-    if(event.key.code == sf::Keyboard::T){
+    if(event.key.code == sf::Keyboard::T && event.type == sf::Event::KeyReleased){
         ModifyDamage();
         Hud::Instance()->addMejora(moredamage);
     }
-    if(event.key.code == sf::Keyboard::Y){
+    if(event.key.code == sf::Keyboard::Y && event.type == sf::Event::KeyReleased){
         Hud::Instance()->addMejora(critattack);
         ModifyCritic(0.96);
     }
-    if(event.key.code == sf::Keyboard::G){
+    if(event.key.code == sf::Keyboard::G && event.type == sf::Event::KeyReleased){
         if(Godclock->getElapsedTime().asSeconds()>1.5){
             if(GodMode==true){
                 setGodMode(false);

@@ -210,7 +210,6 @@ void game::run(){
 
         ////////////////////////////*/
         if(delta > UPDATE_INTERVAL){
-            //std::cout << "GameUpdate() " << std::endl;
             if(estadoJuego == true){ //Estamos jugando! ;-)
                 for (Actor *actor : actors) {
                     // CHeck collisions. BAD PERFORMANCE! O(n^2) !!
@@ -218,10 +217,8 @@ void game::run(){
                     //TODO: should do in another thread
                     for (Actor *test : actors) { // TODO: Add bool to stop updating player movement if collided? prevents input event firing between collision event setting dir to 0 and the update event
                         if(actor != test){
-                            //std::cout << "------------ CHECKING OVERLAP ------------" << std::endl;
                             bool overlaps = actor->getBoundingBox().intersects( test->getBoundingBox() );
                             if(overlaps){
-                                //std::cout << "--------------------------------- OVERLAPS! ----------------------------" << std::endl;
                                 test->OnActorOverlap(actor);
                             }
                         }
