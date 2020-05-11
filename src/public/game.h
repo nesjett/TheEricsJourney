@@ -28,8 +28,6 @@ class game
         static game* Instance();
         void init(/*char*, int*/);
         void run();
-        void Actualizar();
-        void Renderizado(float, float);
 
         /// Returns all enemies spawned in the world
         list<Enemy*> getAllEnemies();

@@ -118,25 +118,26 @@ void game::run(){
     sf::Int64 lastUpdate = clock.getElapsedTime().asMilliseconds();
 
     while (eng->getApp().isOpen()) {
-        //Bucle de obtención de eventos
-        //sf::Event event;
-        while (eng->getApp().pollEvent(tecla)) {
+        //game Loop.
+        while (eng->getApp().pollEvent(tecla)) { //Loop that handles key events (mouse and keyboard) 
                 
             if (tecla.type == sf::Event::Closed){
                 eng->getApp().close();
             }
-            if (tecla.type == sf::Event::KeyPressed){
-                //Escape
+            if (tecla.type == sf::Event::KeyPressed){ //Handling special keys
+                //Escape to close the game
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                     eng->getApp().close();
                 } 
+                //Tab to kill all the enemies and go to the next level.
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)){
                     KillAllEnemies();
                 }
             }
-            if(ControladorJugador)
+            if(ControladorJugador) //PlayerController manages all the events and methods of the player.
             {
-                ControladorJugador->Update(tecla);
+                ControladorJugador->Update(tecla); /*Key Event is passed as parameter to the
+                PlayerController in order to manage the Player with the user's commands.*/
             }
             if(estadoJuego == false) //Estamos en el menu o en la pantalla final
             {

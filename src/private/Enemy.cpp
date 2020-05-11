@@ -14,7 +14,6 @@ void Enemy::PrepareMarker(){
 }
 
 void Enemy::Update(float delta){
-    //std::cout << "Iniciamos UPDATE()" << std::endl;
     Pawn::Update(delta);
     
 }
@@ -32,12 +31,6 @@ void Enemy::Draw(double percent, double delta ){
 
     std::list<int>::iterator it;
     // Draw hit text data
-   /* for (TText txt : HitText) {
-        // TODO: SHould create a child class from sf::Text for adding Draw() and handle lifetime better than here
-        if(gi->getTime() <= txt.getDeathTime()) {
-            txt.Draw();
-        } 
-    }*/
     for (auto it = HitText.begin(); it != HitText.end(); it++) {
         // Notice that the iterator is decremented after it is passed 
 		// to erase() but before erase() is executed 
@@ -59,10 +52,9 @@ void Enemy::Die(){
 
 void Enemy::TakeDamage(float damage, Actor* dmgCauser, string damage_type){
     float cri = game::Instance()->getPlayerCharacter()->GetCritic();
-    std::cout << "Dime el crítico: " <<  game::Instance()->getPlayerCharacter()->GetCritic() << std::endl;
     std::cout << "Damage taken!" << std::endl; 
     if(health_Current > 0){ // Only apply damage if the enemy is alive.
-        if(rand() % 100 > 85*cri) { // 15% chances of critic
+        if(rand() % 100 > 85*cri) { // 15% chances of critic. The variable "cri" increases the chances of making a critical hit
             health_Current-=damage*3;
             HitText.push_back(TText("Critico!", Vector2f(this->getActorLocation().x+rand() % 20 + (-10), this->getActorLocation().y-20.f) ,1.25));
         } else {

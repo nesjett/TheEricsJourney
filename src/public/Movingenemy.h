@@ -18,15 +18,15 @@ class Movingenemy: public Enemy{
         bool Attack();
         void Update(float delta);
         void Draw(double percent, double delta );
-        void Prepara(Vector2f inicio, Vector2f final);
+        void Prepara(Vector2f inicio, Vector2f final);// set the points between which the enemy moves
         void PrepareSprite();
         Vector2f x;
         Vector2f y;
         Vector2f ultimadir;
         bool para;
-        sf::Clock relojMark;
+        sf::Clock relojMark;//controls the shoting rate
         sf::Clock relojPausa;
-        void Die();
+        void Die();// if he dies activates the dead animation
         
         bool muerto=false;
     protected:

@@ -112,7 +112,7 @@ void Movingenemy::Draw(double percent, double delta ){
     Enemy::Draw(percent, delta); // Use this to debug draw bounding box
 }
 
-void Movingenemy::Prepara(Vector2f inicio, Vector2f final){
+void Movingenemy::Prepara(Vector2f inicio, Vector2f final){// set the points between which the enemy moves
     setActorLocation(inicio);
     x=inicio;
     y=final;
