@@ -7,7 +7,7 @@ Tile::Tile(string nombreSprite, float x, float y, float widthSprite, float heigh
     height = heightSprite;
     texture_file = nombreSprite;
     debug_coords = false;
-    setActorLocation(Vector2f(y+(width/2),x+(height/2))); //las posiciones en sfml primer y luego x
+    setActorLocation(Vector2f(y+(width/2),x+(height/2))); 
     esPuerta = puerta;
     PrepareSprite();
 }

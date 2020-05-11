@@ -7,6 +7,10 @@
 using namespace std;
 using namespace sf;
 
+/*
+ * Clase que utilizaremos para los muros
+ */
+
 class Tile: public Actor {
     public:
         Tile(string nombreSprite, float x, float y, float widthSprite, float heightSprite, ObjectType tipo, bool puerta);
@@ -17,7 +21,6 @@ class Tile: public Actor {
         bool esPuerta;
     protected:
         virtual void PrepareSprite();
-        Animation* animation;
     private:
         string texture_file;
 };

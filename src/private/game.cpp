@@ -69,13 +69,13 @@ void game::InicializaNivel()
     if(estadoJuego == true) //Nos aseguramos de que lastUpdateLevelClock este inicializado
     {
         float porcentaje = (1 - (levelClock.getElapsedTime().asSeconds()-lastUpdateLevelClock)/6000); //1 - minutos_transcrridos/1000
-        PlayerPoints = PlayerPoints + porcentaje*2000; //Puntuacion max es de 2000
+        PlayerPoints = PlayerPoints + porcentaje*2000; 
     }
 
 
     if(mapaActual < NumMaxNiveles) 
     {
-        //Cargamos el nivel
+        //Cargamos el nivel, borrando el anterior
         if(mapa)
             delete mapa;
         string nombreMapa = "Mapa"+to_string(mapaActual+1)+".tmx";
@@ -89,8 +89,10 @@ void game::InicializaNivel()
         {
             actors.push_back(mapActor);
         }
+        //Queremos que el jugador se dibuje el ultimo, para que este por encima de todo
         actors.remove(jugador);
         actors.push_back(jugador);
+
         //Protagonista set location al inicio del mapa
         jugador->setActorLocation(Vector2f(350.0,850.0));
 
@@ -98,7 +100,7 @@ void game::InicializaNivel()
         lastUpdateLevelClock = levelClock.getElapsedTime().asSeconds();
     }
     else{
-        //Cargamos la pantalla de puntuaciones
+        //Cargamos la pantalla de puntuaciones porque no hay mas niveles
         EndGame();
     }
 }
@@ -231,8 +233,6 @@ void game::run(){
                 }
                 //Comprobamos si pasamos de nivel
                 CondicionVictoria();
-                Hud* hud = Hud::Instance();
-                hud->Update();
             }
             lastUpdate = clock.getElapsedTime().asMilliseconds();
 
@@ -446,7 +446,7 @@ void game::CondicionVictoria()
                 dynamic_cast<Tile*>(actor)->setLifespan(0.f);
             }
         }
-        if(jugador->getActorLocation().y < 100.f)
+        if(jugador->getActorLocation().y < 100.f) //Se comprueba si el jugador ha pasado por la puerta
         {
             mapaActual++;  
             InicializaNivel();

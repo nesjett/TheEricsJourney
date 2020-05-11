@@ -28,11 +28,17 @@ void Mapa::cargaMapa()
 
     mapa = documento.FirstChildElement("map");
 
+    //Guardamos info del mapa y los tiles
     mapa->QueryAttribute("height", &tamMapaX);
     mapa->QueryAttribute("width", &tamMapaY);
     mapa->QueryAttribute("tilewidth", &tamTileX);
     mapa->QueryAttribute("tileheight", &tamTileY);
 
+    /**
+     *  Leemos propiedades que nos dicen:
+     *      - Longitud de las sierras que se creen en el mapa
+     *      - Posicion final de los enemigos Movingenemy, que se mueven entre su punto inicial y el indicado
+     * */
     float sierra, movX, movY;
     XMLElement* propiedades = mapa->FirstChildElement("properties");
     if(propiedades)
@@ -55,6 +61,7 @@ void Mapa::cargaMapa()
             propiedad = propiedad->NextSiblingElement("property");
         }
     }
+
     //Cargar los sprites
     int numTileset = 0;
     XMLElement* tileset = mapa->FirstChildElement("tileset");
@@ -73,6 +80,7 @@ void Mapa::cargaMapa()
     sprite_suelo.setPosition(0.f, 0.f);
     vectorPintar2.push_back(sprite_suelo);
 
+    //Vamos a leer los nombres de los sprites, que pasaremos a los actores para que ese sea su sprite
     string nomSprite;
     vector<string> vectorNombresSprite;
     tileset = mapa->FirstChildElement("tileset");
@@ -81,10 +89,6 @@ void Mapa::cargaMapa()
     {
         image = tileset->FirstChildElement("image");
         nomSprite = image->Attribute("source");
-
-        // vectorTextura[i]->loadFromFile("./resources/maps/" + nomSprite);
-
-        // vectorSprite[i]->setTexture(*vectorTextura[i]);
         vectorNombresSprite.push_back("./resources/maps/" + nomSprite);
         if(tileset->NextSiblingElement("tileset"))     
             tileset = tileset->NextSiblingElement("tileset");
@@ -117,33 +121,32 @@ void Mapa::cargaMapa()
                 if(tile->Attribute("gid"))
                 {
                     int valor = atoi(tile->Attribute("gid"));
-                    if(strcmp(layer->Attribute("name"), strCapaColisiones.c_str()) == 0) //Elementos Colisionables
+                    if(strcmp(layer->Attribute("name"), strCapaColisiones.c_str()) == 0) //Muros
                     {
                         vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,worldstatic, false));
                     }
-                    if(strcmp(layer->Attribute("name"), strCapaObjetos.c_str()) == 0) //Objetos o trampas
+                    if(strcmp(layer->Attribute("name"), strCapaObjetos.c_str()) == 0) //Agujeros u otros objetos 
                     {
                         vTiles.push_back(new Tile(vectorNombresSprite[valor-1],posX,posY,tamTileX,tamTileY,blocker, false));
                     }
-                    if(strcmp(layer->Attribute("name"), strCapaPinchos.c_str()) == 0) //Objetos o trampas
+                    if(strcmp(layer->Attribute("name"), strCapaPinchos.c_str()) == 0) //Trampas Pinchos
                     {
                         vTrampas.push_back(new Spikes());
                         vTrampas[posVTrampas]->setActorLocation(Vector2f(posY, posX));
                         posVTrampas++;
                     }
-                    if(strcmp(layer->Attribute("name"), strCapaSierra.c_str()) == 0) //Objetos o trampas
+                    if(strcmp(layer->Attribute("name"), strCapaSierra.c_str()) == 0) //Trampa Sierra
                     {
-                        // if(vTrampas.size() == 1)
-                        //     sierra = sierra*3;
                         vTrampas.push_back(new Saw(Vector2f(posY,posX), sierra*tamTileX));
                         posVTrampas++;
                     }
-                    if(strcmp(layer->Attribute("name"), strCapaPuertas.c_str()) == 0) //Puertas (falta cambiarle el oType)
+                    if(strcmp(layer->Attribute("name"), strCapaPuertas.c_str()) == 0) //Puertas 
                     {
                         bool esPuertaSuperior = false;
                         if(posX == 50.f)
                             esPuertaSuperior = true;
                         vPuertas.push_back(new Door(Vector2f(posY,posX + 50.f), esPuertaSuperior));
+                        //Ademas de crear la puerta, para que colisione creamos dos Tiles o bloques de muro, que eliminaremos una vez se abra la puerta
                         if(esPuertaSuperior)
                         {
                             vTiles.push_back(new Tile(vectorNombresSprite[valor-1], posX,posY, tamTileX,tamTileY,worldstatic, true));
@@ -210,6 +213,7 @@ void Mapa::cargaMapa()
                     }
                     if(strcmp(layer->Attribute("name"), strCapaSuelo.c_str()) == 0)
                     {
+                        //Antes cargabamos el suelo por tiles pero ahora es una imagen al completo
                         // if(valor <= vectorSprite.size())
                         // {
                         //     vectorSprite[valor-1]->setPosition(posY, posX);
@@ -230,19 +234,12 @@ void Mapa::cargaMapa()
         posY = 0;
         layer = layer->NextSiblingElement("layer");
     }
-    //Seteamos posiciones
-    // vector<Sprite>::iterator j;
-    // vector<int>::iterator x = vPosX.begin();
-    // vector<int>::iterator y = vPosY.begin();
-    // for(j = vectorPintar2.begin(); j != vectorPintar2.end(); j++)
-    // {
-    //     //(*j).setOrigin(80/2,80/2);
-    //     (*j).setPosition(*y,*x);
-    //     x++;
-    //     y++;
-    // }
 }
 
+/**
+ * Devolvemos los actores por el orden en el que nos interese pintarlos
+ * 
+ * */
 list<Actor*> Mapa::getActors()
 {
     list<Tile*> listaTiles(vTiles.begin(),vTiles.end());
@@ -251,7 +248,6 @@ list<Actor*> Mapa::getActors()
     list<Trap*> listaTrampas(vTrampas.begin(), vTrampas.end());
     list<Door*> listaPuertas(vPuertas.begin(),vPuertas.end());
     list<Actor*> actores;
-    //listaTiles.merge(listaEnemigos);
     for (Door *puerta : listaPuertas)
     {
         actores.push_back(puerta);
@@ -285,6 +281,7 @@ void Mapa::update()
 }
 void Mapa::render()
 {
+    //En el mapa solo dbujamos el suelo y el fondo
     vector<Sprite>::iterator i;
     for(i = vectorPintar2.begin(); i != vectorPintar2.end(); i++)
     {
