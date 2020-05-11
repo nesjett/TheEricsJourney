@@ -43,7 +43,7 @@ class Pawn: public Actor {
     protected:
         void PrepareSprite();
 
-        virtual void SetAnimation();
+        virtual void SetAnimation();//select the animation from the animation map depending on the direction of the actor
 
         // Apply dying effects
         virtual void Die();

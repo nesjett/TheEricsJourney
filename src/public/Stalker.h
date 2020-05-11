@@ -17,8 +17,8 @@ class Stalker: public Enemy{
         void Draw(double percent, double delta );
         void PrepareSprite();
         //Vector2f Direccionunitaria(Vector2f pos_player,Vector2f pos);
-        sf::Clock relojMark;
-        void Die();
+        sf::Clock relojMark;//controls the shoting rate
+        void Die();// if he dies activates the dead animation
     protected:
     
         void SetAnimation();

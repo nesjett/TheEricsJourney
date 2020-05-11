@@ -30,7 +30,7 @@ class Player:  public Pawn{
         void IncreaseDamageArrows();
         void ModifyCritic(float cri);
         float GetCritic();
-        int DireccionPausa();
+        int DireccionPausa();//get the player's direction to the enemy
         void SetAnimation();
         void ToggleMovementIndicator();
         void setGodMode(bool god);

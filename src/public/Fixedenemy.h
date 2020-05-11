@@ -16,8 +16,8 @@ class Fixedenemy: public Enemy{
         void Update(float delta);
         void Draw(double percent, double delta );
 
-        sf::Clock relojMark;
-        void Die();
+        sf::Clock relojMark;//controls the shoting rate
+        void Die();// if he dies activates the dead animation
     protected:
     
         void SetAnimation();

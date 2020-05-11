@@ -18,10 +18,10 @@ class Explosionenemy: public Enemy{
         void Draw(double percent, double delta );
         Vector2f RandomNewDir();
         //Vector2f Direccionunitaria(Vector2f pos_player,Vector2f pos);
-        sf::Clock relojMark;
+        sf::Clock relojMark;//controls the shoting rate
         sf::Clock relojdireccion;
         sf::Clock relojPausa;
-        void Die();
+        void Die();// if he dies activates the dead animation
     protected:
     
         void SetAnimation();    
