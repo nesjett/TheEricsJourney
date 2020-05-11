@@ -3,7 +3,7 @@
 
 Hud* Hud::pInstance = NULL;
 Hud* Hud::Instance() {
-    if(pInstance == NULL) { // If not created earlier, create a new instance and return it
+    if(pInstance == NULL) { 
         pInstance = new Hud;
     } 
     return pInstance;
@@ -49,10 +49,6 @@ Hud::Hud()
     {
         spritesMejoras.push_back(new Sprite);
     }
-    // Texture *tx1 = new Texture();
-    // Texture *tx2 = new Texture();
-    // Texture *tx3 = new Texture();
-    // Texture *tx4 = new Texture();
     tx1->loadFromFile("./resources/powerups/0.png");
     tx2->loadFromFile("./resources/powerups/1.png");
     tx3->loadFromFile("./resources/powerups/2.png");
@@ -75,6 +71,10 @@ Hud::Hud()
     spriteVentana.setTextureRect(IntRect(1504.f, 960.f, 530.f, 717.f));
     spriteVentana.setScale(0.3f, 0.60f);
 
+    textoMapa.setFont(fontHud);
+    textoMapa.setCharacterSize(20);
+    textoMapa.setColor(Color::Black);
+
 
 }
 Hud::~Hud()
@@ -84,12 +84,12 @@ Hud::~Hud()
 
 void Hud::setMaxHealth(float health)
 {
-    if(maxHealth > 0.f)
-    {
-        // float porcentaje = health/maxHealth;
-        // width = width*porcentaje;
-        // playerHealth.setSize(Vector2f(width, height));
-    }
+    // if(maxHealth > 0.f)
+    // {
+    //     // float porcentaje = health/maxHealth;
+    //     // width = width*porcentaje;
+    //     // playerHealth.setSize(Vector2f(width, height));
+    // }
     maxHealth = health;
 }
 
@@ -105,18 +105,10 @@ void Hud::setCurrentHealth(float health)
     playerHealth.setSize(sf::Vector2f(percent*width, height));
     playerHealth.setOrigin(width/2, height/2);
     playerHealth.setFillColor(colorHealth100);
-    // if(percent <= 0.5f && percent > 0.25f)
-    // {
-    //     playerHealth.setFillColor(colorHealthLess50);
-    // }
-    // if(percent <= 0.25f)
-    // {
-    //     playerHealth.setFillColor(colorHealthLess25);
-    // }
 }
 void Hud::setNumMapa(int num)
 {
-    NumMapa = num;
+    textoMapa.setString("Nivel "+ to_string(num));
 }
 void Hud::setPlayer(Player* player)
 {
@@ -171,18 +163,16 @@ void::Hud::resetMejoras()
 
 void Hud::Draw()
 {
+    //La info de mejoras debe moverse con la camara
     spriteVentana.setPosition(725.f, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 50);
     eng->getApp().draw(spriteVentana);
-    Text textoMapa;
-    textoMapa.setFont(fontHud);
-    textoMapa.setString("Nivel "+ to_string(NumMapa));
     textoMapa.setPosition(760.f, eng->getApp().getView().getCenter().y - (eng->getApp().getView().getSize().y/2)+ 85);
-    textoMapa.setCharacterSize(20);
-    textoMapa.setColor(Color::Black);
+
     eng->getApp().draw(textoMapa);
     setCurrentHealth(jugador->getCurrentHealth());
-    list<Enemy*> enemigos = game::Instance()->getAllEnemies();
 
+    //Actualizamos barras de vida de los enemigos
+    list<Enemy*> enemigos = game::Instance()->getAllEnemies();
     vector<RectangleShape*>::iterator it;
     for(it=enemyHealthBars.begin(); it != enemyHealthBars.end(); it++)
     {
@@ -201,6 +191,7 @@ void Hud::Draw()
             i++;
         }       
     }
+
     //Barra de vida del jugador con borde
     playerHealth.setPosition(Vector2f(jugador->getInterpolatedPos().x, jugador->getInterpolatedPos().y - 50));
     for(it=cuadraditos.begin(); it != cuadraditos.end(); it++)
@@ -229,7 +220,7 @@ void Hud::Draw()
         eng->getApp().draw(*cuadraditos[i]);
     }
 
-
+    //Bordes de las barras de los enemigos: se podria hacer en el mismo bucle que actualiza la vida de los enemigos
     RectangleShape borde;
     borde.setSize(sf::Vector2f(widthEnemigo, height));
     borde.setOutlineColor(sf::Color::Black);
@@ -247,6 +238,8 @@ void Hud::Draw()
             i++;       
         }
     }
+
+
     //Draw de las mejoras
     int cont = 0;
     if(vecesMejora1 > 0)
@@ -297,6 +290,7 @@ void Hud::Draw()
         eng->getApp().draw(*spritesMejoras[5]);
         cont++;
     }
+    //Si no tenemos mejoras mostramos el mensaje: Sin mejoras
     if(vecesMejora1 == 0
     && vecesMejora2 == 0
     && vecesMejora3 == 0

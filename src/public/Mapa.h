@@ -24,16 +24,24 @@ class Mapa
         virtual ~Mapa();
         void update();
         void render();
-        list<Actor*> getActors();
+        list<Actor*> getActors(); 
 
     protected:
 
     private:
+        int num_layers;
+        int tamMapaX, tamMapaY, tamTileX, tamTileY;
+        Engine* eng;
+        Texture textura_fondo_ventana;
+        Sprite sprite_fondo_ventana;
+        Texture textura_suelo;
+        Sprite sprite_suelo;
+        void cargaMapa(); //Lectura del .tmx
+
+        //Leemos el mapa por capas y nos guardamos los elementos en vectores separados
         string nombreMapa;
         XMLElement *mapa;
-        vector<Sprite> vectorPintar2;
-        vector<int> vPosX;
-        vector<int> vPosY;
+        vector<Sprite> vectorPintar2; //Suelo y fondo: elementos no colisionables
         vector<Tile*> vTiles;
         vector<Door*> vPuertas;
         vector<Enemy*> vEnemigos;
@@ -56,13 +64,4 @@ class Mapa
         string strPropiedadSierra = "LongitudSierra";
         string strPropiedadMovEnemyX = "MovingEnemyFinalPosX";
         string strPropiedadMovEnemyY = "MovingEnemyFinalPosY";
-
-        int num_layers;
-        int tamMapaX, tamMapaY, tamTileX, tamTileY;
-        Engine* eng;
-        Texture textura_fondo_ventana;
-        Sprite sprite_fondo_ventana;
-        Texture textura_suelo;
-        Sprite sprite_suelo;
-        void cargaMapa();
 };

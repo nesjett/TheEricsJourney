@@ -6,7 +6,9 @@
 
 using namespace std;
 using namespace sf;
-
+/**
+ *  Clase Puerta
+ * */
 class Door: public Actor {
     public:
         Door(Vector2f position, bool esPuertaSuperior);

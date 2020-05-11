@@ -20,14 +20,17 @@ class Hud
 {
     public:
         static Hud* Instance();
+
+        //Para el jugador
         void setMaxHealth(float health);
         void setCurrentHealth(float health);
-
-
         void setPlayer(Player* player);
-        void addMejora(PowerUpType tipo);
+
         void setNumMapa(int num);
+
+        void addMejora(PowerUpType tipo);
         void resetMejoras();
+
         void Update();
         void Draw();
 
@@ -45,12 +48,16 @@ class Hud
         RectangleShape playerHealth;
         float currentHealth;
         float maxHealth;
-        float height, width;
+        float height, width; //Dimensiones del rectangulo barra de vida
         float percent; //Porcentaje vidaActual/vidaTotal
-        Color colorHealth100, colorHealthLess50, colorHealthLess25; 
-        vector<RectangleShape*> cuadraditos;
+        Color colorHealth100, colorHealthLess50, colorHealthLess25; //Colores de la barra de vida, actualmente solo el verde
+        vector<RectangleShape*> cuadraditos; //Cuadrados que dividen la barra de vida del jugador
 
-        //Datos de los powerups adquiridos - TO DO: una vez gestionemos powerups
+        //Barras de vida de los enemigos
+        vector<RectangleShape*> enemyHealthBars;
+        float widthEnemigo;
+
+        //Datos de los powerups adquiridos
         float separacion = 50.f;
         Text txtHealth, txtMovSpeed, txtAttackSpeed, txtAttackMore, txtMoreDamage, txtCritAttack;
         int vecesMejora1 = 0;
@@ -68,14 +75,10 @@ class Hud
         vector<Sprite*> spritesMejoras;
         vector<Texture> texturasMejoras;
 
-        //Datos mapa
-        int NumMapa;
+        //Marco de las mejoras y texto de mapa actual
+        Text textoMapa;
         Texture texVentana;
         Sprite spriteVentana;
-
-        //Barras de vida de los enemigos
-        vector<RectangleShape*> enemyHealthBars;
-        float widthEnemigo;
 };
 
 #endif // Hud_H

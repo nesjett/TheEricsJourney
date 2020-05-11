@@ -81,7 +81,7 @@ class game
         void InicializaNivel();
         void CondicionVictoria();
         void EndGame();
-        void RestartGame();
+        void RestartGame(); //Igual que StartGame pero borrando PlayerController
         void StartGame();
 
         //Puntuaciones

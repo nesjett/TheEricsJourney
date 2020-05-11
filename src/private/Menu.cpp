@@ -9,9 +9,9 @@ Menu::Menu()
 {
     MostrarMenuPrincipal = true;
     cargarFuente();
-    cargarMapaMenu();
+    cargarElementosMenu();
     audioManager = AudioManager::getInstance();
-    audioManager->menu();
+    audioManager->menu(); //Reproducimos musica del menu
 }
 
 Menu::~Menu()
@@ -30,6 +30,8 @@ void Menu::cargarFuente()
     }
 
 }
+
+//Cambiamos a menu de puntuaciones
 void Menu::MostrarPuntuaciones(float puntuacion, bool victoria)
 {
     puntos = puntuacion;
@@ -53,6 +55,10 @@ void Menu::MostrarPuntuaciones(float puntuacion, bool victoria)
     textoVictoria.setCharacterSize(100);
     textoVictoria.setOrigin(textoVictoria.getGlobalBounds().width/2,textoVictoria.getGlobalBounds().height/2);
     textoCartel.setOrigin(textoCartel.getGlobalBounds().width/2,textoCartel.getGlobalBounds().height/2);
+    Engine *eng = Engine::Instance();
+    textoVictoria.setPosition(eng->getApp().getSize().x/2,eng->getApp().getSize().y/2 - 200);
+    textoCartel.setPosition(eng->getApp().getSize().x/2,eng->getApp().getSize().y/2 - 75);
+    textoPuntuaciones.setPosition(eng->getApp().getSize().x/2,eng->getApp().getSize().y/2 + 20);
 
     audioManager->menu();
 }
@@ -81,9 +87,6 @@ void Menu::draw()
     }
     else{
         eng->getApp().draw(fondo2);
-        textoVictoria.setPosition(eng->getApp().getSize().x/2,eng->getApp().getSize().y/2 - 200);
-        textoCartel.setPosition(eng->getApp().getSize().x/2,eng->getApp().getSize().y/2 - 75);
-        textoPuntuaciones.setPosition(eng->getApp().getSize().x/2,eng->getApp().getSize().y/2 + 20);
         eng->getApp().draw(textoVictoria);
         eng->getApp().draw(textoCartel);
         eng->getApp().draw(textoPuntuaciones);
@@ -167,8 +170,8 @@ bool Menu::update(sf::Event event, bool *reiniciaJuego)
 
 
 
-//Nuevos metodos
-void Menu::cargarMapaMenu()
+//Cargamos los elementos seleccionables del menu
+void Menu::cargarElementosMenu()
 {
 
     jugar = new Sprite();
