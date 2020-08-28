@@ -1,7 +1,7 @@
 # Project sctructure
-* **Main**: Main software container. "Application"
-* **GameInstance**: High-level manager object for an instance of the running game
-* **Engine**: Interface for SFML abstraction
+* **Main**: Main software container. "Application". 
+* **GameInstance**: High-level manager object for an instance of the running game. It includes the game loop (tick) and main proccessing for the gameplay workflow.
+* **Engine**: Interface for SFML abstraction. It includes Particle systems base, Interpolation tools among other base classes. 
 * **Actor**: An Actor is any object that can be placed into a level. Actors are a generic Class that support 3D transformations such as translation, rotation, and scale. Actors can be created (spawned) and destroyed through gameplay code.
     * **Tile**
         * **Pushable**
