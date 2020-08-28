@@ -1,3 +1,13 @@
+# The project
+This game was made by a team of 4 people, developed purely in C++ without libraries (appart of SFML) It took over a month to get to this result.
+
+The project started as a subject project for Videogames Fundamentals at the University of Alicante and is non-profit.
+The game implements interpolation, collision checking, bouncing, particle effects, interpolation, animations and many more mechanics that a game needs.
+
+The code was also put into consideration during the design phase, making use of Composition, Fachade, State, and some other programming paradigms to ensure the system was consistent and extendible.
+
+A MORE detailed blog post can be found at: [Nestor's Sabater portfolio](https://nsabater.com/the-erics-journey-a-c-game-made-from-scratch)
+
 # Project sctructure
 * **Main**: Main software container. "Application". 
 * **GameInstance**: High-level manager object for an instance of the running game. It includes the game loop (tick) and main proccessing for the gameplay workflow.
