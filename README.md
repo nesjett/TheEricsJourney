@@ -6,7 +6,7 @@ The game implements interpolation, collision checking, bouncing, particle effect
 
 The code was also put into consideration during the design phase, making use of Composition, Fachade, State, and some other programming paradigms to ensure the system was consistent and extendible.
 
-A MORE detailed blog post can be found at: [Nestor's Sabater portfolio](https://nsabater.com/the-erics-journey-a-c-game-made-from-scratch)
+A more **detailed blog post** can be found at: [Nestor's Sabater portfolio](https://nsabater.com/the-erics-journey-a-c-game-made-from-scratch)
 
 # Project sctructure
 * **Main**: Main software container. "Application". 
