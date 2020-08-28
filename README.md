@@ -1,3 +1,5 @@
+![Game Screenshot](https://nsabater.com/wp-content/uploads/2020/05/Screenshot_200-1536x791.png)
+
 # The project
 This game was made by a team of 4 people, developed purely in C++ without libraries (appart of SFML) It took over a month to get to this result.
 
